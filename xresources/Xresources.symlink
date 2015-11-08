@@ -1,0 +1,108 @@
+URxvt*termName: screen-256color
+URxvt*geometry: 150x44
+URxvt*loginShell: true
+URxvt*scrollBar:true
+URxvt*scrollColor:#777777
+URxvt*scrollBar_right: false
+URxvt*scrollBar_floating: false
+URxvt*scrollstyle: plain
+URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: false
+URxvt*secondaryScreen: true
+URxvt*secondaryScroll: true
+URxvt*fading: 30
+URxvt*utmpInhibit: false
+URxvt*urgentOnBell: false
+URxvt*visualBell: false
+URxvt*mapAlert: true
+URxvt*mouseWheelScrollPage: true
+URxvt*colorUL: yellow
+URxvt*underlineColor: yellow
+
+scheme: "PaperColor-Dark"
+author: "Nguyen Nguyen (http://github.com/NLKNguyen)"
+#define base00 #262626
+#define base01 #262626
+#define base02 #4d4d4c
+#define base03 #808080
+#define base04 #949494
+#define base05 #d0d0d0
+#define base06 #f3f3f3
+#define base07 #f3f3f3
+#define base08 #af87af
+#define base09 #ff5faf
+#define base0A #00afaf
+#define base0B #dfaf5f
+#define base0C #5fafdf
+#define base0D #df875f
+#define base0E #afdf00
+#define base0F #00af5f
+
+*.foreground:   base05
+*.background:   base00
+*.cursorColor:  base05
+
+*.color0:       base00
+*.color1:       base08
+*.color2:       base0B
+*.color3:       base0A
+*.color4:       base0D
+*.color5:       base0E
+*.color6:       base0C
+*.color7:       base05
+
+*.color8:       base03
+*.color9:       base08
+*.color10:      base0B
+*.color11:      base0A
+*.color12:      base0D
+*.color13:      base0E
+*.color14:      base0C
+*.color15:      base07
+
+! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
+! use 'shell' template to set these if necessary
+*.color16:      base09
+*.color17:      base0F
+*.color18:      base01
+*.color19:      base02
+*.color20:      base04
+*.color21:      base06
+
+URxvt*saveLines: 2000
+URxvt*buffered: true
+URxvt*hold: false
+URxvt*internalBorder:
+URxvt*print-pipe: cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt*perl-ext-common: default,url-select,clipboard
+URxvt*perl-ext:
+URxvt.underlineURLs: True
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-c:   perl:clipboard:copy
+URxvt.keysym.M-v:   perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+!-- Xft settings -- !
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+URxvt*letterSpace : 0
+
+URxvt*font: xft:envypn:pixelsize=15
+URxvt*boldFont: xft:envypn:bold:pixelsize=15
+URxvt*italicFont: xft:envypn:italic:pixelsize=15
+URxvt*boldItalicFont: xft:envypn:bold:italic:pixelsize=15
+
+!URxvt*font: envypn-15
+!URxvt*boldFont: envypn-15
+
+!URxvt*font:            -windows-dina-medium-r-normal--16-100-96-96-c-80-microsoft-cp1252
+!URxvt*boldFont:        -windows-dina-bold-r-normal--16-100-96-96-c-80-microsoft-cp1252
+!URxvt*italicFont:      -windows-dina-medium-i-normal--16-100-96-96-c-80-microsoft-cp1252
+!URxvt*boldItalicFont:  -windows-dina-bold-i-normal--16-100-96-96-c-80-microsoft-cp1252
