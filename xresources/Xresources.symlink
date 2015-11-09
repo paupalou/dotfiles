@@ -94,10 +94,10 @@ Xft.hinting:    true
 Xft.hintstyle:  hintslight
 URxvt*letterSpace : 0
 
-URxvt*font: xft:envypn:pixelsize=15
-URxvt*boldFont: xft:envypn:bold:pixelsize=15
-URxvt*italicFont: xft:envypn:italic:pixelsize=15
-URxvt*boldItalicFont: xft:envypn:bold:italic:pixelsize=15
+URxvt*font: xft:envypn:size=13
+URxvt*boldFont: xft:envypn:bold:size=13
+URxvt*italicFont: xft:envypn:italic:size=13
+URxvt*boldItalicFont: xft:envypn:bold:italic:size=13
 
 !URxvt*font: envypn-15
 !URxvt*boldFont: envypn-15
