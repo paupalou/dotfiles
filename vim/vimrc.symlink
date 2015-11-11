@@ -9,8 +9,6 @@ Plug 'tpope/vim-surround'      " Mappings for surrounding
 Plug 'tpope/vim-commentary'    " Mappings for commenting - gcc
 Plug 'tpope/vim-unimpaired'    " Mappings for utility
 Plug 'tpope/vim-eunuch'        " Shell commands like :SudoWrite
-Plug 'tpope/vim-obsession'     " Manage sessions :Obession {file} or {dir}
-
 
 " Utils
 Plug 'mhinz/vim-startify'      " Show recent files on startup
@@ -59,6 +57,9 @@ set mouse=nvr
 set tabstop=4
 set shiftwidth=4
 
+" Show special characters
+set list
+
 " Disable wrap lines
 set nowrap
 
@@ -88,13 +89,9 @@ set splitright
 set relativenumber
 set number
 
-" Better scrolling
-set scrolloff=1
-set sidescrolloff=5
-
 " Textwidth and Columncolor
 set textwidth=110
-" set colorcolumn=111
+"set colorcolumn=111
 
 " Show matching brackets
 set showmatch
@@ -177,31 +174,7 @@ inoremap <c-e> <esc>A
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
-function RangerExplorer()
-	exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
-	if filereadable('/tmp/vim_ranger_current_file')
-		exec 'edit ' . system('cat /tmp/vim_ranger_current_file')
-		call system('rm /tmp/vim_ranger_current_file')
-	endif
-	redraw!
-endfun
-map <Leader>x :call RangerExplorer()<CR>
-
 " ### PLUGIN SETTINGS
-
-" Airline
-let g:airline_powerline_fonts = 0
-let g:airline#extensions#tabline#enabled = 1
-
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#show_tabs = 0
-let g:airline#extensions#tabline#show_tab_type = 0
-
-let g:airline#extensions#tabline#left_sep = ''
-let g:airline#extensions#tabline#left_alt_sep = ''
-let g:airline#extensions#tabline#right_sep = ''
-let g:airline#extensions#tabline#right_alt_sep = ''
-
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -219,7 +192,6 @@ let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
 
 " Javascript-libraries-syntax
-" let g:used_javascript_libs = 'underscore,backbone'
 let g:used_javascript_libs = 'jquery'
 
 " UltiSnips
@@ -235,102 +207,106 @@ let g:indentLine_color_term = 239
 
 " LightLine
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ] , ['bufferline'] ],
-      \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightLineFilename',
-      \   'fileformat': 'LightLineFileformat',
-      \   'filetype': 'LightLineFiletype',
-      \   'fileencoding': 'LightLineFileencoding',
-      \   'mode': 'LightLineMode',
-      \   'bufferline': 'MyBufferLine',
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error',
-      \ },
-      \ 'subseparator': { 'left': '|', 'right': '|' }
-      \ }
+    \ 'colorscheme': 'Tomorrow',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ] , ['bufferline'] ],
+    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \ },
+    \ 'component': {
+    \   'lineinfo': ' %3l:%-2v',
+    \ },
+    \ 'component_function': {
+    \   'filename': 'LightLineFilename',
+    \   'fileformat': 'LightLineFileformat',
+    \   'filetype': 'LightLineFiletype',
+    \   'fileencoding': 'LightLineFileencoding',
+    \   'mode': 'LightLineMode',
+    \   'bufferline': 'MyBufferLine',
+    \ },
+    \ 'component_expand': {
+    \   'syntastic': 'SyntasticStatuslineFlag',
+    \ },
+    \ 'component_type': {
+    \   'syntastic': 'error',
+    \ },
+    \ 'separator': { 'left': '', 'right': ''},
+    \ 'subseparator': { 'left': '|', 'right': '|' }
+\ }
 
 function! MyBufferLine()
-  call bufferline#refresh_status()
-  return g:bufferline_status_info.before . g:bufferline_status_info.current . g:bufferline_status_info.after
+    call bufferline#refresh_status()
+    return g:bufferline_status_info.before . g:bufferline_status_info.current . g:bufferline_status_info.after
 endfunction
 
 function! LightLineModified()
-  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightLineReadonly()
-  return &ft !~? 'help' && &readonly ? 'RO' : ''
+    return &ft !~? 'help' && &readonly ? '' : ''
 endfunction
 
 function! LightLineFilename()
-  let fname = expand('%:t')
-  return fname == 'ControlP' ? g:lightline.ctrlp_item :
-        \ fname == '__Tagbar__' ? g:lightline.fname :
-        \ fname =~ '__Gundo\|NERD_tree' ? '' :
-        \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-        \ &ft == 'unite' ? unite#get_status_string() :
-        \ &ft == 'vimshell' ? vimshell#get_status_string() :
-        \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-        \ ('' != fname ? fname : '[No Name]') .
-        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+    let fname = expand('%:t')
+    return fname == 'ControlP' ? g:lightline.ctrlp_item :
+                \ fname == '__Tagbar__' ? g:lightline.fname :
+                \ fname =~ '__Gundo\|NERD_tree' ? '' :
+                \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
+                \ &ft == 'unite' ? unite#get_status_string() :
+                \ &ft == 'vimshell' ? vimshell#get_status_string() :
+                \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+                \ ('' != fname ? fname : '[No Name]') .
+                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 function! LightLineFileformat()
-  return winwidth(0) > 70 ? &fileformat : ''
+    return winwidth(0) > 70 ? &fileformat : ''
 endfunction
 
 function! LightLineFiletype()
-  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
 endfunction
 
 function! LightLineFileencoding()
-  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+    return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
 endfunction
 
 function! LightLineMode()
-  let fname = expand('%:t')
-  return fname == '__Tagbar__' ? 'Tagbar' :
-        \ fname == 'ControlP' ? 'CtrlP' :
-        \ fname == '__Gundo__' ? 'Gundo' :
-        \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
-        \ fname =~ 'NERD_tree' ? 'NERDTree' :
-        \ &ft == 'unite' ? 'Unite' :
-        \ &ft == 'vimfiler' ? 'VimFiler' :
-        \ &ft == 'vimshell' ? 'VimShell' :
-        \ winwidth(0) > 60 ? lightline#mode() : ''
+    let fname = expand('%:t')
+    return fname == '__Tagbar__' ? 'Tagbar' :
+                \ fname == 'ControlP' ? 'CtrlP' :
+                \ fname == '__Gundo__' ? 'Gundo' :
+                \ fname == '__Gundo_Preview__' ? 'Gundo Preview' :
+                \ fname =~ 'NERD_tree' ? 'NERDTree' :
+                \ &ft == 'unite' ? 'Unite' :
+                \ &ft == 'vimfiler' ? 'VimFiler' :
+                \ &ft == 'vimshell' ? 'VimShell' :
+                \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
 let g:tagbar_status_func = 'TagbarStatusFunc'
 
 function! TagbarStatusFunc(current, sort, fname, ...) abort
     let g:lightline.fname = a:fname
-  return lightline#statusline(0)
+    return lightline#statusline(0)
 endfunction
 
 augroup AutoSyntastic
-  autocmd!
-  autocmd BufWritePost *.c,*.cpp call s:syntastic()
+    autocmd!
+    autocmd BufWritePost *.c,*.cpp call s:syntastic()
 augroup END
 function! s:syntastic()
-  SyntasticCheck
-  call lightline#update()
+    SyntasticCheck
+    call lightline#update()
 endfunction
 
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
 let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_action = {
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit'
-      \ }
+            \ 'ctrl-s': 'split',
+            \ 'ctrl-v': 'vsplit'
+            \ }
 nnoremap <c-p> :FZF<cr>
 nnoremap <silent> <leader><space> :Files<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
@@ -350,25 +326,28 @@ imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
 
 function! SearchWordWithAg()
-	execute 'Ag' expand('<cword>')
+    execute 'Ag' expand('<cword>')
 endfunction
 
 function! SearchVisualSelectionWithAg() range
-	let old_reg = getreg('"')
-	let old_regtype = getregtype('"')
-	let old_clipboard = &clipboard
-	set clipboard&
-	normal! ""gvy
-	let selection = getreg('"')
-	call setreg('"', old_reg, old_regtype)
-	let &clipboard = old_clipboard
-	execute 'Ag' selection
+    let old_reg = getreg('"')
+    let old_regtype = getregtype('"')
+    let old_clipboard = &clipboard
+    set clipboard&
+    normal! ""gvy
+    let selection = getreg('"')
+    let &clipboard = old_clipboard
+    call setreg('"', old_reg, old_regtype)
+    execute 'Ag' selection
 endfunction
 
 " # bufferline
 let g:bufferline_echo = 0
+
 " # Startify
 nmap <silent> <Leader>s :Startify<CR>
+let g:startify_enable_unsafe = 1
+
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>
 " # VIM-EASY-ALIGN
@@ -376,10 +355,3 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " # Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
-
-" Global Options
-set tabstop=2
-set shiftwidth=2
-set noexpandtab
-set list
-set listchars=tab:▸\ ,eol:¬,trail:·,nbsp:_
