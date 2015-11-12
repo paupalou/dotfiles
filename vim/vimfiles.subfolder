@@ -23,4 +23,4 @@ setup_files() {
 info 'VIMFILES'
 setup_files 'autoload'
 setup_files 'ftplugin'
-info ' └─ end'
+info '└─ end'
