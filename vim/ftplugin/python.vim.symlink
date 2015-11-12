@@ -1,0 +1,20 @@
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal expandtab
+setlocal autoindent
+setlocal smarttab
+setlocal formatoptions=croql
+setlocal textwidth=79
+setlocal colorcolumn=80
+setlocal tags=/home/ppalou/virtualenv/tags
+
+let g:pymode_virtualenv_path ="/home/pau/virtualenv"
+let g:pymode_rope_completion = 0
+let g:pymode_trim_whitespaces = 0
+let g:pymode_folding = 0
+let g:pymode_doc = 0
+let g:pymode_run = 0
+
+highlight ColorColumn ctermbg=236
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.\+/

@@ -121,6 +121,9 @@ set clipboard=unnamed,unnamedplus
 set complete=.,w,b,u,t,i
 set completeopt=longest,menu,preview
 
+set modeline
+set modelines=5
+
 " ### MAPPINGS
 " Leader Key
 let mapleader=","
@@ -300,6 +303,9 @@ function! s:syntastic()
     call lightline#update()
 endfunction
 
+" # bufferline
+let g:bufferline_echo = 0
+
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
 let g:fzf_layout = { 'down': '~40%' }
@@ -341,17 +347,16 @@ function! SearchVisualSelectionWithAg() range
     execute 'Ag' selection
 endfunction
 
-" # bufferline
-let g:bufferline_echo = 0
-
 " # Startify
 nmap <silent> <Leader>s :Startify<CR>
 let g:startify_enable_unsafe = 1
 
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>
+
 " # VIM-EASY-ALIGN
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
 " # Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
