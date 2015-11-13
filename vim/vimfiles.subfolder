@@ -1,26 +1,4 @@
 #!/bin/bash
-
-setup_files() {
-	local section=$1
-	info '├─ '${section}
-	if [ -d $DOTFILES_ROOT/vim/$section ]
-	then
-		if [ ! -d $HOME/.vim ] && [ -d $HOME/.vim/$section ]
-		then
-			info '$HOME/.vim/$section not found , creating folders'
-			mkdir -p "$HOME/.vim/$section"
-		fi
-
-		local overwrite_all=false backup_all=false skip_all=false
-		for src in $(find  -H $DOTFILES_ROOT/vim/$section -mindepth 1 -maxdepth 1 -type f -name '*.vim.symlink')
-		do
-			dst="$HOME/.vim/$section/$(basename "${src%.*}")"
-			link_file "$src" "$dst"
-		done
-	fi
-}
-
-info 'VIMFILES'
+tree_info vimfiles autoload plugin
 setup_files 'autoload'
 setup_files 'ftplugin'
-info '└─ end'

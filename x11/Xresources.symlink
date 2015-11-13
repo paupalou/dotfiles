@@ -1,24 +1,17 @@
-URxvt*termName: screen-256color
-URxvt*geometry: 150x44
-URxvt*loginShell: true
-URxvt*scrollBar:true
-URxvt*scrollColor:#777777
-URxvt*scrollBar_right: false
-URxvt*scrollBar_floating: false
-URxvt*scrollstyle: plain
-URxvt*scrollTtyKeypress: true
-URxvt*scrollTtyOutput: false
-URxvt*scrollWithBuffer: false
-URxvt*secondaryScreen: true
-URxvt*secondaryScroll: true
-URxvt*fading: 30
-URxvt*utmpInhibit: false
-URxvt*urgentOnBell: false
-URxvt*visualBell: false
-URxvt*mapAlert: true
+URxvt*termName:             screen-256color
+URxvt*geometry:             150x44
+URxvt*loginShell:           true
+URxvt*scrollBar:            false
+URxvt*secondaryScreen:      true
+URxvt*secondaryScroll:      true
+URxvt*fading:               30
+URxvt*utmpInhibit:          false
+URxvt*urgentOnBell:         false
+URxvt*visualBell:           false
+URxvt*mapAlert:             true
 URxvt*mouseWheelScrollPage: true
-URxvt*colorUL: yellow
-URxvt*underlineColor: yellow
+URxvt*colorUL:              yellow
+URxvt*underlineColor:       yellow
 
 scheme: "PaperColor-Dark"
 author: "Nguyen Nguyen (http://github.com/NLKNguyen)"
@@ -70,39 +63,28 @@ author: "Nguyen Nguyen (http://github.com/NLKNguyen)"
 *.color20:      base04
 *.color21:      base06
 
-URxvt*saveLines: 2000
-URxvt*buffered: true
-URxvt*hold: false
-URxvt*internalBorder:
-URxvt*print-pipe: cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
+URxvt*saveLines:       2000
+URxvt*buffered:        true
+URxvt*hold:            false
+URxvt*internalBorder:  6
+URxvt*print-pipe:      cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 URxvt*perl-ext-common: default,url-select,clipboard
-URxvt*perl-ext:
-URxvt.underlineURLs: True
+URxvt.underlineURLs:   True
 
-URxvt.keysym.M-Escape: perl:keyboard-select:activate
-URxvt.keysym.M-s: perl:keyboard-select:search
-URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 !-- Xft settings -- !
-Xft.dpi:        96
-Xft.antialias:  true
-Xft.rgba:       rgb
-Xft.hinting:    true
-Xft.hintstyle:  hintslight
-URxvt*letterSpace : 0
+!Xft.dpi:        96
+!Xft.antialias:  true
+!Xft.rgba:       rgb
+!Xft.hinting:    true
+!Xft.hintstyle:  hintslight
+!URxvt*letterSpace : 0
 
-URxvt*font: xft:envypn:size=13
-URxvt*boldFont: xft:envypn:bold:size=13
-URxvt*italicFont: xft:envypn:italic:size=13
-URxvt*boldItalicFont: xft:envypn:bold:italic:size=13
-
-!URxvt*font: envypn-15
-!URxvt*boldFont: envypn-15
-
-!URxvt*font:            -windows-dina-medium-r-normal--16-100-96-96-c-80-microsoft-cp1252
-!URxvt*boldFont:        -windows-dina-bold-r-normal--16-100-96-96-c-80-microsoft-cp1252
-!URxvt*italicFont:      -windows-dina-medium-i-normal--16-100-96-96-c-80-microsoft-cp1252
-!URxvt*boldItalicFont:  -windows-dina-bold-i-normal--16-100-96-96-c-80-microsoft-cp1252
+URxvt*font:           xft:envypn:pixelsize=15
+URxvt*boldFont:       xft:envypn:bold:pixelsize=15
+URxvt*italicFont:     xft:envypn:italic:pixelsize=15
+URxvt*boldItalicFont: xft:envypn:bold:italic:pixelsize=15

@@ -21,7 +21,7 @@ Plug 'Valloric/YouCompleteMe'  " Complete System
 Plug 'gabesoft/vim-ags'        " Use silver searcher, faster than grep
 Plug 'Yggdroot/indentLine'     " Indent Lines
 Plug 'junegunn/vim-easy-align' " Mappings for easy align content
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' }
 Plug 'junegunn/fzf.vim'
 Plug 'bling/vim-bufferline'
 

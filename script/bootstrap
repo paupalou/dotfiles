@@ -33,7 +33,7 @@ setup_gitconfig () {
 }
 
 install_dotfiles () {
-  info 'installing dotfiles'
+  t_title 'installing dotfiles'
 
   local overwrite_all=false backup_all=false skip_all=false
 
@@ -42,19 +42,24 @@ install_dotfiles () {
     dst="$HOME/.$(basename "${src%.*}")"
     link_file "$src" "$dst"
   done
+
+  t_title 'finished with dotfiles'
 }
 
 install_topic_subfolders () {
-    info 'installing topic subfolders'
+    t_title 'installing topic subfolders'
+
     for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.subfolder')
     do
         source $src
     done
+
+    t_title 'finished installing topic subfolders'
 }
 
 setup_gitconfig
 install_dotfiles
-info ''
+echo ''
 install_topic_subfolders 
 
 # If we're on a Mac, let's install and setup homebrew.
