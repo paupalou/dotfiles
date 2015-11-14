@@ -1,65 +1,55 @@
 #!/usr/bin/env bash
 
+bold=$(tput bold)
+normal=$(tput sgr0)
+
 info () {
-    printf "\r  [ \033[00;34m..\033[0m ] $1\n"
+    printf "\r \033[00;34m $2 \033[00;32m├─› \033[0m[ \033[00;34m..\033[0m ] $1\n"
 }
 
 user () {
-    printf "\r  [ \033[0;33m??\033[0m ] $1\n"
+    # printf "\r ├── [ \033[0;33m??\033[0m ] $1\n"
+    printf "\r\033[2K   \033[00;32m├$2─› \033[0m[ \033[00;33m??\033[0m ] $1\n"
 }
 
 success () {
-    printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"
+    printf "\r\033[2K   \033[00;32m├$2─› \033[0m[ \033[00;32mOK\033[0m ] $1\n"
 }
 
 fail () {
-    printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"
-    echo ''
-    exit
-}
-
-t_fail () {
     printf "\r\033[2K ├──▶ [\033[0;31mFAIL\033[0m] $1\n"
     echo ''
     exit
 }
 
-t_user () {
-    printf "\r ├── [ \033[0;33m??\033[0m ] $1\n"
-}
-
-t_success () {
-    printf "\r\033[2K   ├──› [ \033[00;32mOK\033[0m ] $1\n"
-}
-
-t_info() {
-    printf "\r \033[00;34m ├─▶ \033[0m [ \033[00;34m..\033[0m ] $1\n"
-}
-
-t_title () {
-    printf "\r [\033[00;34m ▼ $1 \033[0m]\n"
-
-}
-
-tree_info () {
-    local numarg=$#
-    local counter=1
-    if [ $numarg -gt 0 ]
+version () {
+    if [ ! $(command -v $1) ]
     then
-        for var in "$@"; do
-            if [[ $counter -eq 1 ]]
-            then
-                printf "\r \033[00;34m $var \033[0m\n"
-            elif [[ $counter -eq $numarg ]]
-            then
-                printf "\r \033[00;34m └── \033[0m $var\n"
-            else
-                printf "\r \033[00;34m ├── \033[0m $var\n"
-            fi
-            ((counter+=1))
-        done
+        printf "\r \033[00;34m  \033[00;32m├─› \033[0m[ \033[00;34m${bold}✗${normal}\033[0m ] $1 ${bold}NOT installed!${normal}\n"
+    else
+        if [ $# -eq 2 ]
+        then
+            # custom version finder
+            local version="$($1 $2 | head -1 | grep -o -e '[0-9]\(.[0-9]\)*' | head -1)"
+        else
+            local version="$($1 --version | head -1 | grep -o -e '[0-9]\(.[0-9]\)*' | head -1)"
+        fi
+        printf "\r \033[00;34m  \033[00;32m├─› \033[0m[ \033[00;34m${bold}√${normal}\033[0m ] \e[43m\e[30m${1^^}\e[39m\e[49m version ${bold}$version\n"
     fi
 }
+
+_start () {
+    printf "\r [\033[00;34m ▼ $1 \033[0m]\n"
+}
+
+_end () {
+    printf "\r [\033[00;34m ▲ $1 \033[0m]\n"
+}
+
+subfolder_title () {
+    printf "\r \033[00;34m  \033[00;32m├─› \033[0m[\e[43m\e[30m $1 \e[39m\e[49m] \n"
+}
+
 
 link_file () {
     local src=$1 dst=$2
@@ -82,8 +72,10 @@ link_file () {
 
             else
 
-                t_user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
-                    [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+                user "${bold}$dst${normal} ($(basename "$src")) already exists, what to do?\n\
+ \r\033[2K   \033[00;32m│          \033[0m├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
+ \r\033[2K   \033[00;32m│          \033[0m├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
+ \r\033[2K   \033[00;32m│          \033[0m└─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
                 read -n 1 action
 
                 case "$action" in
@@ -114,44 +106,124 @@ link_file () {
         if [ "$overwrite" == "true" ]
         then
             rm -rf "$dst"
-            t_success "removed $dst"
+            success "removed $dst" "$3"
         fi
 
         if [ "$backup" == "true" ]
         then
             mv "$dst" "${dst}.backup"
-            t_success "moved $dst to ${dst}.backup"
+            success "moved $dst to ${dst}.backup" "$3"
         fi
 
         if [ "$skip" == "true" ]
         then
-            t_success "skipped $src"
+            success "skipped $src" "$3"
         fi
     fi
 
     if [ "$skip" != "true" ]  # "false" or empty
     then
         ln -s "$1" "$2"
-        t_success "linked $1 to $2"
+        success "linked $1 to $2" "$3"
     fi
 }
 
 
-setup_files() {
-    local section=$1
-    if [ -d $DOTFILES_ROOT/vim/$section ]
+subfolder_files() {
+    local topic=$1
+    local subfolder=$2
+    if [ -d $DOTFILES_ROOT/$topic/$subfolder ]
     then
-        if [ ! -d $HOME/.vim ] && [ -d $HOME/.vim/$section ]
+        if [ ! -d $HOME/.$1 ] && [ -d $HOME/.$1/$subfolder ]
         then
-            t_info '$HOME/.vim/$section not found , creating folders'
-            mkdir -p "$HOME/.vim/$section"
+            info '$HOME/.$1/$subfolder not found , creating folders' ' '
+            mkdir -p "$HOME/.$1/$subfolder"
         fi
 
         local overwrite_all=false backup_all=false skip_all=false
-        for src in $(find  -H $DOTFILES_ROOT/vim/$section -mindepth 1 -maxdepth 1 -type f -name '*.vim.symlink')
+        for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -mindepth 1 -maxdepth 1 -type f -name "*.$1.symlink")
         do
-            dst="$HOME/.vim/$section/$(basename "${src%.*}")"
-            link_file "$src" "$dst"
+            dst="$HOME/.$1/$subfolder/$(basename "${src%.*}")"
+            link_file "$src" "$dst" "──"
         done
     fi
 }
+
+setup_gitconfig () {
+  _start "start ${bold}setup gitconifg"
+  if ! [ -f git/gitconfig.symlink ]
+  then
+    info 'setup gitconfig'
+
+    git_credential='cache'
+    if [ "$(uname -s)" == "Darwin" ]
+    then
+      git_credential='osxkeychain'
+    fi
+
+    user ' - What is your github author name?'
+    read -p "$(printf  "\r\033[2K   \033[00;32m├───────────›\e[95m ")" -e git_authorname
+    user ' - What is your github author email?'
+    read -p "$(printf  "\r\033[2K   \033[00;32m├───────────›\e[95m ")" -e git_authoremail
+    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
+
+    success 'gitconfig'
+  else
+    success "gitconfig already configured \n\
+ \r\033[2K   \033[00;32m│ \033[0m         remove git/gitconfig.symlink if you want to reconfigure"
+  fi
+  _end "end ${bold}setup gitconfig"
+  echo ''
+}
+
+install_dotfiles () {
+  _start "start ${bold}installing dotfiles"
+
+  local overwrite_all=false backup_all=false skip_all=false
+
+  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
+  do
+    dst="$HOME/.$(basename "${src%.*}")"
+    link_file "$src" "$dst"
+  done
+
+  _end "end ${bold}installing dotfiles"
+  echo ''
+}
+
+install_topic_subfolders () {
+    _start "start ${bold}installing topic subfolders"
+
+    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.subfolder')
+    do
+        source $src
+    done
+
+    _end "end ${bold}installing topic subfolders"
+    echo ''
+}
+
+check_versions() {
+    _start "start ${bold}checking versions"
+    version 'bash'
+    version 'zsh'
+    version 'vim'
+    version 'nvim'
+    version 'tmux' '-V'
+    version 'ag'
+    version 'randominventedprogram'
+    _end "end ${bold}checking versions"
+    echo ''
+}
+
+# If we're on a Mac, let's install and setup homebrew.
+if [ "$(uname -s)" = "Darwin" ]
+then
+  info "installing dependencies"
+  if source bin/dot > /tmp/dotfiles-dot 2>&1
+  then
+    success "dependencies installed"
+  else
+    fail "error installing dependencies"
+  fi
+fi

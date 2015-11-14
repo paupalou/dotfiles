@@ -1,4 +1,4 @@
 #!/bin/bash
-tree_info vimfiles autoload plugin
-setup_files 'autoload'
-setup_files 'ftplugin'
+subfolder_title 'VIMFILES'
+subfolder_files 'vim' 'autoload'
+subfolder_files 'vim' 'ftplugin'

@@ -1,78 +1,25 @@
 #!/usr/bin/env bash
-#
+
 # bootstrap installs things.
 
+# load utils library
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 source $DOTFILES_ROOT/script/utils
 
 set -e
 
+# print empty line , prettyness funcionality :)
 echo ''
 
-setup_gitconfig () {
-  if ! [ -f git/gitconfig.symlink ]
-  then
-    info 'setup gitconfig'
+# check if my swiss army programs are installed and his versions
+check_versions
 
-    git_credential='cache'
-    if [ "$(uname -s)" == "Darwin" ]
-    then
-      git_credential='osxkeychain'
-    fi
-
-    user ' - What is your github author name?'
-    read -e git_authorname
-    user ' - What is your github author email?'
-    read -e git_authoremail
-
-    sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
-
-    success 'gitconfig'
-  fi
-}
-
-install_dotfiles () {
-  t_title 'installing dotfiles'
-
-  local overwrite_all=false backup_all=false skip_all=false
-
-  for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.symlink')
-  do
-    dst="$HOME/.$(basename "${src%.*}")"
-    link_file "$src" "$dst"
-  done
-
-  t_title 'finished with dotfiles'
-}
-
-install_topic_subfolders () {
-    t_title 'installing topic subfolders'
-
-    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.subfolder')
-    do
-        source $src
-    done
-
-    t_title 'finished installing topic subfolders'
-}
-
+# set the username:password for gitconfig, file not versioned obviously
 setup_gitconfig
+
+# make symlinks for each topic
 install_dotfiles
-echo ''
+
+# make symlinks for each subfolder topic
 install_topic_subfolders 
-
-# If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if source bin/dot > /tmp/dotfiles-dot 2>&1
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
-fi
-
-echo ''
-echo '  All installed!'
