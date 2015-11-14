@@ -30,9 +30,9 @@ version () {
         if [ $# -eq 2 ]
         then
             # custom version finder
-            local version="$($1 $2 | head -1 | grep -o -e '[0-9]\(.[0-9]\)*' | head -1)"
+            local version="$($1 $2 | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
         else
-            local version="$($1 --version | head -1 | grep -o -e '[0-9]\(.[0-9]\)*' | head -1)"
+            local version="$($1 --version | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
         fi
         printf "\r \033[00;34m  \033[00;32m├─› \033[0m[ \033[00;34m${bold}√${normal}\033[0m ] \e[43m\e[30m${1^^}\e[39m\e[49m version ${bold}$version\n"
     fi
@@ -211,6 +211,7 @@ check_versions() {
     version 'nvim'
     version 'tmux' '-V'
     version 'ag'
+    version 'fzf'
     version 'randominventedprogram'
     _end "end ${bold}checking versions"
     echo ''
