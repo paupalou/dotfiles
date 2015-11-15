@@ -10,63 +10,14 @@ URxvt*urgentOnBell:         false
 URxvt*visualBell:           false
 URxvt*mapAlert:             true
 URxvt*mouseWheelScrollPage: true
+
 URxvt*colorUL:              yellow
 URxvt*underlineColor:       yellow
-
-scheme: "PaperColor-Dark"
-author: "Nguyen Nguyen (http://github.com/NLKNguyen)"
-#define base00 #262626
-#define base01 #262626
-#define base02 #4d4d4c
-#define base03 #808080
-#define base04 #949494
-#define base05 #d0d0d0
-#define base06 #f3f3f3
-#define base07 #f3f3f3
-#define base08 #af87af
-#define base09 #ff5faf
-#define base0A #00afaf
-#define base0B #dfaf5f
-#define base0C #5fafdf
-#define base0D #df875f
-#define base0E #afdf00
-#define base0F #00af5f
-
-*.foreground:   base05
-*.background:   base00
-*.cursorColor:  base05
-
-*.color0:       base00
-*.color1:       base08
-*.color2:       base0B
-*.color3:       base0A
-*.color4:       base0D
-*.color5:       base0E
-*.color6:       base0C
-*.color7:       base05
-
-*.color8:       base03
-*.color9:       base08
-*.color10:      base0B
-*.color11:      base0A
-*.color12:      base0D
-*.color13:      base0E
-*.color14:      base0C
-*.color15:      base07
-
-! Note: colors beyond 15 might not be loaded (e.g., xterm, urxvt),
-! use 'shell' template to set these if necessary
-*.color16:      base09
-*.color17:      base0F
-*.color18:      base01
-*.color19:      base02
-*.color20:      base04
-*.color21:      base06
 
 URxvt*saveLines:       2000
 URxvt*buffered:        true
 URxvt*hold:            false
-URxvt*internalBorder:  6
+URxvt*internalBorder:  8
 URxvt*print-pipe:      cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 URxvt*perl-ext-common: default,url-select,clipboard
 URxvt.underlineURLs:   True
@@ -88,3 +39,33 @@ URxvt*font:           xft:envypn:pixelsize=15
 URxvt*boldFont:       xft:envypn:bold:pixelsize=15
 URxvt*italicFont:     xft:envypn:italic:pixelsize=15
 URxvt*boldItalicFont: xft:envypn:bold:italic:pixelsize=15
+
+! Google Material Design
+
+*background: #263238
+*foreground: #eceff1
+
+! black
+*color0:     #263238
+*color8:     #37474f
+! red
+*color1:     #ff9800
+*color9:     #ffa74d
+! green
+*color2:     #8bc34a
+*color10:    #9ccc65
+! yellow
+*color3:     #ffc107
+*color11:    #ffa000
+! blue
+*color4:     #03a9f4
+*color12:    #81d4fa
+! magenta
+*color5:     #e91e63
+*color13:    #ad1457
+! cyan
+*color6:     #009688
+*color14:    #26a69a
+! white
+*color7:     #cfd8dc
+*color15:    #eceff1

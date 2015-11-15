@@ -1,0 +1,75 @@
+#!/usr/bin/env bash
+
+## Foreground
+# default color
+def='\e[39m'
+
+# 8 Colors
+black='\e[30m'
+red='\e[31m'
+green='\e[32m'
+yellow='\e[33m'
+blue='\e[34m'
+magenta='\e[35m'
+cyan='\e[36m'
+lgray='\e[37m'
+
+# 16 Colors
+dgray='\e[90m'
+lred='\e[91m'
+lgreen='\e[92m'
+lyellow='\e[93m'
+lblue='\e[94m'
+lmagenta='\e[95m'
+lcyan='\e[96m'
+white='\e[97m'
+
+## Background
+# default bg color
+# 8 Colors
+defbg='\e[49m'
+blackbg='\e[40m'
+redbg='\e[41m'
+greenbg='\e[42m'
+yellowbg='\e[43m'
+bluebg='\e[44m'
+magentabg='\e[45m'
+cyanbg='\e[46m'
+lgraybg='\e[47m'
+
+# 16 Colors
+dgraybg='\e[100m'
+lredbg='\e[101m'
+lgreenbg='\e[102m'
+lyellowbg='\e[103m'
+lbluebg='\e[104m'
+lmagentabg='\e[105m'
+lcyanbg='\e[106m'
+whitebg='\e[107m'
+
+# used to reset attributes
+normal='\e[0m'
+bold='\e[1m'
+uline='\e[4m'
+inverted='\e[7m'
+
+################################
+# Print a colored message      #
+# Arguments:                   #
+#  $1 message                  #
+#  $2 color and/or textstyle   #
+################################
+pc () {
+  local default_msg="No message passed."
+  # Doesn't really need to be a local variable.
+
+  message=${1:-$default_msg}
+  # Defaults to default message.
+  color=${2:-$black}
+  # Defaults to black, if not specified.
+
+  printf "$color$message$normal"
+  # Reset to normal.
+
+  return
+}

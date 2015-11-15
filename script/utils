@@ -1,23 +1,23 @@
 #!/usr/bin/env bash
 
-bold=$(tput bold)
-normal=$(tput sgr0)
-
 info () {
-    printf "\r \033[00;34m $2 \033[00;32m├─› \033[0m[ \033[00;34m..\033[0m ] $1\n"
+    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' .. ' $cyan)] $1\n"
 }
 
 user () {
-    # printf "\r ├── [ \033[0;33m??\033[0m ] $1\n"
-    printf "\r\033[2K   \033[00;32m├$2─› \033[0m[ \033[00;33m??\033[0m ] $1\n"
+    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ? ' $yellow)] $1\n"
+}
+
+warn () {
+    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ! ' $lred)] $1\n"
 }
 
 success () {
-    printf "\r\033[2K   \033[00;32m├$2─› \033[0m[ \033[00;32mOK\033[0m ] $1\n"
+    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' √ ' $green)] $1\n"
 }
 
 fail () {
-    printf "\r\033[2K ├──▶ [\033[0;31mFAIL\033[0m] $1\n"
+    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' FAIL ' $lred)] $1\n"
     echo ''
     exit
 }
@@ -25,7 +25,7 @@ fail () {
 version () {
     if [ ! $(command -v $1) ]
     then
-        printf "\r \033[00;34m  \033[00;32m├─› \033[0m[ \033[00;34m${bold}✗${normal}\033[0m ] $1 ${bold}NOT installed!${normal}\n"
+        printf "\r   $(pc "├─›" $lblue) [$(pc " ✗ " $red$bold)] $(pc $1 $red) ${bold}NOT installed${normal}\n"
     else
         if [ $# -eq 2 ]
         then
@@ -34,20 +34,20 @@ version () {
         else
             local version="$($1 --version | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
         fi
-        printf "\r \033[00;34m  \033[00;32m├─› \033[0m[ \033[00;34m${bold}√${normal}\033[0m ] \e[43m\e[30m${1^^}\e[39m\e[49m version ${bold}$version\n"
+        printf "\r   $(pc "├─›" $lblue) [$(pc " √ " $green$bold)] $(pc "${1^^}" $lgreen) version $(pc $version $cyan)\n"
     fi
 }
 
 _start () {
-    printf "\r [\033[00;34m ▼ $1 \033[0m]\n"
+    printf "\r [ $(pc "▼ $1" $lblue) ]\n"
 }
 
 _end () {
-    printf "\r [\033[00;34m ▲ $1 \033[0m]\n"
+    printf "\r [ $(pc "▲ $1" $lblue) ]\n"
 }
 
 subfolder_title () {
-    printf "\r \033[00;34m  \033[00;32m├─› \033[0m[\e[43m\e[30m $1 \e[39m\e[49m] \n"
+    printf "\r   $(pc ├─› $lblue) [ $(pc $1 $lgray$uline) ] \n"
 }
 
 
@@ -72,10 +72,10 @@ link_file () {
 
             else
 
-                user "${bold}$dst${normal} ($(basename "$src")) already exists, what to do?\n\
- \r\033[2K   \033[00;32m│          \033[0m├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
- \r\033[2K   \033[00;32m│          \033[0m├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
- \r\033[2K   \033[00;32m│          \033[0m└─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
+                user "${bold}$dst${normal} already exists, what to do?\n\
+   $(pc │ $lblue)          ├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
+   $(pc │ $lblue)          ├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
+   $(pc │ $lblue)          └─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
                 read -n 1 action
 
                 case "$action" in
@@ -106,25 +106,25 @@ link_file () {
         if [ "$overwrite" == "true" ]
         then
             rm -rf "$dst"
-            success "removed $dst" "$3"
+            success "removed ${cyan}$dst${normal}" "$3"
         fi
 
         if [ "$backup" == "true" ]
         then
             mv "$dst" "${dst}.backup"
-            success "moved $dst to ${dst}.backup" "$3"
+            success "moved   ${cyan}$dst${normal} to ${dst}.backup" "$3"
         fi
 
         if [ "$skip" == "true" ]
         then
-            success "skipped $src" "$3"
+            success "skipped ${cyan}$src${normal}" "$3"
         fi
     fi
 
     if [ "$skip" != "true" ]  # "false" or empty
     then
         ln -s "$1" "$2"
-        success "linked $1 to $2" "$3"
+        success "linked  ${lgreen}$2${normal} to $1" "$3"
     fi
 }
 
@@ -134,10 +134,11 @@ subfolder_files() {
     local subfolder=$2
     if [ -d $DOTFILES_ROOT/$topic/$subfolder ]
     then
-        if [ ! -d $HOME/.$1 ] && [ -d $HOME/.$1/$subfolder ]
+        if [ ! -d $HOME/.$topic/$subfolder ]
         then
-            info '$HOME/.$1/$subfolder not found , creating folders' ' '
-            mkdir -p "$HOME/.$1/$subfolder"
+            # warn "$HOME/.$topic/$subfolder${normal} ${bold}${red}not exist${normal}" '──'
+            warn "creating${normal} $green$HOME/.$topic/$subfolder${normal} directory" '──'
+            mkdir -p "$HOME/.$topic/$subfolder"
         fi
 
         local overwrite_all=false backup_all=false skip_all=false
@@ -150,7 +151,7 @@ subfolder_files() {
 }
 
 setup_gitconfig () {
-  _start "start ${bold}setup gitconifg"
+  _start "start ${bold}setup gitconfig"
   if ! [ -f git/gitconfig.symlink ]
   then
     info 'setup gitconfig'
@@ -161,16 +162,18 @@ setup_gitconfig () {
       git_credential='osxkeychain'
     fi
 
-    user ' - What is your github author name?'
-    read -p "$(printf  "\r\033[2K   \033[00;32m├───────────›\e[95m ")" -e git_authorname
-    user ' - What is your github author email?'
-    read -p "$(printf  "\r\033[2K   \033[00;32m├───────────›\e[95m ")" -e git_authoremail
+    user " - What is your github author ${bold}name${normal}?"
+    read -p "$(printf  "\r   $(pc ├───────────› $lblue) ${uline}${lyellow}")" -e git_authorname
+    printf ${normal}
+    user " - What is your github author ${bold}email${normal}?"
+    read -p "$(printf  "\r   $(pc ├───────────› $lblue) ${uline}${lyellow}")" -e git_authoremail
+    printf ${normal}
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
 
     success 'gitconfig'
   else
     success "gitconfig already configured \n\
- \r\033[2K   \033[00;32m│ \033[0m         remove git/gitconfig.symlink if you want to reconfigure"
+   $(pc │ $lblue)          remove git/gitconfig.symlink if you want to reconfigure"
   fi
   _end "end ${bold}setup gitconfig"
   echo ''
@@ -204,16 +207,17 @@ install_topic_subfolders () {
 }
 
 check_versions() {
-    _start "start ${bold}checking versions"
+    _start "start ${bold}checking versions${normal}"
     version 'bash'
-    version 'zsh'
+    version 'git'
     version 'vim'
+    version 'zsh'
+    version 'randominventedprogram'
     version 'nvim'
     version 'tmux' '-V'
     version 'ag'
     version 'fzf'
-    version 'randominventedprogram'
-    _end "end ${bold}checking versions"
+    _end "end ${bold}checking versions${normal}"
     echo ''
 }
 

@@ -6,6 +6,7 @@
 cd "$(dirname "$0")/.."
 DOTFILES_ROOT=$(pwd -P)
 source $DOTFILES_ROOT/script/utils
+source $DOTFILES_ROOT/script/colors
 
 set -e
 
