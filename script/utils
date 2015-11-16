@@ -136,13 +136,12 @@ subfolder_files() {
     then
         if [ ! -d $HOME/.$topic/$subfolder ]
         then
-            # warn "$HOME/.$topic/$subfolder${normal} ${bold}${red}not exist${normal}" '──'
             warn "creating${normal} $green$HOME/.$topic/$subfolder${normal} directory" '──'
             mkdir -p "$HOME/.$topic/$subfolder"
         fi
 
         local overwrite_all=false backup_all=false skip_all=false
-        for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -mindepth 1 -maxdepth 1 -type f -name "*.$1.symlink")
+        for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -mindepth 1 -maxdepth 1 -type f -name "*.symlink")
         do
             dst="$HOME/.$1/$subfolder/$(basename "${src%.*}")"
             link_file "$src" "$dst" "──"
@@ -197,7 +196,7 @@ install_dotfiles () {
 install_topic_subfolders () {
     _start "start ${bold}installing topic subfolders"
 
-    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.subfolder')
+    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.subfolder' | sort)
     do
         source $src
     done
