@@ -17,7 +17,7 @@ URxvt*underlineColor:       yellow
 URxvt*saveLines:       2000
 URxvt*buffered:        true
 URxvt*hold:            false
-URxvt*internalBorder:  8
+URxvt*internalBorder:  6
 URxvt*print-pipe:      cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 URxvt*perl-ext-common: default,url-select,clipboard
 URxvt.underlineURLs:   True
