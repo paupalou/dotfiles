@@ -124,28 +124,50 @@ link_file () {
     if [ "$skip" != "true" ]  # "false" or empty
     then
         ln -s "$1" "$2"
-        success "linked  ${lgreen}$2${normal} to $1" "$3"
+        success "linked  ${lgreen}$2${normal}" "$3"
     fi
 }
 
+
+rename_all_subfiles_to_symlink () {
+    find . -type f ! -name '*.symlink' -exec mv '{}' '{}'.symlink \;
+}
+
+remove_all_symlink_ext_to_subfiles () {
+    find . -type f -name '*.symlink' | while read NAME; do  mv "${NAME}" "${NAME%.symlink}"; done
+}
 
 subfolder_files() {
     local topic=$1
     local subfolder=$2
     if [ -d $DOTFILES_ROOT/$topic/$subfolder ]
     then
-        if [ ! -d $HOME/.$topic/$subfolder ]
-        then
-            warn "creating${normal} $green$HOME/.$topic/$subfolder${normal} directory" '──'
-            mkdir -p "$HOME/.$topic/$subfolder"
-        fi
+        local innerfolders=$(find $DOTFILES_ROOT/$topic -type d ! -path '*\.git*' ! -path  '*\.hg*' ! -path \
+           '*\.svn*' -printf '%P\n' | sort )
+       for innerfolder in $innerfolders
+       do
+            local dirfound=true
+            if [ ! -d $HOME/.$topic/$innerfolder ]
+            then
+                dirfound=false
+                warn "creating directory → $HOME/.$topic/$innerfolder${normal}" '──'
+                mkdir -p "$HOME/.$topic/$innerfolder"
+            fi
 
-        local overwrite_all=false backup_all=false skip_all=false
-        for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -mindepth 1 -maxdepth 1 -type f -name "*.symlink")
-        do
-            dst="$HOME/.$1/$subfolder/$(basename "${src%.*}")"
-            link_file "$src" "$dst" "──"
-        done
+            local overwrite_all=false backup_all=false skip_all=false
+            for src in $(find  -H $DOTFILES_ROOT/$topic/$innerfolder -maxdepth 1 -type f -name "*.symlink")
+            do
+                if $dirfound
+                then
+                    local child_visual_line="──"
+                else
+                    local child_visual_line="──────"
+                fi
+
+                dst="$HOME/.$topic/$innerfolder/$(basename "${src%.*}")"
+                link_file "$src" "$dst" "$child_visual_line"
+            done
+       done
     fi
 }
 

@@ -1,0 +1,3 @@
+#!/bin/bash
+subfolder_title 'TMUX'
+subfolder_files 'tmux' 'plugins'
