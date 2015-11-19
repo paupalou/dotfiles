@@ -6,7 +6,7 @@ unbind-key s
 set -g prefix C-q
 
 bind-key C-q   send-prefix
-bind-key Enter
+# bind-key Enter
 bind-key a     if-shell 'test $(tmux list-panes | wc -l) -gt 1' 'last-pane' 'last-window'
 bind-key e     command-prompt "select-pane -t '%%'"
 bind-key g     select-layout tiled
@@ -70,6 +70,10 @@ set -g visual-activity on
 
 # Enable mouse funcionality
 set-option -g -q mouse on
+
+# 2.1
+setw -g mode-mouse on
+
 
 # -- STATUS ----------------------------------------------------------
 set -g status-left-length 40
