@@ -1,7 +1,5 @@
 # vim: set ft=conf:
 # -- BINDINGS --------------------------------------------------------
-unbind-key C-b
-unbind-key s
 
 set -g prefix C-q
 
@@ -11,12 +9,12 @@ bind-key a     if-shell 'test $(tmux list-panes | wc -l) -gt 1' 'last-pane' 'las
 bind-key e     command-prompt "select-pane -t '%%'"
 bind-key g     select-layout tiled
 bind-key R     source-file ~/.tmux.conf \; display-message ' Config reloaded'
-bind-key s     split-window
 bind-key v     select-layout even-vertical
 bind-key /     command-prompt "split-window 'exec man %%'"
 
 # - pane splitting -
 bind-key |     split-window -h
+bind-key \     split-window -h
 bind-key -     split-window -v
 
 # - pane navigation -
@@ -32,6 +30,16 @@ bind -r H resize-pane -L 4
 bind -r J resize-pane -D 4
 bind -r K resize-pane -U 4
 bind -r L resize-pane -R 4
+
+# -- cycle panes --
+bind o select-pane -t :.+  # cycle panes
+bind O select-pane -t :.-  # cycle panes in reverse
+
+# -- window <-join/split-> pane --
+# Convert a window from current or any other session to a pane
+bind  u command-prompt -p "Join pane from [sess:]win# (ex: kmodi:3 or 2(from current session)):" "join-pane -s '%%'"
+# Convert a pane to a window in current or any other session
+bind  U command-prompt -p "Send pane to sess or sess:win# or win# (ex: kmodi or kmodi:3 or 2(of current session)):" "join-pane -t '%%'"
 
 
 # -- COPY MODE--------------------------------------------
@@ -70,8 +78,15 @@ set -g visual-activity on
 
 # Enable mouse funcionality
 set-option -g -q mouse on
-bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
-bind -n WheelDownPane select-pane -t= \; send-keys -M
+
+bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
+bind-key -t vi-copy PPage page-up
+bind-key -t vi-copy NPage page-down
+
+bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
+bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
+bind-key -t vi-copy WheelUpPane halfpage-up
+bind-key -t vi-copy WheelDownPane halfpage-down
 
 # -- STATUS ----------------------------------------------------------
 set -g status-left-length 40
@@ -79,7 +94,7 @@ set -g status-right-length 150
 set -g status on
 set -g status-justify left
 
-set -g status-left " #S ∷ "
+set -g status-left " #S ₍#h₎ ∷ "
 set -g status-left-fg black
 set -g status-left-bg white
 
