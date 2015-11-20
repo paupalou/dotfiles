@@ -20,7 +20,7 @@ Plug 'honza/vim-snippets'      " Snippets for ultiSnips
 Plug 'gabesoft/vim-ags'        " Use silver searcher, faster than grep
 Plug 'Yggdroot/indentLine'     " Indent Lines
 Plug 'junegunn/vim-easy-align' " Mappings for easy align content
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install -all' } " The fuzzyfinder
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " The fuzzyfinder
 Plug 'junegunn/fzf.vim'        " mappings for fzf inside vim
 Plug 'bling/vim-bufferline'    " show buffers in status line
 Plug 'itchyny/lightline.vim'   " improved statusline
@@ -206,6 +206,7 @@ let g:indentLine_char = '┊'
 let g:indentLine_color_term = 239
 
 " LightLine
+" \ 'separator': { 'left': '', 'right': ''},
 let g:lightline = {
     \ 'colorscheme': 'Tomorrow',
     \ 'active': {
@@ -229,7 +230,7 @@ let g:lightline = {
     \ 'component_type': {
     \   'syntastic': 'error',
     \ },
-    \ 'separator': { 'left': '', 'right': ''},
+    \ 'separator': { 'left': '', 'right': ''},
     \ 'subseparator': { 'left': '|', 'right': '|' }
 \ }
 

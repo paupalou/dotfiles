@@ -95,7 +95,7 @@ set -g status-right-length 150
 set -g status on
 set -g status-justify left
 
-set -g status-left " #S@#H ∷ "
+set -g status-left " #S @ #H ∷ "
 set -g status-left-fg black
 set -g status-left-bg white
 
