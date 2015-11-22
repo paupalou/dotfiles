@@ -24,6 +24,7 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " The fuzzyfin
 Plug 'junegunn/fzf.vim'        " mappings for fzf inside vim
 Plug 'bling/vim-bufferline'    " show buffers in status line
 Plug 'itchyny/lightline.vim'   " improved statusline
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }  " AutoComplete Engine
 
 " Syntax
 Plug 'othree/html5.vim'                        " html5 syntax

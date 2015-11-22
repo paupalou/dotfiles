@@ -63,14 +63,13 @@ bind -t vi-copy L end-of-line
 set -g base-index 1
 setw -g pane-base-index 1
 
-# All bells are ignored
+set -g escape-time 0
 set -g bell-action none
-# Disable login shell
 set -g default-command 'zsh'
 set -g default-terminal 'screen-256color'
 set -g display-panes-time 1500
 set -g display-time 1500
-set -g message-style 'bg=black,fg=white'
+set -g message-style 'bg=green,fg=black'
 set -g renumber-windows
 set -g repeat-time 100
 set -g set-titles on
