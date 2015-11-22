@@ -25,8 +25,8 @@ lcyan='\e[96m'
 white='\e[97m'
 
 ## Background
-# default bg color
 # 8 Colors
+# default bg color
 defbg='\e[49m'
 blackbg='\e[40m'
 redbg='\e[41m'
