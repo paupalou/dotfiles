@@ -113,7 +113,7 @@ set matchpairs+=<:>
 set noshowmode
 
 " Easy Copy/Paste
-set clipboard=unnamed,unnamedplus
+set clipboard=unnamedplus
 
 " Better auto complete
 set complete=.,w,b,u,t,i
