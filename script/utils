@@ -191,10 +191,9 @@ setup_gitconfig () {
     printf ${normal}
     sed -e "s/AUTHORNAME/$git_authorname/g" -e "s/AUTHOREMAIL/$git_authoremail/g" -e "s/GIT_CREDENTIAL_HELPER/$git_credential/g" git/gitconfig.symlink.example > git/gitconfig.symlink
 
-    success 'gitconfig'
+    success "gitconfig configured for user => $git_authorname"
   else
-    success "gitconfig already configured \n\
-   $(pc │ $lblue)          remove git/gitconfig.symlink if you want to reconfigure"
+    success "gitconfig already configured"
   fi
   _end "end ${bold}setup gitconfig"
   echo ''
