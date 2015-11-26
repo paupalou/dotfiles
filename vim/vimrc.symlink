@@ -211,21 +211,21 @@ let g:indentLine_color_term = 239
 " LightLine
 let g:lightline = {
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste' ] , ['bufferline_before'],['bufferline_current'],['bufferline_after'] ],
-    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], [ 'fileformat', 'fileencoding', 'filetype' ] ]
+    \   'left': [ [ 'mode', 'paste'], ['bufferline_before'],['bufferline_current'],['bufferline_after'] ],
+    \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], ['fugitive', 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'component': {
     \   'lineinfo': ' %3l:%-2v',
     \ },
     \ 'component_function': {
-    \   'filename': 'LightLineFilename',
-    \   'fileformat': 'LightLineFileformat',
-    \   'filetype': 'LightLineFiletype',
-    \   'fileencoding': 'LightLineFileencoding',
-    \   'mode': 'LightLineMode',
-    \   'bufferline_before': 'BufferBefore',
+    \   'fileformat':         'LightLineFileformat',
+    \   'filetype':           'LightLineFiletype',
+    \   'fileencoding':       'LightLineFileencoding',
+    \   'mode':               'LightLineMode',
+    \   'bufferline_before':  'BufferBefore',
     \   'bufferline_current': 'BufferCurrent',
-    \   'bufferline_after': 'BufferAfter',
+    \   'bufferline_after':   'BufferAfter',
+    \   'fugitive':           'LightLineFugitive',
     \ },
     \ 'component_expand': {
     \   'syntastic': 'SyntasticStatuslineFlag',
@@ -237,38 +237,31 @@ let g:lightline = {
     \ 'subseparator': { 'left': '|', 'right': '|' }
 \ }
 
+function! LightLineFugitive()
+  if exists("*fugitive#head")
+    let _ = fugitive#head()
+    return strlen(_) ? '  '._ : ''
+  endif
+  return ''
+endfunction
+
 function! BufferBefore()
     call bufferline#refresh_status()
     return g:bufferline_status_info.before
 endfunction
+
 function! BufferCurrent()
     call bufferline#refresh_status()
-    return g:bufferline_status_info.current
-endfunction
-function! BufferAfter()
-    call bufferline#refresh_status()
-    return g:bufferline_status_info.after
+    return g:bufferline_status_info.current . ' ' . LightLineReadonly()
 endfunction
 
-function! LightLineModified()
-    return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+function! BufferAfter()
+    call bufferline#refresh_status()
+      return g:bufferline_status_info.after
 endfunction
 
 function! LightLineReadonly()
     return &ft !~? 'help' && &readonly ? '' : ''
-endfunction
-
-function! LightLineFilename()
-    let fname = expand('%:t')
-    return fname == 'ControlP' ? g:lightline.ctrlp_item :
-                \ fname == '__Tagbar__' ? g:lightline.fname :
-                \ fname =~ '__Gundo\|NERD_tree' ? '' :
-                \ &ft == 'vimfiler' ? vimfiler#get_status_string() :
-                \ &ft == 'unite' ? unite#get_status_string() :
-                \ &ft == 'vimshell' ? vimshell#get_status_string() :
-                \ ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
-                \ ('' != fname ? fname : '[No Name]') .
-                \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
 function! LightLineFileformat()
@@ -310,7 +303,6 @@ let g:bufferline_echo = 0
 let g:bufferline_show_bufnr = 0
 let g:bufferline_active_buffer_left = ' → '
 let g:bufferline_active_buffer_right = ''
-
 
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
