@@ -2,3 +2,4 @@
 subfolder_title 'VIMFILES'
 subfolder_files 'vim' 'autoload'
 subfolder_files 'vim' 'ftplugin'
+subfolder_files 'vim' 'plugged'
