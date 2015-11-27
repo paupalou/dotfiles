@@ -5,11 +5,8 @@ set -g prefix C-q
 
 bind-key C-q   send-prefix
 
-bind-key a     if-shell 'test $(tmux list-panes | wc -l) -gt 1' 'last-pane' 'last-window'
+bind-key C-q   if-shell 'test $(tmux list-panes | wc -l) -gt 1' 'last-pane' 'last-window'
 bind-key R     source-file ~/.tmux.conf \; display-message ' Config reloaded'
-
-bind-key g     select-layout tiled
-bind-key v     select-layout even-vertical
 
 bind-key /     command-prompt "split-window 'exec man %%'"
 
@@ -41,7 +38,6 @@ bind O select-pane -t :.-  # cycle panes in reverse
 bind  u command-prompt -p "Join pane from [sess:]win# (ex: kmodi:3 or 2(from current session)):" "join-pane -s '%%'"
 # Convert a pane to a window in current or any other session
 bind  U command-prompt -p "Send pane to sess or sess:win# or win# (ex: kmodi or kmodi:3 or 2(of current session)):" "join-pane -t '%%'"
-
 
 # -- COPY MODE--------------------------------------------
 #bind [ copy-mode    # enter copy mode
