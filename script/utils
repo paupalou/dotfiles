@@ -74,9 +74,9 @@ link_file () {
       else
 
         user "${bold}$dst${normal} already exists, what to do?\n\
-          $(pc │ $lblue)          ├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
-        $(pc │ $lblue)          ├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
-        $(pc │ $lblue)          └─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
+   $(pc │ $lblue)         ├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
+   $(pc │ $lblue)         ├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
+   $(pc │ $lblue)         └─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
         read -n 1 action
 
         case "$action" in
@@ -152,7 +152,7 @@ subfolder_files() {
   for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -type f -name "*.symlink" -printf '%P\n')
   do
     local child_visual_line="──"
-    local src_dirname=$(dirname "$src")
+    local src_dirname="/$(dirname "$src")"
 
     # if we find symlink in first level assume src is 1st-child of $subfolder
     # so we unset src_dirname to avoid adding a dot (.)
@@ -160,7 +160,7 @@ subfolder_files() {
     then
       src_dirname=""
     fi
-    local destiny_directory="$HOME/.$topic/$subfolder/$src_dirname"
+    local destiny_directory="$HOME/.$topic/$subfolder$src_dirname"
     ((file_counter+=1))
 
     # check if destiny directory exists , create if not
@@ -239,6 +239,7 @@ install_topic_subfolders () {
     subfolder_title $bold$topic $normal$subfolder
 
     # link files inside subfolders
+    # last argument is verbose, if you pass false a compact message will be printed
     subfolder_files $topic $subfolder false
   done
 
