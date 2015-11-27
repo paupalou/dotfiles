@@ -1,174 +1,187 @@
 #!/usr/bin/env bash
 
 info () {
-    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' .. ' $cyan)] $1\n"
+  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' .. ' $cyan)] $1\n"
 }
 
 user () {
-    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ? ' $yellow)] $1\n"
+  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ? ' $yellow)] $1\n"
 }
 
 warn () {
-    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ! ' $lred)] $1\n"
+  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ! ' $lred)] $1\n"
 }
 
 success () {
-    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' √ ' $green)] $1\n"
+  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' √ ' $green)] $1\n"
 }
 
 fail () {
-    printf "\r   $(pc "├$2─›" $lblue) [$(pc ' FAIL ' $lred)] $1\n"
-    echo ''
-    exit
+  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' FAIL ' $lred)] $1\n"
+  echo ''
+  exit
 }
 
 version () {
-    if [ ! $(command -v $1) ]
+  if [ ! $(command -v $1) ]
+  then
+    printf "\r   $(pc "├─›" $lblue) [$(pc " ✗ " $red$bold)] $(pc $1 $red) ${bold}NOT installed${normal}\n"
+  else
+    if [ $# -eq 2 ]
     then
-        printf "\r   $(pc "├─›" $lblue) [$(pc " ✗ " $red$bold)] $(pc $1 $red) ${bold}NOT installed${normal}\n"
+      # custom version finder
+      local version="$($1 $2 | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
     else
-        if [ $# -eq 2 ]
-        then
-            # custom version finder
-            local version="$($1 $2 | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
-        else
-            local version="$($1 --version | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
-        fi
-        printf "\r   $(pc "├─›" $lblue) [$(pc " √ " $green$bold)] $(pc "${1^^}" $lgreen) version $(pc $version $cyan)\n"
+      local version="$($1 --version | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
     fi
+    printf "\r   $(pc "├─›" $lblue) [$(pc " √ " $green$bold)] $(pc "${1^^}" $lgreen) version $(pc $version $cyan)\n"
+  fi
 }
 
 _start () {
-    printf "\r [ $(pc "▼ $1" $lblue) ]\n"
+  printf "\r [ $(pc "▼ $1" $lblue) ]\n"
 }
 
 _end () {
-    printf "\r [ $(pc "▲ $1" $lblue) ]\n"
+  printf "\r [ $(pc "▲ $1" $lblue) ]\n"
 }
 
 subfolder_title () {
-    printf "\r   $(pc ├─› $lblue) [ $(pc $1 $lgray$uline) ] \n"
+  printf "\r   $(pc ├─› $lblue) [ $(pc "$1 $2" $yellow) ] \n"
 }
 
 
 link_file () {
-    local src=$1 dst=$2
+  local src=$1 dst=$2
+  local print_each_skipped_file=$4
 
-    local overwrite= backup= skip=
-    local action=
+  local overwrite= backup= skip=
+  local action=
 
-    if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]
+  then
+
+    if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
     then
 
-        if [ "$overwrite_all" == "false" ] && [ "$backup_all" == "false" ] && [ "$skip_all" == "false" ]
-        then
+      local currentSrc="$(readlink $dst)"
 
-            local currentSrc="$(readlink $dst)"
+      if [ "$currentSrc" == "$src" ]
+      then
 
-            if [ "$currentSrc" == "$src" ]
-            then
+        skip=true;
 
-                skip=true;
+      else
 
-            else
+        user "${bold}$dst${normal} already exists, what to do?\n\
+          $(pc │ $lblue)          ├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
+        $(pc │ $lblue)          ├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
+        $(pc │ $lblue)          └─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
+        read -n 1 action
 
-                user "${bold}$dst${normal} already exists, what to do?\n\
-   $(pc │ $lblue)          ├─› [${bold}s${normal}]kip ──────── [${bold}S${normal}]kip all
-   $(pc │ $lblue)          ├─› [${bold}o${normal}]verwrite ─── [${bold}O${normal}]verwrite all
-   $(pc │ $lblue)          └─› [${bold}b${normal}]ackup ────── [${bold}B${normal}]ackup all?"
-                read -n 1 action
+        case "$action" in
+          o )
+            overwrite=true;;
+          O )
+            overwrite_all=true;;
+          b )
+            backup=true;;
+          B )
+            backup_all=true;;
+          s )
+            skip=true;;
+          S )
+            skip_all=true;;
+          * )
+            ;;
+        esac
 
-                case "$action" in
-                    o )
-                        overwrite=true;;
-                    O )
-                        overwrite_all=true;;
-                    b )
-                        backup=true;;
-                    B )
-                        backup_all=true;;
-                    s )
-                        skip=true;;
-                    S )
-                        skip_all=true;;
-                    * )
-                        ;;
-                esac
+      fi
 
-            fi
-
-        fi
-
-        overwrite=${overwrite:-$overwrite_all}
-        backup=${backup:-$backup_all}
-        skip=${skip:-$skip_all}
-
-        if [ "$overwrite" == "true" ]
-        then
-            rm -rf "$dst"
-            success "removed ${cyan}$dst${normal}" "$3"
-        fi
-
-        if [ "$backup" == "true" ]
-        then
-            mv "$dst" "${dst}.backup"
-            success "moved   ${cyan}$dst${normal} to ${dst}.backup" "$3"
-        fi
-
-        if [ "$skip" == "true" ]
-        then
-            success "skipped ${cyan}$src${normal}" "$3"
-        fi
     fi
 
-    if [ "$skip" != "true" ]  # "false" or empty
+    overwrite=${overwrite:-$overwrite_all}
+    backup=${backup:-$backup_all}
+    skip=${skip:-$skip_all}
+
+    if [ "$overwrite" == "true" ]
     then
-        ln -s "$1" "$2"
-        success "linked  ${lgreen}$2${normal}" "$3"
+      rm -rf "$dst"
+      success "removed ${cyan}$dst${normal}" "$3"
     fi
+
+    if [ "$backup" == "true" ]
+    then
+      mv "$dst" "${dst}.backup"
+      success "moved   ${cyan}$dst${normal} to ${dst}.backup" "$3"
+    fi
+
+    if [ "$skip" == "true" ] && [ "$print_each_skipped_file" != "false" ]
+    then
+      success "skipped ${cyan}$src${normal}" "$3"
+    fi
+  fi
+
+  if [ "$skip" != "true" ]  # "false" or empty
+  then
+    ln -s "$1" "$2"
+    success "linked  ${lgreen}$2${normal}" "$3"
+  fi
 }
 
 
 rename_all_subfiles_to_symlink () {
-    find . -type f ! -name '*.symlink' -exec mv '{}' '{}'.symlink \;
+  find . -type f ! -name '*.symlink' -exec mv '{}' '{}'.symlink \;
 }
 
 remove_all_symlink_ext_to_subfiles () {
-    find . -type f -name '*.symlink' | while read NAME; do  mv "${NAME}" "${NAME%.symlink}"; done
+  find . -type f -name '*.symlink' | while read NAME; do  mv "${NAME}" "${NAME%.symlink}"; done
 }
 
+
 subfolder_files() {
-    local topic=$1
-    local subfolder=$2
-    if [ -d $DOTFILES_ROOT/$topic/$subfolder ]
+  local topic=$1
+  local subfolder=$2
+  # verbose is true by default and only applies to 'skip' action
+  local verbose=${3:-'true'}
+
+  # contains number of files skipped and used only when verbose is false
+  local file_counter=0
+
+  local overwrite_all=false backup_all=false skip_all=false
+  for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -type f -name "*.symlink" -printf '%P\n')
+  do
+    local child_visual_line="──"
+    local src_dirname=$(dirname "$src")
+
+    # if we find symlink in first level assume src is 1st-child of $subfolder
+    # so we unset src_dirname to avoid adding a dot (.)
+    if [ $(dirname "$src") == "." ]
     then
-        local innerfolders=$(find $DOTFILES_ROOT/$topic -type d ! -path '*\.git*' ! -path  '*\.hg*' ! -path \
-           '*\.svn*' -printf '%P\n' | sort )
-       for innerfolder in $innerfolders
-       do
-            local dirfound=true
-            if [ ! -d $HOME/.$topic/$innerfolder ]
-            then
-                dirfound=false
-                warn "creating directory → $HOME/.$topic/$innerfolder${normal}" '──'
-                mkdir -p "$HOME/.$topic/$innerfolder"
-            fi
-
-            local overwrite_all=false backup_all=false skip_all=false
-            for src in $(find  -H $DOTFILES_ROOT/$topic/$innerfolder -maxdepth 1 -type f -name "*.symlink")
-            do
-                if $dirfound
-                then
-                    local child_visual_line="──"
-                else
-                    local child_visual_line="──────"
-                fi
-
-                dst="$HOME/.$topic/$innerfolder/$(basename "${src%.*}")"
-                link_file "$src" "$dst" "$child_visual_line"
-            done
-       done
+      src_dirname=""
     fi
+    local destiny_directory="$HOME/.$topic/$subfolder/$src_dirname"
+    ((file_counter+=1))
+
+    # check if destiny directory exists , create if not
+    if [ ! -d $destiny_directory ]
+    then
+      warn "creating directory → $destiny_directory${normal}" '──'
+      mkdir -p "$destiny_directory"
+      # double visual line to make visual appearance as child of this directory
+      child_visual_line="──────"
+    fi
+
+    # build destiny with destiny_directory + file_name
+    dst="$destiny_directory/$(basename "${src%.*}")"
+
+    # link the file
+    link_file "$DOTFILES_ROOT/$topic/$subfolder/$src" "$dst" "$child_visual_line" $verbose
+  done
+  if [ $verbose == "false" ]
+  then
+    success "skipped ${cyan}$file_counter${normal} files" "$child_visual_line"
+  fi
 }
 
 setup_gitconfig () {
@@ -215,30 +228,37 @@ install_dotfiles () {
 }
 
 install_topic_subfolders () {
-    _start "start ${bold}installing topic subfolders"
+  _start "start ${bold}installing topic subfolders"
 
-    for src in $(find -H "$DOTFILES_ROOT" -maxdepth 2 -name '*.subfolder' | sort)
-    do
-        source $src
-    done
+  for src in $(find "$DOTFILES_ROOT" -mindepth 2 -maxdepth 2 -type d -printf '%P\n' | grep -v '^\.' | sort)
+  do
+    local topic=$(dirname "$src")
+    local subfolder=$(basename "$src")
 
-    _end "end ${bold}installing topic subfolders"
-    echo ''
+    # print a title of this subfolder
+    subfolder_title $bold$topic $normal$subfolder
+
+    # link files inside subfolders
+    subfolder_files $topic $subfolder false
+  done
+
+  _end "end ${bold}installing topic subfolders"
+  echo ''
 }
 
 check_versions() {
-    _start "start ${bold}checking versions${normal}"
-    version 'bash'
-    version 'git'
-    version 'vim'
-    version 'zsh'
-    version 'randominventedprogram'
-    version 'nvim'
-    version 'tmux' '-V'
-    version 'ag'
-    version 'fzf'
-    _end "end ${bold}checking versions${normal}"
-    echo ''
+  _start "start ${bold}checking versions${normal}"
+  version 'bash'
+  version 'git'
+  version 'vim'
+  version 'zsh'
+  version 'randominventedprogram'
+  version 'nvim'
+  version 'tmux' '-V'
+  version 'ag'
+  version 'fzf'
+  _end "end ${bold}checking versions${normal}"
+  echo ''
 }
 
 # If we're on a Mac, let's install and setup homebrew.

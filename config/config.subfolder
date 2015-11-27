@@ -1,3 +1,0 @@
-#!/bin/bash
-subfolder_title 'CONFIG'
-subfolder_files 'config' 'upstart'
