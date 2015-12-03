@@ -1,0 +1,46 @@
+call plug#begin('$HOME/.vim/plugged')
+
+" ### PLUGINS
+
+" Tim Pope
+Plug 'tpope/vim-sensible'      " Basic vim settings
+Plug 'tpope/vim-repeat'        " Enable repeat for some plugins
+Plug 'tpope/vim-surround'      " Mappings for surrounding
+Plug 'tpope/vim-commentary'    " Mappings for commenting - gcc
+Plug 'tpope/vim-unimpaired'    " Mappings for utility
+Plug 'tpope/vim-eunuch'        " Shell commands like :SudoWrite
+Plug 'tpope/vim-fugitive'      " Best git wrapper
+Plug 'tpope/vim-vinegar'       " Improve netrw
+
+" Utils
+Plug 'mhinz/vim-startify'      " Show recent files on startup
+Plug 'ervandew/supertab'       " Improve the use of TAB key
+Plug 'majutsushi/tagbar'       " Tagbar
+Plug 'scrooloose/syntastic'    " Syntax Checker
+Plug 'SirVer/ultisnips'        " Generate and use snippets
+Plug 'honza/vim-snippets'      " Snippets for ultiSnips
+Plug 'gabesoft/vim-ags'        " Use silver searcher, faster than grep
+Plug 'Yggdroot/indentLine'     " Indent Lines
+Plug 'junegunn/vim-easy-align' " Mappings for easy align content
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " The fuzzyfinder
+Plug 'junegunn/fzf.vim'        " mappings for fzf inside vim
+Plug 'bling/vim-bufferline'    " show buffers in status line
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }  " AutoComplete Engine
+Plug 'kshenoy/vim-signature'   " Display marks on left
+Plug 'benmills/vimux'          " Tmux vim integration
+Plug 'itchyny/lightline.vim'   " improved statusline
+Plug 'itchyny/calendar.vim'    " calendar inside vim
+
+" Syntax
+Plug 'othree/html5.vim'                        " html5 syntax
+Plug 'othree/yajs.vim'                         " javaScript syntax
+Plug 'othree/javascript-libraries-syntax.vim'  " syntax for JavaScript libs like jQuery
+Plug 'StanAngeloff/php.vim'                    " php improved syntax
+Plug 'hdima/python-syntax'                     " python syntax
+Plug 'elzr/vim-json'                           " json syntax
+Plug 'keith/tmux.vim'                          " tmux configuration syntax
+
+" ColorScheme
+Plug 'NLKNguyen/papercolor-theme'
+
+call plug#end()
