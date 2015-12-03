@@ -179,3 +179,7 @@ nmap ga <Plug>(EasyAlign)
 
 " # Syntastic
 nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
+
+" # Gutentags
+" disabled by default, enabled for filetype or project
+let g:gutentags_enabled = 0

@@ -7,15 +7,16 @@ setlocal smarttab
 setlocal formatoptions=croql
 setlocal textwidth=79
 setlocal colorcolumn=80
-setlocal tags=/home/ppalou/virtualenv/tags
-
-let g:pymode_virtualenv_path ="/home/pau/virtualenv"
-let g:pymode_rope_completion = 0
-let g:pymode_trim_whitespaces = 0
-let g:pymode_folding = 0
-let g:pymode_doc = 0
-let g:pymode_run = 0
 
 highlight ColorColumn ctermbg=236
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
+autocmd BufRead $PROJECTS/popeye/* call s:Popeye_settings()
+autocmd BufEnter $PROJECTS/popeye/* call s:Popeye_settings()
+
+function! s:Popeye_settings()
+  let g:gutentags_enabled = 1
+  setlocal tags=tags,$VIRTUAL_ENV/popeye/popeye_venv.tags
+  call add(g:gutentags_project_root, '$PROJECTS/popeye')
+endfunction
