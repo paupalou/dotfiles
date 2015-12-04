@@ -17,6 +17,6 @@ autocmd BufEnter $PROJECTS/popeye/* call s:Popeye_settings()
 
 function! s:Popeye_settings()
   let g:gutentags_enabled = 1
-  setlocal tags=tags,$VIRTUAL_ENV/popeye/popeye_venv.tags
+  setlocal tags=tags,$VIRTUAL_ENV_HOME/popeye/popeye_venv.tags
   call add(g:gutentags_project_root, '$PROJECTS/popeye')
 endfunction

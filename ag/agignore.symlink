@@ -3,3 +3,8 @@
 *.png
 *.jpg
 *.jpeg
+**/bin/
+Programs/
+Dropbox/
+Dropbox_old/
+Virtual Box VMs/
