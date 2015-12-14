@@ -34,9 +34,12 @@ Plug 'junegunn/vim-easy-align'                          " Mappings for easy alig
 Plug 'bling/vim-bufferline'                             " show buffers in status line
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } " AutoComplete Engine
 Plug 'kshenoy/vim-signature'                            " Display marks on left
-Plug 'benmills/vimux'                                   " Tmux vim integration
 Plug 'itchyny/lightline.vim'                            " improved statusline
 Plug 'itchyny/calendar.vim'                             " calendar inside vim
+
+" Tmux integration
+Plug 'benmills/vimux'                                   " Send data to a tmux pane/window
+Plug 'christoomey/vim-tmux-navigator'                   " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
 
 " Syntax
 Plug 'othree/html5.vim'                       " html5 syntax

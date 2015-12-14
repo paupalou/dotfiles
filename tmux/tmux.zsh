@@ -10,11 +10,13 @@ source $ZSH/script/colors
 #   fi
 # fi
 
-local t_resu=$HOME/.tmux/resurrect
-local RESULT=$(ls $t_resu | wc -l)
-if [ $RESULT -gt 0 ]; then
-  printf "\r   $(pc "TMUX DEATTACHED SESSIONS" $lblue$uline) \n"
-  for f in $(ls $t_resu/*); do
-    printf "\r   $(pc "$(awk 'END{print $2}' $f)" $green)\n"
-  done
-fi
+tmuxls () {
+  local t_resu=$HOME/.tmux/resurrect
+  local RESULT=$(ls $t_resu | wc -l)
+  if [ $RESULT -gt 0 ]; then
+    printf "\r   $(pc "TMUX DEATTACHED SESSIONS" $lblue$uline) \n"
+    for f in $(ls $t_resu/*); do
+      printf "\r   $(pc "$(awk 'END{print $2}' $f)" $green)\n"
+    done
+  fi
+}
