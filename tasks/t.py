@@ -282,8 +282,12 @@ def _main():
     """Run the command-line interface."""
     (options, args) = _build_parser().parse_args()
 
+    startindex = 0
+    if options.name == 'tasks' and any('::' in s for s in args):
+        startindex = args[0].find(':')
+        options.name = args[0][:startindex].strip()
     td = TaskDict(taskdir=options.taskdir, name=options.name)
-    text = ' '.join(args).strip()
+    text = ' '.join(args).strip()[startindex+2:]
 
     try:
         if options.finish:
