@@ -3,17 +3,17 @@
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 
-let g:syntastic_python_pylint_exe = "pylint2"
-let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': [],
-            \ 'passive_filetypes': ['python'] }
+highlight SyntasticErrorSign ctermbg=124 ctermfg=15
+highlight SyntasticWarningSign ctermbg=22 ctermfg=15
+highlight SyntasticStyleErrorSign ctermbg=17 ctermfg=15
+highlight SyntasticStyleWarningSign ctermbg=17 ctermfg=15
 
-let g:syntastic_error_symbol='✗'
-let g:syntastic_warning_symbol='⚠'
-let g:syntastic_style_error_symbol  = '⚡'
-let g:syntastic_style_warning_symbol  = '⚡'
+let g:syntastic_error_symbol='ⅹⅹ'
+let g:syntastic_warning_symbol='››'
+let g:syntastic_style_error_symbol  = '−−'
+let g:syntastic_style_warning_symbol  = '−−'
 
 " Javascript-libraries-syntax
 let g:used_javascript_libs = 'jquery'
