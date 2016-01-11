@@ -4,7 +4,10 @@
 
 from __future__ import with_statement
 
-import os, re, sys, hashlib
+import os
+import re
+import sys
+import hashlib
 from operator import itemgetter
 from optparse import OptionParser, OptionGroup
 
@@ -13,11 +16,13 @@ class InvalidTaskfile(Exception):
     """Raised when the path to a task file already exists as a directory."""
     pass
 
+
 class AmbiguousPrefix(Exception):
-    """Raised when trying to use a prefix that could identify multiple tasks."""
+    """Raised when trying to use a prefix that could identify multiple tasks"""
     def __init__(self, prefix):
         super(AmbiguousPrefix, self).__init__()
         self.prefix = prefix
+
 
 class UnknownPrefix(Exception):
     """Raised when trying to use a prefix that does not match any tasks."""
@@ -33,6 +38,7 @@ def _hash(text):
 
     """
     return hashlib.sha1(text).hexdigest()
+
 
 def _task_from_taskline(taskline):
     """Parse a taskline (from a task file) and return a task.
@@ -55,14 +61,15 @@ def _task_from_taskline(taskline):
         return None
     elif '|' in taskline:
         text, _, meta = taskline.rpartition('|')
-        task = { 'text': text.strip() }
+        task = {'text': text.strip()}
         for piece in meta.strip().split(','):
             label, data = piece.split(':')
             task[label.strip()] = data.strip()
     else:
         text = taskline.strip()
-        task = { 'id': _hash(text), 'text': text }
+        task = {'id': _hash(text), 'text': text}
     return task
+
 
 def _tasklines_from_tasks(tasks):
     """Parse a list of tasks into tasklines suitable for writing."""
@@ -75,6 +82,7 @@ def _tasklines_from_tasks(tasks):
         tasklines.append('%s | %s\n' % (task['text'], meta_str))
 
     return tasklines
+
 
 def _prefixes(ids):
     """Return a mapping of ids to prefixes in O(n) time.
@@ -205,7 +213,6 @@ class TaskDict(object):
         """
         self.tasks.pop(self[prefix]['id'])
 
-
     def print_list(self, kind='tasks', verbose=False, quiet=False, grep=''):
         """Print out a nicely formatted list of unfinished tasks."""
         tasks = dict(getattr(self, kind).items())
@@ -278,16 +285,19 @@ def _build_parser():
 
     return parser
 
+
 def _main():
     """Run the command-line interface."""
     (options, args) = _build_parser().parse_args()
 
     startindex = 0
+    point = 0
     if options.name == 'tasks' and any('::' in s for s in args):
         startindex = args[0].find(':')
         options.name = args[0][:startindex].strip()
+        point = 2
     td = TaskDict(taskdir=options.taskdir, name=options.name)
-    text = ' '.join(args).strip()[startindex+2:]
+    text = ' '.join(args).strip()[startindex+point:]
 
     try:
         if options.finish:
