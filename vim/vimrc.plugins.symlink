@@ -36,6 +36,7 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } " AutoComplete Engine
 Plug 'kshenoy/vim-signature'                            " Display marks on left
 Plug 'itchyny/lightline.vim'                            " improved statusline
 Plug 'itchyny/calendar.vim'                             " calendar inside vim
+Plug 'rstacruz/vim-closer'                              " Closes automatically brackets
 
 " Tmux integration
 Plug 'benmills/vimux'                                   " Send data to a tmux pane/window
