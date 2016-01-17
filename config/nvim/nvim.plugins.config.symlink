@@ -156,7 +156,8 @@ augroup AutoSyntastic
     autocmd BufWritePost *.c,*.cpp call s:syntastic()
 augroup END
 function! s:syntastic()
-    SyntasticCheck
+    " SyntasticCheck
+    Neomake
     call lightline#update()
 endfunction
 
