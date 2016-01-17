@@ -80,14 +80,13 @@ bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mod
 bind-key -t vi-copy PPage page-up
 bind-key -t vi-copy NPage page-down
 
-# bind-key -T root WheelUpPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; copy-mode -e; send-keys -M"
-# bind-key -T root WheelDownPane if-shell -F -t = "#{alternate_on}" "send-keys -M" "select-pane -t =; send-keys -M"
 bind -n WheelUpPane if-shell -F -t = "#{mouse_any_flag}" "send-keys -M" "if -Ft= '#{pane_in_mode}' 'send-keys -M' 'select-pane -t=; copy-mode -e; send-keys -M'"
 bind -n WheelDownPane select-pane -t= \; send-keys -M
 bind-key -t vi-copy WheelUpPane halfpage-up
 bind-key -t vi-copy WheelDownPane halfpage-down
 bind -T root MouseDown2Pane run -b "exec </dev/null; xsel -b | awk 1 ORS=' ' | tmux load-buffer - ; tmux paste-buffer"
 
+set -g @yank_selection 'clipboard'
 
 # -- STATUS ----------------------------------------------------------
 set -g status-left-length 50
