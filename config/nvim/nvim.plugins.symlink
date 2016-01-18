@@ -38,6 +38,9 @@ Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'benmills/vimux'                         " Send data to a tmux pane/window
 Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
 
+" Python
+Plug 'davidhalter/jedi-vim'                   " Jedi Python Autocompletion
+
 " Syntax
 Plug 'othree/html5.vim'                       " html5 syntax
 Plug 'othree/yajs.vim'                        " javaScript syntax
