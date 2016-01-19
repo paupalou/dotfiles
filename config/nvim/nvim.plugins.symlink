@@ -41,6 +41,9 @@ Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl bet
 " Python
 Plug 'davidhalter/jedi-vim'                   " Jedi Python Autocompletion
 
+" VCS Integration
+Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
+
 " Syntax
 Plug 'othree/html5.vim'                       " html5 syntax
 Plug 'othree/yajs.vim'                        " javaScript syntax

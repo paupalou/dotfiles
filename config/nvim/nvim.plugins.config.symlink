@@ -229,3 +229,6 @@ nmap ga <Plug>(EasyAlign)
 
 " # Deoplete
 let g:deoplete#enable_at_startup     = 1
+
+" # Signify
+let g:signify_vcs_list = ['git', 'hg']
