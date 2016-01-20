@@ -69,6 +69,7 @@ endfunction
 
 inoremap <CR> <C-R>=(Ulti_ExpandOrJump_and_getRes() > 0)?"":"\n"<CR>
 
+let g:UltiSnipsExpandTrigger  = "<C-@>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
