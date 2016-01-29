@@ -43,15 +43,6 @@ let g:neomake_warning_sign = {
 autocmd! BufWritePost * Neomake
 command Errors lopen
 
-" vim-jedi
-autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#show_call_signatures = 0
-
-" let g:jedi#completions_command = "<C-@>"
-
 " Javascript-libraries-syntax
 let g:used_javascript_libs = 'jquery'
 

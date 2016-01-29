@@ -39,7 +39,7 @@ Plug 'benmills/vimux'                         " Send data to a tmux pane/window
 Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
 
 " Python
-Plug 'davidhalter/jedi-vim'                   " Jedi Python Autocompletion
+Plug 'zchee/deoplete-jedi'                   " Jedi Python Autocompletion
 
 " VCS Integration
 Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
