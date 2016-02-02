@@ -33,7 +33,7 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 !Xft.rgba:       rgb
 !Xft.hinting:    true
 !Xft.hintstyle:  hintslight
-URxvt*letterSpace : 1
+URxvt*letterSpace : 0
 URxvt*lineSpace: 1
 
 URxvt*font:           xft:envypn:pixelsize=16:antialias=false
@@ -42,7 +42,6 @@ URxvt*italicFont:     xft:envypn:italic:pixelsize=16:antialias=false
 URxvt*boldItalicFont: xft:envypn:bold:italic:pixelsize=16:antialias=false
 
 ! Google Material Design
-
 *background: #263238
 *foreground: #eceff1
 
