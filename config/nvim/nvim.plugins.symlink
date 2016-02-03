@@ -24,15 +24,16 @@ Plug 'SirVer/ultisnips'   " Generate and use snippets
 Plug 'honza/vim-snippets' " Snippets for ultiSnips
 
 " Utils
-Plug 'benekastah/neomake'       " Asynchronous compiler/checker
-Plug 'mhinz/vim-startify'       " Show recent files on startup
-Plug 'Yggdroot/indentLine'      " Indent Lines
-Plug 'junegunn/vim-easy-align'  " Mappings for easy align content
-Plug 'bling/vim-bufferline'     " show buffers in status line
-Plug 'Shougo/deoplete.nvim'     " AutoComplete Engine
-Plug 'kshenoy/vim-signature'    " Display marks on left
-Plug 'itchyny/lightline.vim'    " improved statusline
-Plug 'rstacruz/vim-closer'      " Closes automatically brackets
+Plug 'benekastah/neomake'           " Asynchronous compiler/checker
+Plug 'mhinz/vim-startify'           " Show recent files on startup
+Plug 'Yggdroot/indentLine'          " Indent Lines
+Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
+Plug 'bling/vim-bufferline'         " show buffers in status line
+Plug 'Shougo/deoplete.nvim'         " AutoComplete Engine
+Plug 'kshenoy/vim-signature'        " Display marks on left
+Plug 'itchyny/lightline.vim'        " improved statusline
+Plug 'rstacruz/vim-closer'          " Closes automatically brackets
+Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
 
 " Tmux integration
 Plug 'benmills/vimux'                         " Send data to a tmux pane/window

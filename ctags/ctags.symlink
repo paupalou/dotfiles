@@ -1,0 +1,14 @@
+--python-kinds=-iv
+--python-kinds=+cfm
+--javascript-kinds=cfm
+--fields=+l
+--fields=+n
+
+--languages=-html
+
+--exclude=.hg
+--exclude=.git
+--exclude=libs
+--exclude=build
+--exclude=dist
+--exclude=venv
