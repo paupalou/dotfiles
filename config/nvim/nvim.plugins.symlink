@@ -31,8 +31,16 @@ Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
 Plug 'bling/vim-bufferline'         " show buffers in status line
 Plug 'Shougo/deoplete.nvim'         " AutoComplete Engine
 Plug 'kshenoy/vim-signature'        " Display marks on left
-Plug 'itchyny/lightline.vim'        " improved statusline
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
+Plug 'unblevable/quick-scope'       " Highlights characters to tarfet for f,F,t,T
+
+" TextObjects
+Plug 'wellle/targets.vim'           " Add various text objects
+
+" Statusline
+Plug 'itchyny/lightline.vim'        " improved statusline
+
+" Ctags
 Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
 
 " Tmux integration
@@ -44,6 +52,9 @@ Plug 'zchee/deoplete-jedi'                   " Jedi Python Autocompletion
 
 " VCS Integration
 Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
+
+" Quickfix
+Plug 'romainl/vim-qf'                         " Quickfix window improved
 
 " Syntax
 Plug 'othree/html5.vim'                       " html5 syntax
