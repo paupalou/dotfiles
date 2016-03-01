@@ -169,7 +169,11 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 let g:signify_vcs_list = ['git', 'hg']
 
 " Gutentags
-let g:gutentags_cache_dir = '/home/pau/.tags'
+let g:gutentags_enabled   = 0
+let g:gutentags_cache_dir = "~/.tags"
+
+" Quick-scope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
