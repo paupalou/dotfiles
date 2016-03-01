@@ -1,3 +1,5 @@
+language en_US.utf8
+
 source $HOME/.config/nvim/nvim.plugins
 
 " ### USER SETTINGS
@@ -45,7 +47,6 @@ set number
 
 " Textwidth and Columncolor
 set textwidth=110
-"set colorcolumn=111
 
 " Show matching brackets
 set showmatch
@@ -87,7 +88,7 @@ nnoremap <space> :
 vnoremap <space> :
 
 " Quick quit
-noremap <Leader>q :quit<CR>
+noremap <Leader>x :x<CR>
 noremap <Leader>Q :qa!<CR>
 
 " Splits

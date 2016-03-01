@@ -1,0 +1,20 @@
+" vim: set ft=vim:
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal autoindent
+setlocal smartindent
+setlocal smarttab
+setlocal formatoptions=croql
+setlocal textwidth=79
+setlocal colorcolumn=80
+
+setlocal omnifunc=javascriptcomplete#CompleteJS
+
+" tern
+if exists('g:plugs["tern_for_vim"]')
+  let g:tern_show_argument_hints = 'on_hold'
+  let g:tern_show_signature_in_pum = 1
+
+  setlocal omnifunc=tern#Complete
+endif

@@ -13,7 +13,7 @@ Plug 'tpope/vim-eunuch'     " Shell commands like :SudoWrite
 Plug 'tpope/vim-fugitive'   " Best git wrapper
 
 " Tags
-Plug 'majutsushi/tagbar'            " Tagbar
+Plug 'majutsushi/tagbar'    " Tagbar
 
 " FuzzyFinder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " The fuzzyfinder
@@ -34,24 +34,37 @@ Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'itchyny/lightline.vim'        " improved statusline
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
+Plug 'milkypostman/vim-togglelist'  " toggle windows : <Leader>l location | <Leader>q quickfix
+Plug 'wellle/targets.vim'           " add more text objects
+Plug 'mjbrownie/swapit'             " extensible keyword swapper
 
 " Tmux integration
 Plug 'benmills/vimux'                         " Send data to a tmux pane/window
 Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
 
-" Python
+" Autocompletion
+ " Python
 Plug 'zchee/deoplete-jedi'                   " Jedi Python Autocompletion
+ " Javascript
+Plug 'ternjs/tern_for_vim'                    " TernJS vim plugin
 
 " VCS Integration
 Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
 
 " Syntax
+ " HTML5
 Plug 'othree/html5.vim'                       " html5 syntax
+ " PHP
+Plug 'StanAngeloff/php.vim'                   " php improved syntax
+ " PYTHON
+Plug 'hdima/python-syntax'                    " python syntax
+ " Javascript
 Plug 'othree/yajs.vim'                        " javaScript syntax
 Plug 'othree/javascript-libraries-syntax.vim' " syntax for JavaScript libs like jQuery
-Plug 'StanAngeloff/php.vim'                   " php improved syntax
-Plug 'hdima/python-syntax'                    " python syntax
+Plug 'gavocanov/vim-js-indent'                " Javascript indent
+Plug 'mxw/vim-jsx'                            " ReactJS syntax
 Plug 'elzr/vim-json'                          " json syntax
+ " TMUX
 Plug 'keith/tmux.vim'                         " tmux configuration syntax
 
 " ColorScheme

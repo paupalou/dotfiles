@@ -22,7 +22,7 @@ let g:neomake_go_gobuild_maker = {
             \ }
 
 let g:neomake_go_enabled_makers         = ['gofmt', 'gobuild']
-let g:neomake_javascript_enabled_makers = ['jshint']
+let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_python_enabled_makers     = ['flake8']
 
 let g:neomake_open_list   = 2
@@ -45,21 +45,15 @@ command Errors lopen
 " Javascript-libraries-syntax
 let g:used_javascript_libs = 'jquery'
 
+" jsx
+let g:jsx_ext_required = 0
+
 " UltiSnips
 let g:UltiSnipsUsePythonVersion    = 3
 inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 
-" Trick to proc ExpandSnippet if [US] source is selected
-let g:ulti_expand_or_jump_res = 0 "default value, just set once
-function! Ulti_ExpandOrJump_and_getRes()
-    call UltiSnips#ExpandSnippetOrJump()
-    return g:ulti_expand_or_jump_res
-endfunction
-
-inoremap <CR> <C-R>=(Ulti_ExpandOrJump_and_getRes() > 0)?"":"\n"<CR>
-
-let g:UltiSnipsExpandTrigger  = "<C-@>"
+let g:UltiSnipsExpandTrigger  = "<C-e>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
@@ -167,7 +161,9 @@ let g:bufferline_active_buffer_left = ' → '
 let g:bufferline_active_buffer_right = ''
 
 " Deoplete
-let g:deoplete#enable_at_startup     = 1
+let g:deoplete#enable_at_startup = 1
+inoremap <silent><expr> <C-@> deoplete#mappings#manual_complete('omni')
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
