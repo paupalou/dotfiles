@@ -33,6 +33,9 @@ Plug 'Shougo/deoplete.nvim'         " AutoComplete Engine
 Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'unblevable/quick-scope'       " Highlights characters to tarfet for f,F,t,T
+Plug 'milkypostman/vim-togglelist'  " toggle windows : <Leader>l location | <Leader>q quickfix
+Plug 'wellle/targets.vim'           " add more text objects
+Plug 'mjbrownie/swapit'             " extensible keyword swapper
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
@@ -42,25 +45,22 @@ Plug 'itchyny/lightline.vim'        " improved statusline
 
 " Ctags
 Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
-Plug 'milkypostman/vim-togglelist'  " toggle windows : <Leader>l location | <Leader>q quickfix
-Plug 'wellle/targets.vim'           " add more text objects
-Plug 'mjbrownie/swapit'             " extensible keyword swapper
 
 " Tmux integration
 Plug 'benmills/vimux'                         " Send data to a tmux pane/window
 Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
-
-" Autocompletion
- " Python
-Plug 'zchee/deoplete-jedi'                   " Jedi Python Autocompletion
- " Javascript
-Plug 'ternjs/tern_for_vim'                    " TernJS vim plugin
 
 " VCS Integration
 Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
 
 " Quickfix
 Plug 'romainl/vim-qf'                         " Quickfix window improved
+
+" Autocompletion
+ " Python
+Plug 'zchee/deoplete-jedi'                   " Jedi Python Autocompletion
+ " Javascript
+Plug 'ternjs/tern_for_vim'                    " TernJS vim plugin
 
 " Syntax
  " HTML5
