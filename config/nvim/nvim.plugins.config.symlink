@@ -162,7 +162,10 @@ let g:bufferline_active_buffer_right = ''
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-inoremap <silent><expr> <C-@> deoplete#mappings#manual_complete('omni')
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['ultisnips', 'buffer', 'member']
+" inoremap <silent><expr> <C-@> deoplete#mappings#manual_complete('omni')
+inoremap <C-@> <C-x><C-o>
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Signify
