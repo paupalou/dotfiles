@@ -49,6 +49,7 @@ Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
 " Tmux integration
 Plug 'benmills/vimux'                         " Send data to a tmux pane/window
 Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
+Plug 'julienr/vim-cellmode'                   " Send python code to ipython inside vim
 
 " VCS Integration
 Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
