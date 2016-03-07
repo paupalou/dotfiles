@@ -1,5 +1,5 @@
 # Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -f -g ""'
 
 # v - open files in ~/.viminfo
 v() {
