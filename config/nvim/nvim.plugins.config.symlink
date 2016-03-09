@@ -53,7 +53,7 @@ let g:UltiSnipsUsePythonVersion    = 3
 inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 
-let g:UltiSnipsExpandTrigger  = "<C-e>"
+let g:UltiSnipsExpandTrigger  = "<C-T>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
@@ -167,7 +167,6 @@ let g:bufferline_active_buffer_right = ''
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['ultisnips', 'buffer', 'member']
-" inoremap <silent><expr> <C-@> deoplete#mappings#manual_complete('omni')
 inoremap <C-@> <C-x><C-o>
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 

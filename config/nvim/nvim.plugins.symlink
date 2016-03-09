@@ -59,10 +59,9 @@ Plug 'romainl/vim-qf'                         " Quickfix window improved
 
 " Autocompletion
  " Python
-Plug 'zchee/deoplete-jedi'                   " Jedi Python Autocompletion
+Plug 'davidhalter/jedi-vim'                   " Jedi Python Autocompletion
  " Javascript
 Plug 'ternjs/tern_for_vim'                    " TernJS vim plugin
-Plug 'carlitux/deoplete-ternjs'               " TernJS deoplete sources
 
 " Syntax
  " HTML5
