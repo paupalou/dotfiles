@@ -13,11 +13,11 @@ Plug 'tpope/vim-eunuch'     " Shell commands like :SudoWrite
 Plug 'tpope/vim-fugitive'   " Best git wrapper
 
 " Tags
-Plug 'majutsushi/tagbar'    " Tagbar
+Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle' } " Tagbar
 
 " FuzzyFinder
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } " The fuzzyfinder
-Plug 'junegunn/fzf.vim'                                           " mappings for fzf inside vim
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'     " mappings for fzf inside vim
 
 " Snippets
 Plug 'SirVer/ultisnips'   " Generate and use snippets
@@ -29,7 +29,6 @@ Plug 'mhinz/vim-startify'           " Show recent files on startup
 Plug 'Yggdroot/indentLine'          " Indent Lines
 Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
 Plug 'bling/vim-bufferline'         " show buffers in status line
-Plug 'Shougo/deoplete.nvim'         " AutoComplete Engine
 Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'unblevable/quick-scope'       " Highlights characters to tarfet for f,F,t,T
@@ -58,10 +57,13 @@ Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
 Plug 'romainl/vim-qf'                         " Quickfix window improved
 
 " Autocompletion
- " Python
-Plug 'davidhalter/jedi-vim'                   " Jedi Python Autocompletion
- " Javascript
-Plug 'ternjs/tern_for_vim'                    " TernJS vim plugin
+Plug 'Shougo/deoplete.nvim'         " AutoComplete Engine
+ " deoplete-python
+Plug 'zchee/deoplete-jedi'
+ " deoplete-go
+Plug 'zchee/deoplete-go'
+ " deoplete-javascript
+Plug 'carlitux/deoplete-ternjs'
 
 " Syntax
  " HTML5
