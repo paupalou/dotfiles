@@ -43,7 +43,7 @@ autocmd! BufWritePost * Neomake
 command Errors lopen
 
 " Javascript-libraries-syntax
-let g:used_javascript_libs = 'jquery'
+let g:used_javascript_libs = 'jquery,react,lo-dash'
 
 " jsx
 let g:jsx_ext_required = 0
@@ -167,6 +167,8 @@ let g:bufferline_active_buffer_right = ''
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
 let g:deoplete#sources._ = ['ultisnips', 'buffer', 'member']
+let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi']
+
 inoremap <C-@> <C-x><C-o>
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
