@@ -227,6 +227,14 @@ endfunction
 " # Startify
 nmap <silent> <Leader>s :Startify<CR>
 let g:startify_enable_unsafe = 1
+let g:ascii = [
+            \ '        __',
+            \ '.--.--.|__|.--------.',
+            \ '|  |  ||  ||        |',
+            \ ' \___/ |__||__|__|__|',
+            \ ''
+            \]
+let g:startify_custom_header = map(g:ascii, '"    ".v:val')
 
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>

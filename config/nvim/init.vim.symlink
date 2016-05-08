@@ -45,7 +45,7 @@ set splitright
 set relativenumber
 set number
 
-" Textwidth and Columncolor
+" Textwidth
 set textwidth=110
 
 " Show matching brackets
@@ -66,7 +66,7 @@ set pumheight=15
 " Matching <> for html
 set matchpairs+=<:>
 
-" Disable showmode cuz airline
+" Disable showmode (lightline's job)
 set noshowmode
 
 " Easy Copy/Paste
