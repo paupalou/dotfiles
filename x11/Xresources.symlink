@@ -33,7 +33,7 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 !Xft.rgba:       rgb
 !Xft.hinting:    true
 !Xft.hintstyle:  hintslight
-URxvt*letterSpace : 0
+URxvt*letterSpace : 1
 URxvt*lineSpace: 1
 
 URxvt*font:           xft:envypn:pixelsize=16:antialias=false

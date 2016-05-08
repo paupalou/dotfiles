@@ -1,0 +1,16 @@
+# vim: set ft=snippets:
+
+# GENERAL SNIPPETS
+snippet php
+<?php $0 ?>
+endsnippet
+
+# DRUPAL SNIPPETS
+
+snippet dt "Translatable String"
+t('${1:text}');$0
+endsnippet
+
+snippet dtt "Translatable String with placeholder"
+t('${1:text with} %${2:foo}', array('%$2' => '$3'));$0
+endsnippet

@@ -81,11 +81,7 @@ set modelines=5
 
 " ### MAPPINGS
 " Leader Key
-let mapleader=","
-
-" Space as command launcher
-nnoremap <space> :
-vnoremap <space> :
+let mapleader="\<Space>"
 
 " Quick quit
 noremap <Leader>x :x<CR>

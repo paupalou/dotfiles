@@ -8,7 +8,7 @@ set show_hidden False
 
 set vcs_aware True
 set vcs_backend_git enabled
-set vcs_backend_hg enabled
+set vcs_backend_hg disabled
 
 # Which script is used to generate file previews?
 # ranger ships with scope.sh, a script that calls external programs (see
