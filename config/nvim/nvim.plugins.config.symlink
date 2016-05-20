@@ -242,3 +242,10 @@ nmap <silent> <Leader>t :TagbarToggle<CR>
 " # VIM-EASY-ALIGN
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" # dasht
+" Search API docs for word under cursor:
+nnoremap <Leader>d :call Dasht(expand('<cword>'))<Return>
+
+" Search API docs for the selected text:
+vnoremap <Leader>D y:call Dasht(getreg(0))<Return>gv

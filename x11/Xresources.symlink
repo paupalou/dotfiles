@@ -34,7 +34,7 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 !Xft.hinting:    true
 !Xft.hintstyle:  hintslight
 URxvt*letterSpace : 1
-URxvt*lineSpace: 1
+URxvt*lineSpace: 2
 
 URxvt*font:           xft:envypn:pixelsize=16:antialias=false
 URxvt*boldFont:       xft:envypn:bold:pixelsize=16:antialias=false
