@@ -200,8 +200,8 @@ nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-nnoremap <silent> K :call SearchWordWithAg()<CR>
-vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
+" nnoremap <silent> K :call SearchWordWithAg()<CR>
+" vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
@@ -244,8 +244,11 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " # dasht
+" Search API docs for query you type in:
+nnoremap <Leader>k :Dasht<Space>
+
 " Search API docs for word under cursor:
-nnoremap <Leader>d :call Dasht(expand('<cword>'))<Return>
+nnoremap <silent> <Leader>d :call Dasht([expand('<cWORD>'), expand('<cword>')])<Return>
 
 " Search API docs for the selected text:
-vnoremap <Leader>D y:call Dasht(getreg(0))<Return>gv
+vnoremap <silent> <Leader>d y:<C-U>call Dasht(getreg(0))<Return>

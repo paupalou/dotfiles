@@ -16,3 +16,5 @@ if exists('g:plugs["tern_for_vim"]')
 
   autocmd FileType javascript setlocal omnifunc=tern#Complete
 endif
+
+setlocal keywordprg=vimsearchinbrowser\ javascript

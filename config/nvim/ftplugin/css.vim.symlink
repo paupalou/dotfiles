@@ -1,0 +1,12 @@
+" vim: set ft=vim:
+setlocal tabstop=2
+setlocal shiftwidth=2
+setlocal expandtab
+setlocal autoindent
+setlocal smartindent
+setlocal smarttab
+setlocal formatoptions=croql
+setlocal textwidth=79
+setlocal colorcolumn=80
+
+setlocal keywordprg=vimsearchinbrowser\ css

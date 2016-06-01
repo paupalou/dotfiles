@@ -14,6 +14,7 @@ Plug 'tpope/vim-fugitive'   " Best git wrapper
 
 " Tags
 Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle' } " Tagbar
+Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
 
 " FuzzyFinder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -32,7 +33,6 @@ Plug 'bling/vim-bufferline'         " show buffers in status line
 Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'unblevable/quick-scope'       " Highlights characters to tarfet for f,F,t,T
-Plug 'wellle/targets.vim'           " add more text objects
 Plug 'mjbrownie/swapit'             " extensible keyword swapper
 Plug 'sunaku/vim-dasht'             " neovim integration with dasht
 
@@ -41,9 +41,6 @@ Plug 'wellle/targets.vim'           " Add various text objects
 
 " Statusline
 Plug 'itchyny/lightline.vim'        " improved statusline
-
-" Ctags
-Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
 
 " Tmux integration
 Plug 'benmills/vimux'                         " Send data to a tmux pane/window
@@ -80,6 +77,8 @@ Plug 'mxw/vim-jsx'                            " ReactJS syntax
 Plug 'elzr/vim-json'                          " json syntax
  " TMUX
 Plug 'keith/tmux.vim'                         " tmux configuration syntax
+" SASS
+Plug 'cakebaker/scss-syntax.vim'
 
 " ColorScheme
 Plug 'NLKNguyen/papercolor-theme'
