@@ -74,7 +74,7 @@ let g:lightline = {
     \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], ['fugitive', 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'component': {
-    \   'lineinfo': ' %3l:%-2v',
+    \   'lineinfo': '%3l:%-2v',
     \ },
     \ 'component_function': {
     \   'fileformat':         'LightLineFileformat',
@@ -99,7 +99,7 @@ let g:lightline = {
 function! LightLineFugitive()
   if exists("*fugitive#head")
     let _ = fugitive#head()
-    return strlen(_) ? '  '._ : ''
+    return strlen(_) ? ' ✓ '._ : ''
   endif
   return ''
 endfunction
@@ -120,7 +120,7 @@ function! BufferAfter()
 endfunction
 
 function! LightLineReadonly()
-    return &ft !~? 'help' && &readonly ? '' : ''
+    return &ft !~? 'help' && &readonly ? '[RO]' : ''
 endfunction
 
 function! LightLineFileformat()

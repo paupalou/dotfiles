@@ -4,6 +4,9 @@ source $HOME/.config/nvim/nvim.plugins
 
 " ### USER SETTINGS
 set background=dark
+if (has("termguicolors"))
+  set termguicolors
+endif
 colorscheme PaperColor
 
 " Use mouse

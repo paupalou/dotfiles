@@ -73,8 +73,8 @@ set -g visual-activity on
 
 # Enable mouse funcionality
 set-option -g -q mouse on
-# set-option -ga terminal-override ',rxvt-uni*:XT:Ms=\E]52;%p1%s;%p2%s\007'
-set-option -ga terminal-override ',screen-*:XT:Ms=\E]52;%p1%s;%p2%s\007'
+# set-option -ga terminal-override ',screen-*:XT:Ms=\E]52;%p1%s;%p2%s\007'
+set-option -ga terminal-override ',screen-256color:Tc'
 
 bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
 bind-key -t vi-copy PPage page-up
@@ -111,7 +111,7 @@ setw -g clock-mode-style 24
 setw -g mode-keys vi
 setw -g monitor-activity on
 setw -g monitor-silence 0
-setw -g utf8 on
+# setw -g utf8 on
 setw -g window-status-current-format '#[fg=black,bg=red] ■ #[fg=white,bg=grey] #W '
 setw -g window-status-format '#[fg=white,bg=black] #I → #W '
 
