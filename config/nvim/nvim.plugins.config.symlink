@@ -167,11 +167,19 @@ let g:bufferline_active_buffer_right = ''
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['ultisnips', 'buffer', 'member']
+" let g:deoplete#sources._ = ['ultisnips', 'buffer', 'member', 'omnifunc']
 let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi']
 
 inoremap <C-@> <C-x><C-o>
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" dasht
+let g:dasht_filetype_docsets = {
+      \ 'html': ['css', 'js', 'bootstrap', 'jquery'],
+      \ 'javascript': ['javascript', 'express', 'jquery', 'nodejs', 'react'],
+      \ 'javascript.jsx': ['javascript', 'express', 'jquery', 'nodejs', 'react'],
+      \ 'python': ['python2']
+      \ }
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
