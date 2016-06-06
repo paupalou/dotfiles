@@ -111,7 +111,7 @@ setw -g clock-mode-style 24
 setw -g mode-keys vi
 setw -g monitor-activity off
 setw -g monitor-silence 0
-setw -g window-status-current-format '#[fg=black,bright,bg=colour3] ▶ [#I:#W ] '
+setw -g window-status-current-format '#[fg=black,bright,bg=colour3] ▶ [#I:#W] '
 setw -g window-status-format '#[fg=green,bg=colour8] [#I:#W] '
 
 # -- VIM SPLITS - TMUX PANES -----------------------------------------
