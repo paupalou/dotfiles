@@ -94,11 +94,11 @@ set -g status-right-length 150
 set -g status on
 set -g status-justify left
 
-set -g status-left " #S @ #H ∷ "
-set -g status-left-fg black
-set -g status-left-bg white
+set -g status-left " #H  #[fg=colour196,bright,bg=white] ☭ "
+set -g status-left-fg black,bright
+set -g status-left-bg cyan
 
-set -g status-right "#{prefix_highlight} %H:%M %d-%b-%y "
+set -g status-right "#{prefix_highlight} %H:%M %d-%b-%y"
 set -g status-right-fg black
 set -g status-right-bg white
 
@@ -112,8 +112,8 @@ setw -g mode-keys vi
 setw -g monitor-activity on
 setw -g monitor-silence 0
 # setw -g utf8 on
-setw -g window-status-current-format '#[fg=black,bg=red] ■ #[fg=white,bg=grey] #W '
-setw -g window-status-format '#[fg=white,bg=black] #I → #W '
+setw -g window-status-current-format '#[fg=white,bright,bg=colour196] [#[fg=white,bg=grey] #I:#W ] '
+setw -g window-status-format '#[fg=green,bg=black] [#I:#W] '
 
 # -- VIM SPLITS - TMUX PANES -----------------------------------------
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'

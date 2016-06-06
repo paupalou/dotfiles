@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# Script to download mp3 audio from your clipboard youtube link
+# and automatically renames deleting the id of video
+
+youtube-dl -q -x --audio-format mp3 "$(xsel)" -o %\(title\)s.\(ext\)s
+find . -name "*.mp3" -cmin 1
