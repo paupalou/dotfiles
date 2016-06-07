@@ -94,7 +94,7 @@ set -g status-right-length 150
 set -g status on
 set -g status-justify left
 
-set -g status-left " #H  #[fg=colour196,bright,bg=white] ☭ "
+set -g status-left " ★ #H ★ #[fg=colour196,bright,bg=white] ☭ #[fg=black,bg=cyan] "
 set -g status-left-fg black
 set -g status-left-bg cyan
 
@@ -111,7 +111,7 @@ setw -g clock-mode-style 24
 setw -g mode-keys vi
 setw -g monitor-activity off
 setw -g monitor-silence 0
-setw -g window-status-current-format '#[fg=black,bright,bg=colour3] ▶ [#I:#W] '
+setw -g window-status-current-format '#[fg=colour8,bright,bg=green] [#I:#W] '
 setw -g window-status-format '#[fg=green,bg=colour8] [#I:#W] '
 
 # -- VIM SPLITS - TMUX PANES -----------------------------------------
