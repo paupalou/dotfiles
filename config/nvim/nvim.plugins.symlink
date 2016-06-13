@@ -21,8 +21,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'     " mappings for fzf inside vim
 
 " Snippets
-Plug 'SirVer/ultisnips'   " Generate and use snippets
-Plug 'honza/vim-snippets' " Snippets for ultiSnips
+Plug 'SirVer/ultisnips'               " Generate and use snippets
+Plug 'honza/vim-snippets'             " Snippets for ultiSnips
+Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Utils
 Plug 'benekastah/neomake'           " Asynchronous compiler/checker
@@ -70,11 +71,11 @@ Plug 'StanAngeloff/php.vim'                   " php improved syntax
  " PYTHON
 Plug 'hdima/python-syntax'                    " python syntax
  " Javascript
-Plug 'othree/yajs.vim'                        " javaScript syntax
-Plug 'othree/javascript-libraries-syntax.vim' " syntax for JavaScript libs like jQuery
-Plug 'gavocanov/vim-js-indent'                " Javascript indent
-Plug 'mxw/vim-jsx'                            " ReactJS syntax
-Plug 'elzr/vim-json'                          " json syntax
+Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] } " javascript syntax
+Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] } " javascript libs syntax
+Plug 'gavocanov/vim-js-indent',                { 'for': ['javascript', 'javascript.jsx'] } " javascript indent
+Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] } " react-jsx syntax
+Plug 'elzr/vim-json'                                                                       " json syntax
  " TMUX
 Plug 'keith/tmux.vim'                         " tmux configuration syntax
 " SASS
