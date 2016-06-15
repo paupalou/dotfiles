@@ -3,8 +3,12 @@
 *.png
 *.jpg
 *.jpeg
-**/bin/
+**/*-min.js
 Programs/
 Dropbox/
+.dropbox/
 Dropbox_old/
 Virtual Box VMs/
+node_modules/
+log
+.git
