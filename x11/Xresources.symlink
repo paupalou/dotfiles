@@ -1,5 +1,5 @@
 URxvt*termName:             screen-256color
-URxvt*geometry:             150x44
+URxvt*geometry:             180x54
 URxvt*loginShell:           true
 URxvt*scrollBar:            false
 URxvt*secondaryScreen:      true
@@ -26,15 +26,8 @@ URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
-URxvt.keysym.Control-0xff51:   \033[1;5D
-URxvt.keysym.Control-0xff53:   \033[1;5C
 
 !-- Xft settings -- !
-!Xft.dpi:        96
-!Xft.antialias:  true
-!Xft.rgba:       rgb
-!Xft.hinting:    true
-!Xft.hintstyle:  hintslight
 URxvt*letterSpace : 1
 URxvt*lineSpace: 2
 
