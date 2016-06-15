@@ -62,5 +62,8 @@ done
 unset config_files
 
 export KEYTIMEOUT=1
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(
+  expand-or-complete
+)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
