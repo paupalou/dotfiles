@@ -70,10 +70,10 @@ set -g renumber-windows on
 set -g repeat-time 100
 set -g set-titles on
 set -g visual-activity off
+set -g xterm-keys on
 
 # Enable mouse funcionality
 set-option -g -q mouse on
-# set-option -ga terminal-override ',screen-*:XT:Ms=\E]52;%p1%s;%p2%s\007'
 set-option -ga terminal-override ',screen-256color:Tc'
 
 bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
