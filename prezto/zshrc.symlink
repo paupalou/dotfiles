@@ -72,4 +72,6 @@ done
 
 unset config_files
 
+export KEYTIMEOUT=1
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -26,6 +26,8 @@ URxvt.keysym.M-u:   perl:url-select:select_next
 URxvt.keysym.M-c:   perl:clipboard:copy
 URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt.keysym.Control-0xff51:   \033[1;5D
+URxvt.keysym.Control-0xff53:   \033[1;5C
 
 !-- Xft settings -- !
 !Xft.dpi:        96
