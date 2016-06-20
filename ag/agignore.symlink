@@ -3,7 +3,6 @@
 *.png
 *.jpg
 *.jpeg
-**/*-min.js
 Programs/
 Dropbox/
 .dropbox/

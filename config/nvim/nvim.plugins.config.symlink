@@ -167,11 +167,14 @@ let g:bufferline_active_buffer_right = ''
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources = {}
-" let g:deoplete#sources._ = ['ultisnips', 'buffer', 'member', 'omnifunc']
 let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi']
 
 inoremap <C-@> <C-x><C-o>
 autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" deoplete-ternjs
+let g:tern_request_timeout = 1
+let g:ther_show_signature_in_pum = 0
 
 " dasht
 let g:dasht_filetype_docsets = {

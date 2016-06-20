@@ -9,5 +9,3 @@ setlocal formatoptions=croql
 setlocal textwidth=79
 setlocal colorcolumn=80
 setlocal keywordprg=vimsearchinbrowser\ javascript
-
-autocmd FileType javascript,jsx,javascript.jsx setlocal omnifunc=tern#Complete
