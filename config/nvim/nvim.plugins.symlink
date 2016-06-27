@@ -36,6 +36,7 @@ Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'unblevable/quick-scope'       " Highlights characters to tarfet for f,F,t,T
 Plug 'mjbrownie/swapit'             " extensible keyword swapper
 Plug 'sunaku/vim-dasht'             " neovim integration with dasht
+Plug 'ervandew/supertab'             " neovim integration with dasht
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
@@ -55,7 +56,7 @@ Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
 Plug 'romainl/vim-qf'                         " Quickfix window improved
 
 " Autocompletion
-Plug 'Shougo/deoplete.nvim'         " AutoComplete Engine
+Plug 'Shougo/deoplete.nvim', {'commit': 'f4e30edd5dc8b16f51ff8aace715389d245b9612'}          " AutoComplete Engine
  " deoplete-python
 Plug 'zchee/deoplete-jedi'
  " deoplete-go

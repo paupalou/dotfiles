@@ -51,8 +51,9 @@ let g:jsx_ext_required = 0
 " UltiSnips
 let g:UltiSnipsUsePythonVersion    = 3
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
-inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<C-x><C-n><C-n>"
+" inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
 
 let g:UltiSnipsExpandTrigger  = "<C-T>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
@@ -60,14 +61,11 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " IndentLine
 map <silent> <Leader>L :IndentLinesToggle<CR>
-let g:indentLine_enabled = 0
-let g:indentLine_showFirstIndentLevel = '1'
-" let g:indentLine_char = '┊'
-let g:indentLine_first_char = '▐'
-let g:IndentLine_leadingSpaceEnabled = '1'
-
-
+let g:indentLine_enabled = 1
+let g:indentLine_indentLevel = 1
+let g:indentLine_char = '▐'
 let g:indentLine_color_term = 239
+let g:indentLine_fileTypeExclude = ['json']
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
