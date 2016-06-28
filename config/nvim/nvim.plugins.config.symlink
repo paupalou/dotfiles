@@ -51,13 +51,12 @@ let g:jsx_ext_required = 0
 " UltiSnips
 let g:UltiSnipsUsePythonVersion    = 3
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
-" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<C-x><C-n><C-n>"
-" inoremap <silent><expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
-
 let g:UltiSnipsExpandTrigger  = "<C-T>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+
+" Supertab
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " IndentLine
 map <silent> <Leader>L :IndentLinesToggle<CR>
