@@ -57,7 +57,7 @@ zstyle ':prezto:module:autosuggestions:color' found 'fg=6,bg=8'
 #
 
 # Set the prompt theme to load.
-zstyle ':prezto:module:prompt' theme 'sorin'
+zstyle ':prezto:module:prompt' theme 'smiley'
 
 #
 # Syntax Highlighting
