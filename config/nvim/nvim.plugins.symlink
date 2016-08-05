@@ -33,7 +33,6 @@ Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
 Plug 'bling/vim-bufferline'         " show buffers in status line
 Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
-Plug 'unblevable/quick-scope'       " Highlights characters to tarfet for f,F,t,T
 Plug 'mjbrownie/swapit'             " extensible keyword swapper
 Plug 'sunaku/vim-dasht'             " neovim integration with dasht
 Plug 'ervandew/supertab'             " neovim integration with dasht
@@ -74,7 +73,6 @@ Plug 'hdima/python-syntax'                    " python syntax
  " Javascript
 Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] } " javascript syntax
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] } " javascript libs syntax
-Plug 'gavocanov/vim-js-indent',                { 'for': ['javascript', 'javascript.jsx'] } " javascript indent
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] } " react-jsx syntax
 Plug 'elzr/vim-json'                                                                       " json syntax
  " TMUX
