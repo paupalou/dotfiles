@@ -193,6 +193,10 @@ let g:signify_vcs_list = ['git', 'hg']
 let g:gutentags_enabled   = 0
 let g:gutentags_cache_dir = "~/.tags"
 
+" Leader-guide
+let g:lmap = {}
+call leaderGuide#register_prefix_descriptions(",", "g:lmap")
+
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
 let g:fzf_layout = { 'down': '~40%' }
@@ -201,8 +205,9 @@ let g:fzf_action = {
             \ 'ctrl-v': 'vsplit'
             \ }
 nnoremap <c-p> :FZF<cr>
-nnoremap <silent> <leader><space> :Files<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>a :Buffers<CR>
+nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
 nnoremap <silent> <leader>o :BTags<CR>
@@ -252,6 +257,9 @@ nmap <silent> <Leader>t :TagbarToggle<CR>
 " # VIM-EASY-ALIGN
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" # Leader-Guide
+nnoremap <silent> <leader><leader> :<c-u>LeaderGuide '<Space>'<CR>
 
 " # dasht
 " Search API docs for query you type in:

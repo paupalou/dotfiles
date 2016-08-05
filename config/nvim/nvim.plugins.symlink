@@ -35,7 +35,8 @@ Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'mjbrownie/swapit'             " extensible keyword swapper
 Plug 'sunaku/vim-dasht'             " neovim integration with dasht
-Plug 'ervandew/supertab'             " neovim integration with dasht
+Plug 'ervandew/supertab'            " neovim integration with dasht
+Plug 'hecal3/vim-leader-guide'      " vim leader guide
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
