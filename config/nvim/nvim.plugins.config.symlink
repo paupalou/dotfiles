@@ -66,13 +66,18 @@ let g:indentLine_char = '▐'
 let g:indentLine_color_term = 239
 let g:indentLine_fileTypeExclude = ['json']
 
+" BufTabLine
+highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#073642 guifg=#ffffff
+highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#ffffff
+
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
 
 " LightLine
 let g:lightline = {
+    \ 'colorscheme': 'solarized',
     \ 'active': {
-    \   'left': [ [ 'mode', 'paste'], ['bufferline_before'],['bufferline_current'],['bufferline_after'] ],
+    \   'left': [ [ 'mode', 'paste'], ['filename'] ],
     \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], ['fugitive', 'fileformat', 'fileencoding', 'filetype' ] ]
     \ },
     \ 'component': {
@@ -82,10 +87,8 @@ let g:lightline = {
     \   'fileformat':         'LightLineFileformat',
     \   'filetype':           'LightLineFiletype',
     \   'fileencoding':       'LightLineFileencoding',
+    \   'filename':           'LightLineFilename',
     \   'mode':               'LightLineMode',
-    \   'bufferline_before':  'BufferBefore',
-    \   'bufferline_current': 'BufferCurrent',
-    \   'bufferline_after':   'BufferAfter',
     \   'fugitive':           'LightLineFugitive',
     \ },
     \ 'component_expand': {
@@ -94,31 +97,28 @@ let g:lightline = {
     \ 'component_type': {
     \   'syntastic': 'error',
     \ },
-    \ 'separator': { 'left': '', 'right': ''},
+    \ 'separator': { 'left': '', 'right':  ''},
     \ 'subseparator': { 'left': '|', 'right': '|' }
 \ }
 
 function! LightLineFugitive()
   if exists("*fugitive#head")
     let _ = fugitive#head()
-    return strlen(_) ? ' ✓ '._ : ''
+    return strlen(_) ? ' ⎇ '._ : ''
   endif
   return ''
 endfunction
 
-function! BufferBefore()
-    call bufferline#refresh_status()
-    return g:bufferline_status_info.before
+function! LightLineFilename()
+  let fname = expand('%:t')
+  return &ft == 'startify' ? '' :
+        \('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+        \ ('' != fname ? fname : '[No Name]') .
+        \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
 endfunction
 
-function! BufferCurrent()
-    call bufferline#refresh_status()
-    return g:bufferline_status_info.current . ' ' . LightLineReadonly()
-endfunction
-
-function! BufferAfter()
-    call bufferline#refresh_status()
-      return g:bufferline_status_info.after
+function! LightLineModified()
+  return &ft =~ 'help' ? '' : &modified ? '+' : &modifiable ? '' : '-'
 endfunction
 
 function! LightLineReadonly()
@@ -159,12 +159,6 @@ function! s:syntastic()
     Neomake
     call lightline#update()
 endfunction
-
-" bufferline
-let g:bufferline_echo = 0
-let g:bufferline_show_bufnr = 0
-let g:bufferline_active_buffer_left = ' → '
-let g:bufferline_active_buffer_right = ''
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
@@ -215,29 +209,11 @@ nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-" nnoremap <silent> K :call SearchWordWithAg()<CR>
-" vnoremap <silent> K :call SearchVisualSelectionWithAg()<CR>
 nnoremap <silent> <leader>gl :Commits<CR>
 nnoremap <silent> <leader>ga :BCommits<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
-
-function! SearchWordWithAg()
-    execute 'Ag' expand('<cword>')
-endfunction
-
-function! SearchVisualSelectionWithAg() range
-    let old_reg = getreg('"')
-    let old_regtype = getregtype('"')
-    let old_clipboard = &clipboard
-    set clipboard&
-    normal! ""gvy
-    let selection = getreg('"')
-    let &clipboard = old_clipboard
-    call setreg('"', old_reg, old_regtype)
-    execute 'Ag' selection
-endfunction
 
 " # Startify
 nmap <silent> <Leader>s :Startify<CR>
@@ -260,13 +236,3 @@ nmap ga <Plug>(EasyAlign)
 
 " # Leader-Guide
 nnoremap <silent> <leader><leader> :<c-u>LeaderGuide '<Space>'<CR>
-
-" # dasht
-" Search API docs for query you type in:
-nnoremap <Leader>k :Dasht<Space>
-
-" Search API docs for word under cursor:
-nnoremap <silent> <Leader>d :call Dasht([expand('<cWORD>'), expand('<cword>')])<Return>
-
-" Search API docs for the selected text:
-vnoremap <silent> <Leader>d y:<C-U>call Dasht(getreg(0))<Return>

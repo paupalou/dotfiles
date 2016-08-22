@@ -29,7 +29,7 @@ URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 !-- Xft settings -- !
 URxvt*letterSpace : 1
-URxvt*lineSpace: 2
+URxvt*lineSpace: 1
 
 URxvt*font:           xft:envypn:size=15:antialias=false
 URxvt*boldFont:       xft:envypn:bold:size=15:antialias=false

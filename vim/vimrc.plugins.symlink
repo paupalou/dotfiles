@@ -53,5 +53,6 @@ Plug 'keith/tmux.vim'                         " tmux configuration syntax
 
 " ColorScheme
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'dracula/vim'
 
 call plug#end()

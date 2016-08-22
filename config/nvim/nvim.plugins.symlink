@@ -26,16 +26,15 @@ Plug 'honza/vim-snippets'             " Snippets for ultiSnips
 Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Utils
+Plug 'ap/vim-buftabline'            " Buffer visual selection on top
 Plug 'benekastah/neomake'           " Asynchronous compiler/checker
 Plug 'mhinz/vim-startify'           " Show recent files on startup
 Plug 'Yggdroot/indentLine'          " Indent Lines
 Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
-Plug 'bling/vim-bufferline'         " show buffers in status line
 Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
-Plug 'mjbrownie/swapit'             " extensible keyword swapper
-Plug 'sunaku/vim-dasht'             " neovim integration with dasht
-Plug 'ervandew/supertab'            " neovim integration with dasht
+Plug 'mjbrownie/swapit'             " Extensible keyword swapper
+Plug 'ervandew/supertab'            " Extended tab use
 Plug 'hecal3/vim-leader-guide'      " vim leader guide
 
 " TextObjects
@@ -83,5 +82,6 @@ Plug 'cakebaker/scss-syntax.vim'
 
 " ColorScheme
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'dracula/vim'
 
 call plug#end()
