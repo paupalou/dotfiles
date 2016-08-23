@@ -68,7 +68,7 @@ let g:indentLine_fileTypeExclude = ['json']
 
 " Tweak some colors
 highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#073642 guifg=#ffffff
-highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#ffffff
+highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
 highlight Visual ctermbg=40 ctermfg=15 guibg=#3B6E4A
 
 " Vim-cellmode

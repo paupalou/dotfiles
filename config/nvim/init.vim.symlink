@@ -6,7 +6,8 @@ source $HOME/.config/nvim/nvim.plugins
 if (has("termguicolors"))
   set termguicolors
 endif
-colorscheme dracula
+set background=dark
+colorscheme PaperColor
 
 " Use mouse
 set mouse=nvr
