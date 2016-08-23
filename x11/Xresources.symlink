@@ -43,9 +43,9 @@ Xft.hinting: true
 Xft.hintstyle: hintslight
 
 URxvt*font:           xft:Input Mono:style=Regular:size=10
-URxvt*boldFont:       xft:Input Mono:style=Bold:size=10
-URxvt*italicFont:     xft:Input Mono:style=Italic:size=10
-URxvt*boldItalicFont: xft:Input Mono:style=Bold,Italic:size=10
+URxvt*boldFont:       xft:Input Mono:style=Black:size=10
+URxvt*italicFont:     xft:Input Mono:style=Regular Italic:size=10
+URxvt*boldItalicFont: xft:Input Mono:style=Black Italic:size=10
 
 ! Google Material Design
 *background: #263238
