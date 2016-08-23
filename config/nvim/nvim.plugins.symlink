@@ -71,7 +71,7 @@ Plug 'StanAngeloff/php.vim'                   " php improved syntax
  " PYTHON
 Plug 'hdima/python-syntax'                    " python syntax
  " Javascript
-Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] } " javascript syntax
+Plug 'othree/yajs.vim',                        { 'for': ['javascript', 'javascript.jsx'] } " javascript syntax
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] } " javascript libs syntax
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] } " react-jsx syntax
 Plug 'elzr/vim-json'                                                                       " json syntax

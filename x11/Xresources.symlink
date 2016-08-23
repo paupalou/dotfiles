@@ -28,13 +28,24 @@ URxvt.keysym.M-v:   perl:clipboard:paste
 URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
 
 !-- Xft settings -- !
-URxvt*letterSpace : 1
+URxvt*letterSpace : -2
 URxvt*lineSpace: 1
 
-URxvt*font:           xft:envypn:size=15:antialias=false
-URxvt*boldFont:       xft:envypn:bold:size=15:antialias=false
-URxvt*italicFont:     xft:envypn:italic:size=15:antialias=false
-URxvt*boldItalicFont: xft:envypn:bold:italic:size=15:antialias=false
+!URxvt*font:           xft:envypn:size=15:antialias=false
+!URxvt*boldFont:       xft:envypn:bold:size=15:antialias=false
+!URxvt*italicFont:     xft:envypn:italic:size=15:antialias=false
+!URxvt*boldItalicFont: xft:envypn:bold:italic:size=15:antialias=false
+
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+Xft.hintstyle: hintslight
+
+URxvt*font:           xft:Input Mono:style=Regular:size=10
+URxvt*boldFont:       xft:Input Mono:style=Bold:size=10
+URxvt*italicFont:     xft:Input Mono:style=Italic:size=10
+URxvt*boldItalicFont: xft:Input Mono:style=Bold,Italic:size=10
 
 ! Google Material Design
 *background: #263238

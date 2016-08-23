@@ -66,9 +66,10 @@ let g:indentLine_char = '▐'
 let g:indentLine_color_term = 239
 let g:indentLine_fileTypeExclude = ['json']
 
-" BufTabLine
+" Tweak some colors
 highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#073642 guifg=#ffffff
 highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#ffffff
+highlight Visual ctermbg=40 ctermfg=15 guibg=#3B6E4A
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
@@ -104,7 +105,7 @@ let g:lightline = {
 function! LightLineFugitive()
   if exists("*fugitive#head")
     let _ = fugitive#head()
-    return strlen(_) ? ' ⎇ '._ : ''
+    return strlen(_) ? ' √ '._ : ''
   endif
   return ''
 endfunction
