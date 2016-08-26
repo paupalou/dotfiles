@@ -94,15 +94,15 @@ set -g status-right-length 150
 set -g status on
 set -g status-justify left
 
-set -g status-left " #H #[fg=black,bg=cyan]"
+set -g status-left " #H "
 set -g status-left-fg black
-set -g status-left-bg cyan
+set -g status-left-bg colour244
 
 set -g status-right "#{prefix_highlight} %H:%M %d-%b-%y "
 set -g status-right-fg black
 set -g status-right-bg white
 
-set -g status-bg cyan
+set -g status-bg colour237
 
 # -- WINDOW ----------------------------------------------------------
 setw -g allow-rename on
@@ -111,8 +111,8 @@ setw -g clock-mode-style 24
 setw -g mode-keys vi
 setw -g monitor-activity off
 setw -g monitor-silence 0
-setw -g window-status-current-format '#[fg=colour8,bright,bg=green] #I → #W '
-setw -g window-status-format '#[fg=green,bg=colour8] #I:#W '
+setw -g window-status-current-format '#[fg=colour220,bright] → #[fg=colour8,bright,bg=colour39] #I #[fg=colour8,bright,bg=colour115] #W '
+setw -g window-status-format ' #[fg=colour8,bright,bg=colour250] #I #[fg=colour8,bright,bg=colour244] #W '
 
 # -- VIM SPLITS - TMUX PANES -----------------------------------------
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'
