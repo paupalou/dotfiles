@@ -76,7 +76,7 @@ let g:cellmode_tmux_panenumber = '2'
 
 " LightLine
 let g:lightline = {
-    \ 'colorscheme': 'solarized',
+    \ 'colorscheme': 'seoul256',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste'], ['filename'] ],
     \   'right': [ [ 'syntastic', 'lineinfo' ], ['percent'], ['fugitive', 'fileformat', 'fileencoding', 'filetype' ] ]
