@@ -5,8 +5,24 @@ snippet php
 <?php $0 ?>
 endsnippet
 
-# DRUPAL SNIPPETS
+snippet f "function"
+${1:public/private} function ${2:function_name}(${3:args}) {
+    ${0:content}
+}
+endsnippet
 
+# CODEIGNITER
+snippet cim "CodeIgniter Model"
+class ${1:class_name} extends CI_Model {
+    ${0:content}
+}
+endsnippet
+
+snippet db "CodeIgniter DB shortcut"
+$this->db->${1:method}(${2:params});
+endsnippet
+
+# DRUPAL SNIPPETS
 snippet dt "Translatable String"
 t('${1:text}');$0
 endsnippet

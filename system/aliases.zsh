@@ -1,2 +1,5 @@
+alias upd="sudo apt-get update"
+alias upg="sudo apt-get upgrade"
 alias search="sudo apt-cache search"
 alias ins="sudo apt-get install"
+alias show="sudo apt-cache show"

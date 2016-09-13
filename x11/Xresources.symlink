@@ -20,6 +20,8 @@ URxvt*hold:            false
 URxvt*internalBorder:  6
 URxvt*print-pipe:      cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 URxvt.underlineURLs:   True
+URxvt.perl-ext-common: default,selection-to-clipboard
+URxvt.clipboard.autocopy: true
 
 !-- Xft settings -- !
 URxvt*letterSpace : -2
@@ -36,10 +38,10 @@ Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
-URxvt*font:           xft:Input\ Mono:style=Regular:size=10
-URxvt*boldFont:       xft:Input\ Mono:style=Black:size=10
-URxvt*italicFont:     xft:Input\ Mono:style=Regular Italic:size=10
-URxvt*boldItalicFont: xft:Input\ Mono:style=Black Italic:size=10
+URxvt*font:           xft:Input\ Mono:style=Regular:size=12
+URxvt*boldFont:       xft:Input\ Mono:style=Black:size=12
+URxvt*italicFont:     xft:Input\ Mono:style=Regular Italic:size=12
+URxvt*boldItalicFont: xft:Input\ Mono:style=Black Italic:size=12
 
 ! Google Material Design
 !*background: #263238

@@ -1,10 +1,11 @@
 " vim: set ft=vim:
-setlocal tabstop=2
-setlocal shiftwidth=2
 setlocal expandtab
+setlocal tabstop=4
+setlocal shiftwidth=4
+setlocal softtabstop=4
 setlocal autoindent
 setlocal smartindent
 setlocal smarttab
-setlocal formatoptions=croql
-setlocal textwidth=79
-setlocal colorcolumn=80
+setlocal formatoptions-=cro
+setlocal textwidth=80
+setlocal colorcolumn=81

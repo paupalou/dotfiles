@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ $(tmux list-panes | wc -l) -lt 2 ]
+then
+  tmux split-window -h "NVIM_LISTEN_ADDRESS=~/.nvimsocket nvim $1"
+else
+  if [ -S ~/.nvimsocket ]
+  then
+    nvr --servername ~/.nvimsocket --remote $1
+  else
+    tmux send-keys -t 2 'NVIM_LISTEN_ADDRESS=~/.nvimsocket nvim ' "$1" Enter
+  fi
+  tmux select-pane -R
+fi
+tmux resize-pane -Z
