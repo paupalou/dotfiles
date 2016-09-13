@@ -12,4 +12,3 @@ else
   fi
   tmux select-pane -R
 fi
-tmux resize-pane -Z
