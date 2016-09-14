@@ -83,7 +83,7 @@ Plug 'keith/tmux.vim'                         " tmux configuration syntax
 Plug 'cakebaker/scss-syntax.vim'
 
 " ColorScheme
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme', {'commit': 'e0fd3ccb15c5cdbc09ecffd39ab9e92cfd7e7406'}
 Plug 'dracula/vim'
 Plug 'chriskempson/base16-vim'
 Plug 'romainl/Apprentice'

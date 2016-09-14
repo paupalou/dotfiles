@@ -7,7 +7,7 @@ if (has("termguicolors"))
   set termguicolors
 endif
 set background=dark
-colorscheme OceanicNext
+colorscheme PaperColor
 
 " Use mouse
 set mouse=nvr
