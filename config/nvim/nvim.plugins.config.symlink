@@ -51,7 +51,7 @@ let g:jsx_ext_required = 0
 " UltiSnips
 let g:UltiSnipsUsePythonVersion    = 3
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
-let g:UltiSnipsExpandTrigger  = "<C-T>"
+let g:UltiSnipsExpandTrigger       = "<C-T>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
@@ -69,7 +69,7 @@ let g:indentLine_fileTypeExclude = ['json']
 " Tweak some colors
 highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#073642 guifg=#ffffff
 highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
-highlight Visual ctermbg=40 ctermfg=15 guibg=#3B6E4A
+" highlight Visual ctermbg=40 ctermfg=15 guibg=#3B6E4A
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
@@ -172,14 +172,6 @@ autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 " deoplete-ternjs
 let g:tern_request_timeout = 1
 let g:ther_show_signature_in_pum = 0
-
-" dasht
-let g:dasht_filetype_docsets = {
-      \ 'html': ['css', 'js', 'bootstrap', 'jquery'],
-      \ 'javascript': ['javascript', 'express', 'jquery', 'nodejs', 'react'],
-      \ 'javascript.jsx': ['javascript', 'express', 'jquery', 'nodejs', 'react'],
-      \ 'python': ['python2']
-      \ }
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']

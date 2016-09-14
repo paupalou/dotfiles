@@ -56,10 +56,12 @@ Plug 'romainl/vim-qf'                         " Quickfix window improved
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim'                   " AutoComplete Engine
- " deoplete-python
-Plug 'zchee/deoplete-jedi'
  " deoplete-go
 Plug 'zchee/deoplete-go'
+" deoplete-padawan (php)
+Plug 'pbogut/deoplete-padawan'
+ " deoplete-python
+Plug 'zchee/deoplete-jedi'
  " deoplete-javascript
 Plug 'carlitux/deoplete-ternjs'
 
@@ -87,5 +89,6 @@ Plug 'chriskempson/base16-vim'
 Plug 'romainl/Apprentice'
 Plug 'junegunn/seoul256.vim'
 Plug 'mhartington/oceanic-next'
+Plug 'jacoborus/tender.vim'
 
 call plug#end()
