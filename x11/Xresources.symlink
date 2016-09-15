@@ -20,17 +20,22 @@ URxvt*hold:            false
 URxvt*internalBorder:  6
 URxvt*print-pipe:      cat > $HOME/$(echo urxvt.dump.$(date +'%Y%M%d%H%m%S'))
 URxvt.underlineURLs:   True
-URxvt.perl-ext-common: default,selection-to-clipboard
+URxvt.perl-ext-common: default,selection-to-clipboard,font-size
 URxvt.clipboard.autocopy: true
 
+URxvt.keysym.C-Up:     font-size:increase
+URxvt.keysym.C-Down:   font-size:decrease
+URxvt.keysym.C-S-Up:   font-size:incglobal
+URxvt.keysym.C-S-Down: font-size:decglobal
+
 !-- Xft settings -- !
-URxvt*letterSpace : -2
+URxvt*letterSpace : -1
 URxvt*lineSpace: 1
 
-!URxvt*font:           xft:envypn:size=15:antialias=false
-!URxvt*boldFont:       xft:envypn:bold:size=15:antialias=false
-!URxvt*italicFont:     xft:envypn:italic:size=15:antialias=false
-!URxvt*boldItalicFont: xft:envypn:bold:italic:size=15:antialias=false
+!URxvt*font:           xft:envypn-15:size=12:style=Regular:antialias=false
+!URxvt*boldFont:       xft:envypn-15:size=12:style=Bold:antialias=false
+!URxvt*italicFont:     xft:envypn-15:size=12:style=Italic:antialias=false
+!URxvt*boldItalicFont: xft:envypn-15:size=12:style=Bold Italic:antialias=false
 
 Xft.dpi: 96
 Xft.antialias: true
@@ -38,10 +43,15 @@ Xft.rgba: rgb
 Xft.hinting: true
 Xft.hintstyle: hintslight
 
-URxvt*font:           xft:Input\ Mono:style=Regular:size=12
-URxvt*boldFont:       xft:Input\ Mono:style=Black:size=12
-URxvt*italicFont:     xft:Input\ Mono:style=Regular Italic:size=12
-URxvt*boldItalicFont: xft:Input\ Mono:style=Black Italic:size=12
+!URxvt*font:           xft:Input Mono:style=Regular:size=12
+!URxvt*boldFont:       xft:Input Mono:style=Black:size=12
+!URxvt*italicFont:     xft:Input Mono:style=Italic:size=12
+!URxvt*boldItalicFont: xft:Input Mono:style=Black Italic:size=12
+
+URxvt*font:           xft:Fantasque\ Sans\ Mono:style=Regular:size=13
+URxvt*boldFont:       xft:Fantasque\ Sans\ Mono:style=Bold:size=13
+URxvt*italicFont:     xft:Fantasque\ Sans\ Mono:style=Italic:size=13
+URxvt*boldItalicFont: xft:Fantasque\ Sans\ Mono:style=Bold\ Italic:size=13
 
 ! Google Material Design
 !*background: #263238
