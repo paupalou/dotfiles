@@ -14,7 +14,7 @@ Plug 'tpope/vim-fugitive'   " Best git wrapper
 
 " Tags
 Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle' } " Tagbar
-Plug 'ludovicchabant/vim-gutentags' " Automatic Tags Generation
+Plug 'ludovicchabant/vim-gutentags'                 " Automatic Tags Generation
 
 " FuzzyFinder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -35,7 +35,6 @@ Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
 Plug 'ervandew/supertab'            " Extended tab use
 Plug 'hecal3/vim-leader-guide'      " vim leader guide
-Plug 'rstacruz/sparkup'             " Write html code faster
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
@@ -44,15 +43,15 @@ Plug 'wellle/targets.vim'           " Add various text objects
 Plug 'itchyny/lightline.vim'        " improved statusline
 
 " Tmux integration
-Plug 'benmills/vimux'                         " Send data to a tmux pane/window
-Plug 'christoomey/vim-tmux-navigator'         " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
-Plug 'julienr/vim-cellmode'                   " Send python code to ipython inside vim
+Plug 'benmills/vimux'                 " Send data to a tmux pane/window
+Plug 'christoomey/vim-tmux-navigator' " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
+Plug 'julienr/vim-cellmode'           " Send python code to ipython inside vim
 
 " VCS Integration
-Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
+Plug 'mhinz/vim-signify'              " VCS signs for git and mercurial
 
 " Autocompletion
-Plug 'Shougo/deoplete.nvim'                   " AutoComplete Engine
+Plug 'Shougo/deoplete.nvim'
  " deoplete-go
 Plug 'zchee/deoplete-go'
 " deoplete-padawan (php)
@@ -81,11 +80,5 @@ Plug 'cakebaker/scss-syntax.vim'
 
 " ColorScheme
 Plug 'NLKNguyen/papercolor-theme', {'tag': 'v0.7'}
-Plug 'dracula/vim'
-Plug 'chriskempson/base16-vim'
-Plug 'romainl/Apprentice'
-Plug 'junegunn/seoul256.vim'
-Plug 'mhartington/oceanic-next'
-Plug 'jacoborus/tender.vim'
 
 call plug#end()
