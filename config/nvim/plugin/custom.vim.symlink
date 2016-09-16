@@ -6,3 +6,37 @@ fun! TrimWhitespace()
 endfunction
 
 command! TrimWhitespace call TrimWhitespace()
+
+fun! OpenVimuxPanel()
+    if &filetype == 'php'
+        let b:repl = 'psysh'
+    elseif &filetype == 'python'
+        let b:repl = 'bpython'
+    else
+        let b:repl = ''
+    endif
+
+    call VimuxRunCommand(b:repl)
+    call ClearVimuxPanel()
+endfunction
+
+fun! ClearVimuxPanel()
+    call VimuxSendKeys("C-q")
+    call VimuxSendKeys("C-l")
+endfunction
+
+fun! VimuxSlime()
+    call ClearVimuxPanel()
+    call VimuxSendText(getline('.'))
+    call VimuxSendKeys("Enter")
+endfunction
+
+fun! VisualVimuxSlime()
+    normal gv"vy
+    call ClearVimuxPanel()
+    call VimuxSendText(@v)
+endfunction
+
+nmap <Leader>r :call OpenVimuxPanel()<CR>
+nmap <Leader><Enter> :call VimuxSlime()<CR>
+vmap <Leader><Enter> :call VisualVimuxSlime()<Enter>

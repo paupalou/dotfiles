@@ -33,9 +33,9 @@ Plug 'Yggdroot/indentLine'          " Indent Lines
 Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
 Plug 'kshenoy/vim-signature'        " Display marks on left
 Plug 'rstacruz/vim-closer'          " Closes automatically brackets
-Plug 'mjbrownie/swapit'             " Extensible keyword swapper
 Plug 'ervandew/supertab'            " Extended tab use
 Plug 'hecal3/vim-leader-guide'      " vim leader guide
+Plug 'rstacruz/sparkup'             " Write html code faster
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
@@ -50,9 +50,6 @@ Plug 'julienr/vim-cellmode'                   " Send python code to ipython insi
 
 " VCS Integration
 Plug 'mhinz/vim-signify'                      " VCS signs for git and mercurial
-
-" Quickfix
-Plug 'romainl/vim-qf'                         " Quickfix window improved
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim'                   " AutoComplete Engine
