@@ -23,4 +23,4 @@ setup_gitconfig
 install_dotfiles
 
 # make symlinks for each subfolder topic
-install_topic_subfolders 
+install_topic_subfolders
