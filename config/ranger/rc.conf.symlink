@@ -31,8 +31,8 @@ set colorscheme default
 
 # Preview files on the rightmost column?
 # And collapse (shrink) the last column if there is nothing to preview?
-set preview_files True
-set preview_directories True
+set preview_files False
+set preview_directories False
 set collapse_preview True
 
 # Save the console history on exit?
@@ -102,3 +102,5 @@ set sort_directories_first True
 # Enable this if key combinations with the Alt Key don't work for you.
 # (Especially on xterm)
 set xterm_alt_key False
+
+map <C-f> fzf_select

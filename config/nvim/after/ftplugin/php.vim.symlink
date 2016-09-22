@@ -7,5 +7,5 @@ setlocal autoindent
 setlocal smartindent
 setlocal smarttab
 setlocal formatoptions-=cro
-setlocal textwidth=80
-setlocal colorcolumn=81
+setlocal textwidth=85
+setlocal colorcolumn=86

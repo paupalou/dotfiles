@@ -29,7 +29,7 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 
 !-- Xft settings -- !
-URxvt*letterSpace : -1
+URxvt*letterSpace : 0
 URxvt*lineSpace: 1
 
 !URxvt*font:           xft:envypn-15:size=12:style=Regular:antialias=false
@@ -48,10 +48,15 @@ Xft.hintstyle: hintslight
 !URxvt*italicFont:     xft:Input Mono:style=Italic:size=12
 !URxvt*boldItalicFont: xft:Input Mono:style=Black Italic:size=12
 
-URxvt*font:           xft:Fantasque\ Sans\ Mono:style=Regular:size=13
-URxvt*boldFont:       xft:Fantasque\ Sans\ Mono:style=Bold:size=13
-URxvt*italicFont:     xft:Fantasque\ Sans\ Mono:style=Italic:size=13
-URxvt*boldItalicFont: xft:Fantasque\ Sans\ Mono:style=Bold\ Italic:size=13
+!URxvt*font:           xft:Fantasque\ Sans\ Mono:style=Regular:size=13
+!URxvt*boldFont:       xft:Fantasque\ Sans\ Mono:style=Bold:size=13
+!URxvt*italicFont:     xft:Fantasque\ Sans\ Mono:style=Italic:size=13
+!URxvt*boldItalicFont: xft:Fantasque\ Sans\ Mono:style=Bold\ Italic:size=13
+
+URxvt*font:           xft:TamzenForPowerline:style=Regular:size=13
+URxvt*boldFont:       xft:TamzenForPowerline:style=Bold:size=13
+URxvt*italicFont:     xft:TamzenForPowerline:style=Italic:size=13
+URxvt*boldItalicFont: xft:TamzenForPowerline:style=Bold\ Italic:size=13
 
 ! Google Material Design
 !*background: #263238

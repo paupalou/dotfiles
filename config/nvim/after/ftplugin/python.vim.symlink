@@ -11,10 +11,3 @@ setlocal colorcolumn=80
 highlight ColorColumn ctermbg=236
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
-
-autocmd BufRead $PROJECTS/popeye/* call s:Popeye_settings()
-autocmd BufEnter $PROJECTS/popeye/* call s:Popeye_settings()
-
-function! s:Popeye_settings()
-  setlocal tags=tags,$VIRTUAL_ENV_HOME/popeye/popeye_venv.tags
-endfunction

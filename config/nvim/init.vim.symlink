@@ -131,4 +131,8 @@ inoremap <c-e> <esc>A
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
+" python paths
+let g:python2_host_prog = '/usr/bin/python2'
+let g:python3_host_prog = '/usr/bin/python3'
+
 source $HOME/.config/nvim/nvim.plugins.config

@@ -2,13 +2,13 @@
 
 if [ $(tmux list-panes | wc -l) -lt 2 ]
 then
-  tmux split-window -h "NVIM_LISTEN_ADDRESS=~/.nvimsocket nvim $1"
+  tmux split-window -h -p 75 "NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim $1"
 else
-  if [ -S ~/.nvimsocket ]
+  if [ -S /tmp/nvimsocket ]
   then
-    nvr --servername ~/.nvimsocket --remote $1
+    nvr --servername /tmp/nvimsocket --remote $1
   else
-    tmux send-keys -t 2 'NVIM_LISTEN_ADDRESS=~/.nvimsocket nvim ' "$1" Enter
+    tmux send-keys -t 2 'NVIM_LISTEN_ADDRESS=/tmp/nvimsocket nvim ' "$1" Enter
   fi
   tmux select-pane -R
 fi
