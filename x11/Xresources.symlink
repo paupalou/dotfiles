@@ -32,60 +32,16 @@ URxvt.keysym.C-S-Down: font-size:decglobal
 URxvt*letterSpace : 0
 URxvt*lineSpace: 1
 
-!URxvt*font:           xft:envypn-15:size=12:style=Regular:antialias=false
-!URxvt*boldFont:       xft:envypn-15:size=12:style=Bold:antialias=false
-!URxvt*italicFont:     xft:envypn-15:size=12:style=Italic:antialias=false
-!URxvt*boldItalicFont: xft:envypn-15:size=12:style=Bold Italic:antialias=false
-
 Xft.dpi: 96
-Xft.antialias: true
+Xft.antialias: false
 Xft.rgba: rgb
-Xft.hinting: true
+Xft.hinting: false
 Xft.hintstyle: hintslight
-
-!URxvt*font:           xft:Input Mono:style=Regular:size=12
-!URxvt*boldFont:       xft:Input Mono:style=Black:size=12
-!URxvt*italicFont:     xft:Input Mono:style=Italic:size=12
-!URxvt*boldItalicFont: xft:Input Mono:style=Black Italic:size=12
-
-!URxvt*font:           xft:Fantasque\ Sans\ Mono:style=Regular:size=13
-!URxvt*boldFont:       xft:Fantasque\ Sans\ Mono:style=Bold:size=13
-!URxvt*italicFont:     xft:Fantasque\ Sans\ Mono:style=Italic:size=13
-!URxvt*boldItalicFont: xft:Fantasque\ Sans\ Mono:style=Bold\ Italic:size=13
 
 URxvt*font:           xft:TamzenForPowerline:style=Regular:size=13
 URxvt*boldFont:       xft:TamzenForPowerline:style=Bold:size=13
 URxvt*italicFont:     xft:TamzenForPowerline:style=Italic:size=13
 URxvt*boldItalicFont: xft:TamzenForPowerline:style=Bold\ Italic:size=13
-
-! Google Material Design
-!*background: #263238
-!*foreground: #eceff1
-!
-!! black
-!*color0:     #263238
-!*color8:     #37474f
-!! red
-!*color1:     #ff9800
-!*color9:     #ffa74d
-!! green
-!*color2:     #8bc34a
-!*color10:    #9ccc65
-!! yellow
-!*color3:     #ffc107
-!*color11:    #ffa000
-!! blue
-!*color4:     #03a9f4
-!*color12:    #81d4fa
-!! magenta
-!*color5:     #e91e63
-!*color13:    #ad1457
-!! cyan
-!*color6:     #009688
-!*color14:    #26a69a
-!! white
-!*color7:     #cfd8dc
-!*color15:    #eceff1
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
@@ -105,4 +61,4 @@ URxvt*boldItalicFont: xft:TamzenForPowerline:style=Bold\ Italic:size=13
 *.color6:     #8BE9FD
 *.color14:    #9AEDFE
 *.color7:     #BFBFBF
-*.color15: #E6E6E6
+*.color15:    #E6E6E6

@@ -31,11 +31,7 @@ Plug 'scrooloose/syntastic'                             " Syntax Checker
 Plug 'gabesoft/vim-ags'                                 " Use silver searcher, faster than grep
 Plug 'Yggdroot/indentLine'                              " Indent Lines
 Plug 'junegunn/vim-easy-align'                          " Mappings for easy align content
-Plug 'bling/vim-bufferline'                             " show buffers in status line
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' } " AutoComplete Engine
 Plug 'kshenoy/vim-signature'                            " Display marks on left
-Plug 'itchyny/lightline.vim'                            " improved statusline
-Plug 'itchyny/calendar.vim'                             " calendar inside vim
 Plug 'rstacruz/vim-closer'                              " Closes automatically brackets
 
 " Tmux integration
