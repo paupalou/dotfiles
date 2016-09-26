@@ -79,6 +79,6 @@ Plug 'keith/tmux.vim'                         " tmux configuration syntax
 Plug 'cakebaker/scss-syntax.vim'
 
 " ColorScheme
-Plug 'NLKNguyen/papercolor-theme', {'tag': 'v0.7'}
+Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()

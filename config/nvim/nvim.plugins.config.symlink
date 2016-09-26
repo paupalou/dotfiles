@@ -68,9 +68,9 @@ let g:indentLine_color_term = 239
 let g:indentLine_fileTypeExclude = ['json']
 
 " Tweak some colors
-highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#073642 guifg=#ffffff
+highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#30343F guifg=#ffffff
 highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
-" highlight Visual ctermbg=40 ctermfg=15 guibg=#3B6E4A
+highlight BufTabLineHidden ctermbg=34 ctermfg=15 guibg=#444957 guifg=#80AEBD
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
@@ -112,7 +112,7 @@ function! LightLineFugitive()
 endfunction
 
 function! LightLineFilename()
-  let fname = expand('%:t')
+  let fname = expand('%:f')
   return &ft == 'startify' ? '' :
         \('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
         \ ('' != fname ? fname : '[No Name]') .
@@ -212,7 +212,6 @@ imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " # Startify
 nmap <silent> <Leader>s :Startify<CR>
-let g:startify_enable_unsafe = 1
 let g:ascii = [
             \ '        __',
             \ '.--.--.|__|.--------.',
@@ -220,7 +219,16 @@ let g:ascii = [
             \ ' \___/ |__||__|__|__|',
             \ ''
             \]
-let g:startify_custom_header = map(g:ascii, '"    ".v:val')
+
+let g:startify_change_to_dir          = 0
+let g:startify_change_to_vcs_root     = 1
+let g:startify_custom_header          = map(g:ascii, '"    ".v:val')
+let g:startify_enable_unsafe          = 1
+let g:startify_files_number           = 8
+let g:startify_session_autoload       = 1
+let g:startify_session_persistence    = 1
+let g:startify_session_delete_buffers = 1
+let g:startify_bookmarks              = [ {'c': '~/.dotfiles'}, {'d': '~/code/development'} ]
 
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>
