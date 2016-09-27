@@ -49,6 +49,7 @@ Plug 'julienr/vim-cellmode'           " Send python code to ipython inside vim
 
 " VCS Integration
 Plug 'mhinz/vim-signify'              " VCS signs for git and mercurial
+Plug 'junegunn/gv.vim'                " Show Git Commits
 
 " Autocompletion
 Plug 'Shougo/deoplete.nvim'
