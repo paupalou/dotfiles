@@ -26,6 +26,8 @@ Plug 'honza/vim-snippets'             " Snippets for ultiSnips
 Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Utils
+Plug 'scrooloose/nerdtree'
+Plug 'mhinz/vim-grepper'
 Plug 'ap/vim-buftabline'            " Buffer visual selection on top
 Plug 'benekastah/neomake'           " Asynchronous compiler/checker
 Plug 'mhinz/vim-startify'           " Show recent files on startup

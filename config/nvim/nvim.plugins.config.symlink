@@ -43,6 +43,14 @@ let g:neomake_warning_sign = {
 autocmd! BufWritePost * Neomake
 command Errors lopen
 
+" Grepper
+let g:grepper = {
+    \ 'tools': ['rg', 'ag', 'git', 'grep'],
+    \ 'open':  1,
+    \ 'jump':  0,
+    \ 'switch':  0
+    \ }
+
 " Javascript-libraries-syntax
 let g:used_javascript_libs = 'jquery,react,lo-dash'
 
@@ -188,14 +196,12 @@ call leaderGuide#register_prefix_descriptions(",", "g:lmap")
 
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
-let g:fzf_layout = { 'down': '~40%' }
 let g:fzf_action = {
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit'
             \ }
 nnoremap <c-p> :FZF<cr>
 nnoremap <silent> <leader>f :Files<CR>
-nnoremap <silent> <leader>a :Buffers<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
@@ -204,8 +210,6 @@ nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-nnoremap <silent> <leader>gl :Commits<CR>
-nnoremap <silent> <leader>ga :BCommits<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
@@ -236,6 +240,11 @@ nmap <silent> <Leader>t :TagbarToggle<CR>
 " # VIM-EASY-ALIGN
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" # Greeper
+nnoremap <silent> <leader>g :Grepper<CR>
+nnoremap <silent> <leader>* :Grepper -tool ripgrep -cword -noprompt<cr>
+xmap gs <plug>(GrepperOperator)
 
 " # Leader-Guide
 nnoremap <silent> <leader><leader> :<c-u>LeaderGuide '<Space>'<CR>

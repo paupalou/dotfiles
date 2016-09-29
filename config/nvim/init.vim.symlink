@@ -135,4 +135,7 @@ cnoremap <c-e> <end>
 let g:python2_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
+" grepprg
+set grepprg=rg\ --vimgrep
+
 source $HOME/.config/nvim/nvim.plugins.config
