@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+source $ZSH/script/colors
+
+printf " $(pc 'Updating ' $lgray) "
+while true;do printf ─;sleep 1;done &
+git pull > install.log &> /dev/null
+kill $!; trap 'kill $!' SIGTERM
+
+printf "› $(pc ' √ ' $green$bold) \n $(pc 'Cleaning ' $lgray) "
+while true;do printf ─;sleep 1;done &
+make clean >> install.log &> /dev/null
+kill $!; trap 'kill $!' SIGTERM
+
+printf "› $(pc ' √ ' $green$bold) \n $(pc 'Configure' $lgray) "
+while true;do printf ─;sleep 1;done &
+./configure \
+--enable-python3interp=yes \
+--enable-pythoninterp=yes \
+--enable-rubyinterp=yes \
+--enable-luainterp=yes \
+--enable-gui=auto \
+--enable-gtk2-check \
+--with-x >> install.log &> /dev/null
+kill $!; trap 'kill $!' SIGTERM
+
+printf "› $(pc ' √ ' $green$bold) \n $(pc 'Compiling' $lgray) "
+while true;do printf ─;sleep 1;done &
+make > install.log &> /dev/null
+kill $!; trap 'kill $!' SIGTERM
+
+printf "› $(pc ' √ ' $green$bold) \n \r $(pc 'Installing' $lgray) "
+while true;do sleep 1;done &
+sudo make install &> /dev/null
+printf "› $(pc ' √ ' $green$bold)"
+kill $!; trap 'kill $!' SIGTERM
