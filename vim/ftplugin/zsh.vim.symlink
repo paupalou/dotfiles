@@ -1,4 +1,1 @@
-" vim: set ft=vim:
-set sw=2
-set ts=2
-set et
+/home/ppalou/.dotfiles/config/nvim/ftplugin/zsh.vim.symlink

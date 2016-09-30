@@ -149,7 +149,7 @@ subfolder_files() {
   local file_counter=0
 
   local overwrite_all=false backup_all=false skip_all=false
-  for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -type f -name "*.symlink" -printf '%P\n')
+  for src in $(find  -H $DOTFILES_ROOT/$topic/$subfolder -name "*.symlink" -printf '%P\n')
   do
     local child_visual_line="──"
     local src_dirname="/$(dirname "$src")"

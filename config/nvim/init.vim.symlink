@@ -1,10 +1,20 @@
 language en_US.utf8
 
-source $HOME/.config/nvim/nvim.plugins
+" neovim flag
+let s:neovim = has('nvim')
+
+" Load plugins for vim/neovim
+if s:neovim
+  source $HOME/.config/nvim/nvim.plugins
+else
+  source $HOME/.vimrc.plugins
+endif
 
 " ### USER SETTINGS
-if (has("termguicolors"))
-  set termguicolors
+if s:neovim
+    if (has("termguicolors"))
+        set termguicolors
+    endif
 endif
 set background=dark
 colorscheme PaperColor
@@ -77,7 +87,7 @@ set clipboard=unnamedplus
 
 " Better auto complete
 set complete=.,w,b,u,t,i
-set completeopt=longest,menu,preview
+set completeopt=longest,menu
 
 set modeline
 set modelines=5
@@ -89,6 +99,10 @@ let mapleader="\<Space>"
 " Quick quit
 noremap <Leader>x :x<CR>
 noremap <Leader>Q :qa!<CR>
+
+" Save
+inoremap <C-s> <C-O>:update<cr>
+nnoremap <C-s> :update<cr>
 
 " Splits
 nnoremap <Leader>v <C-w>v
@@ -131,6 +145,9 @@ inoremap <c-e> <esc>A
 cnoremap <c-a> <home>
 cnoremap <c-e> <end>
 
+" qq to record, Q to replay
+nmap Q @q
+
 " python paths
 let g:python2_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -138,4 +155,9 @@ let g:python3_host_prog = '/usr/bin/python3'
 " grepprg
 set grepprg=rg\ --vimgrep
 
-source $HOME/.config/nvim/nvim.plugins.config
+" Load plugins for vim/neovim
+if s:neovim
+  source $HOME/.config/nvim/nvim.plugins.config
+else
+  source $HOME/.vimrc.plugins.config
+endif

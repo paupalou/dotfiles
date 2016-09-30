@@ -1,4 +1,8 @@
 " vim: set filetype=vim:
+
+" neovim flag
+let s:neovim = has('nvim')
+
 " ### PLUGIN SETTINGS
 
 " Neomake
@@ -43,6 +47,26 @@ let g:neomake_warning_sign = {
 autocmd! BufWritePost * Neomake
 command Errors lopen
 
+" NERDTree
+augroup nerd_loader
+  autocmd!
+  autocmd VimEnter * silent! autocmd! FileExplorer
+  autocmd BufEnter,BufNew *
+        \  if isdirectory(expand('<amatch>'))
+        \|   call plug#load('nerdtree')
+        \|   execute 'autocmd! nerd_loader'
+        \| endif
+augroup END
+let NERDTreeMinimalUI=1
+
+" BufTabLine
+if s:neovim
+    highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#30343F guifg=#ffffff
+    highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
+    highlight BufTabLineActive ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
+    highlight BufTabLineHidden ctermbg=34 ctermfg=15 guibg=#444957 guifg=#80AEBD
+endif
+
 " Grepper
 let g:grepper = {
     \ 'tools': ['rg', 'ag', 'git', 'grep'],
@@ -68,17 +92,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " IndentLine
-map <silent> <Leader>L :IndentLinesToggle<CR>
+autocmd! User indentLine doautocmd indentLine Syntax
 let g:indentLine_enabled = 1
 let g:indentLine_indentLevel = 1
 let g:indentLine_char = '▐'
 let g:indentLine_color_term = 239
 let g:indentLine_fileTypeExclude = ['json']
-
-" Tweak some colors
-highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#30343F guifg=#ffffff
-highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
-highlight BufTabLineHidden ctermbg=34 ctermfg=15 guibg=#444957 guifg=#80AEBD
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
@@ -150,7 +169,8 @@ endfunction
 function! LightLineMode()
     let fname = expand('%:t')
     return fname == '__Tagbar__' ? 'Tagbar' :
-                \ winwidth(0) > 60 ? lightline#mode() : ''
+         \ fname =~ 'NERD_tree' ? 'NERDTree' :
+         \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
 let g:tagbar_status_func = 'TagbarStatusFunc'
@@ -171,16 +191,18 @@ function! s:syntastic()
 endfunction
 
 " Deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources = {}
-let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi']
+if s:neovim
+    let g:deoplete#enable_at_startup = 1
+    let g:deoplete#sources = {}
+    let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi']
 
-inoremap <C-@> <C-x><C-o>
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+    inoremap <C-@> <C-x><C-o>
+    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
-" deoplete-ternjs
-let g:tern_request_timeout = 1
-let g:ther_show_signature_in_pum = 0
+    " deoplete-ternjs
+    let g:tern_request_timeout = 1
+    let g:tern_show_signature_in_pum = 0
+endif
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
@@ -233,6 +255,12 @@ let g:startify_session_autoload       = 1
 let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_bookmarks              = [ {'c': '~/.dotfiles'}, {'d': '~/code/development'} ]
+
+" # NERDTree
+nmap <silent> <Leader>n :NERDTreeToggle<CR>
+
+" # IndentLine
+map <silent> <Leader>L :IndentLinesToggle<CR>
 
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>

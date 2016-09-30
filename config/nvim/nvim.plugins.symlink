@@ -1,5 +1,14 @@
 " vim: set filetype=vim:
-call plug#begin('$HOME/.config/nvim/plugged')
+
+" neovim flag
+let s:neovim = has('nvim')
+
+" Load plugins for vim/neovim
+if s:neovim
+  call plug#begin('$HOME/.config/nvim/plugged')
+else
+  call plug#begin('$HOME/.vim/plugged')
+endif
 
 " ### PLUGINS
 
@@ -26,17 +35,18 @@ Plug 'honza/vim-snippets'             " Snippets for ultiSnips
 Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Utils
-Plug 'scrooloose/nerdtree'
-Plug 'mhinz/vim-grepper'
-Plug 'ap/vim-buftabline'            " Buffer visual selection on top
-Plug 'benekastah/neomake'           " Asynchronous compiler/checker
-Plug 'mhinz/vim-startify'           " Show recent files on startup
-Plug 'Yggdroot/indentLine'          " Indent Lines
-Plug 'junegunn/vim-easy-align'      " Mappings for easy align content
-Plug 'kshenoy/vim-signature'        " Display marks on left
-Plug 'rstacruz/vim-closer'          " Closes automatically brackets
-Plug 'ervandew/supertab'            " Extended tab use
-Plug 'hecal3/vim-leader-guide'      " vim leader guide
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                       " File explorer
+Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
+Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
+Plug 'benekastah/neomake'                                                    " Asynchronous compiler/checker
+Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
+Plug 'Yggdroot/indentLine',                                                  " Indent Lines
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } " Mappings for easy align content
+Plug 'kshenoy/vim-signature'                                                 " Display marks on left
+Plug 'rstacruz/vim-closer'                                                   " Closes automatically brackets
+Plug 'ervandew/supertab'                                                     " Extended tab use
+Plug 'hecal3/vim-leader-guide'                                               " vim leader guide
+Plug 'justinmk/vim-gtfo'                                                     " Open file_manager/terminal on pwd (gof/got)
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
@@ -47,22 +57,23 @@ Plug 'itchyny/lightline.vim'        " improved statusline
 " Tmux integration
 Plug 'benmills/vimux'                 " Send data to a tmux pane/window
 Plug 'christoomey/vim-tmux-navigator' " Easy navigate with Ctrl-hjkl between vim splits and tmux panes
-Plug 'julienr/vim-cellmode'           " Send python code to ipython inside vim
 
 " VCS Integration
 Plug 'mhinz/vim-signify'              " VCS signs for git and mercurial
 Plug 'junegunn/gv.vim'                " Show Git Commits
 
-" Autocompletion
-Plug 'Shougo/deoplete.nvim'
- " deoplete-go
-Plug 'zchee/deoplete-go'
-" deoplete-padawan (php)
-Plug 'pbogut/deoplete-padawan'
- " deoplete-python
-Plug 'zchee/deoplete-jedi'
- " deoplete-javascript
-Plug 'carlitux/deoplete-ternjs'
+if s:neovim
+    " Autocompletion
+    Plug 'Shougo/deoplete.nvim'
+    " deoplete-go
+    Plug 'zchee/deoplete-go'
+    " deoplete-padawan (php)
+    Plug 'pbogut/deoplete-padawan'
+    " deoplete-python
+    Plug 'zchee/deoplete-jedi'
+    " deoplete-javascript
+    Plug 'carlitux/deoplete-ternjs'
+endif
 
 " Syntax
  " HTML5
