@@ -48,6 +48,8 @@ Plug 'ervandew/supertab'                                                     " E
 Plug 'hecal3/vim-leader-guide'                                               " vim leader guide
 Plug 'justinmk/vim-gtfo'                                                     " Open file_manager/terminal on pwd (gof/got)
 
+Plug 'ap/vim-css-color'
+
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
 
