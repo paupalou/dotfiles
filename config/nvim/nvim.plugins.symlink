@@ -34,21 +34,28 @@ Plug 'SirVer/ultisnips'               " Generate and use snippets
 Plug 'honza/vim-snippets'             " Snippets for ultiSnips
 Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
-" Utils
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                       " File explorer
-Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
-Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
-Plug 'benekastah/neomake'                                                    " Asynchronous compiler/checker
+" Navigation
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
-Plug 'Yggdroot/indentLine',                                                  " Indent Lines
-Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } " Mappings for easy align content
-Plug 'kshenoy/vim-signature'                                                 " Display marks on left
-Plug 'rstacruz/vim-closer'                                                   " Closes automatically brackets
-Plug 'ervandew/supertab'                                                     " Extended tab use
-Plug 'hecal3/vim-leader-guide'                                               " vim leader guide
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                       " File explorer
+Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
 Plug 'justinmk/vim-gtfo'                                                     " Open file_manager/terminal on pwd (gof/got)
 
-Plug 'ap/vim-css-color'
+" Search
+Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
+
+" Linter
+Plug 'benekastah/neomake'                                                    " Asynchronous compiler/checker
+
+" Visual helpers
+Plug 'Yggdroot/indentLine',                                                  " Indent Lines
+Plug 'kshenoy/vim-signature'                                                 " Display marks on left
+Plug 'hecal3/vim-leader-guide'                                               " vim leader guide
+Plug 'ap/vim-css-color'                                                      " Display colors on #rgb or rgb()
+
+" Utils
+Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } " Mappings for easy align content
+Plug 'rstacruz/vim-closer'                                                   " Closes automatically brackets
+Plug 'ervandew/supertab'                                                     " Extended tab use
 
 " TextObjects
 Plug 'wellle/targets.vim'           " Add various text objects
@@ -78,23 +85,17 @@ if s:neovim
 endif
 
 " Syntax
- " HTML5
-Plug 'othree/html5.vim'                       " html5 syntax
- " PHP
-Plug 'StanAngeloff/php.vim'                   " php improved syntax
- " PYTHON
-Plug 'hdima/python-syntax'                    " python syntax
- " Javascript
+Plug 'othree/html5.vim'                                                                    " html5 syntax
+Plug 'StanAngeloff/php.vim'                                                                " php improved syntax
+Plug 'hdima/python-syntax'                                                                 " python syntax
 Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] } " javascript syntax
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] } " javascript libs syntax
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] } " react-jsx syntax
 Plug 'elzr/vim-json'                                                                       " json syntax
- " TMUX
-Plug 'keith/tmux.vim'                         " tmux configuration syntax
-" SASS
-Plug 'cakebaker/scss-syntax.vim'
+Plug 'keith/tmux.vim'                                                                      " tmux configuration syntax
+Plug 'cakebaker/scss-syntax.vim'                                                           " sass syntax
 
-" ColorScheme
+" ColorSchemes
 Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
