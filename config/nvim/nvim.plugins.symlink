@@ -82,6 +82,8 @@ if s:neovim
     Plug 'zchee/deoplete-jedi'
     " deoplete-javascript
     Plug 'carlitux/deoplete-ternjs'
+else
+    Plug 'maralla/completor.vim'
 endif
 
 " Syntax
