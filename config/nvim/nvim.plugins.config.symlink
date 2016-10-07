@@ -76,7 +76,7 @@ let g:grepper = {
     \ }
 
 " Javascript-libraries-syntax
-let g:used_javascript_libs = 'jquery,react,lo-dash'
+let g:used_javascript_libs = 'jquery,lo-dash,react,vue'
 
 " jsx
 let g:jsx_ext_required = 0
