@@ -47,18 +47,6 @@ let g:neomake_warning_sign = {
 autocmd! BufWritePost * Neomake
 command Errors lopen
 
-" NERDTree
-augroup nerd_loader
-  autocmd!
-  autocmd VimEnter * silent! autocmd! FileExplorer
-  autocmd BufEnter,BufNew *
-        \  if isdirectory(expand('<amatch>'))
-        \|   call plug#load('nerdtree')
-        \|   execute 'autocmd! nerd_loader'
-        \| endif
-augroup END
-let NERDTreeMinimalUI=1
-
 " BufTabLine
 if s:neovim
     highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#30343F guifg=#ffffff
@@ -169,7 +157,6 @@ endfunction
 function! LightLineMode()
     let fname = expand('%:t')
     return fname == '__Tagbar__' ? 'Tagbar' :
-         \ fname =~ 'NERD_tree' ? 'NERDTree' :
          \ winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
@@ -222,7 +209,7 @@ let g:fzf_action = {
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit'
             \ }
-nnoremap <c-p> :FZF<cr>
+
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
@@ -255,9 +242,6 @@ let g:startify_session_autoload       = 1
 let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_bookmarks              = [ {'c': '~/.dotfiles'}, {'d': '~/code/development'} ]
-
-" # NERDTree
-nmap <silent> <Leader>n :NERDTreeToggle<CR>
 
 " # IndentLine
 map <silent> <Leader>L :IndentLinesToggle<CR>

@@ -36,7 +36,6 @@ Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Navigation
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }                       " File explorer
 Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
 Plug 'justinmk/vim-gtfo'                                                     " Open file_manager/terminal on pwd (gof/got)
 
