@@ -158,7 +158,7 @@ let g:python3_host_prog = '/usr/bin/python3'
 set grepprg=rg\ --vimgrep
 
 " statusline
-au InsertEnter * hi StatusLine ctermbg=red ctermfg=white gui=bold guibg=#DE2828 guifg=#EDEDED
+au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#DE2828 guifg=#EDEDED
 au InsertLeave * hi StatusLine ctermbg=234 ctermfg=66 gui=bold guibg=#5F8787 guifg=#1C1C1C
 
 " Load plugins for vim/neovim

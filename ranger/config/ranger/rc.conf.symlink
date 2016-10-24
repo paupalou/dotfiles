@@ -13,7 +13,7 @@ set vcs_backend_hg disabled
 # Which script is used to generate file previews?
 # ranger ships with scope.sh, a script that calls external programs (see
 # README for dependencies) to preview images, archives, etc.
-set preview_script '~/.config/ranger/scope.sh'
+# set preview_script '~/.config/ranger/scope.sh'
 
 # Use that external preview script or display internal plain text previews?
 set use_preview_script True
@@ -31,8 +31,8 @@ set colorscheme default
 
 # Preview files on the rightmost column?
 # And collapse (shrink) the last column if there is nothing to preview?
-set preview_files False
-set preview_directories False
+set preview_files True
+set preview_directories True
 set collapse_preview True
 
 # Save the console history on exit?
@@ -104,3 +104,4 @@ set sort_directories_first True
 set xterm_alt_key False
 
 map <C-f> fzf_select
+map ev eval fm.run("tmux splitw -h 'rifle \"" + fm.thisfile.basename + "\"'")

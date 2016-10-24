@@ -45,12 +45,10 @@ autocmd! BufWritePost * Neomake
 command Errors lopen
 
 " BufTabLine
-if g:neovim
-    highlight BufTabLineFill ctermbg=34 ctermfg=15 guibg=#30343F guifg=#ffffff
-    highlight BufTabLineCurrent ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
-    highlight BufTabLineActive ctermbg=0 ctermfg=15 guibg=#859900 guifg=#000000
-    highlight BufTabLineHidden ctermbg=34 ctermfg=15 guibg=#444957 guifg=#80AEBD
-endif
+highlight BufTabLineFill ctermbg=236 ctermfg=15 guibg=#30343F guifg=#ffffff
+highlight BufTabLineCurrent ctermbg=137 ctermfg=0 guibg=#859900 guifg=#000000
+highlight BufTabLineActive ctermbg=238 ctermfg=245 guibg=#444957 guifg=#80AEBD
+highlight BufTabLineHidden ctermbg=238 ctermfg=245 guibg=#444957 guifg=#80AEBD
 
 " Grepper
 let g:grepper = {
@@ -151,7 +149,7 @@ let g:startify_files_number           = 8
 let g:startify_session_autoload       = 1
 let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
-let g:startify_bookmarks              = [ {'c': '~/.dotfiles'}, {'d': '~/code/development'} ]
+let g:startify_bookmarks              = [ {'d': '~/.dotfiles'}, {'c': '~/code/'}, {'p': '~/code/platform'} ]
 
 " # IndentLine
 map <silent> <Leader>L :IndentLinesToggle<CR>
