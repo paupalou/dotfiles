@@ -1,4 +1,0 @@
-mime ^text, label editor = ranger_tmux "$@"
-ext json = ranger_tmux "$@"
-ext xml = ranger_tmux "$@"
-ext html = ranger_tmux "$@"
