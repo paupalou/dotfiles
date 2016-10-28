@@ -4,9 +4,12 @@ import os
 
 class tmux_split_vim(Command):
     def execute(self):
-        self.fm.execute_console("set preview_files=False")
-        self.fm.execute_console("set preview_directories=False")
-        self.fm.run("ranger_tmux " + self.fm.thisfile.basename)
+        if os.path.isdir(self.fm.thisfile.basename):
+            self.fm.cd(self.fm.thisfile.basename)
+        else:
+            self.fm.execute_console("set preview_files=False")
+            self.fm.execute_console("set preview_directories=False")
+            self.fm.run("ranger_tmux " + self.fm.thisfile.basename)
 
 
 class fzf_select(Command):
@@ -24,4 +27,7 @@ class fzf_select(Command):
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
             fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
-            self.fm.select_file(fzf_file)
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
