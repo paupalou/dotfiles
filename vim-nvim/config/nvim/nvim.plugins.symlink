@@ -10,7 +10,9 @@ endif
 " ### PLUGINS
 
 " Tim Pope
-Plug 'tpope/vim-sensible'   " Basic vim settings
+if !g:neovim
+    Plug 'tpope/vim-sensible'   " Basic vim settings
+endif
 Plug 'tpope/vim-repeat'     " Enable repeat for some plugins
 Plug 'tpope/vim-surround'   " Mappings for surrounding
 Plug 'tpope/vim-commentary' " Mappings for commenting - gcc
@@ -35,7 +37,6 @@ Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
 Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
 Plug 'justinmk/vim-gtfo'                                                     " Open file-manager/terminal on pwd (gof/got)
-Plug 'justinmk/vim-dirvish'                                                  " lightweight file-manager
 
 " Search
 Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
