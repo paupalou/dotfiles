@@ -91,6 +91,7 @@ Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascri
 Plug 'elzr/vim-json'                                                                       " json syntax
 Plug 'keith/tmux.vim'                                                                      " tmux configuration syntax
 Plug 'cakebaker/scss-syntax.vim'                                                           " sass syntax
+Plug 'rust-lang/rust.vim'                                                                  " rust syntax
 
 " ColorSchemes
 Plug 'NLKNguyen/papercolor-theme'
