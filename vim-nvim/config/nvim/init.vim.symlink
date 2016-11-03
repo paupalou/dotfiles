@@ -21,6 +21,11 @@ endif
 set background=dark
 colorscheme PaperColor
 
+" font for gvim
+if !g:neovim
+    set guifont=Operator\ Mono\ 14
+endif
+
 " Use mouse
 set mouse=nvr
 
