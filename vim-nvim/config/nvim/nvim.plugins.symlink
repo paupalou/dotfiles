@@ -36,6 +36,7 @@ Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 " Navigation
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
 Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " Sane buffer deletion
 Plug 'justinmk/vim-gtfo'                                                     " Open file-manager/terminal on pwd (gof/got)
 
 " Search

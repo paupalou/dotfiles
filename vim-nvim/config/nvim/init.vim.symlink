@@ -104,8 +104,10 @@ set modelines=5
 let mapleader="\<Space>"
 
 " Quick quit
-noremap <Leader>x :x<CR>
-noremap <Leader>Q :qa!<CR>
+noremap <silent> <Leader>x :x<CR>
+noremap <silent> <Leader>Q :qa!<CR>
+noremap <silent> <Leader>q :q<CR>
+noremap <silent> <Leader>c :Sayonara<CR>
 
 " Save
 inoremap <C-s> <C-O>:update<cr>
