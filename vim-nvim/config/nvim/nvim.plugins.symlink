@@ -69,7 +69,7 @@ Plug 'junegunn/gv.vim'                " Show Git Commits
 
 if g:neovim
     " Autocompletion
-    Plug 'Shougo/deoplete.nvim'
+    Plug 'Shougo/deoplete.nvim',
     " deoplete-go
     Plug 'zchee/deoplete-go'
     " deoplete-padawan (php)

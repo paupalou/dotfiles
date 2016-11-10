@@ -18,7 +18,7 @@ if g:neovim
         set termguicolors
     endif
 endif
-set background=dark
+set background=light
 colorscheme PaperColor
 
 " font for gvim
@@ -165,8 +165,15 @@ let g:python3_host_prog = '/usr/bin/python3'
 set grepprg=rg\ --vimgrep
 
 " statusline
-au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#DE2828 guifg=#EDEDED
-au InsertLeave * hi StatusLine ctermbg=234 ctermfg=66 gui=bold guibg=#5F8787 guifg=#1C1C1C
+hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#C5CFC6
+au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#DE2828 guifg=#C5CFC6
+au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#C5CFC6
+" set statusline+=%f %: %l\:%c
+
+" neovim features
+if g:neovim
+  set inccommand=nosplit
+endif
 
 " Load plugins for vim/neovim
 if g:neovim
