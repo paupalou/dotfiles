@@ -4,23 +4,23 @@
 
 " Neomake
 let g:neomake_go_gofmt_maker = {
-            \ 'exe': 'gofmt',
-            \ 'args': ['-l'],
-            \ 'errorformat':
-            \ '%f:%l:%c: %m,' .
-            \ '%-G%.%#'
-            \ }
+    \ 'exe': 'gofmt',
+    \ 'args': ['-l'],
+    \ 'errorformat':
+    \ '%f:%l:%c: %m,' .
+    \ '%-G%.%#'
+    \ }
 
 let g:neomake_go_gobuild_maker = {
-            \ 'exe': 'sh',
-            \ 'args': ['-c', 'go build -o /dev/null ./\$0', '%:h'],
-            \ 'errorformat':
-            \ '%W%f:%l: warning: %m,' .
-            \ '%E%f:%l:%c:%m,' .
-            \ '%E%f:%l:%m,' .
-            \ '%C%\s%\+%m,' .
-            \ '%-G#%.%#'
-            \ }
+    \ 'exe': 'sh',
+    \ 'args': ['-c', 'go build -o /dev/null ./\$0', '%:h'],
+    \ 'errorformat':
+    \ '%W%f:%l: warning: %m,' .
+    \ '%E%f:%l:%c:%m,' .
+    \ '%E%f:%l:%m,' .
+    \ '%C%\s%\+%m,' .
+    \ '%-G#%.%#'
+    \ }
 
 let g:neomake_go_enabled_makers         = ['gofmt', 'gobuild']
 let g:neomake_javascript_enabled_makers = ['eslint']
@@ -33,13 +33,13 @@ let g:neomake_verbose     = 0
 let g:neomake_airline     = 0
 
 let g:neomake_error_sign = {
-            \ 'text':   '!',
-            \ 'texthl': 'Text',
-            \ }
+    \ 'text':   '!',
+    \ 'texthl': 'Text',
+    \ }
 let g:neomake_warning_sign = {
-            \ 'text':   '.',
-            \ 'texthl': 'Text',
-            \ }
+    \ 'text':   '.',
+    \ 'texthl': 'Text',
+    \ }
 
 autocmd! BufWritePost * Neomake
 command Errors lopen
@@ -77,9 +77,8 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " IndentLine
 autocmd! User indentLine doautocmd indentLine Syntax
 let g:indentLine_enabled = 1
-let g:indentLine_indentLevel = 1
-let g:indentLine_char = '▐'
-let g:indentLine_color_term = 239
+let g:indentLine_indentLevel = 2
+let g:indentLine_char = 'Ⅰ '
 let g:indentLine_fileTypeExclude = ['json']
 
 " Vim-cellmode
@@ -97,6 +96,11 @@ if g:neovim
     " deoplete-ternjs
     let g:tern_request_timeout = 1
     let g:tern_show_signature_in_pum = 0
+
+    " deoplete-go
+    let g:deoplete#sources#go#gocode_binary = '$GOPATH./bin/gocode'
+    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+    let g:deoplete#sources#go#use_cache = 1
 endif
 
 " Signify
@@ -114,9 +118,9 @@ call leaderGuide#register_prefix_descriptions(",", "g:lmap")
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder
 let g:fzf_action = {
-            \ 'ctrl-s': 'split',
-            \ 'ctrl-v': 'vsplit'
-            \ }
+    \ 'ctrl-s': 'split',
+    \ 'ctrl-v': 'vsplit'
+    \ }
 
 nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>

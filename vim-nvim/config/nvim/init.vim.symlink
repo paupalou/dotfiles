@@ -169,6 +169,7 @@ hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#C5CFC6
 au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#DE2828 guifg=#C5CFC6
 au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#C5CFC6
 " set statusline+=%f %: %l\:%c
+set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
 
 " neovim features
 if g:neovim

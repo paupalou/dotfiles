@@ -34,10 +34,10 @@ Plug 'honza/vim-snippets'             " Snippets for ultiSnips
 Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Navigation
-Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
 Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " Sane buffer deletion
 Plug 'justinmk/vim-gtfo'                                                     " Open file-manager/terminal on pwd (gof/got)
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " Sane buffer deletion
+Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
 
 " Search
 Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
@@ -92,6 +92,7 @@ Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascri
 Plug 'elzr/vim-json'                                                                       " json syntax
 Plug 'keith/tmux.vim'                                                                      " tmux configuration syntax
 Plug 'cakebaker/scss-syntax.vim'                                                           " sass syntax
+Plug 'fatih/vim-go'                                                                        " go syntax
 Plug 'rust-lang/rust.vim'                                                                  " rust syntax
 
 " ColorSchemes
