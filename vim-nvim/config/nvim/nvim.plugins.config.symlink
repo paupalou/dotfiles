@@ -50,6 +50,9 @@ highlight BufTabLineCurrent ctermbg=137 ctermfg=0 guibg=#859900 guifg=#000000
 highlight BufTabLineActive ctermbg=238 ctermfg=245 guibg=#444957 guifg=#80AEBD
 highlight BufTabLineHidden ctermbg=238 ctermfg=245 guibg=#444957 guifg=#80AEBD
 
+" TagBar
+let g:tagbar_iconchars = ['▸', '▾']
+
 " Grepper
 let g:grepper = {
     \ 'tools': ['rg', 'ag', 'git', 'grep'],
