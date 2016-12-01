@@ -62,7 +62,11 @@ let g:used_javascript_libs = 'jquery,lo-dash,react,vue'
 let g:jsx_ext_required = 0
 
 " UltiSnips
-let g:UltiSnipsUsePythonVersion    = 3
+if g:neovim
+  let g:UltiSnipsUsePythonVersion    = 3
+else
+  let g:UltiSnipsUsePythonVersion    = 2
+endif
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
 let g:UltiSnipsExpandTrigger       = "<C-T>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
