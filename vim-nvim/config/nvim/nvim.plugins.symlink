@@ -38,6 +38,7 @@ Plug 'ap/vim-buftabline'                                                     " B
 Plug 'justinmk/vim-gtfo'                                                     " Open file-manager/terminal on pwd (gof/got)
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " Sane buffer deletion
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
+Plug 'yuttie/comfortable-motion.vim'
 
 " Search
 Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
@@ -69,31 +70,34 @@ Plug 'junegunn/gv.vim'                " Show Git Commits
 
 if g:neovim
     " Autocompletion
-    Plug 'Shougo/deoplete.nvim',
+    Plug 'Shougo/deoplete.nvim'
     " deoplete-go
-    Plug 'zchee/deoplete-go'
+    Plug 'zchee/deoplete-go', { 'for': ['go'] }
     " deoplete-padawan (php)
-    Plug 'pbogut/deoplete-padawan'
+    Plug 'pbogut/deoplete-padawan', { 'for': ['php'] }
     " deoplete-python
-    Plug 'zchee/deoplete-jedi'
+    Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
     " deoplete-javascript
-    Plug 'carlitux/deoplete-ternjs'
+    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 else
     Plug 'maralla/completor.vim'
 endif
 
 " Syntax
-Plug 'othree/html5.vim'                                                                    " html5 syntax
-Plug 'StanAngeloff/php.vim'                                                                " php improved syntax
-Plug 'hdima/python-syntax'                                                                 " python syntax
+Plug 'othree/html5.vim', { 'for': ['html'] }                                               " html5 syntax
+Plug 'StanAngeloff/php.vim', { 'for': ['php'] }                                            " php improved syntax
+Plug 'hdima/python-syntax', { 'for': ['python'] }                                          " python syntax
 Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] } " javascript syntax
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] } " javascript libs syntax
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] } " react-jsx syntax
-Plug 'elzr/vim-json'                                                                       " json syntax
+Plug 'elzr/vim-json', { 'for': ['json'] }                                                  " json syntax
 Plug 'keith/tmux.vim'                                                                      " tmux configuration syntax
-Plug 'cakebaker/scss-syntax.vim'                                                           " sass syntax
-Plug 'fatih/vim-go'                                                                        " go syntax
-Plug 'rust-lang/rust.vim'                                                                  " rust syntax
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }                              " sass syntax
+Plug 'fatih/vim-go', { 'for': ['go'] }                                                     " go syntax
+Plug 'rust-lang/rust.vim', { 'for': ['rust'] }                                              " rust syntax
+
+" Completion
+Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
 
 " ColorSchemes
 Plug 'NLKNguyen/papercolor-theme'

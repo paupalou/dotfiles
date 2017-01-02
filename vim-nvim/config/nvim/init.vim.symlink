@@ -99,6 +99,9 @@ set completeopt=longest,menu
 set modeline
 set modelines=5
 
+" Faster updatetime
+set updatetime=500
+
 " ### MAPPINGS
 " Leader Key
 let mapleader="\<Space>"

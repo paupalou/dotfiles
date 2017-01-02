@@ -45,6 +45,8 @@ autocmd! BufWritePost * Neomake
 command Errors lopen
 
 " TagBar
+let g:tagbar_compact = 1
+let g:tagbar_autoshowtag = 1
 let g:tagbar_iconchars = ['▸', '▾']
 
 " Grepper
@@ -173,3 +175,7 @@ xmap gs <plug>(GrepperOperator)
 
 " # Leader-Guide
 nnoremap <silent> <leader><leader> :<c-u>LeaderGuide '<Space>'<CR>
+
+" # Comfortable Motion
+nnoremap <silent> <PageDown> :call comfortable_motion#flick(400)<CR>
+nnoremap <silent> <PageUp> :call comfortable_motion#flick(-400)<CR>
