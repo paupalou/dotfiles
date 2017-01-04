@@ -99,6 +99,13 @@ if g:neovim
     " deoplete-ternjs
     let g:tern_request_timeout = 1
     let g:tern_show_signature_in_pum = 0
+    let g:tern#filetypes = ['jsx', 'javascript.jsx', 'vue']
+    " Use tern_for_vim.
+    let g:tern#command = ["tern"]
+    let g:tern#arguments = ["--persistent"]
+    let g:deoplete#omni#functions = {}
+    let g:deoplete#omni#functions.javascript = ['tern#Complete']
+    let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
 
     " deoplete-go
     let g:deoplete#sources#go#gocode_binary = '$GOPATH./bin/gocode'

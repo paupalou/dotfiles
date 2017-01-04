@@ -97,6 +97,7 @@ Plug 'fatih/vim-go', { 'for': ['go'] }                                          
 Plug 'rust-lang/rust.vim', { 'for': ['rust'] }                                              " rust syntax
 
 " Completion
+Plug 'ternjs/tern_for_vim', { 'do': 'npm install --global tern' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
 
 " ColorSchemes
