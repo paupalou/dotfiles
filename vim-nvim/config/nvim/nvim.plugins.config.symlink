@@ -23,23 +23,38 @@ let g:neomake_go_gobuild_maker = {
     \ }
 
 let g:neomake_go_enabled_makers         = ['gofmt', 'gobuild']
-let g:neomake_javascript_enabled_makers = ['eslint']
 let g:neomake_php_enabled_makers        = ['php']
 let g:neomake_python_enabled_makers     = ['flake8']
+
+if findfile('.eslintrc.yml', '.;') !=# ''
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_jsx_enabled_makers = ['eslint']
+  let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+endif
 
 let g:neomake_open_list   = 2
 let g:neomake_list_height = 5
 let g:neomake_verbose     = 0
 let g:neomake_airline     = 0
 
-let g:neomake_error_sign = {
-    \ 'text':   '!',
-    \ 'texthl': 'Text',
-    \ }
+
+let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeCustomErrorSign'}
 let g:neomake_warning_sign = {
-    \ 'text':   '.',
-    \ 'texthl': 'Text',
+    \ 'text': '⚠',
+    \ 'texthl': 'NeomakeCustomWarningSign',
     \ }
+let g:neomake_message_sign = {
+    \ 'text': '➤',
+    \ 'texthl': 'NeomakeCustomMessageSign',
+    \ }
+let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeCustomInfoSign'}
+
+augroup my_neomake_signs
+  au!
+  autocmd ColorScheme *
+    \ hi NeomakeCustomErrorSign guifg=blue |
+    \ hi NeomakeCustomWarningSign guifg=white
+augroup END
 
 autocmd! BufWritePost * Neomake
 command Errors lopen
@@ -81,8 +96,15 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd! User indentLine doautocmd indentLine Syntax
 let g:indentLine_enabled = 1
 let g:indentLine_indentLevel = 2
-let g:indentLine_char = 'Ⅰ '
+let g:indentLine_char = '┊'
+let g:indentLine_first_char = '┊'
+let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['json']
+" for vim
+let g:indentLine_color_term = 200
+let g:indentLine_color_tty_light = 0
+" for neovim
+let g:indentLine_color_gui = '#d6d6d6'
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'

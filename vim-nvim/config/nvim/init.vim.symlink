@@ -17,6 +17,7 @@ if g:neovim
     if (has("termguicolors"))
         set termguicolors
     endif
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
 endif
 set background=light
 colorscheme PaperColor
