@@ -13,7 +13,7 @@ warn () {
 }
 
 success () {
-  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' √ ' $green)] $1\n"
+  printf "\r   $(pc "├$2─›" $lblue) [$(pc ' ✓ ' $green)] $1\n"
 }
 
 fail () {
@@ -34,7 +34,7 @@ version () {
     else
       local version="$($1 --version | head -1 | grep -o -e '[0-9]\+\(\.[0-9]\+\)*' | head -1)"
     fi
-    printf "\r   $(pc "├─›" $lblue) [$(pc " √ " $green$bold)] $(pc "${1^^}" $lgreen) version $(pc $version $cyan)\n"
+    printf "\r   $(pc "├─›" $lblue) [$(pc " ✓ " $green$bold)] $(pc "${1^^}" $lgreen) version $(pc $version $cyan)\n"
   fi
 }
 
