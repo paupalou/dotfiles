@@ -37,7 +37,6 @@ let g:neomake_list_height = 5
 let g:neomake_verbose     = 0
 let g:neomake_airline     = 0
 
-
 let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeCustomErrorSign'}
 let g:neomake_warning_sign = {
     \ 'text': '⚠',
@@ -57,7 +56,7 @@ augroup my_neomake_signs
 augroup END
 
 autocmd! BufWritePost * Neomake
-command Errors lopen
+command Errors copen
 
 " TagBar
 let g:tagbar_compact = 1
@@ -133,6 +132,8 @@ if g:neovim
     let g:deoplete#sources#go#gocode_binary = '$GOPATH./bin/gocode'
     let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
     let g:deoplete#sources#go#use_cache = 1
+else
+    let g:completor_node_binary = '/opt/node'
 endif
 
 " Signify

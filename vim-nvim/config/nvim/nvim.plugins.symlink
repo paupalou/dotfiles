@@ -94,7 +94,7 @@ Plug 'elzr/vim-json', { 'for': ['json'] }                                       
 Plug 'keith/tmux.vim'                                                                      " tmux configuration syntax
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['sass', 'scss'] }                              " sass syntax
 Plug 'fatih/vim-go', { 'for': ['go'] }                                                     " go syntax
-Plug 'rust-lang/rust.vim', { 'for': ['rust'] }                                              " rust syntax
+Plug 'rust-lang/rust.vim', { 'for': ['rust'] }                                             " rust syntax
 
 " Completion
 Plug 'ternjs/tern_for_vim', { 'do': 'npm install --global tern' }
