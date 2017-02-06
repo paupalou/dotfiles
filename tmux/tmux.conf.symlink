@@ -1,21 +1,30 @@
 # vim: set ft=conf:
 # -- BINDINGS --------------------------------------------------------
 
+# [ BASIC KEYS ] ----------------------------------------------------------------------------------
 set -g prefix C-q
 
 bind-key C-q   send-prefix
 
 bind-key C-q   if-shell 'test $(tmux list-panes | wc -l) -gt 1' 'last-pane' 'last-window'
-bind-key R     source-file ~/.tmux.conf \; display-message ' Config reloaded'
+bind-key R     source-file ~/.tmux.conf \; display-message "Config reloaded"
 
 bind-key /     command-prompt "split-window 'exec man %%'"
 
-# - pane splitting -
+bind o select-pane -t :.+  # cycle panes
+bind O select-pane -t :.-  # cycle panes in reverse
+
+# Convert a window from current or any other session to a pane
+bind  u command-prompt -p "Join pane from [sess:]win# (ex: kmodi:3 or 2(from current session)):" "join-pane -s '%%'"
+# Convert a pane to a window in current or any other session
+bind  U command-prompt -p "Send pane to sess or sess:win# or win# (ex: kmodi or kmodi:3 or 2(of current session)):" "join-pane -t '%%'"
+
+# [ PANE SPLITTING ] ------------------------------------------------------------------------------
 bind-key |     split-window -h
 bind-key \     split-window -h
 bind-key -     split-window -v
 
-# - pane navigation -
+# [ PANE NAVIGATION ] -----------------------------------------------------------------------------
 bind -r j select-pane -D  # move down
 bind -n M-Down select-pane -D
 
@@ -31,7 +40,7 @@ bind -n M-Right select-pane -R
 bind > swap-pane -D       # swap current pane with the next one
 bind < swap-pane -U       # swap current pane with the previous one
 
-# - pane resizing -
+# [ PANE RESIZE ] ---------------------------------------------------------------------------------
 bind -r H resize-pane -L 4
 bind -n C-Left resize-pane -L 4
 
@@ -44,26 +53,36 @@ bind -n C-Up resize-pane -U 4
 bind -r L resize-pane -R 4
 bind -n C-Right resize-pane -R 4
 
-# -- cycle panes --
-bind o select-pane -t :.+  # cycle panes
-bind O select-pane -t :.-  # cycle panes in reverse
+# [ COPY MODE ] -----------------------------------------------------------------------------------
+# [ (default) / v  # enter copy mode
+# q                # leave copy mode
 
-# -- window <-join/split-> pane --
-# Convert a window from current or any other session to a pane
-bind  u command-prompt -p "Join pane from [sess:]win# (ex: kmodi:3 or 2(from current session)):" "join-pane -s '%%'"
-# Convert a pane to a window in current or any other session
-bind  U command-prompt -p "Send pane to sess or sess:win# or win# (ex: kmodi or kmodi:3 or 2(of current session)):" "join-pane -t '%%'"
+set -g @yank_selection 'clipboard'
 
-# -- COPY MODE--------------------------------------------
-#bind [ copy-mode    # enter copy mode
-bind b list-buffers  # list paster buffers
+bind b list-buffers  # list paste buffers
 bind p paste-buffer  # paste from the top pate buffer
 bind P choose-buffer # choose which buffer to paste from
 
-# the following vi-copy bindings match my vim settings
-bind V send-keys "0v\$"
+bind v copy-mode
 
-# GLOBAL -------------------------------------------------------
+# -- SELECTION --
+bind -Tcopy-mode-vi v send -X begin-selection
+bind -Tcopy-mode-vi V send -X select-line
+bind -Tcopy-mode-vi C-v send -X rectangle-toggle
+
+# -- COPY --
+bind -Tcopy-mode-vi y send -X copy-pipe 'xclip -in -selection clipboard'
+bind -Tcopy-mode-vi Y send -X copy-end-of-line
+
+# -- COPY WITH MOUSE --
+bind -Tcopy-mode-vi MouseDown1Pane select-pane
+bind -Tcopy-mode-vi MouseDrag1Pane select-pane\; send -X begin-selection
+bind -Tcopy-mode-vi MouseDragEnd1Pane send -X copy-pipe 'xclip -in -selection clipboard'
+
+# -- PASTE WITH MOUSE (MIDDLE BUTTON) --
+bind -T root MouseDown2Pane run -b "exec </dev/null; xclip -out -selection clipboard | awk 1 ORS=' ' | tmux load-buffer - ; tmux paste-buffer"
+
+# [ GLOBAL ] --------------------------------------------------------------------------------------
 set -g base-index 1
 setw -g pane-base-index 1
 
@@ -80,20 +99,12 @@ set -g set-titles on
 set -g visual-activity off
 set -g xterm-keys on
 
-# Enable mouse funcionality
-set-option -g -q mouse on
+# [ MOUSE ] ---------------------------------------------------------------------------------------
+set-option -g mouse on
 set-option -ga terminal-override ',screen-256color:Tc'
 set-option -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
 
-# bind-key -T root PPage if-shell -F "#{alternate_on}" "send-keys PPage" "copy-mode -e; send-keys PPage"
-# bind-key -t vi-copy PPage page-up
-# bind-key -t vi-copy NPage page-down
-
-bind -T root MouseDown2Pane run -b "exec </dev/null; xsel -b | awk 1 ORS=' ' | tmux load-buffer - ; tmux paste-buffer"
-
-set -g @yank_selection 'clipboard'
-
-# -- STATUS ----------------------------------------------------------
+# [ STATUS ] --------------------------------------------------------------------------------------
 set -g status-left-length 50
 set -g status-right-length 150
 set -g status on
@@ -109,7 +120,7 @@ set -g status-right-bg white
 
 set -g status-bg colour237
 
-# -- WINDOW ----------------------------------------------------------
+# [ WINDOW ] --------------------------------------------------------------------------------------
 setw -g allow-rename on
 setw -g automatic-rename on
 setw -g clock-mode-style 24
@@ -120,7 +131,7 @@ setw -g monitor-silence 0
 setw -g window-status-current-format '#[fg=colour220,bright] → #[fg=colour8,bright,bg=colour39] #I #[fg=colour8,bright,bg=colour115] #W '
 setw -g window-status-format ' #[fg=colour8,bright,bg=colour250] #I #[fg=colour8,bright,bg=colour244] #W '
 
-# -- VIM SPLITS - TMUX PANES -----------------------------------------
+# [ VIM SPLITS - TUX PANES ] ----------------------------------------------------------------------
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'
 bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
 bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
@@ -129,7 +140,7 @@ bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
 bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 bind C-l send-keys 'C-l'
 
-# -- PLUGINS
+# [ PLUGINS ] -------------------------------------------------------------------------------------
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
@@ -137,5 +148,5 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-yank'
 set -g @plugin 'Morantron/tmux-fingers'
 
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+# -- Initialize TMUX plugin manager --
 run '~/.tmux/plugins/tpm/tpm'
