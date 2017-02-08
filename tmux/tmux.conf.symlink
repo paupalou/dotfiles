@@ -57,8 +57,6 @@ bind -n C-Right resize-pane -R 4
 # [ (default) / v  # enter copy mode
 # q                # leave copy mode
 
-set -g @yank_selection 'clipboard'
-
 bind b list-buffers  # list paste buffers
 bind p paste-buffer  # paste from the top pate buffer
 bind P choose-buffer # choose which buffer to paste from
@@ -142,11 +140,8 @@ bind C-l send-keys 'C-l'
 
 # [ PLUGINS ] -------------------------------------------------------------------------------------
 set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-copycat'
 set -g @plugin 'tmux-plugins/tmux-prefix-highlight'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'Morantron/tmux-fingers'
 
 # -- Initialize TMUX plugin manager --
 run '~/.tmux/plugins/tpm/tpm'

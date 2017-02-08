@@ -66,4 +66,6 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(
   expand-or-complete
 )
 
+stty -ixon
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
