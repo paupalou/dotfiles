@@ -38,7 +38,8 @@ Plug 'ap/vim-buftabline'                                                     " B
 Plug 'justinmk/vim-gtfo'                                                     " Open file-manager/terminal on pwd (gof/got)
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " Sane buffer deletion
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
-Plug 'yuttie/comfortable-motion.vim'
+Plug 'yuttie/comfortable-motion.vim'                                         " Smooth scrolling :>
+Plug 'romainl/vim-qf'                                                        " More pleasant quickfix/location window
 
 " Search
 Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper

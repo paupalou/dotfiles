@@ -199,13 +199,18 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " # Greeper
-nnoremap <silent> <leader>g :Grepper<CR>
-nnoremap <silent> <leader>* :Grepper -tool ripgrep -cword -noprompt<cr>
+nnoremap <silent> <leader>g :Grepper -tool rg -jump<CR>
+nnoremap <silent> <leader>* :Grepper -tool rg -cword -noprompt<CR>
 xmap gs <plug>(GrepperOperator)
 
 " # Leader-Guide
-nnoremap <silent> <leader><leader> :<c-u>LeaderGuide '<Space>'<CR>
+nnoremap <silent> <leader>i :<c-u>LeaderGuide '<Space>'<CR>
 
 " # Comfortable Motion
 nnoremap <silent> <PageDown> :call comfortable_motion#flick(400)<CR>
 nnoremap <silent> <PageUp> :call comfortable_motion#flick(-400)<CR>
+
+" # Vimux
+nmap <Leader>r :call OpenVimuxPanel()<CR>
+nmap <Leader><Enter> :call VimuxSlime()<CR>
+vmap <Leader><Enter> :call VisualVimuxSlime()<Enter>

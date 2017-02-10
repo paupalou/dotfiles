@@ -36,7 +36,3 @@ fun! VisualVimuxSlime()
     call ClearVimuxPanel()
     call VimuxSendText(@v)
 endfunction
-
-nmap <Leader>r :call OpenVimuxPanel()<CR>
-nmap <Leader><Enter> :call VimuxSlime()<CR>
-vmap <Leader><Enter> :call VisualVimuxSlime()<Enter>
