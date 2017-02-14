@@ -87,9 +87,6 @@ set pumheight=15
 " Matching <> for html
 set matchpairs+=<:>
 
-" Disable showmode (lightline's job)
-set noshowmode
-
 " Easy Copy/Paste
 set clipboard=unnamedplus
 
