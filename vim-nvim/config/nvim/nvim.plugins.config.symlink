@@ -48,12 +48,10 @@ let g:neomake_message_sign = {
     \ }
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeCustomInfoSign'}
 
-augroup my_neomake_signs
-  au!
-  autocmd ColorScheme *
-    \ hi NeomakeCustomErrorSign guifg=blue |
-    \ hi NeomakeCustomWarningSign guifg=white
-augroup END
+hi NeomakeCustomErrorSign guifg=blue ctermbg=187 ctermfg=131
+hi NeomakeCustomWarningSign guifg=white
+hi NeomakeError ctermfg=131 ctermbg=187
+hi link NeomakeWarning SpellCap
 
 autocmd! BufWritePost * Neomake
 command Errors copen
