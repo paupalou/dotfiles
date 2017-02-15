@@ -11,7 +11,7 @@ endif
 
 " Tim Pope
 if !g:neovim
-    Plug 'tpope/vim-sensible'   " Basic vim settings
+  Plug 'tpope/vim-sensible'   " Basic vim settings
 endif
 Plug 'tpope/vim-repeat'     " Enable repeat for some plugins
 Plug 'tpope/vim-surround'   " Mappings for surrounding
@@ -59,7 +59,7 @@ Plug 'rstacruz/vim-closer'                                                   " C
 Plug 'ervandew/supertab'                                                     " Extended tab use
 
 " TextObjects
-Plug 'wellle/targets.vim'           " Add various text objects
+Plug 'wellle/targets.vim'             " Add various text objects
 
 " Tmux integration
 Plug 'benmills/vimux'                 " Send data to a tmux pane/window
@@ -69,19 +69,15 @@ Plug 'christoomey/vim-tmux-navigator' " Easy navigate with Ctrl-hjkl between vim
 Plug 'mhinz/vim-signify'              " VCS signs for git and mercurial
 Plug 'junegunn/gv.vim'                " Show Git Commits
 
+" Autocompletion
 if g:neovim
-    " Autocompletion
-    Plug 'Shougo/deoplete.nvim'
-    " deoplete-go
-    Plug 'zchee/deoplete-go', { 'for': ['go'] }
-    " deoplete-padawan (php)
-    Plug 'pbogut/deoplete-padawan', { 'for': ['php'] }
-    " deoplete-python
-    Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
-    " deoplete-javascript
-    Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'zchee/deoplete-go', { 'for': ['go'] }
+  Plug 'pbogut/deoplete-padawan', { 'for': ['php'] }
+  Plug 'zchee/deoplete-jedi', { 'for': ['python'] }
+  Plug 'carlitux/deoplete-ternjs', { 'for': ['javascript', 'javascript.jsx'] }
 else
-    Plug 'maralla/completor.vim'
+  Plug 'maralla/completor.vim'
 endif
 
 " Syntax
