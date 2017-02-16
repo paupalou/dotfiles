@@ -5,7 +5,7 @@
  *
  * font: see
  */
-static char font[] = "Operator Mono:size=12:antialias=true:autohint=true";
+static char font[] = "Operator Mono:size=11:antialias=true:autohint=true";
 static int borderpx = 3;
 
 /*

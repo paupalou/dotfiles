@@ -29,7 +29,7 @@ URxvt.keysym.C-S-Up:   font-size:incglobal
 URxvt.keysym.C-S-Down: font-size:decglobal
 
 !-- Xft settings -- !
-URxvt*letterSpace : 0
+URxvt*letterSpace : -1
 URxvt*lineSpace: 1
 
 Xft.dpi: 96
@@ -38,10 +38,10 @@ Xft.rgba: rgb
 Xft.hinting: false
 Xft.hintstyle: hintslight
 
-URxvt*font:           xft:TamzenForPowerline:style=Regular:size=13
-URxvt*boldFont:       xft:TamzenForPowerline:style=Bold:size=13
-URxvt*italicFont:     xft:TamzenForPowerline:style=Italic:size=13
-URxvt*boldItalicFont: xft:TamzenForPowerline:style=Bold\ Italic:size=13
+URxvt*font:           xft:Operator Mono:style=Regular:pixelsize=14
+URxvt*boldFont:       xft:Operator Mono:style=Bold:pixelsize=14
+URxvt*italicFont:     xft:Operator Mono:style=Italic:pixelsize=14
+URxvt*boldItalicFont: xft:Operator Mono:style=Bold\ Italic:pixelsize=14
 
 ! Dracula Xresources palette
 *.foreground: #F8F8F2
