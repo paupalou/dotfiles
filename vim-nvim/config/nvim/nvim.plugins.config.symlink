@@ -140,7 +140,7 @@ let g:signify_vcs_list = ['git', 'hg']
 " Gutentags
 let g:gutentags_enabled   = 1
 let g:gutentags_cache_dir = "~/.tags"
-let g:gutentags_exclude = ['*.json']
+let g:gutentags_ctags_exclude = ['*.json']
 
 " Leader-guide
 let g:lmap = {}
