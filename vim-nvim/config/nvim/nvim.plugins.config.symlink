@@ -29,7 +29,9 @@ let g:neomake_python_enabled_makers     = ['flake8']
 if findfile('.eslintrc.yml', '.;') !=# ''
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_jsx_enabled_makers = ['eslint']
-  let g:neomake_javascript_eslint_exe = $PWD .'/node_modules/.bin/eslint'
+  if findfile('node_modules/.bin/eslintel', '.;') !=# ''
+    let g:neomake_javascript_eslint_exe= $PWD .'/node_modules/.bin/eslint'
+  endif
 endif
 
 let g:neomake_open_list   = 2
@@ -145,6 +147,11 @@ let g:gutentags_ctags_exclude = ['*.json']
 " Leader-guide
 let g:lmap = {}
 call leaderGuide#register_prefix_descriptions(",", "g:lmap")
+
+" Local VimRC
+let g:local_vimrc = ['project.config.vim', 'project.vim']
+call lh#local_vimrc#munge('whitelist', $HOME.'/code')
+call lh#local_vimrc#munge('blacklist', $HOME.'/code/external')
 
 " ### PLUGIN MAPINGS
 " # FZF Fuzzy Finder

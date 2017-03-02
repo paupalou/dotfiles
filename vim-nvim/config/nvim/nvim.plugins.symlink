@@ -57,6 +57,8 @@ Plug 'ap/vim-css-color'                                                      " D
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } " Mappings for easy align content
 Plug 'rstacruz/vim-closer'                                                   " Closes automatically brackets
 Plug 'ervandew/supertab'                                                     " Extended tab use
+Plug 'LucHermitte/lh-vim-lib'                                                " Library dependencie for local_vimrc
+Plug 'LucHermitte/local_vimrc'                                               " Source vim settings per project|tree
 
 " TextObjects
 Plug 'wellle/targets.vim'             " Add various text objects
