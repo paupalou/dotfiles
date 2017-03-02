@@ -29,7 +29,7 @@ let g:neomake_python_enabled_makers     = ['flake8']
 if findfile('.eslintrc.yml', '.;') !=# ''
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_jsx_enabled_makers = ['eslint']
-  if findfile('node_modules/.bin/eslintel', '.;') !=# ''
+  if findfile('node_modules/.bin/eslint', '.;') !=# ''
     let g:neomake_javascript_eslint_exe= $PWD .'/node_modules/.bin/eslint'
   endif
 endif
