@@ -36,3 +36,17 @@ fun! VisualVimuxSlime()
     call ClearVimuxPanel()
     call VimuxSendText(@v)
 endfunction
+
+fun! FindFiles(filename, ...)
+  echo a:000
+  for extension in a:000
+    let a:file = join([a:filename, extension], ".")
+    echo a:file
+    if findfile(file, '.;') !=# ''
+      echom "found"
+      return 1
+    elseif
+      echom "not found"
+    endif
+  endfor
+endfunction

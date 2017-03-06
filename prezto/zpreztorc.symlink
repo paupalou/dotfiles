@@ -50,7 +50,7 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 #
 
 # Color 
-zstyle ':prezto:module:autosuggestions:color' found 'fg=6,bg=8'
+zstyle ':prezto:module:autosuggestions:color' color 'yes'
 
 #
 # Prompt
