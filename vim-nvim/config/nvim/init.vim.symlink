@@ -22,6 +22,8 @@ endif
 set background=light
 colorscheme PaperColor
 
+highlight SignColumn guibg=lightgrey ctermbg=253
+
 " font for gvim
 if !g:neovim
     set guifont=Operator\ Mono\ 14
@@ -178,7 +180,9 @@ endif
 
 " Load plugins for vim/neovim
 if g:neovim
+  source $HOME/.config/nvim/plugin/custom.vim
   source $HOME/.config/nvim/nvim.plugins.config
 else
+  source $HOME/.vim/plugin/custom.vim
   source $HOME/.vimrc.plugins.config
 endif

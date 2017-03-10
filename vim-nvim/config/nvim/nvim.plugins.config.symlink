@@ -26,13 +26,12 @@ let g:neomake_go_enabled_makers      = ['gofmt', 'gobuild']
 let g:neomake_php_enabled_makers     = ['php']
 let g:neomake_python_enabled_makers  = ['flake8']
 
-" if findfile('.eslintrc', '.yaml,.yml,.json;') !=# ''
-if findfile('.eslintrc.json, .eslintrc.yml', '.;') !=# ''
-  let g:eslint_exe = 'eslint'
-  if findfile($PWD.'/node_modules/.bin/eslint', '.;') !=# ''
-    let g:eslint_exe = $PWD .'/node_modules/.bin/eslint'
+if FindFiles('.eslintrc', 'json', 'yml')
+  let g:neomake_javascript_eslint_exe = 'eslint'
+  let local_eslint = $PWD. '/node_modules/.bin/eslint'
+  if FindFiles(local_eslint)
+    let g:neomake_javascript_eslint_exe = local_eslint
   endif
-  let g:neomake_javascript_eslint_exe = eslint_exe
   let g:neomake_javascript_enabled_makers = ['eslint']
   let g:neomake_jsx_enabled_makers = ['eslint']
 endif
@@ -42,8 +41,8 @@ let g:neomake_list_height   = 5
 let g:neomake_verbose       = 0
 let g:neomake_airline       = 0
 
-let g:qf_auto_open_quickfix = 2
-let g:qf_auto_open_loclist  = 2
+let g:qf_auto_open_quickfix = 0
+let g:qf_auto_open_loclist  = 0
 
 let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeCustomErrorSign'}
 let g:neomake_warning_sign = {
@@ -56,8 +55,10 @@ let g:neomake_message_sign = {
     \ }
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeCustomInfoSign'}
 
-hi NeomakeCustomErrorSign guifg=blue ctermbg=187 ctermfg=131
-hi NeomakeCustomWarningSign guifg=white
+highlight NeomakeCustomErrorSign guifg=blue ctermbg=187 ctermfg=131
+highlight NeomakeCustomWarningSign guifg=white
+highlight link NeomakeError ErrorMsg
+highlight link NeomakeWarning Error
 
 autocmd! BufWritePost * Neomake
 command Errors copen
