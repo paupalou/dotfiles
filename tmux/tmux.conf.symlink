@@ -97,6 +97,9 @@ set -g set-titles on
 set -g visual-activity off
 set -g xterm-keys on
 
+set -g pane-border-fg colour8
+set -g pane-active-border-fg green
+
 # [ MOUSE ] ---------------------------------------------------------------------------------------
 set-option -g mouse on
 set-option -ga terminal-override ',screen-256color:Tc'
@@ -129,7 +132,7 @@ setw -g monitor-silence 0
 setw -g window-status-current-format '#[fg=colour220,bright] → #[fg=colour8,bright,bg=colour39] #I #[fg=colour8,bright,bg=colour115] #W '
 setw -g window-status-format ' #[fg=colour8,bright,bg=colour250] #I #[fg=colour8,bright,bg=colour244] #W '
 
-# [ VIM SPLITS - TUX PANES ] ----------------------------------------------------------------------
+# [ VIM SPLITS - TMUX PANES ] ----------------------------------------------------------------------
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'
 bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
 bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
