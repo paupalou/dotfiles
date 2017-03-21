@@ -100,6 +100,7 @@ Plug 'ternjs/tern_for_vim', { 'do': 'npm install --global tern' }
 Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
 
 " ColorSchemes
+Plug 'KeitaNakamura/neodark.vim'
 Plug 'NLKNguyen/papercolor-theme'
 
 call plug#end()
