@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-char font[] = "Operator Mono:size=10:antialias=true:autohint=true";
+char font[] = "Operator Mono:size=10.8:antialias=true:autohint=true";
 int borderpx = 3;
 
 /*
@@ -24,7 +24,7 @@ static char stty_args[] = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 static char vtiden[] = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-float cwscale = 1.0;
+float cwscale = 0.90;
 float chscale = 1.0;
 
 /*
