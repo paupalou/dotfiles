@@ -14,18 +14,19 @@ endif
 
 " ### USER SETTINGS
 if g:neovim
-    if (has("termguicolors"))
-        set termguicolors
-    endif
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
-    let g:neodark#background='normal' " black, gray or brown
-    colorscheme neodark
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+  let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
+  let g:neodark#background='normal' " black, gray or brown
+  colorscheme neodark
+  highlight SignColumn guibg=#3e5563
 else
   set background=light
   colorscheme PaperColor
+  highlight SignColumn guibg=lightgrey ctermbg=253
 endif
 
-highlight SignColumn guibg=lightgrey ctermbg=253
 
 " font for gvim
 if !g:neovim
@@ -172,7 +173,7 @@ set grepprg=rg\ --vimgrep
 
 " statusline
 hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#C5CFC6
-au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#DE2828 guifg=#C5CFC6
+au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#d85252 guifg=#C5CFC6
 au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#C5CFC6
 set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
 

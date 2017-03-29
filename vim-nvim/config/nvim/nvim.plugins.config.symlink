@@ -55,8 +55,8 @@ let g:neomake_message_sign = {
     \ }
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeCustomInfoSign'}
 
-highlight NeomakeCustomErrorSign guifg=blue ctermbg=187 ctermfg=131
-highlight NeomakeCustomWarningSign guifg=white
+highlight NeomakeCustomErrorSign guifg=red ctermbg=187 ctermfg=131
+highlight NeomakeCustomWarningSign guifg=yellow
 highlight link NeomakeError ErrorMsg
 highlight link NeomakeWarning Error
 
@@ -100,15 +100,15 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 autocmd! User indentLine doautocmd indentLine Syntax
 let g:indentLine_enabled = 1
 let g:indentLine_indentLevel = 2
-let g:indentLine_char = '┊'
-let g:indentLine_first_char = '┊'
+let g:indentLine_char = '┃'
+let g:indentLine_first_char = '┃'
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_fileTypeExclude = ['json']
 " for vim
-let g:indentLine_color_term = 250
+let g:indentLine_color_term = 255
 let g:indentLine_color_tty_light = 0
 " for neovim
-let g:indentLine_color_gui = '#d6d6d6'
+let g:indentLine_color_gui = '#3e5563'
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
