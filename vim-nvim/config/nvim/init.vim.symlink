@@ -18,7 +18,6 @@ if g:neovim
     set termguicolors
   endif
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
-  let g:neodark#background='normal' " black, gray or brown
   colorscheme neodark
   highlight SignColumn guibg=#3e5563
 else
