@@ -31,7 +31,6 @@ else
   highlight MatchParen ctermfg=230 ctermbg=250
 endif
 
-
 " font for gvim
 if !g:neovim
     set guifont=Operator\ Mono\ 14
