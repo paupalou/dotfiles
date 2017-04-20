@@ -20,10 +20,15 @@ if g:neovim
   let $NVIM_TUI_ENABLE_CURSOR_SHAPE=2
   colorscheme neodark
   highlight SignColumn guibg=#3e5563
+  highlight MatchParen guifg=orange guibg=#3e5563
+  highlight xmlTag guifg=#4BB1A7
+  highlight xmlEndTag guifg=#4BB1A7
+  highlight xmlTagName guifg=#639EE4
 else
   set background=light
   colorscheme PaperColor
   highlight SignColumn guibg=lightgrey ctermbg=253
+  highlight MatchParen ctermfg=230 ctermbg=250
 endif
 
 
