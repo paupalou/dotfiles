@@ -43,6 +43,7 @@ Plug 'romainl/vim-qf'                                                        " M
 
 " Search
 Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
+Plug 'google/vim-searchindex'                                                " Count search results
 
 " Linter
 Plug 'benekastah/neomake'                                                    " Asynchronous compiler/checker
