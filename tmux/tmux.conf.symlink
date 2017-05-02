@@ -87,7 +87,7 @@ setw -g pane-base-index 1
 set -g escape-time 0
 set -g bell-action none
 set -g default-command 'zsh'
-set -g default-terminal 'screen-256color'
+set -g default-terminal 'xterm-256color'
 set -g display-panes-time 1500
 set -g display-time 1500
 set -g message-style 'bg=green,fg=black'
@@ -102,8 +102,7 @@ set -g pane-active-border-fg green
 
 # [ MOUSE ] ---------------------------------------------------------------------------------------
 set-option -g mouse on
-set-option -ga terminal-override ',screen-256color:Tc'
-set-option -ga terminal-overrides ',*:Ss=\E[%p1%d q:Se=\E[2 q'
+set-option -ga terminal-overrides ',xterm-256color:Tc'
 
 # [ STATUS ] --------------------------------------------------------------------------------------
 set -g status-left-length 50
@@ -131,6 +130,13 @@ setw -g monitor-activity off
 setw -g monitor-silence 0
 setw -g window-status-current-format '#[fg=colour220,bright] → #[fg=colour8,bright,bg=colour39] #I #[fg=colour8,bright,bg=colour115] #W '
 setw -g window-status-format ' #[fg=colour8,bright,bg=colour250] #I #[fg=colour8,bright,bg=colour244] #W '
+
+# [ WINDOW NAVIGATION ] ----------------------------------------------------------------------------
+bind -n M-1 select-window -t 1
+bind -n M-2 select-window -t 2
+bind -n M-3 select-window -t 3
+bind -n M-4 select-window -t 4
+bind -n M-5 select-window -t 5
 
 # [ VIM SPLITS - TMUX PANES ] ----------------------------------------------------------------------
 is_vim='echo "#{pane_current_command}" | grep -iqE "(^|\/)g?(view|n?vim?x?)(diff)?$"'
