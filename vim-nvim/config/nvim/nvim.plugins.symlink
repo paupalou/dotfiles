@@ -11,7 +11,7 @@ endif
 
 " Tim Pope
 if !g:neovim
-  Plug 'tpope/vim-sensible'   " Basic vim settings
+  Plug 'tpope/vim-sensible' " Basic vim settings
 endif
 Plug 'tpope/vim-repeat'     " Enable repeat for some plugins
 Plug 'tpope/vim-surround'   " Mappings for surrounding
@@ -35,25 +35,26 @@ Plug 'honza/vim-snippets'             " Snippets for ultiSnips
 Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
 
 " Navigation
-Plug 'ap/vim-buftabline'                                                     " Buffer visual selection on top
-Plug 'justinmk/vim-gtfo'                                                     " Open file-manager/terminal on pwd (gof/got)
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " Sane buffer deletion
-Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
-Plug 'yuttie/comfortable-motion.vim'                                         " Smooth scrolling :>
-Plug 'romainl/vim-qf'                                                        " More pleasant quickfix/location window
-Plug 'scrooloose/nerdtree'
+Plug 'ap/vim-buftabline'                        " Buffer visual selection on top
+Plug 'justinmk/vim-gtfo'                        " Open file-manager/terminal on pwd (gof/got)
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' } " Sane buffer deletion
+Plug 'mhinz/vim-startify'                       " Show recent files on startup
+Plug 'yuttie/comfortable-motion.vim'            " Smooth scrolling :>
+Plug 'romainl/vim-qf'                           " More pleasant quickfix/location window
+Plug 'scrooloose/nerdtree'                      " IDE-Like filetree
 
-" Search
-Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
-Plug 'google/vim-searchindex'                                                " Count search results
+                                                " Search
+Plug 'mhinz/vim-grepper'                        " Grep/ag/ripgrep wrapper
+Plug 'google/vim-searchindex'                   " Count search results
 
-" Linter
-Plug 'benekastah/neomake'                                                    " Asynchronous compiler/checker
+                                                " Linter
+Plug 'benekastah/neomake'                       " Asynchronous compiler/checker
 
 " Visual helpers
-Plug 'kshenoy/vim-signature'                                                 " Display marks on left
-Plug 'hecal3/vim-leader-guide'                                               " vim leader guide
-Plug 'ap/vim-css-color'                                                      " Display colors on #rgb or rgb()
+Plug 'kshenoy/vim-signature'   " Display marks on left
+Plug 'hecal3/vim-leader-guide' " vim leader guide
+Plug 'ap/vim-css-color'        " Display colors on #rgb or rgb()
+Plug 'junegunn/vim-peekaboo'   " Display register contents
 
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] } " Mappings for easy align content

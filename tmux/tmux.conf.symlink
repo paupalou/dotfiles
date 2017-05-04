@@ -105,20 +105,12 @@ set-option -g mouse on
 set-option -ga terminal-overrides ',xterm-256color:Tc'
 
 # [ STATUS ] --------------------------------------------------------------------------------------
-set -g status-left-length 50
-set -g status-right-length 150
-set -g status on
-set -g status-justify left
-
-set -g status-left " #H "
-set -g status-left-fg black
-set -g status-left-bg colour244
-
-set -g status-right "#{prefix_highlight} %H:%M %d-%b-%y "
-set -g status-right-fg black
-set -g status-right-bg white
-
-set -g status-bg colour237
+set -g status-bg colour238
+set -g status-left ''
+set -g status-right '#[fg=colour250,bg=colour240] %b %d %Y #[fg=colour253,bg=colour238] %R '
+set -g status-right-length 100
+setw -g window-status-format '#[fg=colour247,bg=colour240] #I #[fg=colour253,bg=colour237] #W '
+setw -g window-status-current-format '#[fg=colour255,bg=colour240] #I #[fg=black,bg=colour83] ⇒  #W '
 
 # [ WINDOW ] --------------------------------------------------------------------------------------
 setw -g allow-rename on
@@ -128,8 +120,6 @@ setw -g clock-mode-style 24
 setw -g mode-keys vi
 setw -g monitor-activity off
 setw -g monitor-silence 0
-setw -g window-status-current-format '#[fg=colour220,bright] → #[fg=colour8,bright,bg=colour39] #I #[fg=colour8,bright,bg=colour115] #W '
-setw -g window-status-format ' #[fg=colour8,bright,bg=colour250] #I #[fg=colour8,bright,bg=colour244] #W '
 
 # [ WINDOW NAVIGATION ] ----------------------------------------------------------------------------
 bind -n M-1 select-window -t 1

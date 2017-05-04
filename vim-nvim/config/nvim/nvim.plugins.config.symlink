@@ -96,20 +96,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 " Supertab
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-" IndentLine
-autocmd! User indentLine doautocmd indentLine Syntax
-let g:indentLine_enabled = 1
-let g:indentLine_indentLevel = 2
-let g:indentLine_char = '┃'
-let g:indentLine_first_char = '┃'
-let g:indentLine_showFirstIndentLevel = 1
-let g:indentLine_fileTypeExclude = ['json']
-" for vim
-let g:indentLine_color_term = 253
-let g:indentLine_color_tty_light = 0
-" for neovim
-let g:indentLine_color_gui = '#3e5563'
-
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
 
@@ -198,8 +184,8 @@ let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
 let g:startify_bookmarks              = [ {'d': '~/.dotfiles'}, {'c': '~/code/'} ]
 
-" # IndentLine
-map <silent> <Leader>L :IndentLinesToggle<CR>
+" # NERDTree
+map <silent> <Leader>n :NERDTreeToggle<CR>
 
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>
