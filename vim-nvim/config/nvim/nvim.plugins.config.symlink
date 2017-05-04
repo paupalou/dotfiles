@@ -127,6 +127,9 @@ else
     let g:completor_node_binary = '/opt/node'
 endif
 
+" NERDTree
+let NERDTreeMinimalUI = 1
+
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
 
