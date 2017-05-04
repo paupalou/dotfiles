@@ -19,6 +19,7 @@ Plug 'tpope/vim-commentary' " Mappings for commenting - gcc
 Plug 'tpope/vim-unimpaired' " Mappings for utility
 Plug 'tpope/vim-eunuch'     " Shell commands like :SudoWrite
 Plug 'tpope/vim-fugitive'   " Best git wrapper
+Plug 'tpope/vim-haml'       " Runtime files for haml,sass,scss
 
 " Tags
 Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle' } " Tagbar
@@ -40,6 +41,7 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }                              " S
 Plug 'mhinz/vim-startify'                                                    " Show recent files on startup
 Plug 'yuttie/comfortable-motion.vim'                                         " Smooth scrolling :>
 Plug 'romainl/vim-qf'                                                        " More pleasant quickfix/location window
+Plug 'scrooloose/nerdtree'
 
 " Search
 Plug 'mhinz/vim-grepper'                                                     " Grep/ag/ripgrep wrapper
@@ -49,7 +51,6 @@ Plug 'google/vim-searchindex'                                                " C
 Plug 'benekastah/neomake'                                                    " Asynchronous compiler/checker
 
 " Visual helpers
-" Plug 'Yggdroot/indentLine',                                                  " Indent Lines
 Plug 'kshenoy/vim-signature'                                                 " Display marks on left
 Plug 'hecal3/vim-leader-guide'                                               " vim leader guide
 Plug 'ap/vim-css-color'                                                      " Display colors on #rgb or rgb()

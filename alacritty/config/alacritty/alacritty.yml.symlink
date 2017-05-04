@@ -54,11 +54,11 @@ font:
     style: Italic
 
   # Point size of the font
-  size: 13.0
+  size: 12.8
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: -1.5
+    x: -1.0
     y: 0.0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
@@ -71,7 +71,7 @@ render_timer: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.
-custom_cursor_colors: false
+custom_cursor_colors: true
 
 # Colors (Tomorrow Night Bright)
 colors:
@@ -84,8 +84,8 @@ colors:
 
   # Colors the cursor will use if `custom_cursor_colors` is true
   cursor:
-    text: '0x000000'
-    cursor: '0xffffff'
+    text: '0xf06c51'
+    cursor: '0xe6f0af'
 
   # Normal colors
   normal:
