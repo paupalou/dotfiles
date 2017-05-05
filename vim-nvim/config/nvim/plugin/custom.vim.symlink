@@ -46,6 +46,9 @@ fun! FindFiles(filename, ...)
   endif
 
   for extension in a:000
+    if extension == '' && findfile(a:filename, '.;') !=# ''
+      return 1
+    endif
     let a:file = join([a:filename, extension], ".")
     if findfile(a:file, '.;') !=# ''
       return 1

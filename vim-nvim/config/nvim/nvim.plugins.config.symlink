@@ -26,9 +26,9 @@ let g:neomake_go_enabled_makers      = ['gofmt', 'gobuild']
 let g:neomake_php_enabled_makers     = ['php']
 let g:neomake_python_enabled_makers  = ['flake8']
 
-if FindFiles('.eslintrc', 'json', 'yml')
+if FindFiles('.eslintrc', '', 'json', 'yml')
   let g:neomake_javascript_eslint_exe = 'eslint'
-  let local_eslint = $PWD. '/node_modules/.bin/eslint'
+  let local_eslint = $PWD. '/node_modules/eslint/bin/eslint.js'
   if FindFiles(local_eslint)
     let g:neomake_javascript_eslint_exe = local_eslint
   endif
