@@ -33,6 +33,9 @@ endif
 
 highlight Comment gui=italic cterm=italic
 
+" Disable Background Color Erase (BCE)
+set t_ut=
+
 " font for gvim
 if !g:neovim
   set guifont=Operator\ Mono\ 14
