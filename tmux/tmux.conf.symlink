@@ -107,7 +107,7 @@ set-option -ga terminal-overrides ',xterm-256color:Tc'
 # [ STATUS ] --------------------------------------------------------------------------------------
 set -g status-bg colour238
 set -g status-left ''
-set -g status-right '#[fg=colour250,bg=colour240] %b %d %Y #[fg=colour253,bg=colour238] %R '
+set -g status-right '#{prefix_highlight} #[fg=colour250,bg=colour240] %b %d %Y #[fg=colour253,bg=colour238] %R '
 set -g status-right-length 100
 setw -g window-status-format '#[fg=colour247,bg=colour240] #I #[fg=colour253,bg=colour237] #W '
 setw -g window-status-current-format '#[fg=colour255,bg=colour240] #I #[fg=black,bg=colour83] ⇒  #W '
