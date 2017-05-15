@@ -29,7 +29,6 @@ else
   colorscheme PaperColor
   highlight SignColumn guibg=lightgrey ctermbg=253
   highlight MatchParen ctermfg=230 ctermbg=250
-  highlight ColorColumn ctermbg=7
 endif
 
 highlight Comment gui=italic cterm=italic

@@ -8,6 +8,5 @@ setlocal formatoptions=croql
 setlocal textwidth=79
 setlocal colorcolumn=80
 
-highlight ColorColumn ctermbg=236
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
