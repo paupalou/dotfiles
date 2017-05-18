@@ -23,7 +23,7 @@ setopt EXTENDED_HISTORY
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
-setopt IGNORE_EOF
+# setopt IGNORE_EOF
 
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY SHARE_HISTORY
@@ -46,4 +46,4 @@ bindkey "^F" forward-word
 bindkey "^X" backward-char
 bindkey "^Z" forward-char
 
-bindkey "^D" kill-whole-line
+# bindkey "^D" kill-whole-line
