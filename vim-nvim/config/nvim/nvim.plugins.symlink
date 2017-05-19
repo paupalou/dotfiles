@@ -19,7 +19,7 @@ Plug 'tpope/vim-commentary' " Mappings for commenting - gcc
 Plug 'tpope/vim-unimpaired' " Mappings for utility
 Plug 'tpope/vim-eunuch'     " Shell commands like :SudoWrite
 Plug 'tpope/vim-fugitive'   " Best git wrapper
-Plug 'tpope/vim-haml'       " Runtime files for haml,sass,scss
+Plug 'tpope/vim-haml'       " Runtime files for haml, sass, scss
 
 " Tags
 Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle' } " Tagbar
@@ -43,11 +43,11 @@ Plug 'yuttie/comfortable-motion.vim'            " Smooth scrolling :>
 Plug 'romainl/vim-qf'                           " More pleasant quickfix/location window
 Plug 'scrooloose/nerdtree'                      " IDE-Like filetree
 
-                                                " Search
+" Search
 Plug 'mhinz/vim-grepper'                        " Grep/ag/ripgrep wrapper
 Plug 'google/vim-searchindex'                   " Count search results
 
-                                                " Linter
+" Linter
 Plug 'benekastah/neomake'                       " Asynchronous compiler/checker
 
 " Visual helpers
