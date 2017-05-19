@@ -46,7 +46,7 @@ let g:qf_auto_open_loclist  = 0
 
 let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeCustomErrorSign'}
 let g:neomake_warning_sign = {
-    \ 'text': '⚠',
+    \ 'text': '→',
     \ 'texthl': 'NeomakeCustomWarningSign',
     \ }
 let g:neomake_message_sign = {
@@ -55,8 +55,8 @@ let g:neomake_message_sign = {
     \ }
 let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeCustomInfoSign'}
 
-highlight NeomakeCustomErrorSign guifg=red ctermbg=187 ctermfg=131
-highlight NeomakeCustomWarningSign guifg=yellow
+highlight NeomakeCustomErrorSign guifg=red guibg=#337fa0
+highlight NeomakeCustomWarningSign guifg=#BBF911 guibg=#337fa0
 highlight link NeomakeError ErrorMsg
 highlight link NeomakeWarning Error
 
