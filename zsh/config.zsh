@@ -23,7 +23,6 @@ setopt EXTENDED_HISTORY
 setopt PROMPT_SUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
-# setopt IGNORE_EOF
 
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY SHARE_HISTORY
@@ -37,13 +36,8 @@ setopt complete_aliases
 bindkey '^A' beginning-of-line
 bindkey '^E' end-of-line
 
-# bindkey "^[[1;5D" backward-word
-# bindkey "^[[1;5C" forward-word
-
 bindkey "^B" backward-word
 bindkey "^F" forward-word
 
 bindkey "^X" backward-char
 bindkey "^Z" forward-char
-
-# bindkey "^D" kill-whole-line
