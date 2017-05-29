@@ -1,0 +1,7 @@
+/*  Styles for Web developer tools */
+@namespace url(http://www.w3.org/1999/xhtml);
+.devtools-monospace {
+    font-family:    "Operator Mono", monospace !important;
+    font-size:      10pt !important;
+}
+
