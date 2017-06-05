@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-char font[] = "Operator Mono:size=12.5:antialias=true:autohint=true";
+char font[] = "Operator Mono:size=13.5:antialias=true:autohint=true";
 int borderpx = 3;
 
 /*
