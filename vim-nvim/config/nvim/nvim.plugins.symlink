@@ -113,7 +113,7 @@ Plug 'NLKNguyen/papercolor-theme'
 
 " Experimental
 if g:neovim
-Plug 'equalsraf/neovim-gui-shim'
+  Plug 'equalsraf/neovim-gui-shim'
 endif
 
 call plug#end()
