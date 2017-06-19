@@ -70,10 +70,10 @@ let g:tagbar_iconchars = ['▸', '▾']
 
 " Grepper
 let g:grepper = {
-    \ 'tools': ['rg', 'ag', 'git', 'grep'],
-    \ 'open':  1,
+    \ 'tools': ['rg', 'git', 'grep'],
     \ 'jump':  0,
-    \ 'switch':  0
+    \ 'quickfix': 1,
+    \ 'simple_prompt': 1
     \ }
 
 " Javascript-libraries-syntax
@@ -199,7 +199,7 @@ vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " # Greeper
-nnoremap <silent> <leader>g :Grepper -tool rg -jump<CR>
+nnoremap <silent> <leader>g :Grepper<CR>
 nnoremap <silent> <leader>* :Grepper -tool rg -cword -noprompt<CR>
 xmap gs <plug>(GrepperOperator)
 

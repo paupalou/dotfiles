@@ -115,5 +115,6 @@ Plug 'NLKNguyen/papercolor-theme'
 if g:neovim
   Plug 'equalsraf/neovim-gui-shim'
 endif
+Plug 'rhysd/clever-f.vim'
 
 call plug#end()
