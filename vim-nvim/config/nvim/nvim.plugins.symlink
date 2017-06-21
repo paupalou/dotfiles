@@ -109,7 +109,10 @@ Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletio
 
 " ColorSchemes
 Plug 'KeitaNakamura/neodark.vim'
+Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'bluz71/vim-moonfly-colors'
+Plug 'tyrannicaltoucan/vim-quantum'
 
 " Experimental
 if g:neovim

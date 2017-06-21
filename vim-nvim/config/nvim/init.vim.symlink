@@ -22,12 +22,11 @@ if !g:neovim
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-set background=light
-colorscheme PaperColor
-highlight SignColumn guibg=#9BC1D1
-highlight MatchParen guibg=#ED85B9 guifg=white
+colorscheme neodark
+" highlight SignColumn guibg=#9BC1D1
+" highlight MatchParen guibg=#ED85B9 guifg=white
 highlight Comment gui=italic cterm=italic
-highlight SignatureMarkText guibg=yellow
+highlight SignatureMarkText guibg=yellow guifg=black
 
 " Disable Background Color Erase (BCE)
 set t_ut=
