@@ -2,66 +2,15 @@
 
 " ### PLUGIN SETTINGS
 
-" Neomake
-let g:neomake_go_gofmt_maker = {
-    \ 'exe': 'gofmt',
-    \ 'args': ['-l'],
-    \ 'errorformat':
-    \ '%f:%l:%c: %m,' .
-    \ '%-G%.%#'
-    \ }
+" ALE
+let g:ale_sign_error = '✖'
+let g:ale_sign_warning = '→'
+highlight ALEErrorSign guifg=red
+highlight ALEWarningSign guifg=#BBF911
 
-let g:neomake_go_gobuild_maker = {
-    \ 'exe': 'sh',
-    \ 'args': ['-c', 'go build -o /dev/null ./\$0', '%:h'],
-    \ 'errorformat':
-    \ '%W%f:%l: warning: %m,' .
-    \ '%E%f:%l:%c:%m,' .
-    \ '%E%f:%l:%m,' .
-    \ '%C%\s%\+%m,' .
-    \ '%-G#%.%#'
-    \ }
-
-let g:neomake_go_enabled_makers      = ['gofmt', 'gobuild']
-let g:neomake_php_enabled_makers     = ['php']
-let g:neomake_python_enabled_makers  = ['flake8']
-
-if FindFiles('.eslintrc', '', 'json', 'yml')
-  let g:neomake_javascript_eslint_exe = 'eslint'
-  let local_eslint = $PWD. '/node_modules/eslint/bin/eslint.js'
-  if FindFiles(local_eslint)
-    let g:neomake_javascript_eslint_exe = local_eslint
-  endif
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_jsx_enabled_makers = ['eslint']
-endif
-
-let g:neomake_open_list     = 0
-let g:neomake_list_height   = 5
-let g:neomake_verbose       = 0
-let g:neomake_airline       = 0
-
+" QuickFix
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist  = 0
-
-let g:neomake_error_sign = {'text': '✖', 'texthl': 'NeomakeCustomErrorSign'}
-let g:neomake_warning_sign = {
-    \ 'text': '→',
-    \ 'texthl': 'NeomakeCustomWarningSign',
-    \ }
-let g:neomake_message_sign = {
-    \ 'text': '➤',
-    \ 'texthl': 'NeomakeCustomMessageSign',
-    \ }
-let g:neomake_info_sign = {'text': 'ℹ', 'texthl': 'NeomakeCustomInfoSign'}
-
-highlight NeomakeCustomErrorSign guifg=red guibg=#337fa0
-highlight NeomakeCustomWarningSign guifg=#BBF911 guibg=#337fa0
-highlight link NeomakeError ErrorMsg
-highlight link NeomakeWarning Error
-
-autocmd! BufWritePost * Neomake
-command Errors copen
 
 " TagBar
 let g:tagbar_compact = 1
@@ -89,44 +38,60 @@ else
   let g:UltiSnipsUsePythonVersion    = 2
 endif
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
-let g:UltiSnipsExpandTrigger       = "<C-T>"
+let g:UltiSnipsExpandTrigger       = "<C-Space>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
-" Supertab
-let g:SuperTabDefaultCompletionType = "<c-n>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <C-@> <C-x><C-o>
+autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
 
-" Deoplete
+" LanguageClient plugin
 if g:neovim
-    let g:deoplete#enable_at_startup = 1
-    let g:deoplete#sources = {}
-    let g:deoplete#sources#jedi#python_path = '/usr/bin/python3'
-    let g:deoplete#sources.python = ['ultisnips', 'buffer', 'jedi']
+  let g:LanguageClient_autoStart = 0
+  let g:LanguageClient_diagnosticsEnable = 0
 
-    inoremap <C-@> <C-x><C-o>
-    autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
+  " Minimal LSP configuration for JavaScript
+  let g:LanguageClient_serverCommands = {
+    \ 'javascript' : ['javascript-typescript-stdio'],
+    \ 'javascript.jsx' : ['javascript-typescript-stdio'],
+    \ }
+  if executable('javascript-typescript-stdio')
+    " Use LanguageServer for omnifunc completion
+    autocmd FileType javascript setlocal omnifunc=LanguageClient#complete
+    autocmd FileType javascript.jsx setlocal omnifunc=LanguageClient#complete
+  else
+    echo "javascript-typescript-stdio not installed!\n"
+    :cq
+  endif
 
-    " deoplete-ternjs
-    let g:tern_request_timeout = 1
-    let g:tern_show_signature_in_pum = 0
-    let g:tern#filetypes = ['jsx', 'javascript.jsx', 'vue']
-    " Use tern_for_vim.
-    let g:tern#command = ["tern"]
-    let g:tern#arguments = ["--persistent"]
-    let g:deoplete#omni#functions = {}
-    let g:deoplete#omni#functions.javascript = ['tern#Complete']
-    let g:deoplete#sources['javascript.jsx'] = ['file', 'ultisnips', 'ternjs']
+  " <leader>ld to go to definition
+  autocmd FileType javascript nnoremap <buffer>
+    \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
+  " <leader>lh for type info under cursor
+  autocmd FileType javascript nnoremap <buffer>
+    \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
+  " <leader>lr to rename variable under cursor
+  autocmd FileType javascript nnoremap <buffer>
+    \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
 
-    " deoplete-go
-    let g:deoplete#sources#go#gocode_binary = '$GOPATH./bin/gocode'
-    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-    let g:deoplete#sources#go#use_cache = 1
-else
-    let g:completor_node_binary = '/opt/node'
+  autocmd FileType javascript nnoremap <buffer>
+    \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
+
+  " Completion Manager
+  let g:cm_matcher = {
+     \ 'case': 'smartcase',
+     \ 'module': 'cm_matchers.prefix_matcher'
+     \}
 endif
+
+" vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
 
 " NERDTree
 let NERDTreeMinimalUI = 1
@@ -205,10 +170,6 @@ xmap gs <plug>(GrepperOperator)
 
 " # Leader-Guide
 nnoremap <silent> <leader>i :<c-u>LeaderGuide '<Space>'<CR>
-
-" # Comfortable Motion
-nnoremap <silent> <PageDown> :call comfortable_motion#flick(400)<CR>
-nnoremap <silent> <PageUp> :call comfortable_motion#flick(-400)<CR>
 
 " # Vimux
 nmap <Leader>r :call OpenVimuxPanel()<CR>
