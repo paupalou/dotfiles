@@ -22,8 +22,11 @@ if !g:neovim
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-set background=dark
-colorscheme PaperColor
+colorscheme onedark
+" onedark bufftabline
+highlight BufTabLineCurrent guibg=#036564 guifg=#FFFBB7 gui=italic
+highlight BufTabLineHidden guifg=#A09ba3
+
 highlight Comment gui=italic cterm=italic
 highlight SignatureMarkText guifg=yellow
 
