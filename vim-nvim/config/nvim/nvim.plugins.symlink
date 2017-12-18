@@ -32,7 +32,8 @@ Plug 'junegunn/fzf.vim'     " mappings for fzf inside vim
 " Snippets
 Plug 'SirVer/ultisnips'               " Generate and use snippets
 Plug 'honza/vim-snippets'             " Snippets for ultiSnips
-Plug 'greg-js/vim-react-es6-snippets' " Snippets for ES6 and React
+Plug 'paupalou/vim-es2015-snippets'  " Snippets for ES6
+Plug 'paupalou/vim-react-snippets'    " Snippets for React
 
 " Navigation
 Plug 'ap/vim-buftabline'                        " Buffer visual selection on top
@@ -59,8 +60,6 @@ Plug 'junegunn/vim-peekaboo'   " Display register contents
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 Plug 'cohama/lexima.vim' " Closes automatically brackets
-
-
 Plug 'LucHermitte/lh-vim-lib'  " Library dependencie for local_vimrc
 Plug 'LucHermitte/local_vimrc' " Source vim settings per project|tree
 
@@ -77,11 +76,10 @@ Plug 'junegunn/gv.vim'   " Show Git Commits
 
 " Autocompletion and IDE-like features
 if g:neovim
-   Plug 'roxma/nvim-completion-manager'
+   Plug 'Shougo/deoplete.nvim'
    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-   Plug 'Shougo/echodoc.vim'
-   Plug 'roxma/nvim-cm-tern', {'do': 'npm install', 'for': ['javascript', 'javascript.jsx']}
    Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
+   Plug 'Shougo/echodoc.vim'
 else
   Plug 'maralla/completor.vim'
 endif
@@ -108,7 +106,6 @@ Plug 'rust-lang/rust.vim', { 'for': ['rust'] }
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'bluz71/vim-moonfly-colors'
-Plug 'tyrannicaltoucan/vim-quantum'
+Plug 'junegunn/seoul256.vim'
 
 call plug#end()

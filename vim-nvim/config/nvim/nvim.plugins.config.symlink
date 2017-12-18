@@ -3,6 +3,8 @@
 " ### PLUGIN SETTINGS
 
 " ALE
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_save = 1
 let g:ale_sign_error = '✖'
 let g:ale_sign_warning = '→'
 highlight ALEErrorSign guifg=red
@@ -42,32 +44,33 @@ let g:UltiSnipsExpandTrigger       = "<C-Space>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <C-@> <C-x><C-o>
-autocmd InsertLeave,CompleteDone * if pumvisible() == 0 | pclose | endif
-
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
 
+" EchoDoc
+let g:echodoc#enable_at_startup = 1
+
+" Deoplete
+if g:neovim
+  let g:deoplete#enable_at_startup = 1
+endif
+
 " LanguageClient plugin
 if g:neovim
-  let g:LanguageClient_autoStart = 0
-  let g:LanguageClient_diagnosticsEnable = 0
+  let g:LanguageClient_autoStart = 1
 
   " Minimal LSP configuration for JavaScript
   let g:LanguageClient_serverCommands = {
     \ 'javascript' : ['javascript-typescript-stdio'],
     \ 'javascript.jsx' : ['javascript-typescript-stdio'],
     \ }
-  if executable('javascript-typescript-stdio')
-    " Use LanguageServer for omnifunc completion
-    autocmd FileType javascript setlocal omnifunc=LanguageClient#complete
-    autocmd FileType javascript.jsx setlocal omnifunc=LanguageClient#complete
-  else
-    echo "javascript-typescript-stdio not installed!\n"
-    :cq
-  endif
+
+  " Don't need to automake in supported languages
+  augroup automake
+    autocmd!
+    " JavaScript and Typescript lint via language servers
+    autocmd BufWritePost *.sh,*.less,*.css,*.vim,*.vimrc,*.txt,*.md make!
+  augroup END
 
   " <leader>ld to go to definition
   autocmd FileType javascript nnoremap <buffer>
@@ -82,16 +85,10 @@ if g:neovim
   autocmd FileType javascript nnoremap <buffer>
     \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
 
-  " Completion Manager
-  let g:cm_matcher = {
-     \ 'case': 'smartcase',
-     \ 'module': 'cm_matchers.prefix_matcher'
-     \}
 endif
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_flow = 1
 
 " NERDTree
 let NERDTreeMinimalUI = 1

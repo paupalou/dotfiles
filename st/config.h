@@ -5,7 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-char font[] = "Operator Mono:size=13:antialias=true:autohint=true";
+/* char font[] = "Operator Mono Book:size=13.8:weight=bold:antialias=true:autohint=true"; */
+char font[] = "Operator Mono Book:pixelsize=18:weight=bold:antialias=true:autohint=true";
 int borderpx = 3;
 
 /*
@@ -24,8 +25,8 @@ static char stty_args[] = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 static char vtiden[] = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-float cwscale = .9;
-float chscale = 1.0;
+float cwscale = 1.0;
+float chscale = 1.1;
 
 /*
  * word delimiter string
@@ -42,8 +43,8 @@ unsigned int tripleclicktimeout = 600;
 int allowaltscreen = 1;
 
 /* frames per second st should at maximum draw to the screen */
-unsigned int xfps = 120;
-unsigned int actionfps = 30;
+unsigned int xfps = 300;
+unsigned int actionfps = 60;
 
 /*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking

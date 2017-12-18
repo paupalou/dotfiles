@@ -22,11 +22,10 @@ if !g:neovim
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-colorscheme neodark
-" highlight SignColumn guibg=#9BC1D1
-" highlight MatchParen guibg=#ED85B9 guifg=white
+set background=dark
+colorscheme PaperColor
 highlight Comment gui=italic cterm=italic
-highlight SignatureMarkText guibg=yellow guifg=black
+highlight SignatureMarkText guifg=yellow
 
 " Disable Background Color Erase (BCE)
 set t_ut=
@@ -38,6 +37,9 @@ endif
 
 " Use mouse
 set mouse=nvr
+
+" dont need mode info with handy statusline
+set noshowmode
 
 " Tab settings
 set tabstop=4
@@ -87,9 +89,6 @@ set ignorecase
 set smartcase
 set infercase
 
-" Scrren will not redrawn if a macro is running
-set lazyredraw
-
 " Max 15 items on popup menu
 set pumheight=15
 
@@ -101,7 +100,7 @@ set clipboard=unnamedplus
 
 " Better auto complete
 set complete=.,w,b,u,t,i
-set completeopt=longest,menu
+set completeopt=longest,menu,preview
 
 set modeline
 set modelines=5
@@ -166,6 +165,10 @@ cnoremap <c-e> <end>
 
 " qq to record, Q to replay
 nmap Q @q
+
+" Use Tab and S-Tab to iterate over completion menu
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " python paths
 let g:python_host_prog = '/usr/bin/python2'
