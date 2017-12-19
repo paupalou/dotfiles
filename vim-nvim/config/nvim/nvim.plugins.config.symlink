@@ -51,9 +51,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
 
-" EchoDoc
-let g:echodoc#enable_at_startup = 1
-
 " Deoplete
 if g:neovim
   let g:deoplete#enable_at_startup = 1
@@ -147,7 +144,8 @@ imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
 
 " # Startify
-nmap <silent> <Leader>s :Startify<CR>
+nmap <silent> <F1> :Startify<CR>
+nmap <silent> <Leader>a :Startify<CR>
 let g:ascii = [
             \ '        __',
             \ '.--.--.|__|.--------.',
@@ -167,12 +165,16 @@ let g:startify_session_delete_buffers = 1
 let g:startify_bookmarks              = [ {'d': '~/.dotfiles'}, {'c': '~/code/'} ]
 
 " # NERDTree
-map <silent> <Leader>n :NERDTreeToggle<CR>
+map <silent> <Leader>` :NERDTreeToggle<CR>
 
 " # TagBar
 nmap <silent> <Leader>t :TagbarToggle<CR>
 
-" # VIM-EASY-ALIGN
+" # SplitJoin
+nmap <Leader>j :SplitjoinJoin<cr>
+nmap <Leader>s :SplitjoinSplit<cr>
+
+" # Vim-Easy-Align
 vmap <Enter> <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 

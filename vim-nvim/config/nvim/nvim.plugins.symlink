@@ -32,7 +32,7 @@ Plug 'junegunn/fzf.vim'     " mappings for fzf inside vim
 " Snippets
 Plug 'SirVer/ultisnips'               " Generate and use snippets
 Plug 'honza/vim-snippets'             " Snippets for ultiSnips
-Plug 'paupalou/vim-es2015-snippets'  " Snippets for ES6
+Plug 'paupalou/vim-es2015-snippets'   " Snippets for ES6
 Plug 'paupalou/vim-react-snippets'    " Snippets for React
 
 " Navigation
@@ -59,9 +59,10 @@ Plug 'junegunn/vim-peekaboo'   " Display register contents
 
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
-Plug 'cohama/lexima.vim' " Closes automatically brackets
-Plug 'LucHermitte/lh-vim-lib'  " Library dependencie for local_vimrc
-Plug 'LucHermitte/local_vimrc' " Source vim settings per project|tree
+Plug 'cohama/lexima.vim'         " Closes automatically brackets
+Plug 'LucHermitte/lh-vim-lib'    " Library dependencie for local_vimrc
+Plug 'LucHermitte/local_vimrc'   " Source vim settings per project|tree
+Plug 'AndrewRadev/splitjoin.vim' " Switch [single,multi]line
 
 " TextObjects
 Plug 'wellle/targets.vim' " Add various text objects
@@ -79,7 +80,6 @@ if g:neovim
    Plug 'Shougo/deoplete.nvim'
    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
    Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
-   Plug 'Shougo/echodoc.vim'
 else
   Plug 'maralla/completor.vim'
 endif
