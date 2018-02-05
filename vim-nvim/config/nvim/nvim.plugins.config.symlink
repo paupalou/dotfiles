@@ -5,10 +5,13 @@
 " ALE
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
-let g:ale_sign_error = '✖'
-let g:ale_sign_warning = '→'
-highlight ALEErrorSign guifg=red
-highlight ALEWarningSign guifg=#BBF911
+let g:ale_sign_error = '▪'
+let g:ale_sign_warning = '»'
+let g:ale_linters = {
+    \ 'javascript' : ['standard'],
+    \ }
+highlight ALEErrorSign guifg=red guibg=#d6d8db
+highlight ALEWarningSign guifg=#BBF911 guibg=#d6d8db
 
 " QuickFix
 let g:qf_auto_open_quickfix = 0
@@ -45,8 +48,8 @@ else
 endif
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
 let g:UltiSnipsExpandTrigger       = "<C-Space>"
-let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger  = "<C-F>"
+let g:UltiSnipsJumpBackwardTrigger = "<C-B>"
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
@@ -58,13 +61,19 @@ endif
 
 " LanguageClient plugin
 if g:neovim
+  let g:deoplete#sources#ternjs#filetypes = [
+    \ 'jsx',
+    \ 'javascript.jsx'
+    \ ]
   let g:LanguageClient_autoStart = 1
 
   " Minimal LSP configuration for JavaScript
   let g:LanguageClient_serverCommands = {
-    \ 'javascript' : ['javascript-typescript-stdio'],
-    \ 'javascript.jsx' : ['javascript-typescript-stdio'],
+    \ 'python' : ['/usr/local/bin/pyls']
     \ }
+
+  "    \ 'javascript' : ['javascript-typescript-stdio'],
+  "    \ 'javascript.jsx' : ['javascript-typescript-stdio'],
 
   " Don't need to automake in supported languages
   augroup automake
@@ -106,11 +115,6 @@ let g:gutentags_ctags_exclude = ['*.json']
 let g:lmap = {}
 call leaderGuide#register_prefix_descriptions(",", "g:lmap")
 
-" Local VimRC
-let g:local_vimrc = ['project.config.vim', 'project.vim']
-call lh#local_vimrc#munge('whitelist', $HOME.'/code')
-call lh#local_vimrc#munge('blacklist', $HOME.'/code/external')
-
 " ### PLUGIN MAPINGS
 " # BufTabLine
 nmap <leader>1 <Plug>BufTabLine.Go(1)
@@ -138,7 +142,8 @@ nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
-nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
+nnoremap <silent> <leader>/ :History/<CR>
+nnoremap <silent> <leader>u :Snippets<CR>
 
 imap <C-x><C-f> <plug>(fzf-complete-file-ag)
 imap <C-x><C-l> <plug>(fzf-complete-line)
@@ -162,7 +167,10 @@ let g:startify_files_number           = 8
 let g:startify_session_autoload       = 1
 let g:startify_session_persistence    = 1
 let g:startify_session_delete_buffers = 1
-let g:startify_bookmarks              = [ {'d': '~/.dotfiles'}, {'c': '~/code/'} ]
+let g:startify_bookmarks              = [
+  \ {'d': '~/.dotfiles'},
+  \ {'c': '~/code/'}
+  \ ]
 
 " # NERDTree
 map <silent> <Leader>` :NERDTreeToggle<CR>

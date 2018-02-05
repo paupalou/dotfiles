@@ -21,13 +21,43 @@ if !g:neovim
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 
-colorscheme onedark
-" onedark bufftabline
-highlight BufTabLineCurrent guibg=#036564 guifg=#FFFBB7 gui=italic
-highlight BufTabLineHidden guifg=#A09ba3
+" Color Settings
+set background=light
+colorscheme PaperColor
 
+" BufTabLine
+highlight BufTabLineCurrent guibg=#306b84 guifg=#9dd668
+highlight BufTabLineActive guibg=#306b84 guifg=#23464c
+highlight BufTabLineHidden guibg=#0083ba guifg=#035554 gui=italic
+
+" SignColumn
+highlight SignColumn guibg=#d6d8db
+
+" Git Sign Colors
+highlight DiffAdd guifg=#00a343 guibg=#d6d8db
+highlight DiffChange guifg=#B76E01 guibg=#d6d8db
+highlight DiffDelete guifg=#d660ae guibg=#d6d8db
+
+" Marks Sign Colors
+highlight SignatureMarkText guifg=#0083ba
+
+" Comments (italic)
 highlight Comment gui=italic cterm=italic
-highlight SignatureMarkText guifg=yellow
+
+" MatchParen
+highlight MatchParen guibg=lightblue
+
+" statusline
+if g:neovim
+  hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
+  au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
+  au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
+else
+  hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#ede6e6 guifg=#005f87
+  au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#f4f2f2 guifg=#b52626
+  au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#ede6e6 guifg=#005f87
+endif
+set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
 
 " Disable Background Color Erase (BCE)
 set t_ut=
@@ -172,24 +202,12 @@ nmap Q @q
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-" python paths
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+" Figure out the system Python for Neovim.
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
 
 " grepprg
 set grepprg=rg\ --vimgrep
-
-" statusline
-if g:neovim
-  hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
-  au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
-  au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
-else
-  hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#ede6e6 guifg=#005f87
-  au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#f4f2f2 guifg=#b52626
-  au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#ede6e6 guifg=#005f87
-endif
-set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
 
 " neovim features
 if g:neovim

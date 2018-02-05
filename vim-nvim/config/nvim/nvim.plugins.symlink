@@ -60,8 +60,6 @@ Plug 'junegunn/vim-peekaboo'   " Display register contents
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 Plug 'cohama/lexima.vim'         " Closes automatically brackets
-Plug 'LucHermitte/lh-vim-lib'    " Library dependencie for local_vimrc
-Plug 'LucHermitte/local_vimrc'   " Source vim settings per project|tree
 Plug 'AndrewRadev/splitjoin.vim' " Switch [single,multi]line
 
 " TextObjects
@@ -78,6 +76,7 @@ Plug 'junegunn/gv.vim'   " Show Git Commits
 " Autocompletion and IDE-like features
 if g:neovim
    Plug 'Shougo/deoplete.nvim'
+   Plug 'carlitux/deoplete-ternjs'
    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
    Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
 else
