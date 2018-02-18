@@ -5,7 +5,6 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-/* char font[] = "Operator Mono Book:size=13.8:weight=bold:antialias=true:autohint=true"; */
 char font[] = "Operator Mono Book:pixelsize=18.5:weight=bold:antialias=true:autohint=true";
 int borderpx = 3;
 
