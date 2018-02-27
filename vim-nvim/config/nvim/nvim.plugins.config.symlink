@@ -9,6 +9,7 @@ let g:ale_sign_error = '▪'
 let g:ale_sign_warning = '»'
 let g:ale_linters = {
     \ 'javascript' : ['standard'],
+    \ 'python': ['flake8', 'pycodestyle', 'yapf']
     \ }
 highlight ALEErrorSign guifg=red guibg=#d6d8db
 highlight ALEWarningSign guifg=#BBF911 guibg=#d6d8db
@@ -101,6 +102,7 @@ endif
 let g:javascript_plugin_jsdoc = 1
 
 " NERDTree
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let NERDTreeMinimalUI = 1
 
 " Signify

@@ -209,6 +209,9 @@ let g:python3_host_prog='/usr/bin/python3'
 " grepprg
 set grepprg=rg\ --vimgrep
 
+" wildignore
+set wildignore+=*.pyc,*.pyo
+
 " neovim features
 if g:neovim
   set inccommand=nosplit
