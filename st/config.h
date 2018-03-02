@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-char font[] = "Operator Mono Book:pixelsize=18.5:weight=bold:antialias=true:autohint=true";
+char font[] = "Operator Mono Book:weight=bold:pixelsize=18:antialias=true:autohint=true";
 int borderpx = 3;
 
 /*
@@ -25,7 +25,7 @@ static char vtiden[] = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
 float cwscale = 1.1;
-float chscale = 1.1;
+float chscale = 1.2;
 
 /*
  * word delimiter string
