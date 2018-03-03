@@ -251,11 +251,11 @@ install_topic_subfolders () {
 check_versions() {
   _start "start ${bold}checking versions${normal}"
   version 'bash'
-  version 'git'
-  version 'vim'
   version 'zsh'
-  version 'nvim'
   version 'tmux' '-V'
+  version 'vim'
+  version 'nvim'
+  version 'git'
   version 'rg'
   version 'fzf'
   _end "end ${bold}checking versions${normal}"
