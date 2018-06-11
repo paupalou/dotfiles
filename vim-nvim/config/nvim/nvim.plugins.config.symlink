@@ -9,8 +9,16 @@ let g:ale_sign_error = '▪'
 let g:ale_sign_warning = '»'
 let g:ale_linters = {
     \ 'javascript' : ['standard'],
+    \ 'typescript' : ['tslint'],
     \ 'python': ['flake8', 'pycodestyle', 'yapf']
     \ }
+let g:ale_fixers = {
+    \ 'typescript' : ['tslint'],
+    \ }
+
+let g:ale_completion_enabled = 0
+let g:ale_open_list = 1
+
 highlight ALEErrorSign guifg=red guibg=#d6d8db
 highlight ALEWarningSign guifg=#BBF911 guibg=#d6d8db
 
@@ -49,8 +57,8 @@ else
 endif
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
 let g:UltiSnipsExpandTrigger       = "<C-Space>"
-let g:UltiSnipsJumpForwardTrigger  = "<C-F>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-B>"
+let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
@@ -70,10 +78,10 @@ if g:neovim
 
   " Minimal LSP configuration for JavaScript
   let g:LanguageClient_serverCommands = {
-    \ 'python' : ['/usr/local/bin/pyls']
+    \ 'python' : ['/usr/local/bin/pyls'],
+    \ 'typescript' : ['javascript-typescript-stdio']
     \ }
 
-  "    \ 'javascript' : ['javascript-typescript-stdio'],
   "    \ 'javascript.jsx' : ['javascript-typescript-stdio'],
 
   " Don't need to automake in supported languages
