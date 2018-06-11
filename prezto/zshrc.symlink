@@ -68,5 +68,4 @@ ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(
 
 stty -ixon
 
-source <(npx --shell-auto-fallback zsh)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
