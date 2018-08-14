@@ -76,7 +76,7 @@ Plug 'junegunn/gv.vim'   " Show Git Commits
 " Autocompletion and IDE-like features
 if g:neovim
    Plug 'Shougo/deoplete.nvim'
-   Plug 'carlitux/deoplete-ternjs'
+   Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
    Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh'
