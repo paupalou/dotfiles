@@ -8,3 +8,18 @@ setlocal smarttab
 setlocal formatoptions=croql
 setlocal textwidth=79
 setlocal colorcolumn=80
+
+" <leader>ld to go to definition
+nnoremap <buffer>
+  \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
+
+" <leader>lh for type info under cursor
+nnoremap <buffer>
+  \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
+
+" <leader>lr to rename variable under cursor
+nnoremap <buffer>
+  \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
+
+nnoremap <buffer>
+  \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
