@@ -56,11 +56,13 @@ Plug 'kshenoy/vim-signature'   " Display marks on left
 Plug 'hecal3/vim-leader-guide' " vim leader guide
 Plug 'ap/vim-css-color'        " Display colors on #rgb or rgb()
 Plug 'junegunn/vim-peekaboo'   " Display register contents
+Plug 'ryanoasis/vim-devicons'  " Fancy icons
 
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
 Plug 'cohama/lexima.vim'         " Closes automatically brackets
 Plug 'AndrewRadev/splitjoin.vim' " Switch [single,multi]line
+Plug 'rhysd/clever-f.vim'        " Just clever f, F, t, T
 
 " TextObjects
 Plug 'wellle/targets.vim' " Add various text objects
@@ -110,5 +112,6 @@ Plug 'KeitaNakamura/neodark.vim'
 Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/seoul256.vim'
+Plug 'haishanh/night-owl.vim'
 
 call plug#end()
