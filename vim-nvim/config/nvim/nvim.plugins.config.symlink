@@ -2,22 +2,20 @@
 
 " ### PLUGIN SETTINGS
 
+    " \ 'typescript' : ['tslint'],
 " ALE
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_save = 1
 let g:ale_sign_error = '▪'
 let g:ale_sign_warning = '»'
 let g:ale_linters = {
-    \ 'javascript' : ['standard'],
-    \ 'typescript' : ['tslint'],
-    \ 'python': ['flake8', 'pycodestyle', 'yapf']
-    \ }
-let g:ale_fixers = {
-    \ 'typescript' : ['tslint'],
-    \ }
+  \ 'javascript' : ['standard'],
+  \ 'python': ['flake8', 'pycodestyle', 'yapf']
+  \ }
 
 let g:ale_completion_enabled = 0
 let g:ale_open_list = 1
+let g:ale_linters_explicit = 1
 
 highlight ALEErrorSign guifg=red guibg=#d6d8db
 highlight ALEWarningSign guifg=#BBF911 guibg=#d6d8db
@@ -66,6 +64,8 @@ let g:cellmode_tmux_panenumber = '2'
 " Deoplete
 if g:neovim
   let g:deoplete#enable_at_startup = 1
+
+  call deoplete#custom#option('refresh_always', v:false)
 endif
 
 " LanguageClient plugin
@@ -81,8 +81,7 @@ if g:neovim
     \ 'python' : ['/usr/local/bin/pyls'],
     \ 'typescript' : ['javascript-typescript-stdio']
     \ }
-
-  "    \ 'javascript.jsx' : ['javascript-typescript-stdio'],
+  " \ 'javascript.jsx' : ['javascript-typescript-stdio'],
 
   " Don't need to automake in supported languages
   augroup automake
@@ -90,19 +89,6 @@ if g:neovim
     " JavaScript and Typescript lint via language servers
     autocmd BufWritePost *.sh,*.less,*.css,*.vim,*.vimrc,*.txt,*.md make!
   augroup END
-
-  " <leader>ld to go to definition
-  autocmd FileType javascript nnoremap <buffer>
-    \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
-  " <leader>lh for type info under cursor
-  autocmd FileType javascript nnoremap <buffer>
-    \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
-  " <leader>lr to rename variable under cursor
-  autocmd FileType javascript nnoremap <buffer>
-    \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
-
-  autocmd FileType javascript nnoremap <buffer>
-    \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
 
 endif
 
@@ -160,7 +146,7 @@ let g:fzf_colors = {
   \ 'header':  ['fg', 'Comment']
   \ }
 
-nnoremap <silent> <leader>f :Files<CR>
+nnoremap <silent> <leader>f :call Fzf_dev()<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
