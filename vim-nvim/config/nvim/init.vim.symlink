@@ -33,6 +33,7 @@ highlight BufTabLineHidden guibg=#0083ba guifg=#035554 gui=italic
 " SignColumn
 set signcolumn=yes
 highlight SignColumn guibg=#d6d8db
+autocmd FileType tagbar,nerdtree setlocal signcolumn=no
 
 " Git Sign Colors
 highlight DiffAdd guifg=#00a343 guibg=#d6d8db

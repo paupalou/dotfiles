@@ -66,6 +66,9 @@ if g:neovim
   let g:deoplete#enable_at_startup = 1
 
   call deoplete#custom#option('refresh_always', v:false)
+  call deoplete#custom#source('buffer', 'mark', '===')
+  call deoplete#custom#source('LanguageClient', 'mark', '')
+  call deoplete#custom#source('around', 'mark', 'around')
 endif
 
 " LanguageClient plugin
