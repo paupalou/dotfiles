@@ -1,0 +1,30 @@
+/* Tree View */
+.monaco-split-view2 > .split-view-container {
+  font-family: "Fantasque Sans Mono";
+  font-size: 15px;
+}
+
+/* Menu Bar */
+.monaco-workbench .menubar {
+  font-family: "Fantasque Sans Mono";
+}
+
+/* Menu Items */
+.monaco-menu .monaco-action-bar.vertical .action-item {
+  font-family: "Fantasque Sans Mono";
+}
+
+/* Status Bar */
+.monaco-workbench > .part.statusbar {
+  font-family: "Fantasque Sans Mono";
+}
+
+/* Bottom Panels */
+.monaco-workbench > .part.panel.bottom .title {
+  font-family: "Fantasque Sans Mono";
+}
+
+/* Message boxes */
+.markers-panel .markers-panel-container .message-box-container {
+  font-family: "Fantasque Sans Mono";
+}
