@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Operator Mono Book:weight=bold:pixelsize=18:antialias=true:autohint=true";
+static char *font = "OperatorMonoLig Nerd Font:style=Book:weight=bold:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 3;
 
 /*
@@ -24,8 +24,8 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 1.1;
-static float chscale = 1.2;
+static float cwscale = 1.0;
+static float chscale = 1.1;
 
 /*
  * word delimiter string
@@ -179,7 +179,6 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
-	{ TERMMOD,              XK_I,           iso14755,       {.i =  0} },
 };
 
 /*
