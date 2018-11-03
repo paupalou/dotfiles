@@ -86,6 +86,8 @@ if g:neovim
     \ }
   " \ 'javascript.jsx' : ['javascript-typescript-stdio'],
 
+  let g:LanguageClient_diagnosticsEnable = 0
+
   " Don't need to automake in supported languages
   augroup automake
     autocmd!
@@ -101,6 +103,42 @@ let g:javascript_plugin_jsdoc = 1
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
 let NERDTreeMinimalUI = 1
+
+let NERDTreeDirArrowExpandable = ' ' " make arrows invisible
+let NERDTreeDirArrowCollapsible = ' ' " make arrows invisible
+
+let NERDTreeNodeDelimiter = ' '
+
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+" NERDTress File highlighting
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+
+" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#eeeeee')
+" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#eeeeee')
+call NERDTreeHighlightFile('_', 'blue', 'none', '#c2cecc', '#eeeeee')
+call NERDTreeHighlightFile('md', 'blue', 'none', '#c2cecc', '#eeeeee')
+call NERDTreeHighlightFile('lock', 'blue', 'none', '#c2cecc', '#eeeeee')
+" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#eeeeee')
+" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#eeeeee')
+" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#eeeeee')
+call NERDTreeHighlightFile('json', 'yellow', 'none', '#aae28c', '#eeeeee')
+call NERDTreeHighlightFile('html', 'yellow', 'none', '#3e8fc9', '#eeeeee')
+" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#eeeeee')
+call NERDTreeHighlightFile('css', 'cyan', 'none', '#419912', '#eeeeee')
+call NERDTreeHighlightFile('scss', 'cyan', 'none', '#419912', '#eeeeee')
+" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#eeeeee')
+call NERDTreeHighlightFile('js', 'Red', 'none', '#754107', '#eeeeee')
+" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#eeeeee')
+" call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#eeeeee')
+" call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#eeeeee')
+" call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#eeeeee')
+" call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#eeeeee')
+" call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#eeeeee')
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
@@ -149,7 +187,7 @@ let g:fzf_colors = {
   \ 'header':  ['fg', 'Comment']
   \ }
 
-nnoremap <silent> <leader>f :call Fzf_dev()<CR>
+nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
