@@ -142,6 +142,9 @@ set modelines=5
 " Faster updatetime
 set updatetime=1000
 
+" Conceal
+set conceallevel=3
+
 " ### MAPPINGS
 " Leader Key
 let mapleader="\<Space>"
