@@ -95,6 +95,7 @@ Plug 'hdima/python-syntax',                    { 'for': ['python'] }
 Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'posva/vim-vue',                          { 'for': ['vue'] }
 Plug 'leafgarland/typescript-vim',             { 'for': ['typescript'] }
 Plug 'elzr/vim-json',                          { 'for': ['json'] }
 Plug 'keith/tmux.vim'
