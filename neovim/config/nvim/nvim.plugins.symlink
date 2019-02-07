@@ -69,13 +69,13 @@ Plug 'mhinz/vim-signify' " VCS signs for git and mercurial
 Plug 'junegunn/gv.vim'   " Show Git Commits
 
 " Autocompletion and IDE-like features
- Plug 'Shougo/deoplete.nvim'
- Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
- Plug 'autozimu/LanguageClient-neovim', {
-  \ 'branch': 'next',
-  \ 'do': 'bash install.sh'
-  \ }
- Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
+Plug 'Shougo/deoplete.nvim'
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'autozimu/LanguageClient-neovim', {
+ \ 'branch': 'next',
+ \ 'do': 'bash install.sh'
+ \ }
+Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
 
 " Syntax
 Plug 'othree/html5.vim',                       { 'for': ['html'] }

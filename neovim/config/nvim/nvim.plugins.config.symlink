@@ -48,11 +48,7 @@ let g:used_javascript_libs = 'jquery,lo-dash,react,vue'
 let g:jsx_ext_required = 0
 
 " UltiSnips
-if g:neovim
-  let g:UltiSnipsUsePythonVersion    = 3
-else
-  let g:UltiSnipsUsePythonVersion    = 2
-endif
+let g:UltiSnipsUsePythonVersion    = 3
 let g:UltiSnipsSnippetsDir         = expand("$HOME/\.config/nvim/UltiSnips")
 let g:UltiSnipsExpandTrigger       = "<C-Space>"
 let g:UltiSnipsJumpForwardTrigger  = "<Tab>"
@@ -62,40 +58,36 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 let g:cellmode_tmux_panenumber = '2'
 
 " Deoplete
-if g:neovim
-  let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 
-  call deoplete#custom#option('refresh_always', v:false)
-  call deoplete#custom#source('buffer', 'mark', '===')
-  call deoplete#custom#source('LanguageClient', 'mark', '')
-  call deoplete#custom#source('around', 'mark', 'around')
-endif
+call deoplete#custom#option('refresh_always', v:false)
+call deoplete#custom#source('buffer', 'mark', '===')
+call deoplete#custom#source('LanguageClient', 'mark', '')
+call deoplete#custom#source('around', 'mark', 'around')
 
 " LanguageClient plugin
-if g:neovim
-  let g:deoplete#sources#ternjs#filetypes = [
-    \ 'jsx',
-    \ 'javascript.jsx'
-    \ ]
-  let g:LanguageClient_autoStart = 1
+let g:deoplete#sources#ternjs#filetypes = [
+  \ 'jsx',
+  \ 'javascript.jsx'
+  \ ]
+let g:LanguageClient_autoStart = 1
 
-  " Minimal LSP configuration for JavaScript
-  let g:LanguageClient_serverCommands = {
-    \ 'python' : ['/usr/local/bin/pyls'],
-    \ 'typescript' : ['javascript-typescript-stdio']
-    \ }
-  " \ 'javascript.jsx' : ['javascript-typescript-stdio'],
+" Minimal LSP configuration for JavaScript
+let g:LanguageClient_serverCommands = {
+  \ 'python' : ['/usr/local/bin/pyls'],
+  \ 'typescript' : ['javascript-typescript-stdio']
+  \ }
+" \ 'javascript.jsx' : ['javascript-typescript-stdio'],
 
-  let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 0
 
-  " Don't need to automake in supported languages
-  augroup automake
-    autocmd!
-    " JavaScript and Typescript lint via language servers
-    autocmd BufWritePost *.sh,*.less,*.css,*.vim,*.vimrc,*.txt,*.md make!
-  augroup END
+" Don't need to automake in supported languages
+augroup automake
+  autocmd!
+  " JavaScript and Typescript lint via language servers
+  autocmd BufWritePost *.sh,*.less,*.css,*.vim,*.vimrc,*.txt,*.md make!
+augroup END
 
-endif
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1

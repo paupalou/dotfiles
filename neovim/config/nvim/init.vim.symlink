@@ -1,25 +1,11 @@
 " vim: set filetype=vim:
 language en_US.utf8
 
-" neovim flag
-let g:neovim = has('nvim')
+" Load plugins for neovim
+source $HOME/.config/nvim/nvim.plugins
 
-" Load plugins for vim/neovim
-if g:neovim
-  source $HOME/.config/nvim/nvim.plugins
-else
-  source $HOME/.vimrc.plugins
-endif
-
-if (has("termguicolors"))
-  set termguicolors
-endif
-
-if !g:neovim
-  " set Vim-specific sequences for RGB colors
-  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+" use guifg and guibg attributes in terminal
+set termguicolors
 
 " Color Settings
 set background=light
@@ -50,24 +36,13 @@ highlight Comment gui=italic cterm=italic
 highlight MatchParen guibg=lightblue
 
 " statusline
-if g:neovim
-  hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
-  au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
-  au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
-else
-  hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#ede6e6 guifg=#005f87
-  au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#f4f2f2 guifg=#b52626
-  au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#ede6e6 guifg=#005f87
-endif
+hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
+au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
+au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
 set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
 
 " Disable Background Color Erase (BCE)
 set t_ut=
-
-" font for gvim
-if !g:neovim
-  set guifont=Operator\ Mono\ 14
-endif
 
 " Use mouse
 set mouse=nvr
@@ -218,15 +193,8 @@ set grepprg=rg\ --vimgrep
 set wildignore+=*.pyc,*.pyo
 
 " neovim features
-if g:neovim
-  set inccommand=nosplit
-endif
+set inccommand=nosplit
 
 " Load plugins for vim/neovim
-if g:neovim
-  source $HOME/.config/nvim/plugin/custom.vim
-  source $HOME/.config/nvim/nvim.plugins.config
-else
-  source $HOME/.vim/plugin/custom.vim
-  source $HOME/.vimrc.plugins.config
-endif
+source $HOME/.config/nvim/plugin/custom.vim
+source $HOME/.config/nvim/nvim.plugins.config
