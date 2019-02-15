@@ -2,19 +2,14 @@
 
 " ### PLUGIN SETTINGS
 
-    " \ 'typescript' : ['tslint'],
 " ALE
-let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_save = 1
 let g:ale_sign_error = '▪'
 let g:ale_sign_warning = '»'
-let g:ale_linters = {
-  \ 'javascript' : ['standard'],
-  \ 'python': ['flake8', 'pycodestyle', 'yapf']
-  \ }
-
 let g:ale_completion_enabled = 0
-let g:ale_open_list = 1
+let g:ale_open_list = 0
 let g:ale_linters_explicit = 1
 
 highlight ALEErrorSign guifg=red guibg=#d6d8db
@@ -66,18 +61,15 @@ call deoplete#custom#source('LanguageClient', 'mark', '')
 call deoplete#custom#source('around', 'mark', 'around')
 
 " LanguageClient plugin
-let g:deoplete#sources#ternjs#filetypes = [
-  \ 'jsx',
-  \ 'javascript.jsx'
-  \ ]
 let g:LanguageClient_autoStart = 1
 
 " Minimal LSP configuration for JavaScript
 let g:LanguageClient_serverCommands = {
   \ 'python' : ['/usr/local/bin/pyls'],
-  \ 'typescript' : ['javascript-typescript-stdio']
+  \ 'typescript' : ['javascript-typescript-stdio'],
+  \ 'javascript.jsx' : ['javascript-typescript-stdio'],
   \ }
-" \ 'javascript.jsx' : ['javascript-typescript-stdio'],
+let g:LanguageClient_loggingLevel = 'DEBUG'
 
 let g:LanguageClient_diagnosticsEnable = 0
 
@@ -88,9 +80,16 @@ augroup automake
   autocmd BufWritePost *.sh,*.less,*.css,*.vim,*.vimrc,*.txt,*.md make!
 augroup END
 
-
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
+
+" EmmetVim
+" let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {
+  \ 'javacript.jsx': {
+  \   'extends': 'jsx',
+  \ },
+\ }
 
 " NERDTree
 let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']

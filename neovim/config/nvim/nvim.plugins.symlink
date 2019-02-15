@@ -53,6 +53,7 @@ Plug 'ryanoasis/vim-devicons'  " Fancy icons
 
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
+Plug 'mattn/emmet-vim'           " Expand html abbreviations
 Plug 'cohama/lexima.vim'         " Closes automatically brackets
 Plug 'AndrewRadev/splitjoin.vim' " Switch [single,multi]line
 Plug 'rhysd/clever-f.vim'        " Just clever f, F, t, T
@@ -69,7 +70,7 @@ Plug 'mhinz/vim-signify' " VCS signs for git and mercurial
 Plug 'junegunn/gv.vim'   " Show Git Commits
 
 " Autocompletion and IDE-like features
-Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
 Plug 'autozimu/LanguageClient-neovim', {
  \ 'branch': 'next',

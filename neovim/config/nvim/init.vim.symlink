@@ -7,8 +7,10 @@ source $HOME/.config/nvim/nvim.plugins
 " use guifg and guibg attributes in terminal
 set termguicolors
 
-" Color Settings
+" Background
 set background=light
+
+" ColorScheme
 colorscheme PaperColor
 
 " BufTabLine

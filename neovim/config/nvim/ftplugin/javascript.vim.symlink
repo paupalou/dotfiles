@@ -9,6 +9,13 @@ setlocal formatoptions=croql
 setlocal textwidth=79
 setlocal colorcolumn=80
 
+setlocal omnifunc=LanguageClient#complete
+
+let g:ale_javascript_eslint_executable='npx eslint'
+
+let b:ale_linters = ['prettier', 'eslint']
+let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'prettier', 'eslint']
+
 " <leader>ld to go to definition
 nnoremap <buffer>
   \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
