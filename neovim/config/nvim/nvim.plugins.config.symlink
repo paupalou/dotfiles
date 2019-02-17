@@ -52,14 +52,6 @@ let g:UltiSnipsJumpBackwardTrigger = "<S-Tab>"
 " Vim-cellmode
 let g:cellmode_tmux_panenumber = '2'
 
-" Deoplete
-let g:deoplete#enable_at_startup = 1
-
-call deoplete#custom#option('refresh_always', v:false)
-call deoplete#custom#source('buffer', 'mark', '===')
-call deoplete#custom#source('LanguageClient', 'mark', '')
-call deoplete#custom#source('around', 'mark', 'around')
-
 " LanguageClient plugin
 let g:LanguageClient_autoStart = 1
 
@@ -69,8 +61,6 @@ let g:LanguageClient_serverCommands = {
   \ 'typescript' : ['javascript-typescript-stdio'],
   \ 'javascript.jsx' : ['javascript-typescript-stdio'],
   \ }
-let g:LanguageClient_loggingLevel = 'DEBUG'
-
 let g:LanguageClient_diagnosticsEnable = 0
 
 " Don't need to automake in supported languages
@@ -232,3 +222,8 @@ nnoremap <silent> <leader>i :<c-u>LeaderGuide '<Space>'<CR>
 nmap <Leader>r :call OpenVimuxPanel()<CR>
 nmap <Leader><Enter> :call VimuxSlime()<CR>
 vmap <Leader><Enter> :call VisualVimuxSlime()<Enter>
+
+" NCM2
+autocmd BufEnter  *  call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")

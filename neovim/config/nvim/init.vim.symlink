@@ -109,10 +109,6 @@ set matchpairs+=<:>
 " Easy Copy/Paste
 set clipboard=unnamedplus
 
-" Better auto complete
-set complete=.,w,b,u,t,i
-set completeopt=longest,menu,preview
-
 set modeline
 set modelines=5
 
@@ -193,6 +189,9 @@ set grepprg=rg\ --vimgrep
 
 " wildignore
 set wildignore+=*.pyc,*.pyo
+
+" suppress 'match x of y'
+set shortmess+=c
 
 " neovim features
 set inccommand=nosplit

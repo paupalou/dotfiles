@@ -9,8 +9,6 @@ setlocal formatoptions=croql
 setlocal textwidth=79
 setlocal colorcolumn=80
 
-setlocal omnifunc=LanguageClient#complete
-
 let g:ale_javascript_eslint_executable='npx eslint'
 
 let b:ale_linters = ['prettier', 'eslint']

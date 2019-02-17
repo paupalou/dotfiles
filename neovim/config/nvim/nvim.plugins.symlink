@@ -70,7 +70,12 @@ Plug 'mhinz/vim-signify' " VCS signs for git and mercurial
 Plug 'junegunn/gv.vim'   " Show Git Commits
 
 " Autocompletion and IDE-like features
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'ncm2/ncm2-cssomni'
 Plug 'autozimu/LanguageClient-neovim', {
  \ 'branch': 'next',
  \ 'do': 'bash install.sh'
