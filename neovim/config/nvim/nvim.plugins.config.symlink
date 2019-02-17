@@ -104,32 +104,22 @@ let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 let g:DevIconsEnableFoldersOpenClose = 1
 
 " NERDTress File highlighting
-function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
- exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
- exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+function! NERDTreeHighlightFile(extension, fg)
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' guibg=#eeeeee guifg='. a:fg
 endfunction
 
-" call NERDTreeHighlightFile('jade', 'green', 'none', 'green', '#eeeeee')
-" call NERDTreeHighlightFile('ini', 'yellow', 'none', 'yellow', '#eeeeee')
-call NERDTreeHighlightFile('_', 'blue', 'none', '#c2cecc', '#eeeeee')
-call NERDTreeHighlightFile('md', 'blue', 'none', '#c2cecc', '#eeeeee')
-call NERDTreeHighlightFile('lock', 'blue', 'none', '#c2cecc', '#eeeeee')
-" call NERDTreeHighlightFile('yml', 'yellow', 'none', 'yellow', '#eeeeee')
-" call NERDTreeHighlightFile('config', 'yellow', 'none', 'yellow', '#eeeeee')
-" call NERDTreeHighlightFile('conf', 'yellow', 'none', 'yellow', '#eeeeee')
-call NERDTreeHighlightFile('json', 'yellow', 'none', '#aae28c', '#eeeeee')
-call NERDTreeHighlightFile('html', 'yellow', 'none', '#3e8fc9', '#eeeeee')
-" call NERDTreeHighlightFile('styl', 'cyan', 'none', 'cyan', '#eeeeee')
-call NERDTreeHighlightFile('css', 'cyan', 'none', '#419912', '#eeeeee')
-call NERDTreeHighlightFile('scss', 'cyan', 'none', '#419912', '#eeeeee')
-" call NERDTreeHighlightFile('coffee', 'Red', 'none', 'red', '#eeeeee')
-call NERDTreeHighlightFile('js', 'Red', 'none', '#754107', '#eeeeee')
-" call NERDTreeHighlightFile('php', 'Magenta', 'none', '#ff00ff', '#eeeeee')
-" call NERDTreeHighlightFile('ds_store', 'Gray', 'none', '#686868', '#eeeeee')
-" call NERDTreeHighlightFile('gitconfig', 'Gray', 'none', '#686868', '#eeeeee')
-" call NERDTreeHighlightFile('gitignore', 'Gray', 'none', '#686868', '#eeeeee')
-" call NERDTreeHighlightFile('bashrc', 'Gray', 'none', '#686868', '#eeeeee')
-" call NERDTreeHighlightFile('bashprofile', 'Gray', 'none', '#686868', '#eeeeee')
+call NERDTreeHighlightFile('html', '#3e8fc9')
+call NERDTreeHighlightFile('lock', '#c2cecc')
+call NERDTreeHighlightFile('md', '#c2cecc')
+call NERDTreeHighlightFile('js', '#006666')
+call NERDTreeHighlightFile('vue', '#419912')
+call NERDTreeHighlightFile('json','#CABF14')
+
+call NERDTreeHighlightFile('png','#D97B55')
+call NERDTreeHighlightFile('jpg','#D97B55')
+call NERDTreeHighlightFile('gif','#D97B55')
+call NERDTreeHighlightFile('ico','#D97B55')
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
