@@ -253,7 +253,6 @@ check_versions() {
   version 'bash'
   version 'zsh'
   version 'tmux' '-V'
-  version 'vim'
   version 'nvim'
   version 'git'
   version 'rg'
