@@ -61,7 +61,7 @@ let g:LanguageClient_serverCommands = {
   \ 'typescript' : ['javascript-typescript-stdio'],
   \ 'javascript.jsx' : ['javascript-typescript-stdio'],
   \ }
-let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_diagnosticsEnable = 1
 
 " Don't need to automake in supported languages
 augroup automake
@@ -100,9 +100,12 @@ function! NERDTreeHighlightFile(extension, fg)
 endfunction
 
 call NERDTreeHighlightFile('html', '#3e8fc9')
+call NERDTreeHighlightFile('css', '#829053')
+call NERDTreeHighlightFile('scss', '#879D6F')
+call NERDTreeHighlightFile('log', '#73C8A9')
 call NERDTreeHighlightFile('lock', '#c2cecc')
 call NERDTreeHighlightFile('md', '#c2cecc')
-call NERDTreeHighlightFile('js', '#006666')
+call NERDTreeHighlightFile('js', '#20364D')
 call NERDTreeHighlightFile('vue', '#419912')
 call NERDTreeHighlightFile('json','#CABF14')
 
