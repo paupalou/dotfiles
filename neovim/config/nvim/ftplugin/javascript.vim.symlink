@@ -13,18 +13,3 @@ let g:ale_javascript_eslint_executable='npx eslint'
 
 let b:ale_linters = ['prettier', 'eslint']
 let b:ale_fixers = ['remove_trailing_lines', 'trim_whitespace', 'prettier', 'eslint']
-
-" <leader>ld to go to definition
-nnoremap <buffer>
-  \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
-
-" <leader>lh for type info under cursor
-nnoremap <buffer>
-  \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
-
-" <leader>lr to rename variable under cursor
-nnoremap <buffer>
-  \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
-
-nnoremap <buffer>
-  \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>

@@ -176,10 +176,6 @@ cnoremap <c-e> <end>
 " qq to record, Q to replay
 nmap Q @q
 
-" Use Tab and S-Tab to iterate over completion menu
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
 " Figure out the system Python for Neovim.
 let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
@@ -192,9 +188,11 @@ set wildignore+=*.pyc,*.pyo
 
 " suppress 'match x of y'
 set shortmess+=c
-
 " neovim features
 set inccommand=nosplit
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
 
 " Load plugins for vim/neovim
 source $HOME/.config/nvim/plugin/custom.vim
