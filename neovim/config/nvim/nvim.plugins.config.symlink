@@ -12,9 +12,6 @@ let g:ale_completion_enabled = 0
 let g:ale_open_list = 0
 let g:ale_linters_explicit = 1
 
-highlight ALEErrorSign guifg=red guibg=#d6d8db
-highlight ALEWarningSign guifg=#BBF911 guibg=#d6d8db
-
 " QuickFix
 let g:qf_auto_open_quickfix = 0
 let g:qf_auto_open_loclist  = 0
@@ -22,11 +19,6 @@ let g:qf_auto_open_loclist  = 0
 " BufTabLine
 let g:buftabline_numbers = 2
 let g:buftabline_indicators = 1
-
-" TagBar
-let g:tagbar_compact = 1
-let g:tagbar_autoshowtag = 1
-let g:tagbar_iconchars = ['▸', '▾']
 
 " Grepper
 let g:grepper = {
@@ -78,18 +70,18 @@ let g:DevIconsEnableFoldersOpenClose = 1
 " NERDTress File highlighting
 function! NERDTreeHighlightFile(extension, fg)
  exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
- exec 'autocmd filetype nerdtree highlight ' . a:extension .' guibg=#eeeeee guifg='. a:fg
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' guifg='. a:fg
 endfunction
 
 call NERDTreeHighlightFile('html', '#3e8fc9')
-call NERDTreeHighlightFile('css', '#829053')
-call NERDTreeHighlightFile('scss', '#879D6F')
+call NERDTreeHighlightFile('css', '#BF4D28')
+call NERDTreeHighlightFile('scss', '#BF4D28')
 call NERDTreeHighlightFile('log', '#73C8A9')
-call NERDTreeHighlightFile('lock', '#c2cecc')
-call NERDTreeHighlightFile('md', '#c2cecc')
-call NERDTreeHighlightFile('js', '#20364D')
+call NERDTreeHighlightFile('lock', '#3B3737')
+call NERDTreeHighlightFile('md', '#1E808C')
+call NERDTreeHighlightFile('js', '#80BCA3')
 call NERDTreeHighlightFile('vue', '#419912')
-call NERDTreeHighlightFile('json','#CABF14')
+call NERDTreeHighlightFile('json','#FF0048')
 
 call NERDTreeHighlightFile('png','#D97B55')
 call NERDTreeHighlightFile('jpg','#D97B55')
@@ -98,11 +90,6 @@ call NERDTreeHighlightFile('ico','#D97B55')
 
 " Signify
 let g:signify_vcs_list = ['git', 'hg']
-
-" Gutentags
-let g:gutentags_enabled   = 1
-let g:gutentags_cache_dir = "~/.tags"
-let g:gutentags_ctags_exclude = ['*.json']
 
 " Leader-guide
 let g:lmap = {}
@@ -147,8 +134,6 @@ nnoremap <silent> <leader>f :Files<CR>
 nnoremap <silent> <leader>b :Buffers<CR>
 nnoremap <silent> <leader>; :BLines<CR>
 nnoremap <silent> <leader>. :Lines<CR>
-nnoremap <silent> <leader>o :BTags<CR>
-nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>: :Commands<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :History/<CR>
@@ -183,9 +168,6 @@ let g:startify_bookmarks              = [
 
 " # NERDTree
 map <silent> <Leader>` :NERDTreeToggle<CR>
-
-" # TagBar
-nmap <silent> <Leader>t :TagbarToggle<CR>
 
 " # SplitJoin
 nmap <Leader>j :SplitjoinJoin<cr>
@@ -246,4 +228,4 @@ function! s:show_documentation()
   endif
 endfunction
 
-highlight CoCHighlightText guibg=#EFFAB4
+highlight CoCHighlightText guifg=#EFFAB4

@@ -11,12 +11,7 @@ Plug 'tpope/vim-surround'   " Mappings for surrounding
 Plug 'tpope/vim-commentary' " Mappings for commenting - gcc
 Plug 'tpope/vim-unimpaired' " Mappings for utility
 Plug 'tpope/vim-eunuch'     " Shell commands like :SudoWrite
-Plug 'tpope/vim-fugitive'   " Best git wrapper
 Plug 'tpope/vim-haml'       " Runtime files for haml, sass, scss
-
-" Tags
-Plug 'majutsushi/tagbar', { 'on' : 'TagbarToggle' } " Tagbar
-Plug 'ludovicchabant/vim-gutentags'                 " Automatic Tags Generation
 
 " FuzzyFinder
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -25,6 +20,7 @@ Plug 'junegunn/fzf.vim'     " mappings for fzf inside vim
 " Snippets
 Plug 'SirVer/ultisnips'               " Generate and use snippets
 Plug 'honza/vim-snippets'             " Snippets for ultiSnips
+" Custom Snippets
 Plug 'paupalou/vim-es2015-snippets'   " Snippets for ES6
 Plug 'paupalou/vim-react-snippets'    " Snippets for React
 
@@ -33,7 +29,6 @@ Plug 'ap/vim-buftabline'                        " Buffer visual selection on top
 Plug 'justinmk/vim-gtfo'                        " Open file-manager/terminal on pwd (gof/got)
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' } " Sane buffer deletion
 Plug 'mhinz/vim-startify'                       " Show recent files on startup
-Plug 'yuttie/comfortable-motion.vim'            " Smooth scrolling :>
 Plug 'romainl/vim-qf'                           " More pleasant quickfix/location window
 Plug 'scrooloose/nerdtree'                      " IDE-Like filetree
 
@@ -71,22 +66,9 @@ Plug 'junegunn/gv.vim'   " Show Git Commits
 
 " Autocompletion and IDE-like features
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
-" Plug 'roxma/nvim-yarp'
-" Plug 'ncm2/ncm2'
-" Plug 'ncm2/ncm2-bufword'
-" Plug 'ncm2/ncm2-path'
-" Plug 'ncm2/ncm2-ultisnips'
-" Plug 'ncm2/ncm2-cssomni'
-" Plug 'autozimu/LanguageClient-neovim', {
-"  \ 'branch': 'next',
-"  \ 'do': 'bash install.sh'
-"  \ }
-" Plug 'shawncplus/phpcomplete.vim', { 'for': ['php'] } " better php omnicompletion
 
 " Syntax
 Plug 'othree/html5.vim',                       { 'for': ['html'] }
-" Plug 'StanAngeloff/php.vim',                   { 'for': ['php'] }
-" Plug 'hdima/python-syntax',                    { 'for': ['python'] }
 Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] }
@@ -95,15 +77,9 @@ Plug 'leafgarland/typescript-vim',             { 'for': ['typescript'] }
 Plug 'elzr/vim-json',                          { 'for': ['json'] }
 Plug 'keith/tmux.vim'
 Plug 'cakebaker/scss-syntax.vim',              { 'for': ['sass', 'scss'] }
-" Plug 'fatih/vim-go',                           { 'for': ['go'] }
-" Plug 'rust-lang/rust.vim',                     { 'for': ['rust'] }
-" Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.config/nvim/plugged/gocode/vim/symlink.sh' }
+Plug 'rust-lang/rust.vim',                     { 'for': ['rust'] }
 
 " ColorSchemes
-Plug 'KeitaNakamura/neodark.vim'
-Plug 'joshdick/onedark.vim'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'junegunn/seoul256.vim'
-Plug 'haishanh/night-owl.vim'
 
 call plug#end()
