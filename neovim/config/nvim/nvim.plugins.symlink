@@ -38,6 +38,7 @@ Plug 'google/vim-searchindex' " Count search results
 
 " Linter
 Plug 'w0rp/ale' " Asynchronous compiler/checker
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Visual helpers
 Plug 'kshenoy/vim-signature'   " Display marks on left
@@ -74,6 +75,7 @@ Plug 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascri
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'posva/vim-vue',                          { 'for': ['vue'] }
 Plug 'leafgarland/typescript-vim',             { 'for': ['typescript'] }
+Plug 'peitalin/vim-jsx-typescript',
 Plug 'elzr/vim-json',                          { 'for': ['json'] }
 Plug 'keith/tmux.vim'
 Plug 'cakebaker/scss-syntax.vim',              { 'for': ['sass', 'scss'] }
