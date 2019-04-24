@@ -1,8 +1,3 @@
-if exists('veonim')
-  source $HOME/.config/veonim/init.vim
-  finish
-endif
-
 " vim: set filetype=vim:
 language en_US.utf8
 
@@ -18,23 +13,14 @@ set background=dark
 " ColorScheme
 colorscheme PaperColor
 
-" BufTabLine
-" highlight BufTabLineCurrent guibg=#306b84 guifg=#9dd668
-" highlight BufTabLineActive guibg=#306b84 guifg=#23464c
-" highlight BufTabLineHidden guibg=#0083ba guifg=#035554 gui=italic
-
 " SignColumn
 set signcolumn=yes
 " highlight SignColumn guibg=#d6d8db
+
 autocmd FileType tagbar,nerdtree setlocal signcolumn=no
 
-" Git Sign Colors
-" highlight DiffAdd guifg=#00a343 guibg=#d6d8db
-" highlight DiffChange guifg=#B76E01 guibg=#d6d8db
-" highlight DiffDelete guifg=#d660ae guibg=#d6d8db
-
 " Marks Sign Colors
-" highlight SignatureMarkText guifg=#0083ba
+highlight SignatureMarkText guifg=#0083ba
 
 " Comments (italic)
 highlight Comment gui=italic cterm=italic
@@ -56,6 +42,7 @@ set mouse=nvr
 
 " dont need mode info with handy statusline
 set noshowmode
+set noshowcmd
 
 " Tab settings
 set tabstop=4
@@ -193,11 +180,14 @@ set wildignore+=*.pyc,*.pyo
 
 " suppress 'match x of y'
 set shortmess+=c
-" neovim features
+
+" incremental search
 set inccommand=nosplit
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
+
+highlight MatchParen guifg=yellow
 
 " Load plugins for vim/neovim
 source $HOME/.config/nvim/plugin/custom.vim
