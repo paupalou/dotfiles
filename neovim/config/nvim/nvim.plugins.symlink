@@ -83,5 +83,6 @@ Plug 'rust-lang/rust.vim',                     { 'for': ['rust'] }
 
 " ColorSchemes
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 
 call plug#end()
