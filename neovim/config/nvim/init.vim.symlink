@@ -11,14 +11,12 @@ set termguicolors
 set background=dark
 
 " ColorScheme
-" colorscheme PaperColor
 colorscheme onehalfdark
 
 " SignColumn
 set signcolumn=yes
-" highlight SignColumn guibg=#d6d8db
 
-autocmd FileType tagbar,nerdtree setlocal signcolumn=no
+autocmd FileType nerdtree setlocal signcolumn=no
 
 " Marks Sign Colors
 highlight SignatureMarkText guifg=#0083ba
@@ -26,17 +24,14 @@ highlight SignatureMarkText guifg=#0083ba
 " Comments (italic)
 highlight Comment gui=italic cterm=italic
 
-" MatchParen
-highlight MatchParen guibg=lightblue
+" MatchParen in yellow
+highlight MatchParen guifg=yellow
 
 " statusline
 hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
 au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
 au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
 set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
-
-" Disable Background Color Erase (BCE)
-set t_ut=
 
 " Use mouse
 set mouse=nvr
@@ -48,6 +43,7 @@ set noshowcmd
 " Tab settings
 set tabstop=4
 set shiftwidth=4
+set shiftround
 
 " Show special characters
 set list
@@ -106,7 +102,7 @@ set modeline
 set modelines=5
 
 " Faster updatetime
-set updatetime=1000
+set updatetime=500
 
 " Conceal
 set conceallevel=3
@@ -187,8 +183,6 @@ set inccommand=nosplit
 
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
-
-highlight MatchParen guifg=yellow
 
 " Load plugins for vim/neovim
 source $HOME/.config/nvim/plugin/custom.vim
