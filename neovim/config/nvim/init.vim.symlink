@@ -25,7 +25,7 @@ highlight SignatureMarkText guifg=#0083ba
 highlight Comment gui=italic cterm=italic
 
 " MatchParen in yellow
-highlight MatchParen guifg=yellow
+highlight MatchParen guifg=yellow gui=NONE
 
 " statusline
 hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
