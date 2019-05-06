@@ -76,7 +76,6 @@ Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascri
 Plug 'posva/vim-vue',                          { 'for': ['vue'] }
 Plug 'leafgarland/typescript-vim',             { 'for': ['typescript'] }
 Plug 'peitalin/vim-jsx-typescript',
-Plug 'elzr/vim-json',                          { 'for': ['json'] }
 Plug 'keith/tmux.vim'
 Plug 'cakebaker/scss-syntax.vim',              { 'for': ['sass', 'scss'] }
 Plug 'rust-lang/rust.vim',                     { 'for': ['rust'] }
