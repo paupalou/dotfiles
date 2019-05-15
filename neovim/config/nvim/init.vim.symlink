@@ -27,6 +27,9 @@ highlight Comment gui=italic cterm=italic
 " MatchParen in yellow
 highlight MatchParen guifg=yellow gui=NONE
 
+" PopUp Menu colors
+hi Pmenu guibg=#004853 guifg=#9DD3DF
+
 " statusline
 hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
 au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
