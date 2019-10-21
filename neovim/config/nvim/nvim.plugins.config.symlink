@@ -187,8 +187,7 @@ nnoremap <silent> <leader>i :<c-u>LeaderGuide '<Space>'<CR>
 
 " # Vimux
 nmap <Leader>r :call OpenVimuxPanel()<CR>
-nmap <Leader><Enter> :call VimuxSlime()<CR>
-vmap <Leader><Enter> :call VisualVimuxSlime()<Enter>
+noremap <Leader><Enter> :call VimuxSlime()<CR>
 
 " # CoC
 " Highlight symbol under cursor on CursorHold

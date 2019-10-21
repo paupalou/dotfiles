@@ -41,33 +41,33 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: "Operator Mono Medium" # should be "Menlo" or something on macOS.
+    family: "OperatorMonoLig Nerd Font" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    style: Medium
+    style: Book
 
   # The bold font face
   bold:
-    family: "Operator Mono Medium" # should be "Menlo" or something on macOS.
+    family: "OperatorMonoLig Nerd Font" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    style: Bold
+    style: Medium
 
   # The italic font face
   italic:
-    family: "Operator Mono Italic" # should be "Menlo" or something on macOS.
+    family: "OperatorMonoLig Nerd Font" # should be "Menlo" or something on macOS.
     # Style can be specified to pick a specific face.
-    style: Italic
+    style: Book Italic
 
   # Point size of the font
-  size: 15.0
+  size: 16.0
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    x: -0.5
-    y: 0.0
+    x: 0
+    y: 0
 
   glyph_offset:
-    x: 0.0
-    y: 0.0
+    x: 0
+    y: 0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -75,7 +75,8 @@ font:
   use_thin_strokes: false
 
 # Should display the render timer
-render_timer: false
+debug:
+  render_timer: false
 
 # Use custom cursor colors. If true, display the cursor in the cursor.foreground
 # and cursor.background colors, otherwise invert the colors of the cursor.

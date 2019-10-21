@@ -13,7 +13,7 @@ fun! OpenVimuxPanel()
     elseif &filetype == 'python'
         let b:repl = 'bpython'
     else
-        let b:repl = ''
+        let b:repl = 'node'
     endif
 
     call VimuxRunCommand(b:repl)
@@ -26,15 +26,8 @@ fun! ClearVimuxPanel()
 endfunction
 
 fun! VimuxSlime()
-    call ClearVimuxPanel()
     call VimuxSendText(getline('.'))
     call VimuxSendKeys("Enter")
-endfunction
-
-fun! VisualVimuxSlime()
-    normal gv"vy
-    call ClearVimuxPanel()
-    call VimuxSendText(@v)
 endfunction
 
 fun! FindFiles(filename, ...)
