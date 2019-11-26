@@ -14,3 +14,4 @@ if [ -d "$HOME/bin" ] ; then
 fi
 
 export PATH="$HOME/.cargo/bin:$PATH"
+xset r rate 200 35
