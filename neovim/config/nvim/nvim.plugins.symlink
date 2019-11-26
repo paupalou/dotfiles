@@ -44,7 +44,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'kshenoy/vim-signature'   " Display marks on left
 Plug 'hecal3/vim-leader-guide' " vim leader guide
 Plug 'ap/vim-css-color'        " Display colors on #rgb or rgb()
-" Plug 'junegunn/vim-peekaboo'   " Display register contents
 Plug 'ryanoasis/vim-devicons'  " Fancy icons
 
 " Utils
