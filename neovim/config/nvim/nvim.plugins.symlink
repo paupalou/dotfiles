@@ -83,4 +83,8 @@ Plug 'rust-lang/rust.vim',                     { 'for': ['rust'] }
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonph/onehalf', { 'rtp': 'vim/' }
 
+" Temporal
+Plug 'itchyny/lightline.vim'
+Plug 'conweller/endarkened.vim'
+
 call plug#end()

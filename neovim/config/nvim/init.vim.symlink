@@ -22,19 +22,13 @@ autocmd FileType nerdtree setlocal signcolumn=no
 highlight SignatureMarkText guifg=#0083ba
 
 " Comments (italic)
-highlight Comment gui=italic cterm=italic
+" highlight Comment gui=italic cterm=italic
 
 " MatchParen in yellow
-highlight MatchParen guifg=yellow gui=NONE
+" highlight MatchParen guifg=yellow gui=NONE
 
 " PopUp Menu colors
-hi Pmenu guibg=#004853 guifg=#9DD3DF
-
-" statusline
-hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
-au InsertEnter * hi StatusLine ctermbg=white ctermfg=124 gui=bold guibg=#b52626 guifg=#f4f2f2
-au InsertLeave * hi StatusLine ctermbg=white ctermfg=24 gui=bold guibg=#005f87 guifg=#ede6e6
-set statusline=[%n]\ %<%F\ \ \ [%M%R%H%W%Y]\ \ %=\ %l/%c\ \ %p%%
+" hi Pmenu guibg=#004853 guifg=#9DD3DF
 
 " Use mouse
 set mouse=nvr

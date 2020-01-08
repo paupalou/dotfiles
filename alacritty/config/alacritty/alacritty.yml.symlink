@@ -48,7 +48,7 @@ font:
     style: Bold
 
   italic:
-    family: "Victor Mono"
+    family: "Victor Mono Medium"
     style: Italic
 
   size: 13.5
