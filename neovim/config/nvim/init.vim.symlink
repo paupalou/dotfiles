@@ -22,13 +22,10 @@ autocmd FileType nerdtree setlocal signcolumn=no
 highlight SignatureMarkText guifg=#0083ba
 
 " Comments (italic)
-" highlight Comment gui=italic cterm=italic
+highlight Comment gui=italic cterm=italic
 
 " MatchParen in yellow
-" highlight MatchParen guifg=yellow gui=NONE
-
-" PopUp Menu colors
-" hi Pmenu guibg=#004853 guifg=#9DD3DF
+highlight MatchParen guifg=yellow gui=NONE
 
 " Use mouse
 set mouse=nvr
