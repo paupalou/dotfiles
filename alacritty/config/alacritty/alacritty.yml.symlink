@@ -25,6 +25,8 @@ padding:
   x: 5
   y: 5
 
+decorations: full
+
 # The FreeType rasterizer needs to know the device DPI for best results
 # (changes require restart)
 dpi:
@@ -40,18 +42,11 @@ draw_bold_text_with_bright_colors: false
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Victor Mono SemiBold"
-    style: Regular
+    family: "OperatorMonoLig Nerd Font"
+    style: Medium
 
-  bold:
-    family: "Victor Mono"
-    style: Bold
+  size: 17.0
 
-  italic:
-    family: "Victor Mono Medium"
-    style: Italic
-
-  size: 13.5
   offset:
     x: 1
     y: 2
