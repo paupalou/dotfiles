@@ -45,7 +45,7 @@ font:
     family: "OperatorMonoLig Nerd Font"
     style: Medium
 
-  size: 17.0
+  size: 17
 
   offset:
     x: 1
