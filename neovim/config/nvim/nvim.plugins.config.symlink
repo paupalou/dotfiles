@@ -238,5 +238,5 @@ let g:lightline = {
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
   \              [ 'filetype' ] ]
-  \ },
+  \ }
 \}

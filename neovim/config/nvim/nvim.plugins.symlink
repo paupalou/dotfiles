@@ -31,20 +31,23 @@ Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' } " Sane buffer deletion
 Plug 'mhinz/vim-startify'                       " Show recent files on startup
 Plug 'romainl/vim-qf'                           " More pleasant quickfix/location window
 Plug 'scrooloose/nerdtree'                      " IDE-Like filetree
+Plug 'psliwka/vim-smoothie'                     " Smooth scroll
 
 " Search
 Plug 'mhinz/vim-grepper'      " Grep/ag/ripgrep wrapper
 Plug 'google/vim-searchindex' " Count search results
+Plug 'romainl/vim-cool'       " Disable hlsearch when you are done
 
 " Linter
 Plug 'w0rp/ale' " Asynchronous compiler/checker
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " Visual helpers
-Plug 'kshenoy/vim-signature'   " Display marks on left
-Plug 'hecal3/vim-leader-guide' " vim leader guide
-Plug 'ap/vim-css-color'        " Display colors on #rgb or rgb()
-Plug 'ryanoasis/vim-devicons'  " Fancy icons
+Plug 'kshenoy/vim-signature'       " Display marks on left
+Plug 'hecal3/vim-leader-guide'     " vim leader guide
+Plug 'norcalli/nvim-colorizer.lua' " Show colors
+Plug 'ryanoasis/vim-devicons'      " Fancy icons
+Plug 'itchyny/lightline.vim'       " Fancy statusline
 
 " Utils
 Plug 'junegunn/vim-easy-align', { 'on': ['<Plug>(EasyAlign)', 'EasyAlign'] }
@@ -83,9 +86,6 @@ Plug 'rust-lang/rust.vim',                     { 'for': ['rust'] }
 " ColorSchemes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonph/onehalf', { 'rtp': 'vim/' }
-
-" Temporal
-Plug 'itchyny/lightline.vim'
 Plug 'conweller/endarkened.vim'
 
 call plug#end()
