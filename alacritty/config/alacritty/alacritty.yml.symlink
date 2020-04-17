@@ -39,14 +39,22 @@ draw_bold_text_with_bright_colors: false
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "OperatorMonoLig Nerd Font"
+    family: "Victor Mono"
     style: Medium
 
-  size: 17
+  bold:
+    family: "Victor Mono"
+    style: Bold
+
+  italic:
+    family: "Victor Mono"
+    style: Italic
+
+  size: 16.0
 
   offset:
-    x: 1
-    y: 2
+    x: 0
+    y: 1
 
   glyph_offset:
     x: 0

@@ -21,7 +21,7 @@ bind  U command-prompt -p "Send pane to sess or sess:win# or win# (ex: kmodi or 
 
 # [ PANE SPLITTING ] ------------------------------------------------------------------------------
 bind-key |     split-window -h
-bind-key \     split-window -h
+bind-key \\     split-window -h
 bind-key -     split-window -v
 
 # [ PANE NAVIGATION ] -----------------------------------------------------------------------------
@@ -97,9 +97,6 @@ set -g set-titles on
 set -g visual-activity off
 set -g xterm-keys on
 
-set -g pane-border-fg colour8
-set -g pane-active-border-fg green
-
 # [ MOUSE ] ---------------------------------------------------------------------------------------
 set-option -g mouse on
 set-option -ga terminal-overrides ',xterm-256color:Tc'
@@ -134,7 +131,7 @@ bind -n C-h if-shell "$is_vim" "send-keys C-h" "select-pane -L"
 bind -n C-j if-shell "$is_vim" "send-keys C-j" "select-pane -D"
 bind -n C-k if-shell "$is_vim" "send-keys C-k" "select-pane -U"
 bind -n C-l if-shell "$is_vim" "send-keys C-l" "select-pane -R"
-bind -n C-\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
+bind -n C-\\ if-shell "$is_vim" "send-keys C-\\" "select-pane -l"
 bind C-l send-keys 'C-l'
 
 # [ PLUGINS ] -------------------------------------------------------------------------------------
