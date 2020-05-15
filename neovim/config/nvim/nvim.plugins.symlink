@@ -45,7 +45,7 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " Visual helpers
 Plug 'kshenoy/vim-signature'       " Display marks on left
 Plug 'hecal3/vim-leader-guide'     " vim leader guide
-Plug 'norcalli/nvim-colorizer.lua' " Show colors
+Plug 'ap/vim-css-color'
 Plug 'ryanoasis/vim-devicons'      " Fancy icons
 Plug 'itchyny/lightline.vim'       " Fancy statusline
 

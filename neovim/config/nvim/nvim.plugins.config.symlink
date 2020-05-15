@@ -229,11 +229,8 @@ endfunction
 
 highlight CoCHighlightText guifg=#EFFAB4
 
-"     
-
 let g:lightline = {
   \ 'colorscheme': 'endarkened',
-  \ 'separator': { 'left': ' ', 'right': ' ' },
   \ 'active': {
   \   'right': [ [ 'lineinfo' ],
   \              [ 'percent' ],
