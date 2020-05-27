@@ -9,7 +9,7 @@ class tmux_split_vim(Command):
         else:
             self.fm.execute_console("set preview_files=False")
             self.fm.execute_console("set preview_directories=False")
-            self.fm.run("ranger_tmux " + self.fm.thisfile.basename)
+            self.fm.run("ranger_tmux " + self.fm.thisfile.basename, flags='f')
 
 
 class fzf_select(Command):
