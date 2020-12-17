@@ -96,6 +96,7 @@ set -g repeat-time 100
 set -g set-titles on
 set -g visual-activity off
 set -g xterm-keys on
+set -g focus-events on
 
 # [ MOUSE ] ---------------------------------------------------------------------------------------
 set-option -g mouse on
