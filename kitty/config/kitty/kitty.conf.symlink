@@ -7,10 +7,10 @@ bold_font Operator Mono Bold
 italic_font Operator Mono Medium Italic
 bold_italic_font Operator Mono Bold Italic
 
-font_size 18.5
+font_size 17.5
 
 adjust_line_height 5
-adjust_column_width 0
+adjust_column_width 1
 
 background #282a36
 foreground #f8f8f2
