@@ -1,0 +1,183 @@
+" vim: set filetype=vim:
+language en_US.utf8
+
+" Load plugins for neovim
+source $HOME/.config/nvim/nvim.plugins
+
+" use guifg and guibg attributes in terminal
+set termguicolors
+
+" Background
+set background=dark
+
+" ColorScheme
+colorscheme endarkened
+
+" SignColumn
+set signcolumn=yes
+
+autocmd FileType nerdtree setlocal signcolumn=no
+
+" Marks Sign Colors
+highlight SignatureMarkText guifg=#0083ba
+
+" Comments (italic)
+highlight Comment gui=italic cterm=italic
+
+" MatchParen in yellow
+highlight MatchParen guifg=yellow gui=NONE
+
+" Use mouse
+set mouse=nvr
+
+" dont need mode info with handy statusline
+set noshowmode
+set noshowcmd
+
+" Tab settings
+set tabstop=4
+set shiftwidth=4
+set shiftround
+
+" Show special characters
+set list
+
+" Disable wrap lines
+set nowrap
+
+" Disable swapfile
+set noswapfile
+
+" Disable backup
+set nobackup
+
+" Buffer becomes hidden when abandoned
+set hidden
+
+" Go to start of line instad of first line character
+set nostartofline
+
+" Swith to buffer window or tab
+set switchbuf=useopen,usetab
+
+" Highlight cursor line
+set cursorline
+
+" Better split positions
+set splitbelow
+set splitright
+
+" Use relative number instad linenumber
+set relativenumber
+set number
+
+" Textwidth
+set textwidth=110
+
+" Show matching brackets
+set showmatch
+
+" Search options
+set hlsearch
+set ignorecase
+set smartcase
+set infercase
+
+" Max 15 items on popup menu
+set pumheight=15
+
+" Matching <> for html
+set matchpairs+=<:>
+
+" Easy Copy/Paste
+set clipboard=unnamedplus
+
+set modeline
+set modelines=5
+
+" Faster updatetime
+set updatetime=500
+
+" Conceal
+set conceallevel=3
+
+" ### MAPPINGS
+" Leader Key
+let mapleader="\<Space>"
+
+" Quick quit
+noremap <silent> <Leader>x :x<CR>
+noremap <silent> <Leader>Q :qa!<CR>
+noremap <silent> <Leader>q :q<CR>
+noremap <silent> <Leader>c :Sayonara<CR>
+
+" Save
+inoremap <C-s> <C-O>:update<cr>
+nnoremap <C-s> :update<cr>
+
+" Splits
+nnoremap <Leader>v <C-w>v
+nnoremap <Leader>h <C-w>s
+
+" Moving with splits
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
+map <C-h> <C-w>h
+
+" Quick escaping
+inoremap jj <esc>l
+inoremap jk <esc>l
+
+" Search will center ont the line its found
+map N Nzz
+map n nzz
+
+" Make Y consistent with C and D
+nnoremap Y y$
+
+" Quicker moving between match brackets
+nnoremap <tab> %
+vnoremap <tab> %
+
+" use hjkl-movement between rows when soft wrapping:
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+
+" include the default behaviour by doing reverse mappings so you can move linewise with gj and gk:
+nnoremap gj j
+nnoremap gk k
+
+" Utils
+inoremap <c-a> <esc>I
+inoremap <c-e> <esc>A
+cnoremap <c-a> <home>
+cnoremap <c-e> <end>
+
+" qq to record, Q to replay
+nmap Q @q
+
+" Figure out the system Python for Neovim.
+let g:python_host_prog='/usr/bin/python'
+let g:python3_host_prog='/usr/bin/python3'
+
+" grepprg
+set grepprg=rg\ --vimgrep
+
+" wildignore
+set wildignore+=*.pyc,*.pyo
+
+" suppress 'match x of y'
+set shortmess+=c
+
+" incremental search
+set inccommand=nosplit
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" Load plugins for vim/neovim
+source $HOME/.config/nvim/plugin/custom.vim
+source $HOME/.config/nvim/nvim.plugins.config
