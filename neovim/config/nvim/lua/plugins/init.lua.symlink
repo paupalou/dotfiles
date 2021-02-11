@@ -1,0 +1,69 @@
+-- vim: set filetype=lua:
+-- Only required if you have packer in your `opt` pack
+local packer_exists = pcall(vim.cmd, [[packadd packer.nvim]])
+
+if not packer_exists then
+  if vim.fn.input("Download Packer? (y for yes)") ~= "y" then
+    return
+  end
+
+  local directory = string.format(
+    '%s/site/pack/packer/opt/',
+    vim.fn.stdpath('data')
+  )
+
+  vim.fn.mkdir(directory, 'p')
+
+  local out = vim.fn.system(string.format(
+    'git clone %s %s',
+    'https://github.com/wbthomason/packer.nvim',
+    directory .. '/packer.nvim'
+  ))
+
+  print(out)
+  print("Downloading packer.nvim...")
+
+  return
+end
+
+return require('packer').startup {
+  function(use)
+    -- Packer can manage itself as an optional plugin
+    use {'wbthomason/packer.nvim', opt = true}
+
+    -- color scheme
+    use 'conweller/endarkened.vim'
+
+    -- statusline
+    use 'itchyny/lightline.vim'
+
+    -- tweak cursor hold performance
+    use 'antoinemadec/FixCursorHold.nvim'
+
+    -- tpope stuff
+    use 'tpope/vim-commentary'
+    use 'tpope/vim-surround'
+    use 'tpope/vim-repeat'
+    use 'tpope/vim-unimpaired'
+
+    use 'wellle/targets.vim'
+
+    -- use 'mhinz/vim-startify'
+    use 'christoomey/vim-tmux-navigator'
+    use 'kyazdani42/nvim-web-devicons'
+
+    use 'jdhao/better-escape.vim'
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-compe' 
+    use 'rhysd/clever-f.vim'
+
+    -- fuzzyfinder
+    use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
+    use {'junegunn/fzf.vim'}
+
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = function() vim.cmd [[TSUpdate]] end
+    }
+  end
+}

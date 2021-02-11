@@ -1,0 +1,13 @@
+-- vim: set filetype=lua:
+require 'plugins'
+require 'defaults'
+require 'theme'
+require 'remaps'
+
+-- lsp
+require'lspconfig'.tsserver.setup{}
+
+-- plugins
+require 'plugins.treesiter'
+require 'plugins.nvim-compe'
+require 'plugins.betterescape'
