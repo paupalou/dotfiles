@@ -1,3 +1,4 @@
+-- vim: set filetype=lua:
 local function map(type, input, output)
   vim.api.nvim_set_keymap(type, input, output, {})
 end
@@ -22,6 +23,12 @@ nnoremap('<leader>h', '<C-w>s')
 
 nnoremap('<leader>h', '<C-w>s')
 nnoremap('<leader>f', '<cmd>Files<CR>')
+nnoremap('<c-s>', '<cmd>:w<CR>')
 
 inoremap('<c-a>', '<esc>I')
 inoremap('<c-e>', '<esc>A')
+inoremap('<c-s>', '<esc><cmd>:w<CR>')
+
+--lsp
+nnoremap('K', '<cmd> lua vim.lsp.buf.hover()<CR>')
+nnoremap('gd', '<cmd> lua vim.lsp.buf.definition()<CR>')

@@ -28,11 +28,11 @@ end
 
 return require('packer').startup {
   function(use)
-    -- Packer can manage itself as an optional plugin
+    -- packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
     -- color scheme
-    use 'conweller/endarkened.vim'
+    use 'mhartington/oceanic-next'
 
     -- statusline
     use 'itchyny/lightline.vim'
@@ -46,21 +46,44 @@ return require('packer').startup {
     use 'tpope/vim-repeat'
     use 'tpope/vim-unimpaired'
 
+    -- more objects targets 
     use 'wellle/targets.vim'
 
-    -- use 'mhinz/vim-startify'
+    -- mru files and bookmarks on start
+    use 'mhinz/vim-startify'
+
+    -- move between vim splits and tmux splits
     use 'christoomey/vim-tmux-navigator'
+
+    -- fancy icons (font)
     use 'kyazdani42/nvim-web-devicons'
 
+    -- remove delay on exit insert mode
     use 'jdhao/better-escape.vim'
+    
+    -- configs for language servers
     use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/nvim-compe' 
+
+    -- autocompletion engine
+    use 'hrsh7th/nvim-compe'
+
+    -- icons on lsp popup suggestions 
+    use 'onsails/lspkind-nvim'
+
+    -- improve f/t/F/T
     use 'rhysd/clever-f.vim'
+
+    -- buffer bar
+    use 'romgrk/barbar.nvim'
+
+    -- minimap sidebar like vscode
+    use {'wfxr/minimap.vim', run = ':!cargo install --locked code-minimap' }
 
     -- fuzzyfinder
     use {'junegunn/fzf', run = './install --all' }     -- Fuzzy Searcher
     use {'junegunn/fzf.vim'}
 
+    -- treesitter syntax
     use {
       'nvim-treesitter/nvim-treesitter',
       run = function() vim.cmd [[TSUpdate]] end

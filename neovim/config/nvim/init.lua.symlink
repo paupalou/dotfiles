@@ -4,10 +4,10 @@ require 'defaults'
 require 'theme'
 require 'remaps'
 
--- lsp
-require'lspconfig'.tsserver.setup{}
-
--- plugins
-require 'plugins.treesiter'
-require 'plugins.nvim-compe'
+-- plugin configs
 require 'plugins.betterescape'
+require 'plugins.lsp'
+require 'plugins.treesiter'
+require 'plugins.barbar'
+require 'plugins.nvim-compe'
+require 'plugins.minimap'
