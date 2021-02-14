@@ -1,18 +1,23 @@
 -- vim: set filetype=lua:
 vim.g.bufferline = {
   icons = 'both',
-  icon_close_tab_modified = '✎'
+  icon_close_tab_modified = "•",
+  left_trunc_marker = "",
+  right_trunc_marker = "",
+  icon_separator_inactive = '',
+  maximum_padding = 2,
 }
 
-vim.api.nvim_set_keymap('n', ']b', '<cmd>:BufferPrevious<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '[b', '<cmd>:BufferNext<CR>', { noremap = true, silent = true })
+-- buffer mappings
+nnoremap(']b', '<cmd>:BufferNext<CR>')
+nnoremap('[b', '<cmd>:BufferPrevious<CR>')
 
-vim.api.nvim_set_keymap('n', '<leader>1', '<cmd>:BufferGoTo 1<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>2', '<cmd>:BufferGoTo 2<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>3', '<cmd>:BufferGoTo 3<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>4', '<cmd>:BufferGoTo 4<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>5', '<cmd>:BufferGoTo 5<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>6', '<cmd>:BufferGoTo 6<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>7', '<cmd>:BufferGoTo 7<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>8', '<cmd>:BufferGoTo 8<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>9', '<cmd>:BufferGoTo 9<CR>', { noremap = true, silent = true })
+nnoremap('<leader>1', '<cmd>:BufferGoto 1<CR>')
+nnoremap('<leader>2', '<cmd>:BufferGoto 2<CR>')
+nnoremap('<leader>3', '<cmd>:BufferGoto 3<CR>')
+nnoremap('<leader>4', '<cmd>:BufferGoto 4<CR>')
+nnoremap('<leader>5', '<cmd>:BufferGoto 5<CR>')
+nnoremap('<leader>6', '<cmd>:BufferGoto 6<CR>')
+nnoremap('<leader>7', '<cmd>:BufferGoto 7<CR>')
+nnoremap('<leader>8', '<cmd>:BufferGoto 8<CR>')
+nnoremap('<leader>9', '<cmd>:BufferGoto 9<CR>')

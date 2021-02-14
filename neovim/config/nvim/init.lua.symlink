@@ -1,6 +1,7 @@
 -- vim: set filetype=lua:
-require 'plugins'
 require 'defaults'
+require 'utils'
+require 'plugins'
 require 'theme'
 require 'remaps'
 

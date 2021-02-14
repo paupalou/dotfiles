@@ -1,20 +1,4 @@
 -- vim: set filetype=lua:
-local function map(type, input, output)
-  vim.api.nvim_set_keymap(type, input, output, {})
-end
-
-local function noremap(type, input, output)
-  vim.api.nvim_set_keymap(type, input, output, { noremap = true })
-end
-
-function nnoremap(input, output)
-  noremap('n', input, output)
-end
-
-function inoremap(input, output)
-  noremap('i', input, output)
-end
-
 nnoremap('<leader>q', '<cmd>q<CR>')
 nnoremap('<leader>Q', '<cmd>qa!<CR>')
 
