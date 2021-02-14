@@ -1,1 +1,0 @@
-/home/pau/code/external/st/config.h
