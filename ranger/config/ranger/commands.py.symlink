@@ -1,3 +1,4 @@
+# vim: set filetype=python:
 from ranger.api.commands import Command
 import os
 
