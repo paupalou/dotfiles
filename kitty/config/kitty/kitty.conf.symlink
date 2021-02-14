@@ -1,16 +1,13 @@
+# vim:ft=conf:foldmethod=marker
 repaint_delay 5
 input_delay 2
 sync_to_monitor yes
 
-font_family Operator Mono Medium
-bold_font Operator Mono Bold
-italic_font Operator Mono Medium Italic
-bold_italic_font Operator Mono Bold Italic
+font_family VictorMono Nerd Font Mono
+font_size 15.0
 
-font_size 17.5
-
-adjust_line_height 5
-adjust_column_width 1
+adjust_line_height 140%
+adjust_column_width 120%
 
 background #282a36
 foreground #f8f8f2
