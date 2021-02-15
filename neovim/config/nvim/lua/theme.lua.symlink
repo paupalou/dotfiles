@@ -25,4 +25,6 @@ local M = {
   white = "#ffffff"
 }
 
+vim.cmd("hi Comment gui=italic")
+
 return M

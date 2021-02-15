@@ -3,11 +3,15 @@ repaint_delay 5
 input_delay 2
 sync_to_monitor yes
 
-font_family VictorMono Nerd Font Mono
+font_family Victor Mono Medium Nerd Font Complete Mono
+bold_font Victor Mono Bold Nerd Font Complete Mono
+italic_font Victor Mono Medium Italic Nerd Font Complete Mono
+bold_italic_font Victor Mono Bold Italic Nerd Font Complete Mono
+
 font_size 15.0
 
 adjust_line_height 140%
-adjust_column_width 120%
+adjust_column_width 110%
 
 background #282a36
 foreground #f8f8f2
