@@ -1,0 +1,8 @@
+require('defaults')
+require('utils')
+require('folds')
+require('plugins')
+require('theme')
+require('bindings')
+require('lsp')
+require('plugins.config')

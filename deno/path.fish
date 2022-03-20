@@ -1,0 +1,1 @@
+setpath $HOME/.deno/bin
