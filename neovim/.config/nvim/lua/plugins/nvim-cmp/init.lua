@@ -40,11 +40,8 @@ cmp.setup({
       return vim_item
     end,
   },
-  documentation = {
-    border = 'rounded',
-    winhighlight = 'NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder',
-    maxwidth = 90,
-    maxheight = 70,
+  window = {
+    documentation = cmp.config.window.bordered()
   },
   sources = {
     { name = 'path' },
