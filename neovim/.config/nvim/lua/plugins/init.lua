@@ -36,12 +36,13 @@ return require('packer').startup {
     -- color scheme
     use 'mhartington/oceanic-next'
     use 'folke/tokyonight.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     -- fancy icons (font)
     use 'kyazdani42/nvim-web-devicons'
 
     -- statusline
-    use { 'hoob3rt/lualine.nvim', requires = {'kyazdani42/nvim-web-devicons', opt = true} }
+    use { 'hoob3rt/lualine.nvim', requires = { 'kyazdani42/nvim-web-devicons', opt = true } }
 
     -- tweak cursor hold performance
     use 'antoinemadec/FixCursorHold.nvim'
@@ -51,7 +52,16 @@ return require('packer').startup {
     use 'JoosepAlviste/nvim-ts-context-commentstring'
 
     -- must have tpope stuff
-    use 'tpope/vim-surround'
+    -- use 'tpope/vim-surround'
+    use({
+      "kylechui/nvim-surround",
+      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+      config = function()
+        require("nvim-surround").setup({
+          -- Configuration here, or leave empty to use defaults
+        })
+      end
+    })
     use 'tpope/vim-repeat'
 
     -- more objects targets
@@ -90,7 +100,8 @@ return require('packer').startup {
     --  lsp stuff
     use 'neovim/nvim-lspconfig'
     use 'onsails/lspkind-nvim'
-    use { 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = { 'jose-elias-alvarez/null-ls.nvim' } }
+    use { 'jose-elias-alvarez/null-ls.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use 'jose-elias-alvarez/typescript.nvim'
     use 'folke/lsp-trouble.nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'j-hui/fidget.nvim'
@@ -102,22 +113,19 @@ return require('packer').startup {
     use 'famiu/bufdelete.nvim'
 
     -- buffer bar
-    use {'akinsho/bufferline.nvim', requires = 'kyazdani42/nvim-web-devicons'}
+    use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
 
     -- minimap sidebar like vscode
-    use {'wfxr/minimap.vim', run = ':!cargo install --locked code-minimap' }
+    use { 'wfxr/minimap.vim', run = ':!cargo install --locked code-minimap' }
 
-    -- async search
-    use 'mhinz/vim-grepper'
-
-    -- fuzzyfinder
-    use 'junegunn/fzf'
     use {
-      'ibhagwan/fzf-lua',
-      requires = {
-        'vijaymarupudi/nvim-fzf',
-        'kyazdani42/nvim-web-devicons' -- optional for icons
-      }
+      'nvim-telescope/telescope.nvim', tag = '0.1.0',
+      requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+
+    use {
+      'nvim-telescope/telescope-fzf-native.nvim',
+      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
     }
 
     -- fish shell scripts syntax
@@ -125,9 +133,11 @@ return require('packer').startup {
 
     -- treesitter syntax
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use 'nvim-treesitter/nvim-treesitter-textobjects'
+    use 'nvim-treesitter/nvim-treesitter-context'
 
     -- typescript stuff
-    -- use 'windwp/nvim-ts-autotag'
+    use 'windwp/nvim-ts-autotag'
 
     -- file explorer
     use 'kyazdani42/nvim-tree.lua'
@@ -139,7 +149,8 @@ return require('packer').startup {
     use 'liuchengxu/vista.vim'
     use 'folke/which-key.nvim'
     use 'TimUntersberger/neogit'
-    use 'kevinhwang91/nvim-bqf'
+    use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
     use 'gelguy/wilder.nvim'
+    use 'simrat39/symbols-outline.nvim'
   end
 }

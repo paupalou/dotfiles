@@ -17,26 +17,23 @@ MAPPER.nnoremap('<leader>9', '<cmd>:BufferLineGoToBuffer 9<CR>')
 
 bufferline.setup{
   options = {
-    numbers = function(opts)
-      return string.format('%s.', opts.ordinal)
-    end,
+    numbers = 'ordinal',
+    show_close_icon = false,
     buffer_close_icon = "",
     modified_icon = "",
-    close_icon = "",
     left_trunc_marker = "",
     right_trunc_marker = "",
+    separator_style = 'thick',
+    close_command = "Bdelete",
     offsets = {
       {
         filetype = "NvimTree",
         text = "File Explorer",
         highlight = "Directory",
-        text_align = "left"
+        text_align = "left",
       }
     }
   },
-  highlights = {
-    fill = {
-      guibg = '#002b34',
-    },
-  }
+  highlights = require("catppuccin.groups.integrations.bufferline").get()
 }
+

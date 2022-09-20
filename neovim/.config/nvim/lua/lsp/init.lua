@@ -1,36 +1,5 @@
 local nvim_lsp = require('lspconfig')
-
-local function goto_definition(split_cmd)
-  local util = vim.lsp.util
-  local log = require("vim.lsp.log")
-  local api = vim.api
-
-  -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-  local handler = function(_, result, ctx)
-    if result == nil or vim.tbl_isempty(result) then
-      local _ = log.info() and log.info(ctx.method, "No location found")
-      return nil
-    end
-
-    if split_cmd then
-      vim.cmd(split_cmd)
-    end
-
-    if vim.tbl_islist(result) then
-      util.jump_to_location(result[1])
-
-      if #result > 1 then
-        util.set_qflist(util.locations_to_items(result))
-        api.nvim_command("copen")
-        api.nvim_command("wincmd p")
-      end
-    else
-      util.jump_to_location(result)
-    end
-  end
-
-  return handler
-end
+local typescript = require('typescript')
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -55,40 +24,7 @@ local function on_attach(_, bufnr)
     },
   }, bufnr)
 
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
-  local opts = { noremap = true, silent = true }
-
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
-
-  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- buf_set_keymap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- buf_set_keymap('v', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-  -- buf_set_keymap(
-  --   'n',
-  --   '<space>e',
-  --   "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false, border = 'rounded' })<CR>",
-  --   opts
-  -- )
-  -- buf_set_keymap(
-  --   'n',
-  --   '[d',
-  --   "<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { focusable = false, border = 'rounded' }})<CR>",
-  --   opts
-  -- )
-  -- buf_set_keymap(
-  --   'n',
-  --   ']d',
-  --   "<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { focusable = false, border = 'rounded' }})<CR>",
-  --   opts
-  -- )
 end
 
 --Enable (broadcasting) snippet capability for completion
@@ -120,17 +56,17 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hoer,
+  vim.lsp.handlers.hover,
   { border = 'rounded', max_width = 90, max_height = 70 }
 )
-vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
+-- vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
 
 local null_ls = require('null-ls')
 
 local sources = {
   -- formatters
   null_ls.builtins.formatting.eslint_d,
-  null_ls.builtins.formatting.prettier,
+  -- null_ls.builtins.formatting.prettier,
   null_ls.builtins.formatting.shfmt.with({
     extra_args = { '-i', '2', '-ci' },
   }),
@@ -153,28 +89,20 @@ local sources = {
 null_ls.setup({ sources = sources })
 
 -- typescript and javascript
-nvim_lsp.tsserver.setup({
-  capabilities = capabilities,
-
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- disable tsserver formatting if you plan on formatting via null-ls
-    client.resolved_capabilities.document_formatting = false
-
-    local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({
-      eslint_bin = 'eslint_d',
-      enable_formatting = true,
-      formatter = 'eslint_d',
-    })
-    -- required to enable ESLint code actions and formatting
-    ts_utils.setup_client(client)
-  end,
-
-  flags = {
-    debounce_text_changes = 150,
-  },
+typescript.setup({
+  server = {
+    capabilities = capabilities,
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      -- disable tsserver formatting if you plan on formatting via null-ls
+      client.resolved_capabilities.document_formatting = false
+    end,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }
 })
+nvim_lsp.tailwindcss.setup {}
 
 local servers = {
   'html',
@@ -183,7 +111,6 @@ local servers = {
   'dockerls',
   'gdscript',
   'jsonls',
-  'graphql',
   'vimls',
 }
 for _, lsp in ipairs(servers) do
@@ -203,20 +130,14 @@ end
 -- }
 
 -- lua
-local sumneko_root_path = vim.fn.expand('$HOME/code/external/lua-language-server')
-local sumneko_binary = sumneko_root_path .. '/bin/Linux/lua-language-server'
-
 require('lspconfig').sumneko_lua.setup({
   capabilities = capabilities,
   on_attach = on_attach,
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
   settings = {
     Lua = {
       runtime = {
         -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
-        -- Setup your lua path
-        path = vim.split(package.path, ';'),
       },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
@@ -224,10 +145,7 @@ require('lspconfig').sumneko_lua.setup({
       },
       workspace = {
         -- Make the server aware of Neovim runtime files
-        library = {
-          [vim.fn.expand('$VIMRUNTIME/lua')] = true,
-          [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
-        },
+        library = vim.api.nvim_get_runtime_file("", true),
       },
     },
   },

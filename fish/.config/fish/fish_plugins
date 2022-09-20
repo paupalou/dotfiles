@@ -1,7 +1,4 @@
 jorgebucaran/fisher
-danhper/fish-ssh-agent
-PatrickF1/fzf.fish
 IlanCosman/tide@v5
-wfxr/forgit
-FabioAntunes/fish-nvm
-edc/bass
+PatrickF1/fzf.fish
+jorgebucaran/nvm.fish

@@ -10,7 +10,7 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-Space>'] = function()
+    ['<C-Space>'] = cmp.mapping(function(fallback)
       if vim.fn['vsnip#available']() == 1 then
         vim.fn.feedkeys(
           vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true),
@@ -20,7 +20,7 @@ cmp.setup({
         return
         -- fallback()
       end
-    end,
+    end, { "i", "s" }),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),

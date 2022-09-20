@@ -1,7 +1,10 @@
 local MAPPER = require 'utils'
 
-MAPPER.nnoremap('<leader>q', '<cmd>q<CR>')
-MAPPER.nnoremap('<leader>Q', '<cmd>qa!<CR>')
+vim.keymap.set('n', '<Leader>q', function ()
+  return vim.bo.filetype == 'qf' and '<cmd>bdelete<CR>' or '<cmd>Bdelete<CR>'
+end, { expr = true })
+
+MAPPER.nnoremap('<leader>Q', '<cmd>Bdelete!<CR>')
 
 MAPPER.nnoremap('<leader>v', '<C-w>v')
 MAPPER.nnoremap('<leader>h', '<C-w>s')

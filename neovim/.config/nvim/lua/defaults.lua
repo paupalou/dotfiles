@@ -1,4 +1,4 @@
-vim.o.shell = '/usr/bin/bash'
+vim.o.shell = '/bin/bash'
 vim.o.showmatch = true
 vim.o.hidden = true
 vim.o.errorbells = false
@@ -24,6 +24,8 @@ vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.mouse = 'nvr'
 vim.o.list = true
 vim.o.listchars = 'tab:»·,trail:·'
+vim.o.fillchars = 'horiz:▬,vert:▎,vertright:▎,vertleft:▎,horizup: ,horizdown: '
+vim.o.laststatus = 3
 
 -- folds
 vim.wo.foldcolumn = '0'

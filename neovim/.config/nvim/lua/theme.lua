@@ -1,8 +1,11 @@
-vim.cmd [[ syntax on ]]
-vim.cmd [[ colorscheme OceanicNext ]]
+vim.cmd [[syntax on]]
 
+vim.g.catppuccin_flavour = "macchiato"
 vim.o.termguicolors = true
 vim.o.background = 'dark'
+
+-- vim.cmd [[ colorscheme OceanicNext ]]
+vim.cmd [[colorscheme catppuccin]]
 
 local M = {
   base00 = '#1b2b34',
@@ -25,31 +28,38 @@ local M = {
 }
 
 -- comments in italic
-vim.cmd [[ hi Comment gui=italic ]]
+vim.cmd [[hi Comment gui=italic]]
 -- sign colors
-vim.cmd [[ hi SignatureMarkText guifg=#0083ba ]]
+vim.cmd [[hi SignatureMarkText guifg=#0083ba]]
 
 -- lsp colors
-vim.cmd [[ hi LspSignatureSearch guifg=#c594c5 gui=bold ]]
+vim.cmd [[hi LspSignatureSearch guifg=#c594c5 gui=bold]]
 
-vim.cmd [[ hi DiagnosticError guifg=#F45D4C ]]
-vim.cmd [[ hi DiagnosticUnderlineError guifg=#F45D4C gui=undercurl ]]
+-- vim.cmd [[ hi DiagnosticError guifg=#F45D4C ]]
+-- vim.cmd [[ hi DiagnosticUnderlineError guifg=#F45D4C gui=undercurl ]]
 
-vim.cmd [[ hi DiagnosticWarn guifg=#F7A541 ]]
-vim.cmd [[ hi DiagnosticUnderlineWarn guifg=#F7A541 gui=undercurl ]]
+-- vim.cmd [[ hi DiagnosticWarn guifg=#F7A541 ]]
+-- vim.cmd [[ hi DiagnosticUnderlineWarn guifg=#F7A541 gui=undercurl ]]
 
-vim.cmd [[ hi DiagnosticInfo guifg=#A1DBB2 ]]
-vim.cmd [[ hi DiagnosticUnderlinefInfo guifg=#A1DBB2 gui=undercurl ]]
+-- vim.cmd [[ hi DiagnosticInfo guifg=#A1DBB2 ]]
+-- vim.cmd [[ hi DiagnosticUnderlinefInfo guifg=#A1DBB2 gui=undercurl ]]
 
-vim.cmd [[ hi DiagnosticHint guifg=#FEE5AD ]]
-vim.cmd [[ hi DiagnosticUnderlineHint guifg=#FEE5AD gui=undercurl ]]
+-- vim.cmd [[ hi DiagnosticHint guifg=#FEE5AD ]]
+-- vim.cmd [[ hi DiagnosticUnderlineHint guifg=#FEE5AD gui=undercurl ]]
 
-vim.cmd [[ hi NormalFloat guibg=#1b2b34 ]]
-vim.cmd [[ hi Pmenu guibg=#1F323C ]]
-vim.cmd [[ hi PmenuSel guibg=#2A4250 ]]
-vim.cmd [[ hi FloatBorder guifg=#f99157 ]]
+vim.cmd [[hi NormalFloat guibg=#1b2b34]]
+vim.cmd [[hi Pmenu guibg=#1F323C]]
+vim.cmd [[hi PmenuSel guibg=#2A4250]]
+vim.cmd [[hi FloatBorder guifg=#f99157]]
 
-vim.cmd [[ hi link CmpDocumentation NormalFloat ]]
-vim.cmd [[ hi link CmpDocumentationBorder FloatBorder ]]
+-- vim.cmd [[ hi link CmpDocumentation NormalFloat ]]
+-- vim.cmd [[ hi link CmpDocumentationBorder FloatBorder ]]
+require("catppuccin").setup({
+  integration = {
+    neotree = {
+      enabled = true
+    }
+  }
+})
 
 return M
