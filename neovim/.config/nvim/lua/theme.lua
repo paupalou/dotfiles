@@ -1,12 +1,8 @@
 vim.cmd([[ syntax on ]])
 vim.cmd([[ colorscheme onedarkpro ]])
 
-vim.g.catppuccin_flavour = "macchiato"
 vim.o.termguicolors = true
 vim.o.background = 'dark'
-
--- vim.cmd [[ colorscheme OceanicNext ]]
-vim.cmd [[colorscheme catppuccin]]
 
 local M = {
   base00 = '#1b2b34',

@@ -117,15 +117,9 @@ return require('packer').startup {
     -- minimap sidebar like vscode
     use { 'wfxr/minimap.vim', run = ':!cargo install --locked code-minimap' }
 
-    use {
-      'nvim-telescope/telescope.nvim', tag = '0.1.0',
-      requires = { { 'nvim-lua/plenary.nvim' } }
-    }
-
-    use {
-      'nvim-telescope/telescope-fzf-native.nvim',
-      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build'
-    }
+    -- fuzzyfinder
+    use 'junegunn/fzf'
+    use { 'ibhagwan/fzf-lua', requires = { 'kyazdani42/nvim-web-devicons' } }
 
     -- fish shell scripts syntax
     use 'dag/vim-fish'
