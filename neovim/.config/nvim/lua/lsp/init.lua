@@ -6,7 +6,7 @@ local function goto_definition(split_cmd)
   local api = vim.api
 
   -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
-  local handler = function(_, result, ctx)
+  return function(_, result, ctx)
     if result == nil or vim.tbl_isempty(result) then
       local _ = log.info() and log.info(ctx.method, "No location found")
       return nil
@@ -28,8 +28,6 @@ local function goto_definition(split_cmd)
       util.jump_to_location(result)
     end
   end
-
-  return handler
 end
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
@@ -55,40 +53,7 @@ local function on_attach(_, bufnr)
     },
   }, bufnr)
 
-  local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
-  end
-
-  local opts = { noremap = true, silent = true }
-
   vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
-
-  -- buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  -- buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  -- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  -- buf_set_keymap('n', 'gk', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  -- buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  -- buf_set_keymap('n', 'gR', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  -- buf_set_keymap('v', '<space>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-  -- buf_set_keymap(
-  --   'n',
-  --   '<space>e',
-  --   "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ focusable = false, border = 'rounded' })<CR>",
-  --   opts
-  -- )
-  -- buf_set_keymap(
-  --   'n',
-  --   '[d',
-  --   "<cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { focusable = false, border = 'rounded' }})<CR>",
-  --   opts
-  -- )
-  -- buf_set_keymap(
-  --   'n',
-  --   ']d',
-  --   "<cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { focusable = false, border = 'rounded' }})<CR>",
-  --   opts
-  -- )
 end
 
 --Enable (broadcasting) snippet capability for completion
@@ -111,7 +76,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   },
 }
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
@@ -120,10 +85,23 @@ vim.diagnostic.config({
   severity_sort = false,
 })
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hoer,
+  vim.lsp.handlers.hover,
   { border = 'rounded', max_width = 90, max_height = 70 }
 )
-vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
+-- vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
+-- Jump directly to the first available definition every time.
+vim.lsp.handlers["textDocument/definition"] = function(_, result)
+  if not result or vim.tbl_isempty(result) then
+    print "[LSP] Could not find definition"
+    return
+  end
+
+  if vim.tbl_islist(result) then
+    vim.lsp.util.jump_to_location(result[1], "utf-8")
+  else
+    vim.lsp.util.jump_to_location(result, "utf-8")
+  end
+end
 
 local null_ls = require('null-ls')
 
@@ -140,41 +118,32 @@ local sources = {
   null_ls.builtins.formatting.sqlformat,
   null_ls.builtins.formatting.stylua,
   -- null_ls.builtins.formatting.deno_fmt,
+
   -- diagnostics
   null_ls.builtins.diagnostics.eslint_d.with({
     diagnostics_format = '[#{c}] #{m} (#{s})',
   }),
   null_ls.builtins.diagnostics.shellcheck,
   null_ls.builtins.diagnostics.luacheck,
+
   -- code actions
   null_ls.builtins.code_actions.eslint_d,
+  null_ls.builtins.code_actions.gitsigns,
 }
 
 null_ls.setup({ sources = sources })
 
--- typescript and javascript
-nvim_lsp.tsserver.setup({
-  capabilities = capabilities,
-
-  on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    -- disable tsserver formatting if you plan on formatting via null-ls
-    client.resolved_capabilities.document_formatting = false
-
-    local ts_utils = require('nvim-lsp-ts-utils')
-    ts_utils.setup({
-      eslint_bin = 'eslint_d',
-      enable_formatting = true,
-      formatter = 'eslint_d',
-    })
-    -- required to enable ESLint code actions and formatting
-    ts_utils.setup_client(client)
-  end,
-
-  flags = {
-    debounce_text_changes = 150,
-  },
+local typescript = require('typescript')
+typescript.setup({
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    flags = {
+      debounce_text_changes = 150,
+    },
+  }
 })
+
 
 local servers = {
   'html',
@@ -238,7 +207,10 @@ vim.fn.sign_define('DiagnosticSignWarning', { text = '' })
 vim.fn.sign_define('DiagnosticSignInformation', { text = '' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '' })
 
-require('lspkind').init({})
+require('lspkind').init({
+  symbol_map = {
+    Struct = '',
+  }
+})
 require('trouble').setup({})
 require('lsp.bindings')
-

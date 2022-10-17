@@ -89,8 +89,8 @@ return require('packer').startup {
 
     --  lsp stuff
     use 'neovim/nvim-lspconfig'
+    use 'jose-elias-alvarez/null-ls.nvim'
     use 'onsails/lspkind-nvim'
-    use { 'jose-elias-alvarez/nvim-lsp-ts-utils', requires = { 'jose-elias-alvarez/null-ls.nvim' } }
     use 'folke/lsp-trouble.nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'j-hui/fidget.nvim'
@@ -128,6 +128,7 @@ return require('packer').startup {
 
     -- typescript stuff
     -- use 'windwp/nvim-ts-autotag'
+    use 'jose-elias-alvarez/typescript.nvim'
 
     -- file explorer
     use 'kyazdani42/nvim-tree.lua'
@@ -141,5 +142,6 @@ return require('packer').startup {
     use 'TimUntersberger/neogit'
     use 'kevinhwang91/nvim-bqf'
     use 'gelguy/wilder.nvim'
+    use 'olimorris/onedarkpro.nvim'
   end
 }

@@ -1,12 +1,11 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
+
 cmp.setup({
   snippet = {
     expand = function(args)
       -- For `vsnip` user.
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` user.
-
-      -- For `luasnip` user.
-      -- require('luasnip').lsp_expand(args.body)
+      vim.fn["vsnip#anonymous"](args.body)
     end,
   },
   mapping = {
@@ -26,22 +25,25 @@ cmp.setup({
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
   },
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
-      -- fancy icons and a name of kind
-      vim_item.kind = require('lspkind').presets.default[vim_item.kind] .. ' ' .. vim_item.kind
-      -- set a name for each source
-      vim_item.menu = ({
-        path = '[Path]',
-        buffer = '[Buffer]',
-        nvim_lsp = '[LSP]',
-        nvim_lua = '[Lua]',
-        vsnip = '[Snippet]',
-      })[entry.source.name]
-      return vim_item
+      local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+      local strings = vim.split(kind.kind, "%s", { trimempty = true })
+      kind.kind = " " .. strings[1] .. " "
+      kind.menu = "    (" .. strings[2] .. ")"
+
+      return kind
     end,
   },
   window = {
-    documentation = cmp.config.window.bordered()
+    documentation = cmp.config.window.bordered({
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+    }),
+    completion = {
+      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      col_offset = -3,
+      side_padding = 0,
+    },
   },
   sources = {
     { name = 'path' },

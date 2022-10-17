@@ -11,5 +11,5 @@ fzf_lua.setup({
   preview_horizontal = 'nohidden:right:60%',
 })
 
-MAPPER.nnoremap('<leader>f', '<cmd> :FzfLua files<CR>')
-MAPPER.nnoremap('<leader>b', '<cmd> :FzfLua buffers<CR>')
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>f', '<cmd> :FzfLua files<CR>')
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>b', '<cmd> :FzfLua buffers<CR>')

@@ -1,1 +1,0 @@
-require 'plugins.minimap.bindings'
