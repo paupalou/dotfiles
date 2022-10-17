@@ -1,4 +1,4 @@
-vim.o.shell = '/bin/bash'
+vim.o.shell = '/usr/bin/fish'
 vim.o.showmatch = true
 vim.o.hidden = true
 vim.o.errorbells = false
@@ -24,19 +24,31 @@ vim.o.completeopt = 'menu,menuone,noselect'
 vim.o.mouse = 'nvr'
 vim.o.list = true
 vim.o.listchars = 'tab:»·,trail:·'
-vim.o.fillchars = 'horiz:▬,vert:▎,vertright:▎,vertleft:▎,horizup: ,horizdown: '
 vim.o.laststatus = 3
+vim.o.foldlevel = 99
+
+---- Fillchars
+vim.opt.fillchars:append({
+  horiz = '━',
+  horizup = '┻',
+  horizdown = '┳',
+  vert = '┃',
+  vertleft = '┨',
+  vertright = '┣',
+  verthoriz = '╋',
+})
 
 -- folds
 vim.wo.foldcolumn = '0'
 vim.wo.foldmethod = 'expr'
 vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-vim.o.foldlevel = 99
 
 -- line numbers
 vim.wo.number = true
 vim.wo.relativenumber = true
 
+-- avoid hit-enter prompts
 vim.cmd [[ set shortmess+=c ]]
 
+-- leader
 vim.g.mapleader = ' '

@@ -1,5 +1,34 @@
 local nvim_lsp = require('lspconfig')
-local typescript = require('typescript')
+
+local function goto_definition(split_cmd)
+  local util = vim.lsp.util
+  local log = require("vim.lsp.log")
+  local api = vim.api
+
+  -- note, this handler style is for neovim 0.5.1/0.6, if on 0.5, call with function(_, method, result)
+  return function(_, result, ctx)
+    if result == nil or vim.tbl_isempty(result) then
+      local _ = log.info() and log.info(ctx.method, "No location found")
+      return nil
+    end
+
+    if split_cmd then
+      vim.cmd(split_cmd)
+    end
+
+    if vim.tbl_islist(result) then
+      util.jump_to_location(result[1])
+
+      if #result > 1 then
+        util.set_qflist(util.locations_to_items(result))
+        api.nvim_command("copen")
+        api.nvim_command("wincmd p")
+      end
+    else
+      util.jump_to_location(result)
+    end
+  end
+end
 
 local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
@@ -47,7 +76,7 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     'additionalTextEdits',
   },
 }
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 vim.diagnostic.config({
   virtual_text = false,
   signs = true,
@@ -60,6 +89,19 @@ vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
   { border = 'rounded', max_width = 90, max_height = 70 }
 )
 -- vim.lsp.handlers['textDocument/definition'] = goto_definition('split')
+-- Jump directly to the first available definition every time.
+vim.lsp.handlers["textDocument/definition"] = function(_, result)
+  if not result or vim.tbl_isempty(result) then
+    print "[LSP] Could not find definition"
+    return
+  end
+
+  if vim.tbl_islist(result) then
+    vim.lsp.util.jump_to_location(result[1], "utf-8")
+  else
+    vim.lsp.util.jump_to_location(result, "utf-8")
+  end
+end
 
 local null_ls = require('null-ls')
 
@@ -76,33 +118,33 @@ local sources = {
   null_ls.builtins.formatting.sqlformat,
   null_ls.builtins.formatting.stylua,
   -- null_ls.builtins.formatting.deno_fmt,
+
   -- diagnostics
   null_ls.builtins.diagnostics.eslint_d.with({
     diagnostics_format = '[#{c}] #{m} (#{s})',
   }),
   null_ls.builtins.diagnostics.shellcheck,
   null_ls.builtins.diagnostics.luacheck,
+
   -- code actions
   null_ls.builtins.code_actions.eslint_d,
+  null_ls.builtins.code_actions.gitsigns,
 }
 
 null_ls.setup({ sources = sources })
 
--- typescript and javascript
+local typescript = require('typescript')
 typescript.setup({
   server = {
+    on_attach = on_attach,
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      -- disable tsserver formatting if you plan on formatting via null-ls
-      client.resolved_capabilities.document_formatting = false
-    end,
     flags = {
       debounce_text_changes = 150,
     },
   }
 })
 nvim_lsp.tailwindcss.setup {}
+
 
 local servers = {
   'html',
@@ -156,7 +198,10 @@ vim.fn.sign_define('DiagnosticSignWarning', { text = '' })
 vim.fn.sign_define('DiagnosticSignInformation', { text = '' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '' })
 
-require('lspkind').init({})
+require('lspkind').init({
+  symbol_map = {
+    Struct = '',
+  }
+})
 require('trouble').setup({})
 require('lsp.bindings')
-

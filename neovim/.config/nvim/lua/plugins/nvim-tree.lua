@@ -1,10 +1,14 @@
+local MAPPER = require 'utils'
 require('nvim-tree').setup({
   filters = {
     custom = { '.git', 'node_modules', '.cache', '.github', '.vscode' }
   }
 })
 
-require('plugins.nvim-tree.bindings')
+MAPPER.map(MAPPER.MODES.NORMAL, '<C-n>', '<cmd> :NvimTreeToggle<CR>')
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>r', '<cmd> :NvimTreeRefresh<CR>')
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>n', '<cmd> :NvimTreeFindFile<CR>')
+
 vim.g.nvim_tree_icons = {
   default = '',
   symlink = '',

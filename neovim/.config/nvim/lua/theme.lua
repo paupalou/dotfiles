@@ -1,4 +1,5 @@
-vim.cmd [[syntax on]]
+vim.cmd([[ syntax on ]])
+vim.cmd([[ colorscheme onedarkpro ]])
 
 vim.g.catppuccin_flavour = "macchiato"
 vim.o.termguicolors = true
@@ -27,39 +28,60 @@ local M = {
   white = '#ffffff',
 }
 
--- comments in italic
-vim.cmd [[hi Comment gui=italic]]
--- sign colors
-vim.cmd [[hi SignatureMarkText guifg=#0083ba]]
+local highlights = {
+  Comment = { fg = 'gray', italic = true },
 
--- lsp colors
-vim.cmd [[hi LspSignatureSearch guifg=#c594c5 gui=bold]]
+  NormalFloat =  { bg = '#1b2b34' },
+  FloatBorder = { fg = '#f99157' },
 
--- vim.cmd [[ hi DiagnosticError guifg=#F45D4C ]]
--- vim.cmd [[ hi DiagnosticUnderlineError guifg=#F45D4C gui=undercurl ]]
+  PmenuSel = { bg = '#282C34', fg = 'NONE' },
+  Pmenu = { fg = '#C5CDD9', bg = '#22252A' },
 
--- vim.cmd [[ hi DiagnosticWarn guifg=#F7A541 ]]
--- vim.cmd [[ hi DiagnosticUnderlineWarn guifg=#F7A541 gui=undercurl ]]
+  CmpItemAbbrDeprecated = { fg = '#7E8294', bg = 'NONE', strikethrough = true },
+  CmpItemAbbrMatch = { fg = '#82AAFF', bg = 'NONE', bold = true },
+  CmpItemAbbrMatchFuzzy = { fg = '#82AAFF', bg = 'NONE', bold = true },
+  CmpItemMenu = { fg = '#C792EA', bg = 'NONE', italic = true },
 
--- vim.cmd [[ hi DiagnosticInfo guifg=#A1DBB2 ]]
--- vim.cmd [[ hi DiagnosticUnderlinefInfo guifg=#A1DBB2 gui=undercurl ]]
+  CmpItemKindField = { fg = '#EED8DA', bg = '#B5585F' },
+  CmpItemKindProperty = { fg = '#EED8DA', bg = '#B5585F' },
+  CmpItemKindEvent = { fg = '#EED8DA', bg = '#B5585F' },
 
--- vim.cmd [[ hi DiagnosticHint guifg=#FEE5AD ]]
--- vim.cmd [[ hi DiagnosticUnderlineHint guifg=#FEE5AD gui=undercurl ]]
+  CmpItemKindText = { fg = '#C3E88D', bg = '#9FBD73' },
+  CmpItemKindEnum = { fg = '#C3E88D', bg = '#9FBD73' },
+  CmpItemKindKeyword = { fg = '#C3E88D', bg = '#9FBD73' },
 
-vim.cmd [[hi NormalFloat guibg=#1b2b34]]
-vim.cmd [[hi Pmenu guibg=#1F323C]]
-vim.cmd [[hi PmenuSel guibg=#2A4250]]
-vim.cmd [[hi FloatBorder guifg=#f99157]]
+  CmpItemKindConstant = { fg = '#FFE082', bg = '#D4BB6C' },
+  CmpItemKindConstructor = { fg = '#FFE082', bg = '#D4BB6C' },
+  CmpItemKindReference = { fg = '#FFE082', bg = '#D4BB6C' },
 
--- vim.cmd [[ hi link CmpDocumentation NormalFloat ]]
--- vim.cmd [[ hi link CmpDocumentationBorder FloatBorder ]]
-require("catppuccin").setup({
-  integration = {
-    neotree = {
-      enabled = true
-    }
-  }
-})
+  CmpItemKindFunction = { fg = '#EADFF0', bg = '#A377BF' },
+  CmpItemKindStruct = { fg = '#EADFF0', bg = '#A377BF' },
+  CmpItemKindClass = { fg = '#EADFF0', bg = '#A377BF' },
+  CmpItemKindModule = { fg = '#EADFF0', bg = '#A377BF' },
+  CmpItemKindOperator = { fg = '#EADFF0', bg = '#A377BF' },
+
+  CmpItemKindVariable = { fg = '#C5CDD9', bg = '#7E8294' },
+  CmpItemKindFile = { fg = '#C5CDD9', bg = '#7E8294' },
+
+  CmpItemKindUnit = { fg = '#F5EBD9', bg = '#D4A959' },
+  CmpItemKindSnippet = { fg = '#F5EBD9', bg = '#D4A959' },
+  CmpItemKindFolder = { fg = '#F5EBD9', bg = '#D4A959' },
+
+  CmpItemKindMethod = { fg = '#DDE5F5', bg = '#6C8ED4' },
+  CmpItemKindValue = { fg = '#DDE5F5', bg = '#6C8ED4' },
+  CmpItemKindEnumMember = { fg = '#DDE5F5', bg = '#6C8ED4' },
+
+  CmpItemKindInterface = { fg = '#D8EEEB', bg = '#58B5A8' },
+  CmpItemKindColor = { fg = '#D8EEEB', bg = '#58B5A8' },
+  CmpItemKindTypeParameter = { fg = '#D8EEEB', bg = '#58B5A8' },
+
+  -- Fillchars
+  VertSplit = { fg = '#22252A' },
+  WinSeparator = { fg = '#22252A' }
+}
+
+for hiGroup, color in pairs(highlights) do
+  vim.api.nvim_set_hl(0, hiGroup, color)
+end
 
 return M
