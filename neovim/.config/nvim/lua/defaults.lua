@@ -1,4 +1,4 @@
-vim.o.shell = '/usr/bin/fish'
+vim.o.shell = '/bin/bash'
 vim.o.showmatch = true
 vim.o.hidden = true
 vim.o.errorbells = false
