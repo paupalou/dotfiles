@@ -125,7 +125,7 @@ local sources = {
   }),
   null_ls.builtins.diagnostics.shellcheck,
   null_ls.builtins.diagnostics.luacheck.with({
-    command = 'luacheck --config ~/.config/luacheck/.luacheckrc'
+    extra_args = { '--config ~/.config/luacheck/.luacheckrc' }
   }),
 
   -- code actions
