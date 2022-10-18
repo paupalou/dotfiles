@@ -124,11 +124,12 @@ local sources = {
     diagnostics_format = '[#{c}] #{m} (#{s})',
   }),
   null_ls.builtins.diagnostics.shellcheck,
-  null_ls.builtins.diagnostics.luacheck,
+  null_ls.builtins.diagnostics.luacheck.with({
+    command = 'luacheck --config ~/.config/luacheck/.luacheckrc'
+  }),
 
   -- code actions
   null_ls.builtins.code_actions.eslint_d,
-  null_ls.builtins.code_actions.gitsigns,
 }
 
 null_ls.setup({ sources = sources })

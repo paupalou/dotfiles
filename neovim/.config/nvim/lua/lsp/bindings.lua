@@ -7,7 +7,6 @@ MAPPER.map(MAPPER.MODES.NORMAL, 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
 MAPPER.map(MAPPER.MODES.NORMAL, 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
 MAPPER.map(MAPPER.MODES.NORMAL, 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
 MAPPER.map(MAPPER.MODES.NORMAL, '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-MAPPER.map(MAPPER.MODES.NORMAL, '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>')
 
 MAPPER.map(MAPPER.MODES.NORMAL, '<leader>ll', '<cmd> :TroubleToggle<CR>')
 MAPPER.map(MAPPER.MODES.NORMAL, '<leader>e', '<cmd>lua vim.diagnostic.open_float()<CR>')

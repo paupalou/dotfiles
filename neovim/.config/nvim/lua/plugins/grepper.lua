@@ -8,8 +8,8 @@ vim.g.grepper = {
   simple_prompt = 1
 }
 
-MAPPER.map(MAPPER.MODES.NORMAL, 'gs', '<plug>(GrepperOperator)', { silent = true, remap = true })
-MAPPER.map('x', 'gs', '<plug>(GrepperOperator)', { silent = true })
+-- MAPPER.map(MAPPER.MODES.NORMAL, 'gs', '<plug>(GrepperOperator)', { silent = true, remap = true })
+-- MAPPER.map('x', 'gs', '<plug>(GrepperOperator)', { silent = true })
 
-MAPPER.map(MAPPER.MODES.NORMAL, '<leader>g', '<cmd> :Grepper<CR>')
-MAPPER.map(MAPPER.MODES.NORMAL, '<leader>*', '<cmd> :Grepper -tool rg -cword -noprompt<CR>')
+-- MAPPER.map(MAPPER.MODES.NORMAL, '<leader>g', '<cmd> :Grepper<CR>')
+-- MAPPER.map(MAPPER.MODES.NORMAL, '<leader>*', '<cmd> :Grepper -tool rg -cword -noprompt<CR>')
