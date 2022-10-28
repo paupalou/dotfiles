@@ -30,6 +30,8 @@ return require('packer').startup {
     -- packer can manage itself as an optional plugin
     use { 'wbthomason/packer.nvim', opt = true }
 
+    use 'lewis6991/impatient.nvim'
+
     -- lua utils required for some plugins
     use 'nvim-lua/plenary.nvim'
 
@@ -144,7 +146,6 @@ return require('packer').startup {
     use 'folke/which-key.nvim'
     use 'TimUntersberger/neogit'
     use { 'kevinhwang91/nvim-bqf', ft = 'qf' }
-    use 'gelguy/wilder.nvim'
     use 'olimorris/onedarkpro.nvim'
   end
 }

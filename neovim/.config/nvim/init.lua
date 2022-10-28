@@ -5,6 +5,7 @@ require('theme')
 require('bindings')
 require('lsp')
 require('plugins')
+require('impatient')
 
 -- require each plugin config file
 local conf_dir=os.getenv('XDG_CONFIG_HOME') or '~/.config'
