@@ -1,6 +1,34 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
+local cmdline_formatting = { fields = { "abbr" } }
+local winhighlight = cmp.config.window.bordered({
+  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  formatting = cmdline_formatting,
+  window = {
+    completion = winhighlight,
+  },
+  sources = {
+    { name = 'path' },
+    { name = 'cmdline' }
+  },
+})
+
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  formatting = cmdline_formatting,
+  window = {
+    completion = winhighlight,
+  },
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -36,11 +64,9 @@ cmp.setup({
     end,
   },
   window = {
-    documentation = cmp.config.window.bordered({
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-    }),
+    documentation = winhighlight,
     completion = {
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      winhighlight,
       col_offset = -3,
       side_padding = 0,
     },
@@ -51,17 +77,5 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'vsnip' },
-  },
-})
-
-cmp.setup.cmdline(':', {
-  sources = {
-    { name = 'cmdline' }
-  }
-})
-
-cmp.setup.cmdline('/', {
-  sources = {
-    { name = 'buffer' }
   }
 })

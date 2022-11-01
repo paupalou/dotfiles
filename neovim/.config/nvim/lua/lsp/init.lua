@@ -145,11 +145,16 @@ typescript.setup({
   }
 })
 nvim_lsp.tailwindcss.setup {}
+local rust_tools = require('rust-tools')
 
+rust_tools.setup({
+  server = {
+    on_attach = on_attach,
+  }
+})
 
 local servers = {
   'html',
-  'rust_analyzer',
   'bashls',
   'dockerls',
   'gdscript',

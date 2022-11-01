@@ -90,6 +90,7 @@ return require('packer').startup {
 
     -- autocompletion engine
     use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-nvim-lsp'
@@ -106,6 +107,7 @@ return require('packer').startup {
     use 'folke/lsp-trouble.nvim'
     use 'ray-x/lsp_signature.nvim'
     use 'j-hui/fidget.nvim'
+    use 'simrat39/rust-tools.nvim'
 
     -- improve f/t/F/T
     use 'rhysd/clever-f.vim'
