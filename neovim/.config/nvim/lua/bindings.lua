@@ -1,15 +1,17 @@
 local MAPPER = require 'utils'
 
-vim.keymap.set('n', '<Leader>q', function ()
-  return vim.bo.filetype == 'qf' and '<cmd>bdelete<CR>' or '<cmd>Bdelete<CR>'
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>q', function ()
+  local buffer_filetype = vim.bo.filetype
+  if buffer_filetype == 'qf' or buffer_filetype == '' then
+    return '<cmd>bdelete<CR>'
+  else
+    return '<cmd>Bdelete<CR>'
+  end
 end, { expr = true })
 
 MAPPER.map(MAPPER.MODES.NORMAL, '<leader>Q', '<cmd>qa!<CR>')
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>x', '<cmd>q<CR>')
 
-MAPPER.map(MAPPER.MODES.NORMAL, '<leader>v', '<C-w>v')
-MAPPER.map(MAPPER.MODES.NORMAL, '<leader>h', '<C-w>s')
-
-MAPPER.map(MAPPER.MODES.NORMAL, '<leader>h', '<C-w>s')
 MAPPER.map(MAPPER.MODES.NORMAL, '<c-s>', '<cmd>:w<CR>')
 
 MAPPER.map(MAPPER.MODES.INSERT, '<c-a>', '<esc>I')
