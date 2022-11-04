@@ -1,6 +1,34 @@
 local cmp = require('cmp')
 local lspkind = require('lspkind')
 
+local cmdline_formatting = { fields = { "abbr" } }
+local winhighlight = cmp.config.window.bordered({
+  winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+})
+
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  formatting = cmdline_formatting,
+  window = {
+    completion = winhighlight,
+  },
+  sources = {
+    { name = 'path' },
+    { name = 'cmdline' }
+  },
+})
+
+cmp.setup.cmdline('/', {
+  mapping = cmp.mapping.preset.cmdline(),
+  formatting = cmdline_formatting,
+  window = {
+    completion = winhighlight,
+  },
+  sources = {
+    { name = 'buffer' }
+  }
+})
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -9,7 +37,7 @@ cmp.setup({
     end,
   },
   mapping = {
-    ['<C-Space>'] = function()
+    ['<C-Space>'] = cmp.mapping(function(fallback)
       if vim.fn['vsnip#available']() == 1 then
         vim.fn.feedkeys(
           vim.api.nvim_replace_termcodes('<Plug>(vsnip-expand-or-jump)', true, true, true),
@@ -19,7 +47,7 @@ cmp.setup({
         return
         -- fallback()
       end
-    end,
+    end, { "i", "s" }),
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -36,11 +64,9 @@ cmp.setup({
     end,
   },
   window = {
-    documentation = cmp.config.window.bordered({
-      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-    }),
+    documentation = winhighlight,
     completion = {
-      winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+      winhighlight,
       col_offset = -3,
       side_padding = 0,
     },
@@ -51,5 +77,5 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'nvim_lua' },
     { name = 'vsnip' },
-  },
+  }
 })

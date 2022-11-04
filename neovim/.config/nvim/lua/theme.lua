@@ -30,7 +30,7 @@ local highlights = {
   NormalFloat =  { bg = '#1b2b34' },
   FloatBorder = { fg = '#f99157' },
 
-  PmenuSel = { bg = '#282C34', fg = 'NONE' },
+  PmenuSel = { bg = M.base01, fg = 'NONE' },
   Pmenu = { fg = '#C5CDD9', bg = '#22252A' },
 
   CmpItemAbbrDeprecated = { fg = '#7E8294', bg = 'NONE', strikethrough = true },
@@ -73,7 +73,11 @@ local highlights = {
 
   -- Fillchars
   VertSplit = { fg = '#22252A' },
-  WinSeparator = { fg = '#22252A' }
+  WinSeparator = { fg = '#22252A' },
+
+  -- Treesitter context
+  TreesitterContext = { bg = M.base01 },
+  TreesitterContextLineNumber = { bg = M.base01 }
 }
 
 for hiGroup, color in pairs(highlights) do

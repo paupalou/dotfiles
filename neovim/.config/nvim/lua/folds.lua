@@ -32,5 +32,5 @@ end
 
 vim.wo.foldtext = 'v:lua.FoldText()'
 
-vim.cmd [[ autocmd BufWinLeave,BufLeave ?* mkview ]]
-vim.cmd [[ autocmd BufWinEnter ?* silent! loadview ]]
+vim.cmd [[autocmd BufWinLeave,BufLeave ?* mkview]]
+vim.cmd [[autocmd BufWinEnter ?* silent! loadview]]
