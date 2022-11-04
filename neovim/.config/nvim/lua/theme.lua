@@ -73,7 +73,11 @@ local highlights = {
 
   -- Fillchars
   VertSplit = { fg = '#22252A' },
-  WinSeparator = { fg = '#22252A' }
+  WinSeparator = { fg = '#22252A' },
+
+  -- Treesitter context
+  TreesitterContext = { bg = M.base01 },
+  TreesitterContextLineNumber = { bg = M.base01 }
 }
 
 for hiGroup, color in pairs(highlights) do
