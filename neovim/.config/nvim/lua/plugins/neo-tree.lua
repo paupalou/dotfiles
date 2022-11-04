@@ -8,6 +8,5 @@ require("neo-tree").setup({
   }
 })
 
-MAPPER.map(MAPPER.MODES.NORMAL, '<C-n>', '<cmd>:Neotree<CR>')
-
-require('aerial').setup()
+MAPPER.map(MAPPER.MODES.NORMAL, '<C-n>', '<cmd>:Neotree toggle<CR>')
+MAPPER.map(MAPPER.MODES.NORMAL, '<leader>n', '<cmd>:Neotree reveal<CR>')
