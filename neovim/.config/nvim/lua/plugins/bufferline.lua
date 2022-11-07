@@ -29,9 +29,8 @@ bufferline.setup{
       {
         filetype = "neo-tree",
         text = "File Explorer",
-        highlight = "Directory",
+        highlight = "Pmenu",
         text_align = "left",
-        separator = "",
       }
     },
     separator_style = { '','' },
