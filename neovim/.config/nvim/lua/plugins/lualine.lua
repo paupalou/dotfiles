@@ -1,4 +1,4 @@
 require 'lualine'.setup{
   sections = { lualine_x = { 'filetype' } },
-  extensions = { 'fzf', 'nvim-tree', 'quickfix' }
+  extensions = { 'fzf', 'neo-tree', 'quickfix', 'aerial' }
 }
