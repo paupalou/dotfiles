@@ -74,6 +74,10 @@ capabilities.textDocument.completion.completionItem.resolveSupport = {
     "additionalTextEdits",
   },
 }
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 vim.diagnostic.config({
   virtual_text = false,
@@ -135,7 +139,10 @@ null_ls.setup({ sources = sources })
 local typescript = require("typescript")
 typescript.setup({
   server = {
-    on_attach = on_attach,
+    on_attach = function(client)
+      client.server_capabilities.documentFormattingProvider = false
+      on_attach(client)
+    end,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,

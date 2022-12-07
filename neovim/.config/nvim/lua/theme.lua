@@ -1,3 +1,20 @@
+require('onedarkpro').setup({
+  cache = true,
+  plugins = {
+    all = false,
+    native_lsp = true,
+    treesitter = true,
+    aerial = true,
+    gitsigns = true,
+    neo_tree = true,
+    nvim_bqf = true,
+    nvim_cmp = true,
+    packer = true,
+    startify = true,
+    trouble = true,
+    which_key = true
+  }
+})
 vim.cmd([[ syntax on ]])
 vim.cmd([[ colorscheme onedarkpro ]])
 

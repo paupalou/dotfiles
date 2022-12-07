@@ -150,5 +150,11 @@ return require("packer").startup({
     use({ "kevinhwang91/nvim-bqf", ft = "qf" })
     use("olimorris/onedarkpro.nvim")
     use("stevearc/aerial.nvim")
+    use {
+      "nvim-zh/colorful-winsep.nvim",
+      config = function ()
+        require('colorful-winsep').setup()
+      end
+    }
   end,
 })
