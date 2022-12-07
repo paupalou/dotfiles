@@ -41,9 +41,6 @@ set -x FZF_DEFAULT_COMMAND fd --type f
 # nvm.fish
 set --universal nvm_default_version lts
 
-# direnv
-direnv hook fish | source
-
 # virtualfish
 if set -q VIRTUAL_ENV
     echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
