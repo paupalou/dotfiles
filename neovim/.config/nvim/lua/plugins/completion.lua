@@ -1,0 +1,113 @@
+return {
+  "hrsh7th/nvim-cmp",
+  event = "VeryLazy",
+  dependencies = {
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-path",
+    "hrsh7th/cmp-cmdline",
+    {
+      "saadparwaiz1/cmp_luasnip",
+      dependencies = {
+        "L3MON4D3/LuaSnip",
+        {
+          "rafamadriz/friendly-snippets",
+          config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+          end,
+        },
+      },
+    },
+    "onsails/lspkind-nvim",
+  },
+  config = function()
+    local cmp = require("cmp")
+    local luasnip = require("luasnip")
+    local lspkind = require("lspkind")
+    local cmdline_formatting = { fields = { "abbr" } }
+    local winhighlight = cmp.config.window.bordered({
+      winhighlight = "Normal:Normal,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+    })
+    local has_words_before = function()
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0
+      and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+    end
+
+    cmp.setup({
+      cmp.setup.cmdline(":", {
+        mapping = cmp.mapping.preset.cmdline(),
+        formatting = cmdline_formatting,
+        window = {
+          completion = winhighlight,
+        },
+        sources = {
+          { name = "path" },
+          { name = "cmdline" },
+        },
+      }),
+
+      cmp.setup.cmdline({ "/", "?" }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        formatting = cmdline_formatting,
+        window = {
+          completion = winhighlight,
+        },
+        sources = {
+          { name = "buffer" },
+        },
+      }),
+
+      snippet = {
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
+      mapping = cmp.mapping.preset.insert({
+        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Space>"] = cmp.mapping(function(fallback)
+          if luasnip.expand_or_jumpable() then
+            luasnip.expand_or_jump()
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<CR>"] = cmp.mapping.confirm({
+          behavior = cmp.ConfirmBehavior.Replace,
+          select = true,
+        }),
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          elseif has_words_before() then
+            cmp.complete()
+          else
+            fallback()
+          end
+        end, {"i", "s"}),
+        ["<S-Tab>"] = cmp.mapping.select_prev_item(),
+      }),
+      formatting = {
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          local kind = lspkind.cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+          local strings = vim.split(kind.kind, "%s", { trimempty = true })
+          kind.kind = " " .. strings[1] .. " "
+          kind.menu = "    (" .. strings[2] .. ")"
+
+          return kind
+        end,
+      },
+      window = {
+        documentation = winhighlight,
+        completion = winhighlight,
+      },
+      sources = {
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+      },
+    })
+  end,
+}

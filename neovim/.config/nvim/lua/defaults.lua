@@ -1,54 +1,94 @@
-vim.o.shell = '/bin/bash'
-vim.o.showmatch = true
-vim.o.hidden = true
-vim.o.errorbells = false
-vim.o.tabstop = 2
-vim.o.softtabstop = 2
-vim.o.shiftwidth = 2
-vim.o.expandtab = true
-vim.o.smartindent = true
-vim.o.smarttab = true
-vim.o.wrap = false
-vim.o.swapfile = false
-vim.o.backup = false
-vim.o.updatetime = 50
-vim.o.showmode = false
-vim.o.showcmd = false
-vim.o.cmdheight = 1
-vim.o.scrolloff = 8
-vim.o.clipboard = 'unnamedplus'
-vim.o.incsearch = true
-vim.o.inccommand = 'split'
-vim.o.signcolumn = 'auto'
-vim.o.completeopt = 'menu,menuone,noselect'
-vim.o.mouse = 'nvr'
-vim.o.list = true
-vim.o.listchars = 'tab:»·,trail:·'
-vim.o.laststatus = 3
-vim.o.foldlevel = 99
+-- Set highlight on search
+vim.o.hlsearch = false
 
----- Fillchars
-vim.opt.fillchars:append({
-  horiz = '━',
-  horizup = '┻',
-  horizdown = '┳',
-  vert = '┃',
-  vertleft = '┨',
-  vertright = '┣',
-  verthoriz = '╋',
-})
-
--- folds
-vim.wo.foldcolumn = '0'
-vim.wo.foldmethod = 'expr'
-vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
-
--- line numbers
+-- Make line numbers default
 vim.wo.number = true
-vim.wo.relativenumber = true
+
+-- disable wrap
+vim.o.wrap = false
+-- breakindent
+vim.o.breakindent = true
+
+--  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
+
+-- Decrease update time
+vim.o.updatetime = 250
+vim.wo.signcolumn = 'yes'
+
+-- true colors
+vim.o.termguicolors = true
+
+-- don't load the plugins below
+local builtins = {
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"fzf",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"matchit",
+	"matchparen",
+	"logiPat",
+	"rrhelper",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+}
+
+for _, plugin in ipairs(builtins) do
+	vim.g["loaded_" .. plugin] = 1
+end
 
 -- avoid hit-enter prompts
 vim.cmd [[ set shortmess+=c ]]
 
--- leader
-vim.g.mapleader = ' '
+vim.o.wildmode = "longest:full,full" -- Command-line completion mode
+vim.o.completeopt = "menu,menuone,noselect"
+vim.o.laststatus = 0
+vim.o.showmode = 0
+vim.o.showcmd = 0
+vim.o.cmdheight = 1
+vim.o.expandtab = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.shiftround = true
+vim.o.clipboard = 'unnamedplus'
+vim.o.scrolloff = 8
+vim.o.inccommand = 'split'
+vim.o.laststatus = 3
+
+-- Remap for dealing with word wrap
+vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Better close buffer/quit handling
+vim.keymap.set('n', '<leader>q', function ()
+  local buffer_filetype = vim.bo.filetype
+  if buffer_filetype == 'qf' or buffer_filetype == '' then
+    return '<cmd>bdelete<CR>'
+  else
+    return '<cmd>Bdelete<CR>'
+  end
+end, { desc = 'BuffDelete - Close buffer', expr = true, silent = true })
+
+vim.keymap.set('n', '<leader>Q', '<cmd>qa!<CR>', { desc = 'Close all buffers (force)', silent = true })
+vim.keymap.set('n', '<leader>x', '<cmd>q<CR>', { desc = 'Close buffer', silent = true })
+
+-- Save files with CTRL-s
+vim.keymap.set({ 'n','i' }, '<c-s>', '<cmd>w<CR>', { silent = true })
+
+-- Start / End of line CTRL-a CTRL-e
+vim.keymap.set('i', '<c-a>', '<esc>I', { silent = true })
+vim.keymap.set('i', '<c-e>', '<esc>A', { silent = true })
