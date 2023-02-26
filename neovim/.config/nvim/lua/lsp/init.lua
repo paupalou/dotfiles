@@ -214,5 +214,4 @@ require("lspkind").init({
     Struct = "",
   },
 })
-require("trouble").setup({})
 require("lsp.bindings")

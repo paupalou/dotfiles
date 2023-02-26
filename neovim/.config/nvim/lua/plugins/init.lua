@@ -97,7 +97,6 @@ return require("packer").startup({
     use("neovim/nvim-lspconfig")
     use("jose-elias-alvarez/null-ls.nvim")
     use("onsails/lspkind-nvim")
-    use("folke/lsp-trouble.nvim")
     use("ray-x/lsp_signature.nvim")
     use("j-hui/fidget.nvim")
     use("simrat39/rust-tools.nvim")
@@ -150,11 +149,5 @@ return require("packer").startup({
     use({ "kevinhwang91/nvim-bqf", ft = "qf" })
     use("olimorris/onedarkpro.nvim")
     use("stevearc/aerial.nvim")
-    use {
-      "nvim-zh/colorful-winsep.nvim",
-      config = function ()
-        require('colorful-winsep').setup()
-      end
-    }
   end,
 })

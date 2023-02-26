@@ -38,7 +38,6 @@ treesitter.setup({
       goto_next_start = {
         ["]f"] = "@function.outer",
         ["]p"] = "@parameter.inner",
-        ["]c"] = "@conditional.inner",
       },
       goto_next_end = {
         ["]F"] = "@function.outer",

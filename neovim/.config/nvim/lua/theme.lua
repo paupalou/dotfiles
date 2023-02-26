@@ -11,8 +11,7 @@ require('onedarkpro').setup({
     nvim_cmp = true,
     packer = true,
     startify = true,
-    trouble = true,
-    which_key = true
+    which_key = true,
   }
 })
 vim.cmd([[ syntax on ]])

@@ -51,6 +51,8 @@ cmp.setup({
     ['<Tab>'] = cmp.mapping.select_next_item(),
     ['<S-Tab>'] = cmp.mapping.select_prev_item(),
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
   },
   formatting = {
     fields = { "kind", "abbr", "menu" },
