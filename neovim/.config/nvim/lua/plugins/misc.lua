@@ -1,5 +1,9 @@
 return {
   {
+    "max397574/better-escape.nvim",
+    opts = {},
+  },
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = true,
@@ -23,12 +27,9 @@ return {
     config = true,
   },
   {
-    "numToStr/Comment.nvim",
-    config = true,
-  },
-  {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
+      use_treesitter_scope = true,
       char = "┊",
       space_char_blankline = " ",
       show_current_context = true,
@@ -39,6 +40,17 @@ return {
     end,
   },
   {
+    "utilyre/sentiment.nvim",
+    name = "sentiment",
+    version = "*",
+    opts = {},
+  },
+  {
+    "kylechui/nvim-surround",
+    version = false,
+    opts = {},
+  },
+  {
     "echasnovski/mini.jump",
     version = false,
     config = function()
@@ -46,6 +58,31 @@ return {
     end,
   },
   {
-    "RRethy/vim-illuminate",
+    "echasnovski/mini.cursorword",
+    version = false,
+    config = function()
+      require("mini.cursorword").setup()
+    end,
+  },
+  {
+    "echasnovski/mini.move",
+    version = false,
+    config = function()
+      require("mini.move").setup({
+        mappings = {
+          -- Move visual selection in Visual mode
+          left = "<S-Left>",
+          right = "<S-Right>",
+          down = "<S-Down>",
+          up = "<S-Up>",
+
+          -- Move current line in Normal mode
+          line_left = "<S-Left>",
+          line_right = "<S-Right>",
+          line_down = "<S-Down>",
+          line_up = "<S-Up>",
+        },
+      })
+    end,
   },
 }

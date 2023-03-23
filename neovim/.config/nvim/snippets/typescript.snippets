@@ -1,0 +1,35 @@
+snippet c "const"
+	const ${1}: ${2:any} = ${3}
+	${0}
+snippet f "function"
+	function ${1}(${2}): ${3:any} {
+		${0:$VISUAL}
+	}
+snippet r "return"
+	return ${0}
+snippet in "int"
+	interface ${1} {
+		${0}
+	}
+snippet ty "type"
+	type ${1} = {
+		${0}
+	}
+snippet .m "array map" i
+	.map((${1:item}) => {
+		${0}
+	})
+snippet .fi "array find" i
+	.find((${1:item}) => {
+		${0}
+	})
+snippet .fl "array filter" i
+	.filter((${1:item}) => {
+		${0}
+	})
+snippet if "if block" i
+	if (${1:condition}) {
+		${0:$VISUAL}
+	}
+snippet ? "ternary" i
+	${1:condition} ? ${2:condition is true} : ${3:condition is false}

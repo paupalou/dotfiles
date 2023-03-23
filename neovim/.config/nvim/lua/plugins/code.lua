@@ -3,39 +3,32 @@ local lsp = {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "j-hui/fidget.nvim",
+    { "j-hui/fidget.nvim", opts = {} },
     "folke/neodev.nvim",
-    "hrsh7th/cmp-nvim-lsp",
     "ray-x/lsp_signature.nvim",
     "jose-elias-alvarez/null-ls.nvim",
     {
-      "glepnir/lspsaga.nvim",
-      event = "BufRead",
+      "jinzhongjia/LspUI.nvim",
+      event = "VeryLazy",
       config = function()
-        require("lspsaga").setup({
-          ui = {
-            title = false,
-            border = "rounded",
-          },
-          symbol_in_winbar = {
-            enable = false,
-          },
-          lightbulb = {
-            enable = false,
-          },
+        require("LspUI").setup({
+          peek_definition = {
+            enable = true
+          }
         })
       end,
     },
     {
-      "NvChad/nvim-colorizer.lua",
-      opts = {
-        user_default_options = {
-          tailwind = true,
-        },
-      },
+      "dnlhc/glance.nvim",
+      config = function()
+        require('glance').setup({
+          -- your configuration
+        })
+      end,
     },
   },
   config = function()
+    local lspui = require("LspUI")
     local on_attach = function(_, bufnr)
       require("lsp_signature").on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -60,16 +53,20 @@ local lsp = {
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
       end
 
-      nmap("<leader>rn", "<cmd>Lspsaga rename<CR>", "[R]e[n]ame")
-      nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
-      nmap("<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>", "Show Line Diagnostic")
-      nmap("gd", "<cmd>Lspsaga goto_definition<CR>", "[G]oto [D]efinition")
-      nmap("gp", "<cmd>Lspsaga peek_definition<CR>", "[P]eek Definition")
-      nmap("gr", "<cmd>Lspsaga lsp_finder<CR>", "[G]oto [R]eferences")
+      nmap("<leader>rn", "<cmd>LspUI rename<CR>", "[R]e[n]ame")
+      nmap("<leader>ca", "<cmd>LspUI code_action<CR>", "[C]ode [A]ction")
+      nmap("<leader>e", vim.diagnostic.open_float, "Show Line Diagnostic")
+      nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+      nmap("gp", "<cmd>LspUI peek_definition<CR>", "[P]eek Definition")
+      nmap(
+        "gr",
+        "<cmd>lua require('fzf-lua').lsp_references({ ignore_current_line = true })<CR>",
+        "[G]oto [R]eferences"
+      )
       nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-      nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
-      nmap("[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump to prev [D]iagnostic")
-      nmap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump to next [D]iagnostic")
+      nmap("K", "<cmd>LspUI hover<CR>", "Hover Documentation")
+      nmap("[d", "<cmd>LspUI diagnostic prev<CR>", "Jump to prev [D]iagnostic")
+      nmap("]d", "<cmd>LspUI diagnostic next<CR>", "Jump to next [D]iagnostic")
 
       -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
@@ -82,7 +79,6 @@ local lsp = {
       tsserver = {},
       tailwindcss = {},
       pyright = {},
-
       lua_ls = {
         Lua = {
           runtime = {
@@ -175,6 +171,9 @@ local lsp = {
 
     vim.diagnostic.config({
       virtual_text = false,
+      float = {
+        border = "rounded",
+      },
     })
   end,
 }
@@ -188,79 +187,83 @@ local treesitter = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "JoosepAlviste/nvim-ts-context-commentstring",
   },
-  opts = {
-    ensure_installed = {
-      "lua",
-      "python",
-      "rust",
-      "vim",
-      "fish",
-      "html",
-      "json",
-      "markdown",
-      "python",
-      "typescript",
-      "tsx",
-      "javascript"
-    },
-    highlight = { enable = true },
-    indent = { enable = false },
-    context_commentstring = { enable = true },
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        init_selection = "<c-space>",
-        node_incremental = "<c-space>",
-        scope_incremental = "<c-s>",
-        node_decremental = "<c-backspace>",
+  config = function()
+    local opts = {
+      ensure_installed = {
+        "lua",
+        "python",
+        "rust",
+        "vim",
+        "fish",
+        "html",
+        "json",
+        "markdown",
+        "python",
+        "typescript",
+        "tsx",
+        "javascript",
       },
-    },
-    textobjects = {
-      select = {
+      highlight = { enable = true },
+      indent = { enable = false },
+      context_commentstring = {
         enable = true,
-        lookahead = true,
+        enable_autocmd = false,
+      },
+      incremental_selection = {
+        enable = true,
         keymaps = {
-          ["aa"] = "@parameter.outer",
-          ["ia"] = "@parameter.inner",
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
+          init_selection = "<c-space>",
+          node_incremental = "<c-space>",
+          scope_incremental = "<c-s>",
+          node_decremental = "<c-backspace>",
         },
       },
-      move = {
-        enable = true,
-        set_jumps = true,
-        goto_next_start = {
-          ["]m"] = "@function.outer",
-          ["]]"] = "@class.outer",
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["aa"] = "@parameter.outer",
+            ["ia"] = "@parameter.inner",
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            ["ic"] = "@class.inner",
+          },
         },
-        goto_next_end = {
-          ["]M"] = "@function.outer",
-          ["]["] = "@class.outer",
+        move = {
+          enable = true,
+          set_jumps = true,
+          goto_next_start = {
+            ["]m"] = "@function.outer",
+            ["]]"] = "@class.outer",
+          },
+          goto_next_end = {
+            ["]M"] = "@function.outer",
+            ["]["] = "@class.outer",
+          },
+          goto_previous_start = {
+            ["[m"] = "@function.outer",
+            ["[["] = "@class.outer",
+          },
+          goto_previous_end = {
+            ["[M"] = "@function.outer",
+            ["[]"] = "@class.outer",
+          },
         },
-        goto_previous_start = {
-          ["[m"] = "@function.outer",
-          ["[["] = "@class.outer",
-        },
-        goto_previous_end = {
-          ["[M"] = "@function.outer",
-          ["[]"] = "@class.outer",
+        swap = {
+          enable = true,
+          swap_next = {
+            ["<leader>a"] = "@parameter.inner",
+          },
+          swap_previous = {
+            ["<leader>A"] = "@parameter.inner",
+          },
         },
       },
-      swap = {
-        enable = true,
-        swap_next = {
-          ["<leader>a"] = "@parameter.inner",
-        },
-        swap_previous = {
-          ["<leader>A"] = "@parameter.inner",
-        },
-      },
-    },
-  },
-  ---@diagnostic disable-next-line: unused-local
-  config = function(plugin, opts)
+    }
+
+    require("nvim-treesitter.install").update({ with_sync = true })
     require("nvim-treesitter.configs").setup(opts)
   end,
 }
@@ -328,10 +331,53 @@ local gitsigns = {
   config = true,
 }
 
+local comment = {
+  "echasnovski/mini.comment",
+  version = false,
+  dependencies = {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+  },
+  config = function()
+    local hooks = {
+      pre = function()
+        require("ts_context_commentstring.internal").update_commentstring()
+      end,
+    }
+    require("mini.comment").setup({ hooks })
+  end,
+}
+
+local colorizer = {
+  "NvChad/nvim-colorizer.lua",
+  event = "BufReadPre",
+  opts = {
+    filetypes = { "css", "scss", "typescript", "typescriptreact", "javascript", "!lazy" },
+    buftype = { "*", "!prompt", "!nofile" },
+    user_default_options = {
+      RGB = true, -- #RGB hex codes
+      RRGGBB = true, -- #RRGGBB hex codes
+      names = false, -- "Name" codes like Blue
+      RRGGBBAA = true, -- #RRGGBBAA hex codes
+      AARRGGBB = false, -- 0xAARRGGBB hex codes
+      rgb_fn = true, -- CSS rgb() and rgba() functions
+      hsl_fn = true, -- CSS hsl() and hsla() functions
+      css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+      css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      -- Available modes: foreground, background
+      -- Available modes for `mode`: foreground, background,  virtualtext
+      mode = "background", -- Set the display mode.
+      virtualtext = "■",
+      tailwind = true,
+    },
+  },
+}
+
 return {
   lsp,
   treesitter,
   aerial,
   barbecue,
   gitsigns,
+  comment,
+  colorizer,
 }
