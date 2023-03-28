@@ -1,0 +1,19 @@
+extends typescript
+snippet us "useState"
+	const [${1}, set${1/\<./\u&/g}] = useState($2)$0
+snippet ue "useEffect"
+	useEffect(() => {
+		${0:$VISUAL}
+	}, [${1}])
+snippet uc "useCallback"
+	useCallback((${1}) => {
+		${0:$VISUAL}
+	}, [${2}])$
+snippet um "useMemo"
+	useMemo(() => {
+		${0:$VISUAL}
+	}, [${1}])
+snippet j "jsx element"
+	<${1:tag}${3}>${2:$VISUAL}</${1:tag}>${0}
+snippet cla "className prop"
+	className={${1}}${0}

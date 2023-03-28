@@ -1,13 +1,37 @@
-require('defaults')
-require('utils')
-require('folds')
-require('theme')
-require('bindings')
-require('lsp')
-require('plugins')
-require('impatient')
+require("defaults")
 
--- require each plugin config file
-local conf_dir=os.getenv('XDG_CONFIG_HOME') or '~/.config'
-local list_files_command="ls -pa " ..conf_dir.. "/nvim/lua/plugins | grep -v init.lua | sed -n 's/.lua$//p'"
-for dir in io.popen(list_files_command):lines() do require('plugins/'..dir) end
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "--single-branch",
+    "https://github.com/folke/lazy.nvim.git",
+    lazypath,
+  })
+end
+vim.opt.runtimepath:prepend(lazypath)
+
+local lazy = require("lazy")
+
+lazy.setup({
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    init = function()
+      vim.cmd([[colorscheme catppuccin]])
+      vim.cmd([[
+      highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
+      highlight! link NeoTreeDirectoryName NvimTreeFolderName
+      highlight! link NeoTreeSymbolicLinkTarget NvimTreeSymlink
+      highlight! link NeoTreeRootName NvimTreeRootFolder
+      highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
+      highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
+      ]])
+    end,
+  },
+  { import = "plugins" },
+}, {
+  colorscheme = "catpuccin",
+})

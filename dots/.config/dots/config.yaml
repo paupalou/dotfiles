@@ -1,2 +1,3 @@
 # user config file
-dotfiles_path: /home/pau/dotfiles
+dotfiles
+   path: ~/dotfiles
