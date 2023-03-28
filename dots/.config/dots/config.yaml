@@ -1,2 +1,4 @@
 # user config file
-dotfiles_path: /Users/paupalouvidal/.dotfiles
+dotfiles:
+  path: ~/.dotfiles
+  tag: osx

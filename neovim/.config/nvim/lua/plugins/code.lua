@@ -19,16 +19,23 @@ local lsp = {
       end,
     },
     {
-      "dnlhc/glance.nvim",
-      config = function()
-        require('glance').setup({
-          -- your configuration
-        })
-      end,
-    },
+      "SmiteshP/nvim-navbuddy",
+      dependencies = {
+        "neovim/nvim-lspconfig",
+        "SmiteshP/nvim-navic",
+        "MunifTanjim/nui.nvim"
+      },
+      opts = {
+        window = {
+          border = "rounded"
+        },
+        lsp = {
+          auto_attach = true
+        }
+      }
+    }
   },
   config = function()
-    local lspui = require("LspUI")
     local on_attach = function(_, bufnr)
       require("lsp_signature").on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -79,6 +86,7 @@ local lsp = {
       tsserver = {},
       tailwindcss = {},
       pyright = {},
+      bashls = {},
       lua_ls = {
         Lua = {
           runtime = {
@@ -202,6 +210,7 @@ local treesitter = {
         "typescript",
         "tsx",
         "javascript",
+        "bash",
       },
       highlight = { enable = true },
       indent = { enable = false },
