@@ -1,1 +1,0 @@
-setpath $HOME/.cargo/bin
