@@ -13,8 +13,8 @@ local lsp = {
       config = function()
         require("LspUI").setup({
           peek_definition = {
-            enable = true
-          }
+            enable = true,
+          },
         })
       end,
     },
@@ -23,17 +23,17 @@ local lsp = {
       dependencies = {
         "neovim/nvim-lspconfig",
         "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim"
+        "MunifTanjim/nui.nvim",
       },
       opts = {
         window = {
-          border = "rounded"
+          border = "rounded",
         },
         lsp = {
-          auto_attach = true
-        }
-      }
-    }
+          auto_attach = true,
+        },
+      },
+    },
   },
   config = function()
     local on_attach = function(_, bufnr)
@@ -171,7 +171,13 @@ local lsp = {
     }
 
     null_ls.setup({ sources = sources })
-    local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+    local signs = {
+      Error = " ",
+      Warn = " ",
+      Info = " ",
+      Hint = "󱤅 ",
+      Other = "󰠠 ",
+    }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })

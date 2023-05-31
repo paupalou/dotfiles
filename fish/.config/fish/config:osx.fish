@@ -29,7 +29,7 @@ set fzf_preview_dir_cmd exa --all --color=always
 set -x FZF_DEFAULT_COMMAND fd --type f
 
 # tide
-set -g tide_right_prompt_items
+set -g tide_right_prompt_frame_enabled false
 
 # python
 alias python='/Library/Frameworks/Python.framework/Versions/3.9/bin/python3'
