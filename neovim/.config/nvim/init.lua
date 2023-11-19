@@ -17,21 +17,26 @@ local lazy = require("lazy")
 
 lazy.setup({
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    init = function()
-      vim.cmd([[colorscheme catppuccin]])
-      vim.cmd([[
-      highlight! link NeoTreeDirectoryIcon NvimTreeFolderIcon
-      highlight! link NeoTreeDirectoryName NvimTreeFolderName
-      highlight! link NeoTreeSymbolicLinkTarget NvimTreeSymlink
-      highlight! link NeoTreeRootName NvimTreeRootFolder
-      highlight! link NeoTreeDirectoryName NvimTreeOpenedFolderName
-      highlight! link NeoTreeFileNameOpened NvimTreeOpenedFile
-      ]])
+    "AlexvZyl/nordic.nvim",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      local palette = require("nordic.colors")
+      require("nordic").load({
+        override = {
+          FoldColumn = {
+            bg = palette.gray0,
+          },
+          FloatBorder = {
+            bg = palette.gray0,
+            fg = palette.yellow.base,
+          },
+          NormalFloat = {
+            bg = palette.gray0,
+          },
+        },
+      })
     end,
   },
   { import = "plugins" },
-}, {
-  colorscheme = "catpuccin",
-})
+}, { colorscheme = "nordic" })

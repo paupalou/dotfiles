@@ -28,12 +28,7 @@ return {
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    opts = {
-      use_treesitter_scope = true,
-      char = "┊",
-      space_char_blankline = " ",
-      show_current_context = true,
-    },
+    main = "ibl",
     init = function()
       vim.opt.list = true
       vim.opt.listchars:append("eol:↴")
@@ -75,7 +70,6 @@ return {
           right = "<S-Right>",
           down = "<S-Down>",
           up = "<S-Up>",
-
           -- Move current line in Normal mode
           line_left = "<S-Left>",
           line_right = "<S-Right>",
@@ -83,6 +77,12 @@ return {
           line_up = "<S-Up>",
         },
       })
+    end,
+  },
+  {
+    "HampusHauffman/block.nvim",
+    config = function()
+      require("block").setup({})
     end,
   },
 }

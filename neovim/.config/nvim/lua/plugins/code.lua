@@ -3,21 +3,9 @@ local lsp = {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    { "j-hui/fidget.nvim", opts = {} },
     "folke/neodev.nvim",
     "ray-x/lsp_signature.nvim",
     "jose-elias-alvarez/null-ls.nvim",
-    {
-      "jinzhongjia/LspUI.nvim",
-      event = "VeryLazy",
-      config = function()
-        require("LspUI").setup({
-          peek_definition = {
-            enable = true,
-          },
-        })
-      end,
-    },
     {
       "SmiteshP/nvim-navbuddy",
       dependencies = {
@@ -35,8 +23,11 @@ local lsp = {
       },
     },
   },
+  opts = {
+    inlay_hints = { enabled = true },
+  },
   config = function()
-    local on_attach = function(_, bufnr)
+    local on_attach = function(client, bufnr)
       require("lsp_signature").on_attach({
         bind = true, -- This is mandatory, otherwise border config won't get registered.
         -- fix_pos = true,
@@ -60,30 +51,37 @@ local lsp = {
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
       end
 
-      nmap("<leader>rn", "<cmd>LspUI rename<CR>", "[R]e[n]ame")
-      nmap("<leader>ca", "<cmd>LspUI code_action<CR>", "[C]ode [A]ction")
+      nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+      nmap("<leader>ca", "<cmd>Lspsaga code_action<CR>", "[C]ode [A]ction")
       nmap("<leader>e", vim.diagnostic.open_float, "Show Line Diagnostic")
-      nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
-      nmap("gp", "<cmd>LspUI peek_definition<CR>", "[P]eek Definition")
+      nmap("gd", "<cmd>Lspsaga goto_definition<CR>", "[G]oto [D]efinition")
+      nmap("gp", "<cmd>Lspsaga peek_definition<CR>", "[P]eek Definition")
       nmap(
         "gr",
         "<cmd>lua require('fzf-lua').lsp_references({ ignore_current_line = true })<CR>",
         "[G]oto [R]eferences"
       )
       nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-      nmap("K", "<cmd>LspUI hover<CR>", "Hover Documentation")
-      nmap("[d", "<cmd>LspUI diagnostic prev<CR>", "Jump to prev [D]iagnostic")
-      nmap("]d", "<cmd>LspUI diagnostic next<CR>", "Jump to next [D]iagnostic")
+      -- nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Documentation")
+      nmap("[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump to prev [D]iagnostic")
+      nmap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump to next [D]iagnostic")
 
       -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
         vim.lsp.buf.format()
       end, { desc = "Format current buffer with LSP" })
+
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint(bufnr, true)
+      end
     end
 
     local servers = {
       rust_analyzer = {},
-      tsserver = {},
+      tsserver = {
+        single_file_support = false,
+        root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
+      },
       tailwindcss = {},
       pyright = {},
       bashls = {},
@@ -100,7 +98,12 @@ local lsp = {
           diagnostics = {
             globals = { "vim" },
           },
+          hint = {
+            enable = true,
+          },
         },
+      },
+      denols = {
       },
     }
 
@@ -108,6 +111,7 @@ local lsp = {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
+    -- require("lspconfig").denols.setup({})
     require("mason").setup()
     -- Ensure the servers above are installed
     local mason_lspconfig = require("mason-lspconfig")
@@ -119,11 +123,25 @@ local lsp = {
         require("lspconfig")[server_name].setup({
           capabilities = capabilities,
           on_attach = on_attach,
-          settings = servers[server_name],
+          -- settings = servers[server_name],
           handlers = {
             ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
             -- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
           },
+        })
+      end,
+      denols = function()
+        require("lspconfig").denols.setup({
+          cmd = { "deno", "lsp", "--unstable" },
+          root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
+        })
+      end,
+      tsserver = function()
+        require("lspconfig").tsserver.setup({
+          capabilities = capabilities,
+          on_attach = on_attach,
+          single_file_support = false,
+          root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
         })
       end,
     })
@@ -132,8 +150,16 @@ local lsp = {
 
     local sources = {
       -- formatters
-      null_ls.builtins.formatting.eslint_d,
-      -- null_ls.builtins.formatting.prettier,
+      null_ls.builtins.formatting.eslint_d.with({
+        condition = function(utils)
+          return utils.root_has_file({ "tsconfig.json" })
+        end,
+      }),
+      null_ls.builtins.formatting.deno_fmt.with({
+        condition = function(utils)
+          return utils.root_has_file({ "deno.json" })
+        end,
+      }),
       null_ls.builtins.formatting.shfmt.with({
         extra_args = { "-i", "2", "-ci" },
       }),
@@ -144,12 +170,20 @@ local lsp = {
       null_ls.builtins.formatting.stylua.with({
         extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
       }),
-      -- null_ls.builtins.formatting.deno_fmt,
 
       -- diagnostics
       null_ls.builtins.diagnostics.eslint_d.with({
         diagnostics_format = "[#{c}] #{m} (#{s})",
+        condition = function(utils)
+          return utils.root_has_file({ "tsconfig.json" })
+        end,
       }),
+      null_ls.builtins.diagnostics.deno_lint.with({
+        condition = function(utils)
+          return utils.root_has_file({ "deno.json" })
+        end,
+      }),
+
       null_ls.builtins.diagnostics.shellcheck,
       null_ls.builtins.diagnostics.luacheck.with({
         extra_args = { "--config ~/.config/luacheck/.luacheckrc" },
@@ -208,6 +242,7 @@ local treesitter = {
         "python",
         "rust",
         "vim",
+        "vimdoc",
         "fish",
         "html",
         "json",
@@ -395,4 +430,18 @@ return {
   gitsigns,
   comment,
   colorizer,
+  {
+    "nvimdev/lspsaga.nvim",
+    config = function()
+      require("lspsaga").setup({
+        lightbulb = {
+          enable = false,
+        },
+      })
+    end,
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+  },
 }
