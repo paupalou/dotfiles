@@ -103,8 +103,7 @@ local lsp = {
           },
         },
       },
-      denols = {
-      },
+      denols = {},
     }
 
     require("neodev").setup()
@@ -233,7 +232,6 @@ local treesitter = {
   event = "BufReadPost",
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    "JoosepAlviste/nvim-ts-context-commentstring",
   },
   config = function()
     local opts = {
@@ -255,10 +253,6 @@ local treesitter = {
       },
       highlight = { enable = true },
       indent = { enable = false },
-      context_commentstring = {
-        enable = true,
-        enable_autocmd = false,
-      },
       incremental_selection = {
         enable = true,
         keymaps = {
@@ -385,15 +379,23 @@ local comment = {
   "echasnovski/mini.comment",
   version = false,
   dependencies = {
-    "JoosepAlviste/nvim-ts-context-commentstring",
+    {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+      config = function()
+        require("ts_context_commentstring").setup({
+          enable_autocmd = false,
+        })
+      end,
+    },
   },
   config = function()
-    local hooks = {
-      pre = function()
-        require("ts_context_commentstring.internal").update_commentstring()
-      end,
-    }
-    require("mini.comment").setup({ hooks })
+    require("mini.comment").setup({
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    })
   end,
 }
 

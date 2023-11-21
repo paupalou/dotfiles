@@ -56,7 +56,7 @@ local nvim_cmp = {
       }),
       snippet = {
         expand = function(args)
-          require("snippy").lsp_expand(args.body)
+           require("snippy").expand_snippet(args.body)
         end,
       },
       mapping = cmp.mapping.preset.insert({
