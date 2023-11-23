@@ -42,7 +42,7 @@ local harpoon = {
   init = function()
     local harpoon_ui = require("harpoon.ui")
     local harpoon_mark = require("harpoon.mark")
-    vim.keymap.set("n", "<leader>h", function()
+    vim.keymap.set("n", "<leader>`", function()
       harpoon_ui.toggle_quick_menu()
     end, { desc = "[H]arpoon quick menu" })
     vim.keymap.set("n", "<leader>m", function()

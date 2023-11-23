@@ -24,7 +24,13 @@ return {
       "<M-k>",
       "<M-l>",
     },
-    config = true,
+    config = function()
+      require("tmux").setup({
+        copy_sync = {
+          sync_registers = false,
+        },
+      })
+    end,
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -81,8 +87,12 @@ return {
   },
   {
     "HampusHauffman/block.nvim",
+    keys = {
+      "<leader>z",
+    },
     config = function()
       require("block").setup({})
+      vim.keymap.set("n", "<leader>z", "<cmd>:Block<CR>", { desc = "[Block] Show code blocks", silent = true })
     end,
   },
 }

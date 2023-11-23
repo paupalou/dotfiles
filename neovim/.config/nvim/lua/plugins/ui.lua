@@ -7,6 +7,52 @@ local function show_macro_recording()
   end
 end
 
+local lualine_colors = {
+  bg = "#282a2e",
+  alt_bg = "#373b41",
+  dark_fg = "#969896",
+  fg = "#b4b7b4",
+  light_fg = "#c5c8c6",
+  normal = "#81a2be",
+  insert = "#b5bd68",
+  visual = "#b294bb",
+  replace = "#de935f",
+}
+
+local lualine_theme = {
+  normal = {
+    a = { fg = lualine_colors.bg, bg = lualine_colors.normal },
+    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
+    c = { fg = lualine_colors.fg, bg = lualine_colors.bg },
+  },
+  replace = {
+    a = { fg = lualine_colors.bg, bg = lualine_colors.replace },
+    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
+  },
+  insert = {
+    a = { fg = lualine_colors.bg, bg = lualine_colors.insert },
+    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
+  },
+  visual = {
+    a = { fg = lualine_colors.bg, bg = lualine_colors.visual },
+    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
+  },
+  inactive = {
+    a = { fg = lualine_colors.dark_fg, bg = lualine_colors.bg },
+    b = { fg = lualine_colors.dark_fg, bg = lualine_colors.bg },
+    c = { fg = lualine_colors.dark_fg, bg = lualine_colors.bg },
+  },
+  command = {
+    a = { fg = lualine_colors.bg, bg = lualine_colors.normal },
+    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
+    c = { fg = lualine_colors.fg, bg = lualine_colors.bg },
+  },
+  terminal = {
+    a = { fg = lualine_colors.bg, bg = lualine_colors.insert },
+    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
+  },
+}
+
 local lualine = {
   "hoob3rt/lualine.nvim",
   event = "VeryLazy",
@@ -15,7 +61,12 @@ local lualine = {
   },
   opts = {
     options = {
-      theme = "nordic",
+      theme = lualine_theme,
+      disabled_filetypes = {
+        statusline = { "alpha" },
+      },
+      component_separators = "",
+      section_separators = { left = "", right = "" },
     },
     sections = {
       lualine_b = {
@@ -27,8 +78,10 @@ local lualine = {
       lualine_x = {
         "filetype",
       },
+      lualine_z = { "%l:%c", "%p%%/%L" },
     },
     extensions = { "fzf", "neo-tree", "quickfix", "aerial" },
+    winbar = {},
   },
   init = function()
     vim.api.nvim_create_autocmd("RecordingEnter", {
@@ -67,6 +120,7 @@ local fzf = {
     vim.keymap.set("n", "<leader><space>", "<cmd>:FzfLua<CR>", { desc = "FzfLua", silent = true })
     vim.keymap.set("n", "<leader>f", "<cmd>:FzfLua files<CR>", { desc = "FzfLua - Find files", silent = true })
     vim.keymap.set("n", "<leader>b", "<cmd>:FzfLua buffers<CR>", { desc = "FzfLua - Find buffers", silent = true })
+    vim.keymap.set("n", "<leader>g", "<cmd>:FzfLua live_grep<CR>", { desc = "FzfLua - Find in project", silent = true })
     vim.keymap.set(
       "n",
       "<leader>*",
@@ -76,12 +130,12 @@ local fzf = {
   end,
   opts = {
     winopts = {
-      win_height = 0.50,
-      win_width = 0.60,
+      win_height = 0.60,
+      win_width = 0.40,
     },
     preview_opts = "",
-    preview_vertical = "nohidden:down:45%",
-    preview_horizontal = "nohidden:right:60%",
+    preview_vertical = "nohidden",
+    preview_horizontal = "nohidden",
   },
 }
 
@@ -129,7 +183,7 @@ local ufo = {
     vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
-    vim.cmd[[highlight FoldColumn guibg=#242933]]
+    vim.cmd([[highlight FoldColumn guibg=#242933]])
   end,
   -- stolen from https://github.com/kevinhwang91/nvim-ufo/issues/4#issuecomment-1514537245
   config = function(_, opts)
