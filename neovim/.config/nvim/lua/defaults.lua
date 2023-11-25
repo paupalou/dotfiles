@@ -19,6 +19,9 @@ vim.o.smartcase = true
 
 -- Decrease update time
 vim.o.updatetime = 250
+vim.o.timeoutlen = 300
+
+-- Keep signcolumn on by default
 vim.wo.signcolumn = "yes"
 
 -- true colors
@@ -92,3 +95,14 @@ vim.keymap.set({ "n", "i" }, "<c-s>", "<cmd>w<CR>", { silent = true })
 -- Start / End of line CTRL-a CTRL-e
 vim.keymap.set("i", "<c-a>", "<esc>I", { silent = true })
 vim.keymap.set("i", "<c-e>", "<esc>A", { silent = true })
+
+-- [[ Highlight on yank ]]
+-- See `:help vim.highlight.on_yank()`
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = "*",
+})

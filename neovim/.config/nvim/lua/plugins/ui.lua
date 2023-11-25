@@ -78,9 +78,8 @@ local lualine = {
       lualine_x = {
         "filetype",
       },
-      lualine_z = { "%l:%c", "%p%%/%L" },
     },
-    extensions = { "fzf", "neo-tree", "quickfix", "aerial" },
+    extensions = { "lazy", "mason", "fzf", "neo-tree", "quickfix", "aerial" },
     winbar = {},
   },
   init = function()

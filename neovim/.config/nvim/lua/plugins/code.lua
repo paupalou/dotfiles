@@ -258,7 +258,6 @@ local treesitter = {
         keymaps = {
           init_selection = "<c-space>",
           node_incremental = "<c-space>",
-          scope_incremental = "<c-s>",
           node_decremental = "<c-backspace>",
         },
       },
@@ -318,7 +317,7 @@ local aerial = {
   keys = {
     { "]a", "<cmd>:AerialToggle<CR>", desc = "Aerial Toggle" },
   },
-  config = true,
+  opts = {}
 }
 
 local barbecue = {

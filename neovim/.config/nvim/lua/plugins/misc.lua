@@ -35,9 +35,27 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    init = function()
+    config = function()
       vim.opt.list = true
       vim.opt.listchars:append("eol:↴")
+      local hooks = require("ibl.hooks")
+      hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
+        vim.api.nvim_set_hl(0, "InactiveBlankline", { fg = "#2d333f" })
+        vim.api.nvim_set_hl(0, "ActiveBlankline", { fg = '#60728A' })
+      end)
+      local opts = {
+        indent = {
+          -- char = "|",
+          -- char = "▏",
+          char = "┆",
+          highlight = { "InactiveBlankline" },
+        },
+        scope = {
+          char = "┇",
+          highlight = { "ActiveBlankline" },
+        },
+      }
+      require("ibl").setup(opts)
     end,
   },
   {
