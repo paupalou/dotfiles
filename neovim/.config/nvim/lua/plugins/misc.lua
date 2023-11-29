@@ -41,17 +41,15 @@ return {
       local hooks = require("ibl.hooks")
       hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
         vim.api.nvim_set_hl(0, "InactiveBlankline", { fg = "#2d333f" })
-        vim.api.nvim_set_hl(0, "ActiveBlankline", { fg = '#60728A' })
+        vim.api.nvim_set_hl(0, "ActiveBlankline", { fg = "#3e4656" })
       end)
       local opts = {
         indent = {
-          -- char = "|",
-          -- char = "▏",
           char = "┆",
           highlight = { "InactiveBlankline" },
         },
         scope = {
-          char = "┇",
+          char = "▍",
           highlight = { "ActiveBlankline" },
         },
       }

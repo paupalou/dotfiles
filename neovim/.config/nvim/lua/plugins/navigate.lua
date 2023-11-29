@@ -1,5 +1,6 @@
 local neotree = {
   "nvim-neo-tree/neo-tree.nvim",
+  branch = "v3.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -10,6 +11,8 @@ local neotree = {
     vim.keymap.set("n", "<C-n>", "<cmd>:Neotree toggle<CR>", { desc = "Neotree toggle" })
     vim.keymap.set("n", "<leader>n", "<cmd>:Neotree reveal<CR>", { desc = "Neotree reveal" })
 
+    -- TODO Investigate how to set this icon as GIT Neotree buffer
+    vim.fn.sign_define("NeoTreeFileNameOpened", {text = "󰊢 ", texthl = "Git"})
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
   end,
   opts = {
