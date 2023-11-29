@@ -49,7 +49,7 @@ return {
           highlight = { "InactiveBlankline" },
         },
         scope = {
-          char = "▍",
+          char = "▎",
           highlight = { "ActiveBlankline" },
         },
       }
