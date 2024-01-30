@@ -29,7 +29,7 @@ lazy.setup({
           },
           FloatBorder = {
             bg = palette.gray0,
-            fg = palette.yellow.base,
+            fg = palette.orange.base,
           },
           NormalFloat = {
             bg = palette.gray0,

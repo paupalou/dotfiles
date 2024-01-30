@@ -5,7 +5,7 @@ local lsp = {
     "williamboman/mason-lspconfig.nvim",
     "folke/neodev.nvim",
     "ray-x/lsp_signature.nvim",
-    "jose-elias-alvarez/null-ls.nvim",
+    "stevearc/conform.nvim",
     {
       "SmiteshP/nvim-navbuddy",
       dependencies = {
@@ -67,12 +67,13 @@ local lsp = {
       nmap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump to next [D]iagnostic")
 
       -- Create a command `:Format` local to the LSP buffer
-      vim.api.nvim_buf_create_user_command(bufnr, "Format", function(_)
-        vim.lsp.buf.format()
+      vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+        require("conform").format({ bufnr = bufnr })
+        -- vim.lsp.buf.format()
       end, { desc = "Format current buffer with LSP" })
 
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint(bufnr, true)
+        vim.lsp.inlay_hint.enable(bufnr, true)
       end
     end
 
@@ -145,65 +146,72 @@ local lsp = {
       end,
     })
 
-    local null_ls = require("null-ls")
+    local conform = require("conform")
+    conform.setup({
+      formatters_by_ft = {
+        lua = { "stylua" },
+        python = { "isort", "black" },
+        javascript = { { "eslint_d", "prettierd", "prettier" } },
+        typescript = { { "deno_fmt", "eslint_d", "prettierd", "prettier" } },
+        typescriptreact = { { "deno_fmt", "eslint_d", "prettierd", "prettier" } },
+        rust = { "rustfmt" },
+      },
 
-    local sources = {
-      -- formatters
-      null_ls.builtins.formatting.eslint_d.with({
-        condition = function(utils)
-          return utils.root_has_file({ "tsconfig.json" })
-        end,
-      }),
-      null_ls.builtins.formatting.deno_fmt.with({
-        condition = function(utils)
-          return utils.root_has_file({ "deno.json" })
-        end,
-      }),
-      null_ls.builtins.formatting.shfmt.with({
-        extra_args = { "-i", "2", "-ci" },
-      }),
-      null_ls.builtins.formatting.fish_indent,
-      null_ls.builtins.formatting.json_tool,
-      null_ls.builtins.formatting.rustfmt,
-      null_ls.builtins.formatting.sqlformat,
-      null_ls.builtins.formatting.stylua.with({
-        extra_args = { "--indent-type", "Spaces", "--indent-width", "2" },
-      }),
-
-      -- diagnostics
-      null_ls.builtins.diagnostics.eslint_d.with({
-        diagnostics_format = "[#{c}] #{m} (#{s})",
-        condition = function(utils)
-          return utils.root_has_file({ "tsconfig.json" })
-        end,
-      }),
-      null_ls.builtins.diagnostics.deno_lint.with({
-        condition = function(utils)
-          return utils.root_has_file({ "deno.json" })
-        end,
-      }),
-
-      null_ls.builtins.diagnostics.shellcheck,
-      null_ls.builtins.diagnostics.luacheck.with({
-        extra_args = { "--config ~/.config/luacheck/.luacheckrc" },
-      }),
-      -- null_ls.builtins.diagnostics.pylint,
-      null_ls.builtins.formatting.black,
-      null_ls.builtins.formatting.isort.with({
-        extra_args = {
-          "--profile",
-          "black",
-          "--trailing-comma",
-          "-o",
-          "utils",
+      formatters = {
+        eslint_d = {
+          cwd = require("conform.util").root_file({
+            ".eslintrc.js",
+            ".eslint.js",
+            ".eslintrc.json",
+            ".eslint.json"
+          }),
+          require_cwd = true,
+          condition = function(ctx)
+            return vim.fs.find({ "tsconfig.json", "package.json" }, { path = ctx.filename, upward = true })[1]
+          end
         },
-      }),
+        deno_fmt = {
+          condition = function(ctx)
+            return vim.fs.find({ "deno.json" }, { path = ctx.filename, upward = true })[1]
+          end
+        }
+      }
+    })
+ 
+    -- local sources = {
+    --   -- diagnostics
+    --   null_ls.builtins.diagnostics.eslint_d.with({
+    --     diagnostics_format = "[#{c}] #{m} (#{s})",
+    --     condition = function(utils)
+    --       return utils.root_has_file({ "tsconfig.json" })
+    --     end,
+    --   }),
+    --   null_ls.builtins.diagnostics.deno_lint.with({
+    --     condition = function(utils)
+    --       return utils.root_has_file({ "deno.json" })
+    --     end,
+    --   }),
+    --
+    --   null_ls.builtins.diagnostics.shellcheck,
+    --   null_ls.builtins.diagnostics.luacheck.with({
+    --     extra_args = { "--config ~/.config/luacheck/.luacheckrc" },
+    --   }),
+    --   -- null_ls.builtins.diagnostics.pylint,
+    --   null_ls.builtins.formatting.black,
+    --   null_ls.builtins.formatting.isort.with({
+    --     extra_args = {
+    --       "--profile",
+    --       "black",
+    --       "--trailing-comma",
+    --       "-o",
+    --       "utils",
+    --     },
+    --   }),
+    --
+    --   -- code actions
+    --   null_ls.builtins.code_actions.eslint_d,
+    -- }
 
-      -- code actions
-      null_ls.builtins.code_actions.eslint_d,
-    }
-
-    null_ls.setup({ sources = sources })
     local signs = {
       Error = " ",
       Warn = " ",
@@ -405,15 +413,15 @@ local colorizer = {
     filetypes = { "css", "scss", "typescript", "typescriptreact", "javascript", "!lazy" },
     buftype = { "*", "!prompt", "!nofile" },
     user_default_options = {
-      RGB = true, -- #RGB hex codes
-      RRGGBB = true, -- #RRGGBB hex codes
-      names = false, -- "Name" codes like Blue
-      RRGGBBAA = true, -- #RRGGBBAA hex codes
+      RGB = true,       -- #RGB hex codes
+      RRGGBB = true,    -- #RRGGBB hex codes
+      names = false,    -- "Name" codes like Blue
+      RRGGBBAA = true,  -- #RRGGBBAA hex codes
       AARRGGBB = false, -- 0xAARRGGBB hex codes
-      rgb_fn = true, -- CSS rgb() and rgba() functions
-      hsl_fn = true, -- CSS hsl() and hsla() functions
-      css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-      css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      rgb_fn = true,    -- CSS rgb() and rgba() functions
+      hsl_fn = true,    -- CSS hsl() and hsla() functions
+      css = false,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+      css_fn = true,    -- Enable all CSS *functions*: rgb_fn, hsl_fn
       -- Available modes: foreground, background
       -- Available modes for `mode`: foreground, background,  virtualtext
       mode = "background", -- Set the display mode.
