@@ -72,6 +72,8 @@ local lsp = {
         -- vim.lsp.buf.format()
       end, { desc = "Format current buffer with LSP" })
 
+      nmap("<leader>cf", "<cmd>Format<CR>", "[C]ode [F]ormat")
+
       if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint.enable(bufnr, true)
       end
@@ -166,51 +168,17 @@ local lsp = {
             ".eslint.json"
           }),
           require_cwd = true,
-          condition = function(ctx)
+          condition = function(self, ctx)
             return vim.fs.find({ "tsconfig.json", "package.json" }, { path = ctx.filename, upward = true })[1]
           end
         },
         deno_fmt = {
-          condition = function(ctx)
+          condition = function(self, ctx)
             return vim.fs.find({ "deno.json" }, { path = ctx.filename, upward = true })[1]
           end
         }
       }
     })
- 
-    -- local sources = {
-    --   -- diagnostics
-    --   null_ls.builtins.diagnostics.eslint_d.with({
-    --     diagnostics_format = "[#{c}] #{m} (#{s})",
-    --     condition = function(utils)
-    --       return utils.root_has_file({ "tsconfig.json" })
-    --     end,
-    --   }),
-    --   null_ls.builtins.diagnostics.deno_lint.with({
-    --     condition = function(utils)
-    --       return utils.root_has_file({ "deno.json" })
-    --     end,
-    --   }),
-    --
-    --   null_ls.builtins.diagnostics.shellcheck,
-    --   null_ls.builtins.diagnostics.luacheck.with({
-    --     extra_args = { "--config ~/.config/luacheck/.luacheckrc" },
-    --   }),
-    --   -- null_ls.builtins.diagnostics.pylint,
-    --   null_ls.builtins.formatting.black,
-    --   null_ls.builtins.formatting.isort.with({
-    --     extra_args = {
-    --       "--profile",
-    --       "black",
-    --       "--trailing-comma",
-    --       "-o",
-    --       "utils",
-    --     },
-    --   }),
-    --
-    --   -- code actions
-    --   null_ls.builtins.code_actions.eslint_d,
-    -- }
 
     local signs = {
       Error = " ",

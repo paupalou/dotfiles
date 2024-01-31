@@ -59,7 +59,6 @@ vim.cmd([[ set shortmess+=c ]])
 
 vim.o.wildmode = "longest:full,full" -- Command-line completion mode
 vim.o.completeopt = "menu,menuone,noselect"
-vim.o.laststatus = 0
 vim.o.showmode = false
 vim.o.showcmd = false
 vim.o.cmdheight = 0
@@ -106,3 +105,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = highlight_group,
   pattern = "*",
 })
+
+vim.o.statusline = "%#Normal#"
