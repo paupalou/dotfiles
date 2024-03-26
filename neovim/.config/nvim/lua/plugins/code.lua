@@ -57,9 +57,9 @@ local lsp = {
       nmap("gd", "<cmd>Lspsaga goto_definition<CR>", "[G]oto [D]efinition")
       nmap("gp", "<cmd>Lspsaga peek_definition<CR>", "[P]eek Definition")
       nmap(
-        "gr",
-        "<cmd>lua require('fzf-lua').lsp_references({ ignore_current_line = true })<CR>",
-        "[G]oto [R]eferences"
+      "gr",
+      "<cmd>lua require('fzf-lua').lsp_references({ ignore_current_line = true })<CR>",
+      "[G]oto [R]eferences"
       )
       nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
       -- nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Documentation")
@@ -151,7 +151,7 @@ local lsp = {
     local conform = require("conform")
     conform.setup({
       formatters_by_ft = {
-        lua = { "stylua" },
+        lua = {},
         python = { "isort", "black" },
         javascript = { { "eslint_d", "prettierd", "prettier" } },
         typescript = { { "deno_fmt", "eslint_d", "prettierd", "prettier" } },
@@ -165,19 +165,19 @@ local lsp = {
             ".eslintrc.js",
             ".eslint.js",
             ".eslintrc.json",
-            ".eslint.json"
+            ".eslint.json",
           }),
           require_cwd = true,
           condition = function(self, ctx)
             return vim.fs.find({ "tsconfig.json", "package.json" }, { path = ctx.filename, upward = true })[1]
-          end
+          end,
         },
         deno_fmt = {
           condition = function(self, ctx)
             return vim.fs.find({ "deno.json" }, { path = ctx.filename, upward = true })[1]
-          end
-        }
-      }
+          end,
+        },
+      },
     })
 
     local signs = {
@@ -293,7 +293,7 @@ local aerial = {
   keys = {
     { "]a", "<cmd>:AerialToggle<CR>", desc = "Aerial Toggle" },
   },
-  opts = {}
+  opts = {},
 }
 
 local barbecue = {
@@ -337,10 +337,10 @@ local gitsigns = {
     end, { desc = "GitSigns - Prev hunk", silent = true })
     vim.keymap.set("n", "]p", gitsigns.preview_hunk, { desc = "GitSigns - Preview hunk", silent = true })
     vim.keymap.set(
-      "n",
-      "]t",
-      gitsigns.toggle_current_line_blame,
-      { desc = "GitSigns - Toggle line blame", silent = true }
+    "n",
+    "]t",
+    gitsigns.toggle_current_line_blame,
+    { desc = "GitSigns - Toggle line blame", silent = true }
     )
     vim.keymap.set("n", "]h", gitsigns.diffthis, { desc = "GitSigns - Diff this", silent = true })
     vim.keymap.set("n", "]H", function()
@@ -381,15 +381,15 @@ local colorizer = {
     filetypes = { "css", "scss", "typescript", "typescriptreact", "javascript", "!lazy" },
     buftype = { "*", "!prompt", "!nofile" },
     user_default_options = {
-      RGB = true,       -- #RGB hex codes
-      RRGGBB = true,    -- #RRGGBB hex codes
-      names = false,    -- "Name" codes like Blue
-      RRGGBBAA = true,  -- #RRGGBBAA hex codes
+      RGB = true, -- #RGB hex codes
+      RRGGBB = true, -- #RRGGBB hex codes
+      names = false, -- "Name" codes like Blue
+      RRGGBBAA = true, -- #RRGGBBAA hex codes
       AARRGGBB = false, -- 0xAARRGGBB hex codes
-      rgb_fn = true,    -- CSS rgb() and rgba() functions
-      hsl_fn = true,    -- CSS hsl() and hsla() functions
-      css = false,      -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
-      css_fn = true,    -- Enable all CSS *functions*: rgb_fn, hsl_fn
+      rgb_fn = true, -- CSS rgb() and rgba() functions
+      hsl_fn = true, -- CSS hsl() and hsla() functions
+      css = false, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+      css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
       -- Available modes: foreground, background
       -- Available modes for `mode`: foreground, background,  virtualtext
       mode = "background", -- Set the display mode.

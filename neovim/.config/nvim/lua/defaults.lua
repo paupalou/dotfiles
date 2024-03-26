@@ -107,3 +107,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.o.statusline = "%#Normal#"
+
+vim.g.python3_host_prog = '~/.virtualenvs/neovim/python3'
+vim.g.python_host_prog = '~/.virtualenvs/neovim/python'
+
+vim.filetype.add({
+  extension = {
+    j2 = 'html'
+  }
+})

@@ -28,15 +28,15 @@ set fzf_preview_dir_cmd exa --all --color=always
 # fzf.vim
 set -x FZF_DEFAULT_COMMAND fd --type f
 
-# tide
-set -g tide_right_prompt_frame_enabled false
-
 # python
-alias python='/Library/Frameworks/Python.framework/Versions/3.9/bin/python3'
-alias pip='/Library/Frameworks/Python.framework/Versions/3.9/bin/pip3'
-if set -q VIRTUAL_ENV
-  echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
-end
+alias python='/opt/homebrew/bin/python3'
+alias python3='/opt/homebrew/bin/python3'
+alias pip='/opt/homebrew/bin/pip3'
+alias pip3='/opt/homebrew/bin/pip3'
+
+# tide
+set -g tide_right_prompt_frame_enabled true
+set -g tide_right_prompt_items python
 
 # paths
 fish_add_path $HOME/.local/bin
@@ -45,5 +45,3 @@ fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.deno/bin
 fish_add_path /opt/homebrew/bin
 fish_add_path /Applications/kitty.app/Contents/MacOS
-fish_add_path /Library/Frameworks/Python.framework/Versions/3.9/bin
-fish_add_path ~/Library/Python/3.9/bin

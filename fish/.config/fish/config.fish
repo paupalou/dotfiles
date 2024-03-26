@@ -23,9 +23,6 @@ set fzf_preview_dir_cmd exa --all --color=always
 # fzf.vim
 set -x FZF_DEFAULT_COMMAND fd --type f
 
-# tide
-set -g tide_right_prompt_items
-
 # paths
 fish_add_path $HOME/.cargo/bin
 fish_add_path $HOME/.deno/bin
