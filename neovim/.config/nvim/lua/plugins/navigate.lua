@@ -16,6 +16,9 @@ local neotree = {
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
   end,
   opts = {
+    source_selector = {
+      winbar = true,
+    },
     close_if_last_window = true,
     default_component_configs = {
       git_status = {
@@ -28,7 +31,7 @@ local neotree = {
           -- Status type
           untracked = "",
           ignored   = "",
-          unstaged  = "󰄱",
+          unstaged  = "",
           staged    = "",
           conflict  = "",
         }

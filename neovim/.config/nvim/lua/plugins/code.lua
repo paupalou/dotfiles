@@ -179,25 +179,6 @@ local lsp = {
         },
       },
     })
-
-    local signs = {
-      Error = " ",
-      Warn = " ",
-      Info = " ",
-      Hint = "󱤅 ",
-      Other = "󰠠 ",
-    }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
-
-    vim.diagnostic.config({
-      virtual_text = false,
-      float = {
-        border = "rounded",
-      },
-    })
   end,
 }
 
