@@ -3,12 +3,12 @@ live_config_reload = true
 [font]
 size = 16.0
 normal.family = "VictorMono Nerd Font"
-normal.style = "Medium"
+normal.style = "SemiBold"
 
 offset.x = 0
-offset.y = 5
+offset.y = 8
 glyph_offset.x = 0
-glyph_offset.y = 2
+glyph_offset.y = 4
 
 
 [window]
