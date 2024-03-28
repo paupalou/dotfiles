@@ -1,0 +1,15 @@
+live_config_reload = true
+
+[font]
+size = 16.0
+normal.family = "VictorMono Nerd Font"
+normal.style = "Medium"
+
+offset.x = 0
+offset.y = 5
+glyph_offset.x = 0
+glyph_offset.y = 2
+
+
+[window]
+padding = { x = 0, y = 0 }
