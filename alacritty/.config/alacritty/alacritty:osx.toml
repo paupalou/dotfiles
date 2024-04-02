@@ -1,15 +1,16 @@
 live_config_reload = true
 
-[font]
-size = 16.0
-normal.family = "VictorMono Nerd Font"
-normal.style = "SemiBold"
+[shell]
+program = "/opt/homebrew/bin/fish"
 
-offset.x = 0
+[font]
+size = 15.0
+normal.family = "VictorMono Nerd Font"
+normal.style = "Medium"
+offset.x = 1
 offset.y = 8
 glyph_offset.x = 0
 glyph_offset.y = 4
-
 
 [window]
 padding = { x = 0, y = 0 }
