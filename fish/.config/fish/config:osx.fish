@@ -14,6 +14,7 @@ and not set -q TMUX
 end
 
 # nvim
+alias e=nvim
 alias vi=nvim
 set -gx EDITOR nvim
 
@@ -27,12 +28,6 @@ set fzf_preview_dir_cmd exa --all --color=always
 
 # fzf.vim
 set -x FZF_DEFAULT_COMMAND fd --type f
-
-# python
-alias python='/opt/homebrew/bin/python3'
-alias python3='/opt/homebrew/bin/python3'
-alias pip='/opt/homebrew/bin/pip3'
-alias pip3='/opt/homebrew/bin/pip3'
 
 # tide
 set -g tide_right_prompt_frame_enabled true

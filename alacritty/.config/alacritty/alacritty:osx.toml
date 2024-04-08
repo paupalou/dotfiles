@@ -4,13 +4,31 @@ live_config_reload = true
 program = "/opt/homebrew/bin/fish"
 
 [font]
-size = 15.0
+size = 14.5
 normal.family = "VictorMono Nerd Font"
-normal.style = "Medium"
-offset.x = 1
+normal.style = "Light"
+bold.family = "VictorMono Nerd Font"
+bold.style = "Medium"
+italic.family = "VictorMono Nerd Font Mono"
+italic.style = "Thin Oblique"
+offset.x = 2
 offset.y = 8
 glyph_offset.x = 0
 glyph_offset.y = 4
 
 [window]
 padding = { x = 0, y = 0 }
+
+[keyboard]
+bindings = [
+  { key = "Key1", mods = "Command", chars = "\u001b1" },
+  { key = "Key2", mods = "Command", chars = "\u001b2" },
+  { key = "Key3", mods = "Command", chars = "\u001b3" },
+  { key = "Key4", mods = "Command", chars = "\u001b4" },
+  { key = "Key5", mods = "Command", chars = "\u001b5" },
+  { key = "Key6", mods = "Command", chars = "\u001b6" },
+  { key = "Key7", mods = "Command", chars = "\u001b7" },
+  { key = "Key8", mods = "Command", chars = "\u001b8" },
+  { key = "Key9", mods = "Command", chars = "\u0019" },
+  { key = "Key6", mods = "Control", chars = "\u001e6\u000d" },
+]
