@@ -20,6 +20,7 @@ lazy.setup({
     "AlexvZyl/nordic.nvim",
     lazy = false,
     priority = 1000,
+    enable = false,
     config = function()
       local palette = require("nordic.colors")
       require("nordic").load({
@@ -38,5 +39,27 @@ lazy.setup({
       })
     end,
   },
+  {
+    "eldritch-theme/eldritch.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    opts = {},
+  },
+  {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    opts = {},
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    priority = 1000,
+  },
   { import = "plugins" },
-}, { colorscheme = "nordic" })
+}, { colorscheme = "catpuccin-latte" })
+
+vim.cmd[[colorscheme catppuccin-latte]]

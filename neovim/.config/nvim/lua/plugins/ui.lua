@@ -23,52 +23,6 @@ local function show_macro_recording()
   end
 end
 
-local lualine_colors = {
-  bg = "#282a2e",
-  alt_bg = "#373b41",
-  dark_fg = "#969896",
-  fg = "#b4b7b4",
-  light_fg = "#c5c8c6",
-  normal = "#81a2be",
-  insert = "#b5bd68",
-  visual = "#b294bb",
-  replace = "#de935f",
-}
-
-local lualine_theme = {
-  normal = {
-    a = { fg = lualine_colors.bg, bg = lualine_colors.normal },
-    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
-    c = { fg = lualine_colors.fg, bg = lualine_colors.bg },
-  },
-  replace = {
-    a = { fg = lualine_colors.bg, bg = lualine_colors.replace },
-    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
-  },
-  insert = {
-    a = { fg = lualine_colors.bg, bg = lualine_colors.insert },
-    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
-  },
-  visual = {
-    a = { fg = lualine_colors.bg, bg = lualine_colors.visual },
-    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
-  },
-  inactive = {
-    a = { fg = lualine_colors.dark_fg, bg = lualine_colors.bg },
-    b = { fg = lualine_colors.dark_fg, bg = lualine_colors.bg },
-    c = { fg = lualine_colors.dark_fg, bg = lualine_colors.bg },
-  },
-  command = {
-    a = { fg = lualine_colors.bg, bg = lualine_colors.normal },
-    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
-    c = { fg = lualine_colors.fg, bg = lualine_colors.bg },
-  },
-  terminal = {
-    a = { fg = lualine_colors.bg, bg = lualine_colors.insert },
-    b = { fg = lualine_colors.light_fg, bg = lualine_colors.alt_bg },
-  },
-}
-
 local lualine = {
   "hoob3rt/lualine.nvim",
   event = "VeryLazy",
@@ -77,7 +31,6 @@ local lualine = {
   },
   opts = {
     options = {
-      theme = lualine_theme,
       disabled_filetypes = {
         statusline = { "alpha" },
       },
@@ -86,6 +39,7 @@ local lualine = {
     },
     sections = {
       lualine_a = {
+        ---@diagnostic disable-next-line: param-type-mismatch
         { "mode", fmt=trunc(80, 4, nil, true) },
       },
       lualine_b = {
@@ -154,6 +108,21 @@ local fzf = {
     preview_opts = "",
     preview_vertical = "nohidden",
     preview_horizontal = "nohidden",
+    fzf_colors = {
+      ["fg"]          = { "fg", "CursorLine" },
+      ["bg"]          = { "bg", "Normal" },
+      ["hl"]          = { "fg", "Comment" },
+      ["fg+"]         = { "fg", "Normal" },
+      ["bg+"]         = { "bg", "CursorLine" },
+      ["hl+"]         = { "fg", "Statement" },
+      ["info"]        = { "fg", "PreProc" },
+      ["prompt"]      = { "fg", "Conditional" },
+      ["pointer"]     = { "fg", "Exception" },
+      ["marker"]      = { "fg", "Keyword" },
+      ["spinner"]     = { "fg", "Label" },
+      ["header"]      = { "fg", "Comment" },
+      ["gutter"]      = { "bg", "Normal" },
+    },
   },
 }
 
@@ -263,6 +232,14 @@ return {
     opts = {},
   },
   lualine,
+  {
+    "echasnovski/mini.statusline",
+    enabled = false,
+    version = false,
+    config = function()
+      require("mini.statusline").setup()
+    end
+  },
   fzf,
   ufo,
   alpha,

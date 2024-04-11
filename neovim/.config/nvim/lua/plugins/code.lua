@@ -6,22 +6,6 @@ local lsp = {
     "folke/neodev.nvim",
     "ray-x/lsp_signature.nvim",
     "stevearc/conform.nvim",
-    {
-      "SmiteshP/nvim-navbuddy",
-      dependencies = {
-        "neovim/nvim-lspconfig",
-        "SmiteshP/nvim-navic",
-        "MunifTanjim/nui.nvim",
-      },
-      opts = {
-        window = {
-          border = "rounded",
-        },
-        lsp = {
-          auto_attach = true,
-        },
-      },
-    },
   },
   opts = {
     inlay_hints = { enabled = true },
@@ -62,14 +46,12 @@ local lsp = {
       "[G]oto [R]eferences"
       )
       nmap("gi", vim.lsp.buf.implementation, "[G]oto [I]mplementation")
-      -- nmap("K", "<cmd>Lspsaga hover_doc<CR>", "Documentation")
       nmap("[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", "Jump to prev [D]iagnostic")
       nmap("]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", "Jump to next [D]iagnostic")
 
       -- Create a command `:Format` local to the LSP buffer
       vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
         require("conform").format({ bufnr = bufnr })
-        -- vim.lsp.buf.format()
       end, { desc = "Format current buffer with LSP" })
 
       nmap("<leader>cf", "<cmd>Format<CR>", "[C]ode [F]ormat")
@@ -113,7 +95,6 @@ local lsp = {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
-    -- require("lspconfig").denols.setup({})
     require("mason").setup()
     -- Ensure the servers above are installed
     local mason_lspconfig = require("mason-lspconfig")
@@ -125,7 +106,6 @@ local lsp = {
         require("lspconfig")[server_name].setup({
           capabilities = capabilities,
           on_attach = on_attach,
-          -- settings = servers[server_name],
           handlers = {
             ["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
             -- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
@@ -168,12 +148,12 @@ local lsp = {
             ".eslint.json",
           }),
           require_cwd = true,
-          condition = function(self, ctx)
+          condition = function(_, ctx)
             return vim.fs.find({ "tsconfig.json", "package.json" }, { path = ctx.filename, upward = true })[1]
           end,
         },
         deno_fmt = {
-          condition = function(self, ctx)
+          condition = function(_, ctx)
             return vim.fs.find({ "deno.json" }, { path = ctx.filename, upward = true })[1]
           end,
         },
@@ -277,22 +257,6 @@ local aerial = {
   opts = {},
 }
 
-local barbecue = {
-  "utilyre/barbecue.nvim",
-  name = "barbecue",
-  version = "*",
-  dependencies = {
-    "SmiteshP/nvim-navic",
-    "nvim-tree/nvim-web-devicons", -- optional dependency
-  },
-  opts = {
-    show_dirname = false,
-    theme = {
-      normal = { bg = "#111625" },
-    },
-  },
-}
-
 local gitsigns = {
   "lewis6991/gitsigns.nvim",
   event = "VeryLazy",
@@ -384,7 +348,6 @@ return {
   lsp,
   treesitter,
   aerial,
-  barbecue,
   gitsigns,
   comment,
   colorizer,
@@ -392,6 +355,9 @@ return {
     "nvimdev/lspsaga.nvim",
     config = function()
       require("lspsaga").setup({
+        symbol_in_winbar = {
+          enable = false,
+        },
         lightbulb = {
           enable = false,
         },
