@@ -239,7 +239,9 @@ return {
     'echasnovski/mini.bracketed',
     version = '*',
     config = function ()
-      require('mini.bracketed').setup()
+      require('mini.bracketed').setup({
+        comment    = { suffix = 'g', options = {} },
+      })
     end
   },
 }
