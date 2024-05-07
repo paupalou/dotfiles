@@ -101,6 +101,10 @@ local fzf = {
     )
   end,
   opts = {
+    'default-title',
+    defaults = {
+      formatter = "path.filename_first"
+    },
     winopts = {
       win_height = 0.60,
       win_width = 0.40,
@@ -123,6 +127,9 @@ local fzf = {
       ["header"]      = { "fg", "Comment" },
       ["gutter"]      = { "bg", "Normal" },
     },
+    hls = {
+      header_bind = "PreProc"
+    }
   },
 }
 
