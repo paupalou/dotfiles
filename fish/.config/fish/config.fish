@@ -19,9 +19,16 @@ bind \ct _fzf_search_directory
 # fzf
 set fzf_fd_opts --hidden --exclude=.git --exclude=node_modules
 set fzf_preview_dir_cmd exa --all --color=always
+set -x FZF_DEFAULT_OPTS --color=bg+:#E6E9EF,fg+:#4C4F69
+set -x FZF_DEFAULT_COMMAND fd --type f
 
 # fzf.vim
 set -x FZF_DEFAULT_COMMAND fd --type f
+
+# tide
+set -g tide_right_prompt_frame_enabled true
+set -g tide_right_prompt_items python
+set -g tide_git_color_branch 49A600
 
 # paths
 fish_add_path $HOME/.cargo/bin
