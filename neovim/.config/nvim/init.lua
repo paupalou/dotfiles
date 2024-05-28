@@ -20,8 +20,14 @@ lazy.setup({
     "catppuccin/nvim",
     name = "catppuccin",
     priority = 1000,
+    config = function()
+      vim.cmd[[colorscheme catppuccin-latte]]
+    end
   },
   { import = "plugins" },
-}, { colorscheme = "catpuccin-latte" })
-
-vim.cmd[[colorscheme catppuccin-latte]]
+}, {
+  colorscheme = "catpuccin-latte",
+  install = {
+    colorscheme = { "catppuccin-latte" },
+  },
+})
