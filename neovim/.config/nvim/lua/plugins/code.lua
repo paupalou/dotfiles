@@ -57,7 +57,7 @@ local lsp = {
       nmap("<leader>cf", "<cmd>Format<CR>", "[C]ode [F]ormat")
 
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
       end
     end
 
