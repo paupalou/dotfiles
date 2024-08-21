@@ -27,6 +27,7 @@ set fzf_fd_opts --hidden --exclude=.git --exclude=node_modules
 set fzf_preview_dir_cmd exa --all --color=always
 set -x FZF_DEFAULT_OPTS --color=bg+:#E6E9EF,fg+:#4C4F69
 set -x FZF_DEFAULT_COMMAND fd --type f
+set -x LS_COLORS ""
 
 # tide
 set -g tide_right_prompt_frame_enabled true
