@@ -1,3 +1,5 @@
+local Utils = require "utils"
+
 local lsp = {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -6,6 +8,7 @@ local lsp = {
     "folke/neodev.nvim",
     "ray-x/lsp_signature.nvim",
     "stevearc/conform.nvim",
+    "mfussenegger/nvim-lint",
   },
   opts = {
     inlay_hints = { enabled = true },
@@ -159,6 +162,26 @@ local lsp = {
         },
       },
     })
+
+    require('lint').linters_by_ft = {
+      typescript = {'eslint_d',}
+    }
+
+    local lint = function()
+        local buffer_filetype = vim.bo.filetype
+        if Utils.tableContains({ "typescript", "typescriptreact", "javascript", "javascriptreact" }, buffer_filetype) then
+            local eslint_config_found = vim.fs.find({ ".eslintrc.js", ".eslint.js", ".eslintrc.json", ".eslint.json" }, { path = vim.bo.path, upward = true })
+            if vim.fn.executable('rg') == 1 and #eslint_config_found > 0 then
+              require('lint').try_lint()
+            end
+        end
+    end
+
+    vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+      callback = function()
+        lint()
+      end,
+    })
   end,
 }
 
@@ -182,6 +205,7 @@ local treesitter = {
         "html",
         "json",
         "markdown",
+        "markdown_inline",
         "python",
         "typescript",
         "tsx",
