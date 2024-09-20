@@ -21,6 +21,13 @@ lazy.setup({
     name = "catppuccin",
     priority = 1000,
     config = function()
+      require("catppuccin").setup {
+        custom_highlights = function(colors)
+          return {
+            CursorLine = { bg = colors.crust },
+          }
+        end
+      }
       vim.cmd[[colorscheme catppuccin-latte]]
     end
   },
