@@ -146,7 +146,8 @@ return {
     version = '*',
     config = function ()
       require('mini.bracketed').setup({
-        comment    = { suffix = 'g', options = {} },
+        comment = { suffix = 'g', options = {} },
+        treesitter = { suffix = '', options = {} },
       })
     end
   },
@@ -154,12 +155,9 @@ return {
     "folke/trouble.nvim",
     cmd = "Trouble",
     config = function ()
-      require('trouble').setup({
-        auto_open = true
-      })
-      local config = require("fzf-lua.config")
-      local actions = require("trouble.sources.fzf").actions
-      config.defaults.actions.files["ctrl-t"] = actions.open
+      require('trouble').setup()
+      vim.keymap.set("n", "]t", "<cmd>lua require('trouble').next({ jump = true })<CR>", { desc = "Trouble next item", silent = true })
+      vim.keymap.set("n", "[t", "<cmd>lua require('trouble').prev({ jump = true })<CR>", { desc = "Trouble prev item", silent = true })
     end
   }
 }

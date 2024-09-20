@@ -103,7 +103,13 @@ local fzf = {
   opts = {
     'default-title',
     defaults = {
-      formatter = "path.filename_first"
+      formatter = "path.filename_first",
+    },
+    actions = {
+      files = {
+        true,
+        ["ctrl-t"] = require("trouble.sources.fzf").actions.open
+      }
     },
     winopts = {
       win_height = 0.60,
