@@ -150,4 +150,16 @@ return {
       })
     end
   },
+  {
+    "folke/trouble.nvim",
+    cmd = "Trouble",
+    config = function ()
+      require('trouble').setup({
+        auto_open = true
+      })
+      local config = require("fzf-lua.config")
+      local actions = require("trouble.sources.fzf").actions
+      config.defaults.actions.files["ctrl-t"] = actions.open
+    end
+  }
 }

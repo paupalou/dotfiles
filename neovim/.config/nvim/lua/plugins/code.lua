@@ -66,7 +66,7 @@ local lsp = {
 
     local servers = {
       rust_analyzer = {},
-      tsserver = {
+      ts_ls = {
         single_file_support = false,
         root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
       },
@@ -121,8 +121,8 @@ local lsp = {
           root_dir = require("lspconfig").util.root_pattern("deno.json", "deno.jsonc"),
         })
       end,
-      tsserver = function()
-        require("lspconfig").tsserver.setup({
+      ts_ls = function()
+        require("lspconfig").ts_ls.setup({
           capabilities = capabilities,
           on_attach = on_attach,
           single_file_support = false,
