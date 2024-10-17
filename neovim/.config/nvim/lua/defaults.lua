@@ -106,6 +106,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
 })
 
+-- disable swapfiles and backups
+vim.o.swapfile = false
+vim.o.backup = false
+
 vim.o.statusline = "%#Normal#"
 
 vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python3'

@@ -6,19 +6,19 @@ program = "/opt/homebrew/bin/fish"
 [font]
 size = 15.0
 normal.family = "VictorMono Nerd Font"
-normal.style = "SemiBold"
+normal.style = "Medium"
 
 bold.family = "VictorMono Nerd Font"
 bold.style = "Bold"
 
 italic.family = "VictorMono Nerd Font Mono"
-italic.style = "Medium Oblique"
+italic.style = "SemiBold Oblique"
 
 bold_italic.family = "VictorMono Nerd Font Mono"
 bold_italic.style = "Bold Oblique"
 
 offset.x = 2
-offset.y = 5
+offset.y = 8
 glyph_offset.x = 0
 glyph_offset.y = 4
 
