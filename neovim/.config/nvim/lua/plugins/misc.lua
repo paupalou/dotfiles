@@ -37,6 +37,7 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
+    tag = 'v3.8.2',
     config = function()
       vim.opt.list = true
       vim.opt.listchars:append("eol:↴")
