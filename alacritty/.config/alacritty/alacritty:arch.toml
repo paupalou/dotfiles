@@ -1,4 +1,8 @@
+[general]
 live_config_reload = true
+
+[terminal]
+shell = "/usr/bin/fish"
 
 [font]
 size = 16.0
