@@ -12,62 +12,62 @@ local Utils = {}
 ---@param color unknown
 ---@return boolean
 Utils.is_hex_color = function(color)
-  return type(color) == 'string' and color:match '^#?%x%x%x%x%x%x$'
+	return type(color) == "string" and color:match("^#?%x%x%x%x%x%x$")
 end
 
 Utils.is_rgb_color = function(color)
-  return type(color) == 'table'
-    and type(color.r) == 'number'
-    and type(color.g) == 'number'
-    and type(color.b) == 'number'
+	return type(color) == "table"
+		and type(color.r) == "number"
+		and type(color.g) == "number"
+		and type(color.b) == "number"
 end
 
 ---Convert a hex string to an RGB color
 ---@param color Color
 ---@return RGBColor
 Utils.hex_to_rgb = function(color)
-  if Utils.is_rgb_color(color) then
-    ---@type RGBColor
-    return color
-  end
-  assert(Utils.is_hex_color(color), 'color must be a hex color')
-  assert(type(color) == 'string', 'color must be a string') -- for type checking
-  local hex = color:gsub('#', ''):lower()
-  return {
-    r = tonumber(hex:sub(1, 2), 16) / 255,
-    g = tonumber(hex:sub(3, 4), 16) / 255,
-    b = tonumber(hex:sub(5, 6), 16) / 255,
-  }
+	if Utils.is_rgb_color(color) then
+		---@type RGBColor
+		return color
+	end
+	assert(Utils.is_hex_color(color), "color must be a hex color")
+	assert(type(color) == "string", "color must be a string") -- for type checking
+	local hex = color:gsub("#", ""):lower()
+	return {
+		r = tonumber(hex:sub(1, 2), 16) / 255,
+		g = tonumber(hex:sub(3, 4), 16) / 255,
+		b = tonumber(hex:sub(5, 6), 16) / 255,
+	}
 end
 
 ---Convert an RGBColor to a HexColor
 ---@param rgb RGBColor
 ---@return HexColor
 Utils.rgb_to_hex = function(rgb)
-  local function to_hex(channel)
-    local hex = string.format('%x', math.floor(channel * 255))
-    if #hex == 1 then
-      hex = '0' .. hex
-    end
-    return hex
-  end
-  return '#' .. to_hex(rgb.r) .. to_hex(rgb.g) .. to_hex(rgb.b)
+	local function to_hex(channel)
+		local hex = string.format("%x", math.floor(channel * 255))
+		if #hex == 1 then
+			hex = "0" .. hex
+		end
+		return hex
+	end
+	return "#" .. to_hex(rgb.r) .. to_hex(rgb.g) .. to_hex(rgb.b)
 end
 
 ---Given a color, return its relative luminance
 ---@param color Color
 Utils.relative_luminance = function(color)
-  local rgb = Utils.hex_to_rgb(color)
-  local r, g, b = rgb.r, rgb.g, rgb.b
-  local function adjust(channel)
-    if channel <= 0.03928 then
-      return channel / 12.92
-    else
-      return ((channel + 0.055) / 1.055) ^ 2.4
-    end
-  end
-  r, g, b = adjust(r), adjust(g), adjust(b)
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b
+	local rgb = Utils.hex_to_rgb(color)
+	local r, g, b = rgb.r, rgb.g, rgb.b
+	local function adjust(channel)
+		if channel <= 0.03928 then
+			return channel / 12.92
+		else
+			return ((channel + 0.055) / 1.055) ^ 2.4
+		end
+	end
+	r, g, b = adjust(r), adjust(g), adjust(b)
+	return 0.2126 * r + 0.7152 * g + 0.0722 * b
 end
 
 ---@class ContrastColorOptions
@@ -81,24 +81,23 @@ end
 ---@param opts? ContrastColorOptions
 ---@return Color
 Utils.contrast_color = function(color, opts)
-  opts = opts or {}
-  local dark = opts.dark or '#000000'
-  local light = opts.light or '#ffffff'
-  local threshold = opts.threshold or 0.179
-  if Utils.relative_luminance(Utils.hex_to_rgb(color)) > threshold then
-    return dark
-  else
-    return light
-  end
+	opts = opts or {}
+	local dark = opts.dark or "#000000"
+	local light = opts.light or "#ffffff"
+	local threshold = opts.threshold or 0.179
+	if Utils.relative_luminance(Utils.hex_to_rgb(color)) > threshold then
+		return dark
+	else
+		return light
+	end
 end
 
-
 Utils.tableContains = function(table, val)
-    for index = 1, #table do
-        if table[index] == val then
-            return true
-        end
-    end
+	for index = 1, #table do
+		if table[index] == val then
+			return true
+		end
+	end
 end
 
 return Utils

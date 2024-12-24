@@ -29,29 +29,29 @@ vim.o.termguicolors = true
 
 -- don't load the plugins below
 local builtins = {
-  "gzip",
-  "zip",
-  "zipPlugin",
-  "fzf",
-  "tar",
-  "tarPlugin",
-  "getscript",
-  "getscriptPlugin",
-  "vimball",
-  "vimballPlugin",
-  "2html_plugin",
-  "matchit",
-  "matchparen",
-  "logiPat",
-  "rrhelper",
-  "netrw",
-  "netrwPlugin",
-  "netrwSettings",
-  "netrwFileHandlers",
+	"gzip",
+	"zip",
+	"zipPlugin",
+	"fzf",
+	"tar",
+	"tarPlugin",
+	"getscript",
+	"getscriptPlugin",
+	"vimball",
+	"vimballPlugin",
+	"2html_plugin",
+	"matchit",
+	"matchparen",
+	"logiPat",
+	"rrhelper",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
 }
 
 for _, plugin in ipairs(builtins) do
-  vim.g["loaded_" .. plugin] = 1
+	vim.g["loaded_" .. plugin] = 1
 end
 
 -- avoid hit-enter prompts
@@ -77,12 +77,12 @@ vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 
 -- Better close buffer/quit handling
 vim.keymap.set("n", "<leader>q", function()
-  local buffer_filetype = vim.bo.filetype
-  if buffer_filetype == "qf" or buffer_filetype == "" then
-    return "<cmd>bdelete<CR>"
-  else
-    return "<cmd>Bdelete<CR>"
-  end
+	local buffer_filetype = vim.bo.filetype
+	if buffer_filetype == "qf" or buffer_filetype == "" then
+		return "<cmd>bdelete<CR>"
+	else
+		return "<cmd>Bdelete<CR>"
+	end
 end, { desc = "BuffDelete - Close buffer", expr = true, silent = true })
 
 vim.keymap.set("n", "<leader>Q", "<cmd>qa!<CR>", { desc = "Close all buffers (force)", silent = true })
@@ -99,11 +99,11 @@ vim.keymap.set("i", "<c-e>", "<esc>A", { silent = true })
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-  group = highlight_group,
-  pattern = "*",
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+	group = highlight_group,
+	pattern = "*",
 })
 
 -- disable swapfiles and backups
@@ -112,26 +112,34 @@ vim.o.backup = false
 
 vim.o.statusline = "%#Normal#"
 
-vim.g.python3_host_prog = '~/.virtualenvs/neovim/bin/python3'
-vim.g.python_host_prog = '~/.virtualenvs/neovim/bin/python'
+vim.g.python3_host_prog = "~/.virtualenvs/neovim/bin/python3"
+vim.g.python_host_prog = "~/.virtualenvs/neovim/bin/python"
 
 vim.filetype.add({
-  extension = {
-    j2 = 'html'
-  }
+	extension = {
+		j2 = "html",
+	},
 })
 
 vim.diagnostic.config({
-  virtual_text = false,
-  float = {
-    border = "rounded",
-  },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = '',
-      [vim.diagnostic.severity.WARN] = '',
-      [vim.diagnostic.severity.HINT] = '󱤅',
-      [vim.diagnostic.severity.INFO] = '' ,
-    }
-  },
+	virtual_text = false,
+	float = {
+		border = "rounded",
+	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "󱤅",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+	},
 })
+
+vim.opt.listchars = {
+	tab = "▸ ",
+	trail = "·",
+	precedes = "←",
+	extends = "→",
+}
+vim.opt.list = true
