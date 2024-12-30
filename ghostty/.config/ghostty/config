@@ -1,0 +1,14 @@
+command = /opt/homebrew/bin/fish
+adjust-cell-height = 20%
+font-family = "VictorMono Nerd Font"
+font-style = "Medium"
+font-size = 16
+font-thicken = true
+macos-titlebar-style = hidden
+shell-integration = fish
+theme = "catppuccin-latte"
+window-padding-y = 0,0
+#macos-option-as-alt = true
+
+keybind = cmd+1=text:\u001b1
+keybind = cmd+2=text:\u001b2

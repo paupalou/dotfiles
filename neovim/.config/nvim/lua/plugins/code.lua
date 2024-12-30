@@ -12,6 +12,11 @@ local lsp = {
 	},
 	opts = {
 		inlay_hints = { enabled = true },
+		setup = {
+			rust_analyzer = function()
+				return true
+			end,
+		},
 	},
 	config = function()
 		local on_attach = function(client, bufnr)
@@ -65,7 +70,7 @@ local lsp = {
 		end
 
 		local servers = {
-			rust_analyzer = {},
+			-- rust_analyzer = {},
 			ts_ls = {
 				single_file_support = false,
 				root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
@@ -129,6 +134,7 @@ local lsp = {
 					root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
 				})
 			end,
+			rust_analyzer = function() end,
 		})
 
 		local conform = require("conform")
@@ -364,6 +370,67 @@ local colorizer = {
 	},
 }
 
+local nvim_dap = {
+	init = function()
+		local dap, dapui = require("dap"), require("dapui")
+		dap.defaults.fallback.external_terminal = {
+			command = "tmux",
+			args = { "split-window", "-h", "-d", "-p", "45" },
+		}
+
+		dap.defaults.fallback.force_external_terminal = true
+
+		dap.listeners.before.attach.dapui_config = function()
+			dapui.open()
+		end
+		dap.listeners.before.launch.dapui_config = function()
+			dapui.open()
+		end
+		dap.listeners.before.event_terminated.dapui_config = function()
+			dapui.close()
+		end
+		dap.listeners.before.event_exited.dapui_config = function()
+			dapui.close()
+		end
+
+		vim.keymap.set(
+			"n",
+			"<leader>db",
+			function()
+				vim.cmd.DapToggleBreakpoint()
+			end,
+			{ silent = true, desc = "[D]AP Toggle [B]reakpoint" }
+		)
+
+		vim.keymap.set(
+			"n",
+			"<leader>dd",
+			function()
+				vim.cmd.DapNew()
+			end,
+			{ silent = true, desc = "[D]AP Start [D]ebug" }
+		)
+	end,
+	"mfussenegger/nvim-dap",
+	dependencies = {
+		"nvim-neotest/nvim-nio",
+		{
+			"rcarriga/nvim-dap-ui",
+			config = true,
+		},
+		{
+			"theHamsta/nvim-dap-virtual-text",
+			config = true,
+		},
+	},
+}
+
+local rustaceanvim = {
+	"mrcjkb/rustaceanvim",
+	version = "^5", -- Recommended
+	lazy = false, -- This plugin is already lazy
+}
+
 return {
 	lsp,
 	treesitter,
@@ -388,4 +455,6 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
+	nvim_dap,
+	rustaceanvim,
 }
