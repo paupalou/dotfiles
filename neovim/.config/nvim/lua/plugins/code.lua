@@ -6,7 +6,6 @@ local lsp = {
 		"williamboman/mason.nvim",
 		"williamboman/mason-lspconfig.nvim",
 		"folke/neodev.nvim",
-		"ray-x/lsp_signature.nvim",
 		"stevearc/conform.nvim",
 		"mfussenegger/nvim-lint",
 	},
@@ -19,22 +18,9 @@ local lsp = {
 		},
 	},
 	config = function()
-		local on_attach = function(client, bufnr)
-			require("lsp_signature").on_attach({
-				bind = true, -- This is mandatory, otherwise border config won't get registered.
-				-- fix_pos = true,
-				floating_window = false,
-				hint_enable = true,
-				hint_prefix = "🔧 ",
-				hi_parameter = "LspSignatureSearch",
-				auto_close_after = 2,
-				handler_opts = {
-					border = "rounded",
-					max_width = 90,
-					max_height = 70,
-				},
-			}, bufnr)
+		require("neodev").setup({})
 
+		local on_attach = function(client, bufnr)
 			local nmap = function(keys, func, desc)
 				if desc then
 					desc = "LSP: " .. desc
@@ -99,9 +85,13 @@ local lsp = {
 			denols = {},
 		}
 
-		require("neodev").setup()
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+		-- capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+		--
+		local capabilities = nil
+		if pcall(require, "cmp_nvim_lsp") then
+			capabilities = require("cmp_nvim_lsp").default_capabilities()
+		end
 
 		require("mason").setup()
 		-- Ensure the servers above are installed
@@ -115,8 +105,8 @@ local lsp = {
 					capabilities = capabilities,
 					on_attach = on_attach,
 					handlers = {
-						["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" }),
-						-- ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border }),
+						["textDocument/hover"] = vim.lsp.buf.hover({ border = "rounded" }),
+						["textDocument/signatureHelp"] = vim.lsp.buf.signature_help({ border = "rounded " }),
 					},
 				})
 			end,
@@ -370,65 +360,10 @@ local colorizer = {
 	},
 }
 
-local nvim_dap = {
-	init = function()
-		local dap, dapui = require("dap"), require("dapui")
-		dap.defaults.fallback.external_terminal = {
-			command = "tmux",
-			args = { "split-window", "-h", "-d", "-p", "45" },
-		}
-
-		dap.defaults.fallback.force_external_terminal = true
-
-		dap.listeners.before.attach.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.launch.dapui_config = function()
-			dapui.open()
-		end
-		dap.listeners.before.event_terminated.dapui_config = function()
-			dapui.close()
-		end
-		dap.listeners.before.event_exited.dapui_config = function()
-			dapui.close()
-		end
-
-		vim.keymap.set(
-			"n",
-			"<leader>db",
-			function()
-				vim.cmd.DapToggleBreakpoint()
-			end,
-			{ silent = true, desc = "[D]AP Toggle [B]reakpoint" }
-		)
-
-		vim.keymap.set(
-			"n",
-			"<leader>dd",
-			function()
-				vim.cmd.DapNew()
-			end,
-			{ silent = true, desc = "[D]AP Start [D]ebug" }
-		)
-	end,
-	"mfussenegger/nvim-dap",
-	dependencies = {
-		"nvim-neotest/nvim-nio",
-		{
-			"rcarriga/nvim-dap-ui",
-			config = true,
-		},
-		{
-			"theHamsta/nvim-dap-virtual-text",
-			config = true,
-		},
-	},
-}
-
 local rustaceanvim = {
 	"mrcjkb/rustaceanvim",
-	version = "^5", -- Recommended
-	lazy = false, -- This plugin is already lazy
+	version = "^5",
+	lazy = false,
 }
 
 return {
@@ -455,6 +390,5 @@ return {
 			"nvim-tree/nvim-web-devicons",
 		},
 	},
-	nvim_dap,
 	rustaceanvim,
 }
