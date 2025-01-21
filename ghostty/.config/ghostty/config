@@ -3,6 +3,9 @@ command = /opt/homebrew/bin/fish
 adjust-cell-height = 25%
 adjust-cell-width = 5%
 
+adjust-underline-position = 30%
+adjust-underline-thickness = 1
+
 font-family = "VictorMono Nerd Font"
 font-style = "Medium"
 font-size = 18

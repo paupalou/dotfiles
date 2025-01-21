@@ -45,10 +45,7 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		tag = "v3.8.2",
 		config = function()
-			-- vim.opt.list = true
-			-- vim.opt.listchars:append("eol:↴")
 			local hooks = require("ibl.hooks")
 			hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
 				vim.api.nvim_set_hl(0, "InactiveBlankline", { fg = "#ccd0da" })
