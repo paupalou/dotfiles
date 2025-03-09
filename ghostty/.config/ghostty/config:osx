@@ -7,8 +7,8 @@ adjust-underline-position = 30%
 adjust-underline-thickness = 1
 
 font-family = "VictorMono Nerd Font"
-font-style = "Medium"
-font-size = 18
+font-style = "Regular"
+font-size = 16
 font-thicken = true
 macos-titlebar-style = hidden
 shell-integration = fish
